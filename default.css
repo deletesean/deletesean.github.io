@@ -1,0 +1,17 @@
+@import url("https://notseanwalters.github.io/seanwalters/assets/fonts/roboto/stylesheet.css");
+@import url("https://notseanwalters.github.io/seanwalters/assets/fonts/basictitle/stylesheet.css");
+@import url("https://notseanwalters.github.io/seanwalters/assets/fonts/code/stylesheet.css");
+p {
+  font-family: "roboto";
+  font-size: 20px;
+}
+
+h1 {
+  font-family: "basictitle";
+  font-size: 35px;
+}
+
+a {
+  font-family: "basictitle";
+  font-size: 35px;
+}
