@@ -8,11 +8,11 @@ p {
 
 h1 {
   font-family: "basic";
-  font-size: 40px;
+  font-size: 50px;
 }
 
 a {
-  font-family: "code";
+  font-family: "roboto";
   font-size: 25px;
   text-decoration: none;
   color: red;
