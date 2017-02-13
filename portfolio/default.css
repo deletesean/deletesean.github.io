@@ -37,7 +37,7 @@
   width: 900px;
   margin: 0 auto;
   font-family: "content";
-  font-size: 90px;
+  font-size: 20px;
 }
 #footer p {
   text-decoration: none;
@@ -49,7 +49,7 @@
   color: red;
   } 
 #footer a:hover   {
-  text-decoration:   underline overline;
+  text-decoration:  none;
   color: grey;
   }
 #navbar a {
@@ -60,7 +60,7 @@
   color: red;
 }
 #navbar a:hover   {
-  text-decoration:   underline overline;
+  text-decoration:  none;
   color: grey;
   background-color: white;
   } 
