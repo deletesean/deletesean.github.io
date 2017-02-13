@@ -3,7 +3,7 @@
   width: 900px;
   margin: 0 auto;
   border: 1px solid #000;
-  background-color: gray;
+  background-color: black;
   display: block;
 }
 * {
@@ -57,7 +57,7 @@
   border-right: 1px solid #ccc;
   border-top: 1px solid #ccc;
   text-decoration:  none;
-  color: white;
+  color: red;
 }
 #navbar a:hover   {
   text-decoration:  none;
