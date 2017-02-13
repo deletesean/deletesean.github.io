@@ -27,7 +27,7 @@
   background-color: white;
   height: auto;
   font-family: "content";
-  color: red;
+  color: black;
 }
 #content-title {    
   margin-left: 25px;
@@ -37,7 +37,7 @@
   width: 900px;
   margin: 0 auto;
   font-family: "content";
-  font-size: 20px;
+  font-size: 30px;
 }
 #footer p {
   text-decoration: none;
