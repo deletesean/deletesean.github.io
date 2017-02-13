@@ -1,12 +1,66 @@
 @import url("https://notseanwalters.github.io/seanwalters/assets/fonts/roboto/stylesheet.css");
-@import url("https://notseanwalters.github.io/seanwalters/assets/fonts/basic/stylesheet.css");
-@import url("https://notseanwalters.github.io/seanwalters/assets/fonts/code/stylesheet.css");
-p {
+#wrapper {
+  width: 900px;
+  margin: 0 auto;
+  border: 1px solid #000;
+  background-color: gray;
+  display: block;
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+#header {
+  width: 900px;
+  height: 125px;
+}
+#navbar {
+  width: 900px;
+  height: 35px;
+  background-color: black;
   font-family: "roboto";
-  font-size: 20px;
+  font-size: 28px;
+  text-align: center;
 }
-
-h1 {
-  font-family: "basic";
-  font-size: 35px;
+#content {
+  width: 900px;
+  background-color: blue;
+  height: auto;
+  font-family: "roboto";
+  color: white;
 }
+#content-title {    
+  margin-left: 25px;
+  padding-top: 20px;
+}
+#footer {
+  width: 900px;
+  margin: 0 auto;
+  font-family: "roboto";
+  font-size: 90px;
+}
+#footer p {
+  text-decoration: none;
+  padding: 5px 0;
+  text-align: center;
+}
+#footer a {
+  text-decoration:  none;
+  color: green;
+  } 
+#footer a:hover   {
+  text-decoration:  underline;
+  color: violet;
+  }
+#navbar a {
+  padding: 0px 7px 1px 7px;
+  border-right: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  text-decoration:  none;
+  color: blue;
+}
+#navbar a:hover   {
+  text-decoration:  none;
+  color: violet;
+  background-color: white;
+  } 
