@@ -18,7 +18,7 @@
   width: 900px;
   height: 35px;
   background-color: black;
-  font-family: "roboto";
+  font-family: "nav";
   font-size: 28px;
   text-align: center;
 }
@@ -26,7 +26,7 @@
   width: 900px;
   background-color: blue;
   height: auto;
-  font-family: "roboto";
+  font-family: "content";
   color: white;
 }
 #content-title {    
@@ -36,7 +36,7 @@
 #footer {
   width: 900px;
   margin: 0 auto;
-  font-family: "roboto";
+  font-family: "content";
   font-size: 90px;
 }
 #footer p {
