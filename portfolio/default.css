@@ -49,7 +49,7 @@
   color: red;
   } 
 #footer a:hover   {
-  text-decoration:  underline;
+  text-decoration:   underline overline;
   color: grey;
   }
 #navbar a {
@@ -60,7 +60,7 @@
   color: red;
 }
 #navbar a:hover   {
-  text-decoration:  bold;
+  text-decoration:   underline overline;
   color: grey;
   background-color: white;
   } 
