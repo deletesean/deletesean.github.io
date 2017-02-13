@@ -60,7 +60,7 @@
   color: red;
 }
 #navbar a:hover   {
-  text-decoration:  bolder;
+  text-decoration:  bold;
   color: grey;
   background-color: white;
   } 
