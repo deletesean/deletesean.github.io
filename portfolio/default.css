@@ -50,7 +50,7 @@
   } 
 #footer a:hover   {
   text-decoration:  underline;
-  color: black;
+  color: grey;
   }
 #navbar a {
   padding: 0px 7px 1px 7px;
@@ -60,7 +60,7 @@
   color: red;
 }
 #navbar a:hover   {
-  text-decoration:  none;
-  color: black;
+  text-decoration:  bolder;
+  color: grey;
   background-color: white;
   } 
