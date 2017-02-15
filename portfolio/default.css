@@ -135,7 +135,7 @@ html {
 
 #content {
   width: 900px;
-  background-color: black;
+  background-color: rgba(0, 0, 0, .9);
   height: auto;
   font-family: "content";
   color: white;
