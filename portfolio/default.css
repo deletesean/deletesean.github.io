@@ -224,10 +224,10 @@ html {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0, );
-  border-right: 1px solid #008eff;
-  border-bottom: 1px solid #008eff;
-  border-top: 1px solid #008eff;
-  border-left: 1px solid #008eff;
+  border-right: 1px solid #800000;
+  border-bottom: 1px solid #800000;
+  border-top: 1px solid #800000;
+  border-left: 1px solid #800000;
 }
 
 #button2:hover {
@@ -244,10 +244,10 @@ html {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0, );
-  border-right: 1px solid #00ff78;
-  border-bottom: 1px solid #00ff78;
-  border-top: 1px solid #00ff78;
-  border-left: 1px solid #00ff78;
+  border-right: 1px solid #008eff;
+  border-bottom: 1px solid #008eff;
+  border-top: 1px solid #008eff;
+  border-left: 1px solid #008eff;
 }
 
 #button4:hover {
