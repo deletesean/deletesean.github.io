@@ -1,4 +1,12 @@
 @import url("https://notseanwalters.github.io/seanwalters/assets/fonts/roboto/stylesheet.css");
+@import url("https://notseanwalters.github.io/seanwalters/assets/fonts/basic/stylesheet.css");
+@import url("https://notseanwalters.github.io/seanwalters/assets/fonts/code/stylesheet.css");
+@import url("https://notseanwalters.github.io/seanwalters/assets/fonts/coves/stylesheet.css");
+@import url("https://notseanwalters.github.io/seanwalters/assets/fonts/lazer/stylesheet.css");
+@import url("https://notseanwalters.github.io/seanwalters/assets/fonts/next/stylesheet.css");
+@import url("https://notseanwalters.github.io/seanwalters/assets/fonts/axis/stylesheet.css");
+@import url("https://notseanwalters.github.io/seanwalters/assets/fonts/streamster/stylesheet.css");
+
 body {
 	background-image: url("https://notseanwalters.github.io/seanwalters/assets/images/background2.jpg");
 }
@@ -7,13 +15,13 @@ body {
   width: 900px;
   margin: 0 auto;
   display: block;
-	box-shadow: 0px 5px 40px #000000;
+	box-shadow: 0px 20px 50px #000000;
 	margin-top: 30px;
 	margin-bottom: 20px;
 	border: solid;
-	border-width: 10px;
-	border-radius: 40px;
-	border-color: black;
+	border-width: 5px;
+	border-radius: 15px;
+	border-color: #333;
 	overflow: hidden;
 }
 
@@ -25,14 +33,17 @@ body {
 #header {
 	width: 900px;
 	height: 125px;
+	padding-top: 3.5px;
+	padding-bottom: 1px;
+	background-color: black;
 }
 
 #navbar {
 	width: 900px;
 	height: 35px;
 	background-color: black;
-	font-family: "nav";
-	font-size: 28px;
+	font-family: "coves";
+	font-size: 29px;
 	text-align: center;
 	padding-top: 5px;
 }
@@ -48,13 +59,14 @@ body {
 #content-title {
 	margin-left: 25px;
 	padding-top: 20px;
-	color: #990000;
+	color: #800000;
+	font-family: "streamster"
 }
 
 #footer {
 	width: 900px;
 	margin: 0 auto;
-	font-family: "content";
+	font-family: "coves";
 	font-size: 20px;
 	color: white
 }
@@ -67,26 +79,31 @@ body {
 
 #footer a {
 	text-decoration: none;
-	color: red;
+	color: #800000;
 }
 
 #footer a:hover {
 	text-decoration: underline;
-	color: #696969;
+	color: #800000;
 }
 
 #navbar a {
-	padding: 0px 7px 1px 7px;
+	padding: 0px 10px 4px 10px;
 	border-right: 1px solid #ababab;
 	border-top: 1px solid #ababab;
 	border-bottom: 1px solid #ababab;
 	border-left: 1px solid #ababab;
+	border-radius: 15px 15px 15px;
 	text-decoration: none;
-	color: #990000;
+	color: #fff;
 }
 
 #navbar a:hover {
 	text-decoration: none;
-	color: #696969;
+	color: #909090;
 	background-color: black;
+	border-right: 1px solid #800000;
+    border-bottom: 1px solid #800000;
+    border-top: 1px solid #800000;
+	border-left: 1px solid #800000;
 }
