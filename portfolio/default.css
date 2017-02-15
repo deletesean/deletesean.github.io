@@ -64,6 +64,13 @@ body {
 	font-family: "streamster"
 }
 
+#content-text {
+	margin-left: 20px;
+	padding-top: 5px;
+	color: #fff;
+	font-family: "roboto"
+}
+
 #footer {
 	width: 900px;
 	margin: 0 auto;
