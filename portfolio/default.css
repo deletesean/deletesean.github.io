@@ -7,8 +7,21 @@
 @import url("https://notseanwalters.github.io/seanwalters/assets/fonts/axis/stylesheet.css");
 @import url("https://notseanwalters.github.io/seanwalters/assets/fonts/streamster/stylesheet.css");
 
-body {
-	background-image: url("https://notseanwalters.github.io/seanwalters/assets/images/background2.jpg");
+#background {
+  background: url("https://notseanwalters.github.io/seanwalters/assets/images/background3.png");
+  position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	z-index: -3;
+	font-size: 1em;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 html {
 	background-color: black;
