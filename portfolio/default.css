@@ -1,4 +1,20 @@
 @import url("https://notseanwalters.github.io/seanwalters/assets/fonts/roboto/stylesheet.css");
+#background {
+  background: url("https://notseanwalters.github.io/seanwalters/assets/images/background2.jpg");
+  position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	z-index: -3;
+	font-size: 1em;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 #wrapper {
   width: 900px;
   margin: 0 auto;
@@ -51,7 +67,7 @@
   } 
 #footer a:hover   {
   text-decoration:  none;
-  color: #696969;
+  color: #660000;
   }
 #navbar a {
   padding: 0px 7px 1px 7px;
@@ -60,7 +76,7 @@
   border-bottom: 1px solid white;
   border-left: 1px solid white;
   text-decoration:  none;
-  color: red;
+  color: #660000;
 }
 #navbar a:hover   {
   text-decoration:  none;
