@@ -10,7 +10,10 @@
 body {
 	background-image: url("https://notseanwalters.github.io/seanwalters/assets/images/background2.jpg");
 }
-
+html {
+	background-color: black;
+	z-index: -100;
+}
 #wrapper {
   width: 900px;
   margin: 0 auto;
