@@ -191,8 +191,43 @@ html {
   text-decoration: none;
   color: #ababab;
 }
-
-#navbar a:hover {
+.button1:hover {
+  text-decoration: none;
+  color: #fff;
+  background-color: rgba(0, 0, 0,);
+  border-right: 1px solid #008eff;
+  border-bottom: 1px solid #008eff;
+  border-top: 1px solid #008eff;
+  border-left: 1px solid #008eff;
+}
+.button2:hover {
+  text-decoration: none;
+  color: #fff;
+  background-color: rgba(0, 0, 0,);
+  border-right: 1px solid #008eff;
+  border-bottom: 1px solid #008eff;
+  border-top: 1px solid #008eff;
+  border-left: 1px solid #008eff;
+}
+.button3:hover {
+  text-decoration: none;
+  color: #fff;
+  background-color: rgba(0, 0, 0,);
+  border-right: 1px solid #008eff;
+  border-bottom: 1px solid #008eff;
+  border-top: 1px solid #008eff;
+  border-left: 1px solid #008eff;
+}
+.button4:hover {
+  text-decoration: none;
+  color: #fff;
+  background-color: rgba(0, 0, 0,);
+  border-right: 1px solid #008eff;
+  border-bottom: 1px solid #008eff;
+  border-top: 1px solid #008eff;
+  border-left: 1px solid #008eff;
+}
+.button5:hover {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0,);
