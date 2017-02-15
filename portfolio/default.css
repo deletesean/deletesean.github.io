@@ -7,8 +7,72 @@
 @import url("https://notseanwalters.github.io/seanwalters/assets/fonts/axis/stylesheet.css");
 @import url("https://notseanwalters.github.io/seanwalters/assets/fonts/streamster/stylesheet.css");
 
-#background {
+#background1 {
   background: url("https://notseanwalters.github.io/seanwalters/assets/images/background3.png");
+  position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	z-index: -3;
+	font-size: 1em;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+#background2 {
+  background: url("https://notseanwalters.github.io/seanwalters/assets/images/background2.png");
+  position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	z-index: -3;
+	font-size: 1em;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+#background3 {
+  background: url("https://notseanwalters.github.io/seanwalters/assets/images/background7.png");
+  position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	z-index: -3;
+	font-size: 1em;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+#background4 {
+  background: url("https://notseanwalters.github.io/seanwalters/assets/images/background6.png");
+  position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	z-index: -3;
+	font-size: 1em;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+#background5 {
+  background: url("https://notseanwalters.github.io/seanwalters/assets/images/background4.png");
   position: fixed;
 	top: 0;
 	right: 0;
