@@ -6,193 +6,198 @@
 @import url("https://notseanwalters.github.io/seanwalters/assets/fonts/next/stylesheet.css");
 @import url("https://notseanwalters.github.io/seanwalters/assets/fonts/axis/stylesheet.css");
 @import url("https://notseanwalters.github.io/seanwalters/assets/fonts/streamster/stylesheet.css");
-
 #background1 {
   background: url("https://notseanwalters.github.io/seanwalters/assets/images/background3.png");
   position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	margin-bottom: 0px;
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	z-index: -3;
-	font-size: 1em;
-	background-repeat: no-repeat;
-	background-size: cover;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  z-index: -3;
+  font-size: 1em;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 #background2 {
   background: url("https://notseanwalters.github.io/seanwalters/assets/images/background2.png");
   position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	margin-bottom: 0px;
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	z-index: -3;
-	font-size: 1em;
-	background-repeat: no-repeat;
-	background-size: cover;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  z-index: -3;
+  font-size: 1em;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 #background3 {
   background: url("https://notseanwalters.github.io/seanwalters/assets/images/background7.png");
   position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	margin-bottom: 0px;
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	z-index: -3;
-	font-size: 1em;
-	background-repeat: no-repeat;
-	background-size: cover;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  z-index: -3;
+  font-size: 1em;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 #background4 {
   background: url("https://notseanwalters.github.io/seanwalters/assets/images/background6.png");
   position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	margin-bottom: 0px;
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	z-index: -3;
-	font-size: 1em;
-	background-repeat: no-repeat;
-	background-size: cover;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  z-index: -3;
+  font-size: 1em;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 #background5 {
   background: url("https://notseanwalters.github.io/seanwalters/assets/images/background4.png");
   position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	margin-bottom: 0px;
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	z-index: -3;
-	font-size: 1em;
-	background-repeat: no-repeat;
-	background-size: cover;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  z-index: -3;
+  font-size: 1em;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 html {
-	background-color: black;
-	z-index: -100;
+  background-color: black;
+  z-index: -100;
 }
+
 #wrapper {
   width: 900px;
   margin: 0 auto;
   display: block;
-	box-shadow: 0px 20px 50px #000000;
-	margin-top: 30px;
-	margin-bottom: 20px;
-	border: solid;
-	border-width: 5px;
-	border-radius: 15px;
-	border-color: #333;
-	overflow: hidden;
+  box-shadow: 0px 20px 50px #000000;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border: solid;
+  border-width: 5px;
+  border-radius: 15px;
+  border-color: #333;
+  overflow: hidden;
 }
 
 * {
-	padding: 0;
-	margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 #header {
-	width: 900px;
-	height: 125px;
-	padding-top: 4.6px;
-    padding-bottom: 10px;
-	background-color: black;
+  width: 900px;
+  height: 125px;
+  padding-top: 4.6px;
+  padding-bottom: 10px;
+  background-color: black;
 }
 
 #navbar {
-	width: 900px;
-	height: 35px;
-	background-color: black;
-	font-family: "coves";
-	font-size: 27.98px;
-	text-align: center;
-	padding-top: 8px;
+  width: 900px;
+  height: 35px;
+  background-color: black;
+  font-family: "coves";
+  font-size: 27.98px;
+  text-align: center;
+  padding-top: 8px;
 }
 
 #content {
-	width: 900px;
-	background-color: black;
-	height: auto;
-	font-family: "content";
-	color: white;
+  width: 900px;
+  background-color: black;
+  height: auto;
+  font-family: "content";
+  color: white;
 }
 
 #content-title {
-	margin-left: 36px;
-	padding-top: 22.5px;
-	color: #800000;
-	font-family: "streamster"
+  margin-left: 36px;
+  padding-top: 22.5px;
+  color: #800000;
+  font-family: "streamster"
 }
 
 #content-text {
-	margin-left: 35px;
-	padding-top: 15px;
-	padding-bottom: 25px;
-	color: #fff;
-	font-family: "roboto"
+  margin-left: 35px;
+  padding-top: 15px;
+  padding-bottom: 25px;
+  color: #fff;
+  font-family: "roboto"
 }
 
 #footer {
-	width: 900px;
-	margin: 0 auto;
-	font-family: "coves";
-	font-size: 20px;
-	color: white;
+  width: 900px;
+  margin: 0 auto;
+  font-family: "coves";
+  font-size: 20px;
+  color: white;
   text-shadow: 1px 1px #000;
 }
 
 #footer p {
-	text-decoration: none;
-	padding: 5px 0;
-	text-align: center;
+  text-decoration: none;
+  padding: 5px 0;
+  text-align: center;
 }
 
 #footer a {
-	text-decoration: none;
-	color: #800000;
+  text-decoration: none;
+  color: #800000;
 }
 
 #footer a:hover {
-	text-decoration: underline;
-	color: #800000;
+  text-decoration: underline;
+  color: #800000;
 }
 
 #navbar a {
-	padding: 10px 15px 10px 15px;
-	border-right: 1px solid #ababab;
-	border-top: 1px solid #ababab;
-	border-bottom: 1px solid #ababab;
-	border-left: 1px solid #ababab;
-	border-radius: 15px 15px 15px;
-	text-decoration: none;
-	color: #ababab;
+  padding: 10px 15px 10px 15px;
+  border-right: 1px solid #ababab;
+  border-top: 1px solid #ababab;
+  border-bottom: 1px solid #ababab;
+  border-left: 1px solid #ababab;
+  border-radius: 15px 15px 15px;
+  text-decoration: none;
+  color: #ababab;
 }
 
 #navbar a:hover {
-	text-decoration: none;
-	color: #fff;
-	background-color: black;
-	border-right: 1px solid #008eff;
-    border-bottom: 1px solid #008eff;
-    border-top: 1px solid #008eff;
-	border-left: 1px solid #008eff;
+  text-decoration: none;
+  color: #fff;
+  background-color: black;
+  border-right: 1px solid #008eff;
+  border-bottom: 1px solid #008eff;
+  border-top: 1px solid #008eff;
+  border-left: 1px solid #008eff;
 }
