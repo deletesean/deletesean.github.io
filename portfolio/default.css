@@ -120,13 +120,13 @@ html {
   height: 125px;
   padding-top: 4.6px;
   padding-bottom: 10px;
-  background-color: black;
+  background-color: rgba(0, 0, 0, .9);
 }
 
 #navbar {
   width: 900px;
-  height: 35px;
-  background-color: black;
+  height: 52px;
+  background-color: rgba(0, 0, 0, .9);
   font-family: "coves";
   font-size: 27.98px;
   text-align: center;
