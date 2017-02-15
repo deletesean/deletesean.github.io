@@ -18,17 +18,17 @@
 #navbar {
   width: 900px;
   height: 35px;
-  background-color: white;
+  background-color: black;
   font-family: "nav";
   font-size: 28px;
   text-align: center;
 }
 #content {
   width: 900px;
-  background-color: white;
+  background-color: black;
   height: auto;
   font-family: "content";
-  color: black;
+  color: white;
 }
 #content-title {    
   margin-left: 25px;
@@ -55,15 +55,15 @@
   }
 #navbar a {
   padding: 0px 7px 1px 7px;
-  border-right: 1px solid #ccc;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  border-left: 1px solid #ccc;
+  border-right: 1px solid white;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
   text-decoration:  none;
   color: red;
 }
 #navbar a:hover   {
   text-decoration:  none;
   color: #696969;
-  background-color: white;
+  background-color: black;
   } 
