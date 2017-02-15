@@ -195,7 +195,7 @@ html {
 #navbar a:hover {
   text-decoration: none;
   color: #fff;
-  background-color: black;
+  background-color: rgba(0, 0, 0,);
   border-right: 1px solid #008eff;
   border-bottom: 1px solid #008eff;
   border-top: 1px solid #008eff;
