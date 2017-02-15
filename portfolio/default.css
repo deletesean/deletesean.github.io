@@ -204,35 +204,35 @@ html {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0,);
-  border-right: 1px solid #008eff;
-  border-bottom: 1px solid #008eff;
-  border-top: 1px solid #008eff;
-  border-left: 1px solid #008eff;
+  border-right: 1px solid #3900ff;
+  border-bottom: 1px solid #3900ff;
+  border-top: 1px solid #3900ff;
+  border-left: 1px solid #3900ff;
 }
 #button3:hover {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0,);
-  border-right: 1px solid #008eff;
-  border-bottom: 1px solid #008eff;
-  border-top: 1px solid #008eff;
-  border-left: 1px solid #008eff;
+  border-right: 1px solid #00ff78;
+  border-bottom: 1px solid #00ff78;
+  border-top: 1px solid #00ff78;
+  border-left: 1px solid #00ff78;
 }
 #button4:hover {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0,);
-  border-right: 1px solid #008eff;
-  border-bottom: 1px solid #008eff;
-  border-top: 1px solid #008eff;
-  border-left: 1px solid #008eff;
+  border-right: 1px solid #ff0058;
+  border-bottom: 1px solid #ff0058;
+  border-top: 1px solid #ff0058;
+  border-left: 1px solid #ff0058;
 }
 #button5:hover {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0,);
-  border-right: 1px solid #008eff;
-  border-bottom: 1px solid #008eff;
-  border-top: 1px solid #008eff;
-  border-left: 1px solid #008eff;
+  border-right: 1px solid #fffd00;
+  border-bottom: 1px solid #fffd00;
+  border-top: 1px solid #fffd00;
+  border-left: 1px solid #fffd00;
 }
