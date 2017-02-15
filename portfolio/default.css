@@ -33,8 +33,8 @@ body {
 #header {
 	width: 900px;
 	height: 125px;
-	padding-top: 3.5px;
-	padding-bottom: 1px;
+	padding-top: 4.6px;
+    padding-bottom: 10px;
 	background-color: black;
 }
 
@@ -43,9 +43,9 @@ body {
 	height: 35px;
 	background-color: black;
 	font-family: "coves";
-	font-size: 29px;
+	font-size: 27.98px;
 	text-align: center;
-	padding-top: 5px;
+	padding-top: 8px;
 }
 
 #content {
@@ -88,22 +88,22 @@ body {
 }
 
 #navbar a {
-	padding: 0px 10px 4px 10px;
+	padding: 10px 15px 10px 15px;
 	border-right: 1px solid #ababab;
 	border-top: 1px solid #ababab;
 	border-bottom: 1px solid #ababab;
 	border-left: 1px solid #ababab;
 	border-radius: 15px 15px 15px;
 	text-decoration: none;
-	color: #fff;
+	color: #ababab;
 }
 
 #navbar a:hover {
 	text-decoration: none;
-	color: #909090;
+	color: #fff;
 	background-color: black;
-	border-right: 1px solid #800000;
-    border-bottom: 1px solid #800000;
-    border-top: 1px solid #800000;
-	border-left: 1px solid #800000;
+	border-right: 1px solid #008eff;
+    border-bottom: 1px solid #008eff;
+    border-top: 1px solid #008eff;
+	border-left: 1px solid #008eff;
 }
