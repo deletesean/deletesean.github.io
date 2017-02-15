@@ -1,86 +1,86 @@
 @import url("https://notseanwalters.github.io/seanwalters/assets/fonts/roboto/stylesheet.css");
-#background {
-  background: url("https://notseanwalters.github.io/seanwalters/assets/images/background2.jpg");
-  position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	margin-bottom: 0px;
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	z-index: -3;
-	font-size: 1em;
-	background-repeat: no-repeat;
-	background-size: cover;
+body {
+	background-image: url("https://notseanwalters.github.io/seanwalters/assets/images/background2.jpg");
 }
+
 #wrapper {
-  width: 900px;
-  margin: 0 auto;
-  display: block;
-	box-shadow: 0px 5px 40px white;
+	width: 900px;
+	margin: 0 auto;
+	display: block;
+	box-shadow: 0px 5px 40px black;
 	margin-top: 30px;
 	margin-bottom: 20px;
 }
+
 * {
-  padding: 0;
-  margin: 0;
+	padding: 0;
+	margin: 0;
 }
+
 #header {
-  width: 900px;
-  height: 125px;
+	width: 900px;
+	height: 125px;
 }
+
 #navbar {
-  width: 900px;
-  height: 35px;
-  background-color: black;
-  font-family: "nav";
-  font-size: 28px;
-  text-align: center;
+	width: 900px;
+	height: 35px;
+	background-color: black;
+	font-family: "nav";
+	font-size: 28px;
+	text-align: center;
 	padding-top: 5px;
 }
+
 #content {
-  width: 900px;
-  background-color: black;
-  height: auto;
-  font-family: "content";
-  color: white;
+	width: 900px;
+	background-color: black;
+	height: auto;
+	font-family: "content";
+	color: white;
 }
-#content-title {    
-  margin-left: 25px;
-  padding-top: 20px;
+
+#content-title {
+	margin-left: 25px;
+	padding-top: 20px;
+	color: #990000;
 }
+
 #footer {
-  width: 900px;
-  margin: 0 auto;
-  font-family: "content";
-  font-size: 20px;
+	width: 900px;
+	margin: 0 auto;
+	font-family: "content";
+	font-size: 20px;
 }
+
 #footer p {
-  text-decoration: none;
-  padding: 5px 0;
-  text-align: center;
+	text-decoration: none;
+	padding: 5px 0;
+	text-align: center;
 }
+
 #footer a {
-  text-decoration:  none;
-  color: red;
-  } 
-#footer a:hover   {
-  text-decoration:  none;
-  color: #696969;
-  }
-#navbar a {
-  padding: 0px 7px 1px 7px;
-  border-right: 1px solid white;
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
-  border-left: 1px solid white;
-  text-decoration:  none;
-  color: #990000;
+	text-decoration: none;
+	color: red;
 }
-#navbar a:hover   {
-  text-decoration:  none;
-  color: #696969;
-  background-color: black;
-  } 
+
+#footer a:hover {
+	text-decoration: underline;
+	color: #696969;
+}
+
+#navbar a {
+	padding: 0px 7px 1px 7px;
+	border-right: 1px solid white;
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+	border-left: 1px solid white;
+	text-decoration: none;
+	color: #990000;
+}
+
+#navbar a:hover {
+	text-decoration: none;
+	color: #696969;
+	background-color: black;
+}
