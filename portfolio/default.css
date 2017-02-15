@@ -191,7 +191,7 @@ html {
   text-decoration: none;
   color: #ababab;
 }
-.button1:hover {
+#button1:hover {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0,);
@@ -200,7 +200,7 @@ html {
   border-top: 1px solid #008eff;
   border-left: 1px solid #008eff;
 }
-.button2:hover {
+#button2:hover {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0,);
@@ -209,7 +209,7 @@ html {
   border-top: 1px solid #008eff;
   border-left: 1px solid #008eff;
 }
-.button3:hover {
+#button3:hover {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0,);
@@ -218,7 +218,7 @@ html {
   border-top: 1px solid #008eff;
   border-left: 1px solid #008eff;
 }
-.button4:hover {
+#button4:hover {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0,);
@@ -227,7 +227,7 @@ html {
   border-top: 1px solid #008eff;
   border-left: 1px solid #008eff;
 }
-.button5:hover {
+#button5:hover {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0,);
