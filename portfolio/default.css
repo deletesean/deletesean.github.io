@@ -156,7 +156,8 @@ html {
 	margin: 0 auto;
 	font-family: "coves";
 	font-size: 20px;
-	color: white
+	color: white;
+  text-shadow: 1px 1px #000;
 }
 
 #footer p {
