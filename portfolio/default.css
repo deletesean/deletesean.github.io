@@ -350,7 +350,7 @@ html {
 }
 
 #wrapper {
-  width: 100%;
+  width: 900px;
   margin: 0 auto;
   display: block;
   box-shadow: 0px 20px 50px #000000;
@@ -369,76 +369,63 @@ html {
 }
 
 #header {
-  width: 100%;
+  width: 900px;
   height: 125px;
   padding-top: 4.6px;
   padding-bottom: 10px;
-  background-color: rgba(0, 0, 0, .9);
+  background-color: black;
 }
 
 #navbar {
-  width: 100%;
+  width: 900px;
   height: 52px;
-  background-color: rgba(0, 0, 0, .9);
+  background-color: black;
   font-family: "coves";
-  font-size: 27.98px;
+  font-size: 27.4px;
   text-align: center;
   padding-top: 8px;
 }
 
 #content {
-  width: 100%;
-  background-color: rgba(0, 0, 0, .9);
+  width: 900px;
+  background-color: black;
   height: auto;
-  font-family: "content";
   color: white;
 }
-
-#content-title1 {
-  margin-left: 36px;
-  padding-top: 22.5px;
-  color: #800000;
-  font-family: "streamster"
+  
+svg{
+  width: 900px;
+  height: 120px;
+  display: block;
+  position: relative;
+  overflow: hidden; 
+  margin: 0 auto;
+  background: black;
 }
-
-#content-title2 {
-  margin-left: 36px;
-  padding-top: 22.5px;
-  color: #3900ff;
-  font-family: "streamster"
-}
-
-#content-title3 {
-  margin-left: 36px;
-  padding-top: 22.5px;
-  color: #008eff;
-  font-family: "streamster"
-}
-
-#content-title4 {
-  margin-left: 36px;
-  padding-top: 22.5px;
-  color: #ff0058;
-  font-family: "streamster"
-}
-
-#content-title5 {
-  margin-left: 36px;
-  padding-top: 22.5px;
-  color: #fffd00;
-  font-family: "streamster"
-}
-
+  
 #content-text {
   margin-left: 35px;
   padding-top: 15px;
   padding-bottom: 25px;
   color: #fff;
-  font-family: "roboto"
+  font-family: "roboto";
+  width: 820px;
+    white-space:nowrap;
+    overflow:hidden;
+    -webkit-animation: type 1s steps(9999999999, end);
+    animation: type 1s steps(9999999999, end);
+}
+
+@keyframes type{
+    from { width: 0; }
+}
+
+@-webkit-keyframes type{
+    from { width: 0; }
 }
 
 #footer {
-  width: 100%;
+  width: 900px;
   margin: 0 auto;
   font-family: "coves";
   font-size: 20px;
@@ -464,10 +451,10 @@ html {
 
 #navbar a {
   padding: 10px 15px 10px 15px;
-  border-right: 1px solid #ababab;
-  border-top: 1px solid #ababab;
-  border-bottom: 1px solid #ababab;
-  border-left: 1px solid #ababab;
+  border-right: 2px solid #ababab;
+  border-top: 2px solid #ababab;
+  border-bottom: 2px solid #ababab;
+  border-left: 2px solid #ababab;
   border-radius: 15px 15px 15px;
   text-decoration: none;
   color: #ababab;
@@ -477,49 +464,49 @@ html {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0, );
-  border-right: 1px solid #800000;
-  border-bottom: 1px solid #800000;
-  border-top: 1px solid #800000;
-  border-left: 1px solid #800000;
+  border-right: 3px solid #800000;
+  border-bottom: 3px solid #800000;
+  border-top: 3px solid #800000;
+  border-left: 3px solid #800000;
 }
 
 #button2:hover {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0, );
-  border-right: 1px solid #3900ff;
-  border-bottom: 1px solid #3900ff;
-  border-top: 1px solid #3900ff;
-  border-left: 1px solid #3900ff;
+  border-right: 3px solid #5b00ff;
+  border-bottom: 3px solid #5b00ff;
+  border-top: 3px solid #5b00ff;
+  border-left: 3px solid #5b00ff;
 }
 
 #button3:hover {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0, );
-  border-right: 1px solid #008eff;
-  border-bottom: 1px solid #008eff;
-  border-top: 1px solid #008eff;
-  border-left: 1px solid #008eff;
+  border-right: 3px solid #008eff;
+  border-bottom: 3px solid #008eff;
+  border-top: 3px solid #008eff;
+  border-left: 3px solid #008eff;
 }
 
 #button4:hover {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0, );
-  border-right: 1px solid #ff0058;
-  border-bottom: 1px solid #ff0058;
-  border-top: 1px solid #ff0058;
-  border-left: 1px solid #ff0058;
+  border-right: 3px solid #ff0058;
+  border-bottom: 3px solid #ff0058;
+  border-top: 3px solid #ff0058;
+  border-left: 3px solid #ff0058;
 }
 
 #button5:hover {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0, );
-  border-right: 1px solid #fffd00;
-  border-bottom: 1px solid #fffd00;
-  border-top: 1px solid #fffd00;
-  border-left: 1px solid #fffd00;
+  border-right: 3px solid #fffd00;
+  border-bottom: 3px solid #fffd00;
+  border-top: 3px solid #fffd00;
+  border-left: 3px solid #fffd00;
 }
 }
