@@ -146,35 +146,35 @@ html {
   margin-left: 36px;
   padding-top: 22.5px;
   color: #800000;
-  font-family: "streamster"
+  font-family: "streamster";
 }
 
 #content-title2 {
   margin-left: 36px;
   padding-top: 22.5px;
   color: #5b00ff;
-  font-family: "streamster"
+  font-family: "streamster";
 }
 
 #content-title3 {
   margin-left: 36px;
   padding-top: 22.5px;
   color: #008eff;
-  font-family: "streamster"
+  font-family: "streamster";
 }
 
 #content-title4 {
   margin-left: 36px;
   padding-top: 22.5px;
   color: #ff0058;
-  font-family: "streamster"
+  font-family: "streamster";
 }
 
 #content-title5 {
   margin-left: 36px;
   padding-top: 22.5px;
   color: #fffd00;
-  font-family: "streamster"
+  font-family: "streamster";
 }
 
 #content-text {
@@ -182,7 +182,21 @@ html {
   padding-top: 15px;
   padding-bottom: 25px;
   color: #fff;
-  font-family: "roboto"
+  font-family: "roboto";
+  width: 30em;
+    white-space:nowrap;
+    overflow:hidden;
+    -webkit-animation: type 5s steps(50, end);
+    animation: type 5s steps(50, end);
+}
+
+@keyframes type{
+    from { width: 0; }
+}
+
+@-webkit-keyframes type{
+    from { width: 0; }
+}
 }
 
 #footer {
