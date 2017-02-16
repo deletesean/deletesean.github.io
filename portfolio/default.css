@@ -132,14 +132,6 @@ html {
   font-size: 27.98px;
   text-align: center;
   padding-top: 8px;
-}
-
-#content {
-  width: 900px;
-  background-color: rgba(0, 0, 0, .9);
-  height: auto;
-  font-family: "content";
-  color: white;
   width: 30em;
     white-space:nowrap;
     overflow:hidden;
@@ -154,6 +146,13 @@ html {
 @-webkit-keyframes type{
     from { width: 0; }
 }
+
+#content {
+  width: 900px;
+  background-color: rgba(0, 0, 0, .9);
+  height: auto;
+  font-family: "content";
+  color: white;
 }
 
 #content-title1 {
@@ -161,6 +160,19 @@ html {
   padding-top: 22.5px;
   color: #800000;
   font-family: "streamster";
+  width: 30em;
+    white-space:nowrap;
+    overflow:hidden;
+    -webkit-animation: type 5s steps(50, end);
+    animation: type 5s steps(50, end);
+}
+
+@keyframes type{
+    from { width: 0; }
+}
+
+@-webkit-keyframes type{
+    from { width: 0; }
 }
 
 #content-title2 {
@@ -168,6 +180,19 @@ html {
   padding-top: 22.5px;
   color: #5b00ff;
   font-family: "streamster";
+  width: 30em;
+    white-space:nowrap;
+    overflow:hidden;
+    -webkit-animation: type 5s steps(50, end);
+    animation: type 5s steps(50, end);
+}
+
+@keyframes type{
+    from { width: 0; }
+}
+
+@-webkit-keyframes type{
+    from { width: 0; }
 }
 
 #content-title3 {
@@ -175,6 +200,19 @@ html {
   padding-top: 22.5px;
   color: #008eff;
   font-family: "streamster";
+  width: 30em;
+    white-space:nowrap;
+    overflow:hidden;
+    -webkit-animation: type 5s steps(50, end);
+    animation: type 5s steps(50, end);
+}
+
+@keyframes type{
+    from { width: 0; }
+}
+
+@-webkit-keyframes type{
+    from { width: 0; }
 }
 
 #content-title4 {
@@ -182,6 +220,19 @@ html {
   padding-top: 22.5px;
   color: #ff0058;
   font-family: "streamster";
+  width: 30em;
+    white-space:nowrap;
+    overflow:hidden;
+    -webkit-animation: type 5s steps(50, end);
+    animation: type 5s steps(50, end);
+}
+
+@keyframes type{
+    from { width: 0; }
+}
+
+@-webkit-keyframes type{
+    from { width: 0; }
 }
 
 #content-title5 {
@@ -189,6 +240,19 @@ html {
   padding-top: 22.5px;
   color: #fffd00;
   font-family: "streamster";
+  width: 30em;
+    white-space:nowrap;
+    overflow:hidden;
+    -webkit-animation: type 5s steps(50, end);
+    animation: type 5s steps(50, end);
+}
+
+@keyframes type{
+    from { width: 0; }
+}
+
+@-webkit-keyframes type{
+    from { width: 0; }
 }
 
 #content-text {
@@ -197,6 +261,19 @@ html {
   padding-bottom: 25px;
   color: #fff;
   font-family: "roboto";
+  width: 30em;
+    white-space:nowrap;
+    overflow:hidden;
+    -webkit-animation: type 5s steps(50, end);
+    animation: type 5s steps(50, end);
+}
+
+@keyframes type{
+    from { width: 0; }
+}
+
+@-webkit-keyframes type{
+    from { width: 0; }
 }
 
 #footer {
@@ -212,11 +289,37 @@ html {
   text-decoration: none;
   padding: 5px 0;
   text-align: center;
+  width: 30em;
+    white-space:nowrap;
+    overflow:hidden;
+    -webkit-animation: type 5s steps(50, end);
+    animation: type 5s steps(50, end);
+}
+
+@keyframes type{
+    from { width: 0; }
+}
+
+@-webkit-keyframes type{
+    from { width: 0; }
 }
 
 #footer a {
   text-decoration: none;
   color: #800000;
+  width: 30em;
+    white-space:nowrap;
+    overflow:hidden;
+    -webkit-animation: type 5s steps(50, end);
+    animation: type 5s steps(50, end);
+}
+
+@keyframes type{
+    from { width: 0; }
+}
+
+@-webkit-keyframes type{
+    from { width: 0; }
 }
 
 #footer a:hover {
