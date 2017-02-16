@@ -152,7 +152,7 @@ html {
 #content-title2 {
   margin-left: 36px;
   padding-top: 22.5px;
-  color: #3900ff;
+  color: #5b00ff;
   font-family: "streamster"
 }
 
@@ -235,10 +235,10 @@ html {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0, );
-  border-right: 1px solid #3900ff;
-  border-bottom: 1px solid #3900ff;
-  border-top: 1px solid #3900ff;
-  border-left: 1px solid #3900ff;
+  border-right: 1px solid #5b00ff;
+  border-bottom: 1px solid #5b00ff;
+  border-top: 1px solid #5b00ff;
+  border-left: 1px solid #5b00ff;
 }
 
 #button3:hover {
