@@ -121,13 +121,13 @@ html {
   height: 125px;
   padding-top: 4.6px;
   padding-bottom: 10px;
-  background-color: rgba(0, 0, 0, .9);
+  background-color: black;
 }
 
 #navbar {
   width: 900px;
   height: 52px;
-  background-color: rgba(0, 0, 0, .9);
+  background-color: black;
   font-family: "coves";
   font-size: 27.98px;
   text-align: center;
@@ -136,7 +136,7 @@ html {
 
 #content {
   width: 900px;
-  background-color: rgba(0, 0, 0, .9);
+  background-color: black;
   height: auto;
   font-family: "content";
   color: white;
