@@ -200,10 +200,10 @@ svg{
 
 #navbar a {
   padding: 10px 15px 10px 15px;
-  border-right: 1px solid #ababab;
-  border-top: 1px solid #ababab;
-  border-bottom: 1px solid #ababab;
-  border-left: 1px solid #ababab;
+  border-right: 2px solid #ababab;
+  border-top: 2px solid #ababab;
+  border-bottom: 2px solid #ababab;
+  border-left: 2px solid #ababab;
   border-radius: 15px 15px 15px;
   text-decoration: none;
   color: #ababab;
