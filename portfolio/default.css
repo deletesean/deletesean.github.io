@@ -132,19 +132,6 @@ html {
   font-size: 27.98px;
   text-align: center;
   padding-top: 8px;
-  width: 30em;
-    white-space:nowrap;
-    overflow:hidden;
-    -webkit-animation: type 5s steps(50, end);
-    animation: type 5s steps(50, end);
-}
-
-@keyframes type{
-    from { width: 0; }
-}
-
-@-webkit-keyframes type{
-    from { width: 0; }
 }
 
 #content {
@@ -289,37 +276,11 @@ html {
   text-decoration: none;
   padding: 5px 0;
   text-align: center;
-  width: 30em;
-    white-space:nowrap;
-    overflow:hidden;
-    -webkit-animation: type 5s steps(50, end);
-    animation: type 5s steps(50, end);
-}
-
-@keyframes type{
-    from { width: 0; }
-}
-
-@-webkit-keyframes type{
-    from { width: 0; }
 }
 
 #footer a {
   text-decoration: none;
   color: #800000;
-  width: 30em;
-    white-space:nowrap;
-    overflow:hidden;
-    -webkit-animation: type 5s steps(50, end);
-    animation: type 5s steps(50, end);
-}
-
-@keyframes type{
-    from { width: 0; }
-}
-
-@-webkit-keyframes type{
-    from { width: 0; }
 }
 
 #footer a:hover {
