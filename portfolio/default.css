@@ -158,11 +158,11 @@ svg{
   padding-bottom: 25px;
   color: #fff;
   font-family: "roboto";
-  width: 30em;
+  width: 850px;
     white-space:nowrap;
     overflow:hidden;
-    -webkit-animation: type 5s steps(50, end);
-    animation: type 5s steps(50, end);
+    -webkit-animation: type 1s steps(9999999999, end);
+    animation: type 1s steps(9999999999, end);
 }
 
 @keyframes type{
