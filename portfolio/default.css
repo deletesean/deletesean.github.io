@@ -141,7 +141,17 @@ html {
   font-family: "content";
   color: white;
 }
-
+  
+svg{
+  width: 600px;
+  height: 120px;
+  display: block;
+  position: relative;
+  overflow: hidden; 
+  margin: 0 auto;
+  background: black;
+}
+  
 #content-text {
   margin-left: 35px;
   padding-top: 15px;
