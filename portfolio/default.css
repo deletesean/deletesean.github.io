@@ -213,50 +213,50 @@ svg{
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0, );
-  border-right: 1px solid #800000;
-  border-bottom: 1px solid #800000;
-  border-top: 1px solid #800000;
-  border-left: 1px solid #800000;
+  border-right: 3px solid #800000;
+  border-bottom: 3px solid #800000;
+  border-top: 3px solid #800000;
+  border-left: 3px solid #800000;
 }
 
 #button2:hover {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0, );
-  border-right: 1px solid #5b00ff;
-  border-bottom: 1px solid #5b00ff;
-  border-top: 1px solid #5b00ff;
-  border-left: 1px solid #5b00ff;
+  border-right: 3px solid #5b00ff;
+  border-bottom: 3px solid #5b00ff;
+  border-top: 3px solid #5b00ff;
+  border-left: 3px solid #5b00ff;
 }
 
 #button3:hover {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0, );
-  border-right: 1px solid #008eff;
-  border-bottom: 1px solid #008eff;
-  border-top: 1px solid #008eff;
-  border-left: 1px solid #008eff;
+  border-right: 3px solid #008eff;
+  border-bottom: 3px solid #008eff;
+  border-top: 3px solid #008eff;
+  border-left: 3px solid #008eff;
 }
 
 #button4:hover {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0, );
-  border-right: 1px solid #ff0058;
-  border-bottom: 1px solid #ff0058;
-  border-top: 1px solid #ff0058;
-  border-left: 1px solid #ff0058;
+  border-right: 3px solid #ff0058;
+  border-bottom: 3px solid #ff0058;
+  border-top: 3px solid #ff0058;
+  border-left: 3px solid #ff0058;
 }
 
 #button5:hover {
   text-decoration: none;
   color: #fff;
   background-color: rgba(0, 0, 0, );
-  border-right: 1px solid #fffd00;
-  border-bottom: 1px solid #fffd00;
-  border-top: 1px solid #fffd00;
-  border-left: 1px solid #fffd00;
+  border-right: 3px solid #fffd00;
+  border-bottom: 3px solid #fffd00;
+  border-top: 3px solid #fffd00;
+  border-left: 3px solid #fffd00;
 }
 }
 @media screen and (orientation: portrait) {
