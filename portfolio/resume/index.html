@@ -14,26 +14,26 @@
 
 <body>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script>
-	jQuery('body').css('display','none');
-	jQuery(document).ready(function() {
-		jQuery('body').fadeIn();
-		jQuery('a').on('click',function(event){
-			var thetarget = this.getAttribute('target')
-			if (thetarget != "_blank"){			
-				var thehref = this.getAttribute('href')
-				event.preventDefault();
-				jQuery('body').fadeOut(function(){
-					//alert(thehref)
-					window.location = thehref					
-				});
-			}
+	<script>
+		jQuery('body').css('display', 'none');
+		jQuery(document).ready(function() {
+			jQuery('body').fadeIn();
+			jQuery('a').on('click', function(event) {
+				var thetarget = this.getAttribute('target')
+				if (thetarget != "_blank") {
+					var thehref = this.getAttribute('href')
+					event.preventDefault();
+					jQuery('body').fadeOut(function() {
+						//alert(thehref)
+						window.location = thehref
+					});
+				}
+			});
 		});
-	});
-	setTimeout(function(){
-		jQuery('body').fadeIn();
-	},1000)
-</script>
+		setTimeout(function() {
+			jQuery('body').fadeIn();
+		}, 1000)
+	</script>
 	<div id="background2"></div>
 	<div id="wrapper">
 		<div id="header">
@@ -47,8 +47,7 @@
 			<a href="https://notseanwalters.github.io/seanwalters/portfolio/showcase" id="button5">Showcase</a>
 		</div>
 		<div id="content">
-			<svg 
-	 width="600px" height="100px" viewBox="0 0 600 100">
+			<svg width="600px" height="100px" viewBox="0 0 600 100">
 <style type="text/css">
 
 <![CDATA[
@@ -144,114 +143,140 @@
 	<text x="0" y="89">RESUME</text>
 </g>
 </svg>
-			<div id="content-text"><h3 style="font-size: 25px; padding-bottom: 10px;">Sean Walters</h3>
-			 <p style="font-size: 18px; padding-bottom: 10px;">574 Grey Hawk Way<br>
-  Central Point, OR 97502<br>
-  <a href="tel:(541) 292-1862">(541) 292-1862</a><br>
-				<a href="mailto:walters601391@district6.org">walters601391@district6.org</a><br></p>
-			<h3 style="font-size: 20px; padding-bottom: 10px;">PROFILE</h3>
-			<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;"><ul>
-				<li><b>Fast Learner:</b>  quick learner and adapter to new situations to solve them as efficiently and as fast as possible to maintain a 4.00 GPA. Example: learned how to solve a new, complicated math problem in class within a few minutes. </li>
-				<li><b>Hard-worker:</b> solves each and every single problem ran into and doesn’t stop trying with incredible effort until the problem is solved. Example: comes home and works on homework immediately until it is all finished.  </li>
-				<li><b>Commited:</b> has an honest nature, can be trusted with sensitive work such as, dealing with tenant documents through Rogue Real Estate.</li>
-				<li><b>Prompt student:</b> consistently shows up to class on time.</li>
-				<li><b>Educationally dedicated:</b> desire to learn; test scores are above average in every subject.</li>
-			</ul></div>
-		<h3 style="font-size: 20px; padding-bottom: 10px;">EDUCATION</h3>
-		<h3 style="font-size: 20px;">Crater School of Business, Innovation, and Science - Central Point, OR</h3>
-		<p style="font-size: 18px;">Junior - graduating June 2018</p>
-		<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;"><ul>
-			<li>Studied biology, English, physics, algebra, health, US history, and graphic design.</li>
-			</ul></div>
-		
-			<h3 style="font-size: 20px; padding-bottom: 10px;">WORK EXPERIENCE</h3>
-	<p style="font-size: 18px;"><b>Rogue Real Estate</b> - Medford, OR - June 2016 - August 2016</p>
-			<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;"><ul>
-				<li>Performed digital file auditing</li>
-				<li>Created HTML templates for PDF generator</li>
-				<li>Helped employees solve computer related issues</li>
-				<li>Helped improve buildings overall aesthetic by organizing and rearranging interior</li>
-		</ul>	</div>
-				<h3 style="font-size: 20px; padding-bottom: 10px;">ACTIVITIES</h3>
-				<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;"><ul>
-					<li>Southern Oregon Gymnastics academy, tricking and freerunning, 2014-2016</li></ul></div>
-		<h3 style="font-size: 20px; padding-bottom: 10px;">COMPUTER SKILLS</h3>
-				<table width="85%" border="0" style=" padding-bottom: 10px;">
-					<tbody>
-						<tr>
-							<td align="left" valign="top">
-							<h3 style="font-size: 20px; text-indent: 15px; padding-bottom: 10px;">- Expert Skills</h3>
-								<div style="margin-left: 40px; font-size: 18px;"><ul>
-									<li>Windows 3.1-10 </li>
-									<li>Photoshop/ Illustrator</li>
-									<li>Linux command lines</li>
-									<li>Word processing</li>
-									<li>Excel/ Google Sheets</li>
-									<li>Mac OS X 10.1-10.12</li>
-									</ul></div>
-							</td>
-							<td align="left" valign="top">
-							<h3 style="font-size: 20px; text-indent: 15px; padding-bottom: 10px;">- Intermediate Skills</h3>
-							<div style="margin-left: 40px; font-size: 18px;"><ul>
-									<li>HTML/CSS Programming</li>
-									<li>FontLab Studio 5</li>
-									<li>Video Editing</li>
-									<li>Android SDK</li>
-									<li>Xcode</li>
-									<li>JavaScript Programming</li>
-								</ul></div>
-							</td>
-							<td align="left" valign="top">
-							<h3 style="font-size: 20px; text-indent: 15px; padding-bottom: 10px;">- Beginning Skills</h3>
-							<div style="margin-left: 40px; font-size: 18px;"><ul>
-									<li>C++ Programming</li>
-									<li>Unreal Engine 4</li>
-									<li>Python Programming</li>
-									<li>FL Studio 12</li>
-									<li>Java Programming</li>
-									<li>PHP Programming</li>
-								</ul></div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			<h3 style="font-size: 20px; padding-bottom: 10px;">REFERENCES</h3>
-			<table width="85%" border="0" style="padding-bottom: 40px;">
-					<tbody>
-						<tr>
-							<td align="left" valign="top">
-								<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;"><p>
-								Jeremy Sinks<br>
- 	 							655 North Third Street<br>
-  							Central Point, OR 97502<br>
-									<a href="tel:(541) 494-6300">(541) 494-6300</a></p></div>
-							</td>
-							<td align="left" valign="top">
-								<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;"><p>
-								Mike Rogan<br>
-								655 North Third Street<br>
-								Central Point, OR 97502<br>
-									<a href="tel:(541) 494-6300">(541) 494-6300</a></p></div>
-							</td>
-							<td align="left" valign="top">
-								<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;">
-									<p>
-									Rob Chisholm<br>
-									534 E Main Street<br>
-									Medford, OR 97504<br>
-									<a href="tel:(541) 944-8966">(541) 944-8966</a></p></div>
-							</td>
-						</tr>
-					</tbody>
-				</table>	
-			
+			<div id="content-text">
+				<h3 style="font-size: 25px; padding-bottom: 10px;">Sean Walters</h3>
+				<p style="font-size: 18px; padding-bottom: 10px;">574 Grey Hawk Way<br> Central Point, OR 97502<br>
+					<a href="tel:(541) 292-1862">(541) 292-1862</a><br>
+					<a href="mailto:walters601391@district6.org">walters601391@district6.org</a><br></p>
+				<h3 style="font-size: 20px; padding-bottom: 10px;">PROFILE</h3>
+				<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;">
+					<ul>
+						<li><b>Fast Learner:</b> quick learner and adapter to new situations to solve them as efficiently and as fast as possible to maintain a 4.00 GPA. Example: learned how to solve a new, complicated math problem in class within a few minutes. </li>
+						<li><b>Hard-worker:</b> solves each and every single problem ran into and doesn’t stop trying with incredible effort until the problem is solved. Example: comes home and works on homework immediately until it is all finished. </li>
+						<li><b>Commited:</b> dedicated to work and puts as much effort possible into everyday assignments, no matter how big or small the job is. Example: worked for more than 10 hours on a photoshop assignment - the Top 10 Things in the CSB Handbook photoshop.</li>
+						<li><b>Implemented:</b> greatly involved in school/work by putting ideas/visions into effect or action and applying them to a real world situation. Example: had an idea for a great aquaponics system last year, sketched the blueprints, and helped bring
+							the idea to life by building pieces and putting it all together.</li>
+						<li><b>Associate:</b> amazing follower by listening, understanding, and executing direction as told to him by an instructor for his school. Example: listened to and followed all directions given by instructor and leader while working with a group in
+							chemistry. </li>
+					</ul>
+				</div>
+				<h3 style="font-size: 20px; padding-bottom: 10px;">EDUCATION</h3>
+				<h3 style="font-size: 20px;">Crater School of Business Innovation and Science - Central Point, OR</h3>
+				<p style="font-size: 18px;">Junior status - graduating June 2018</p>
+				<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;">
+					<ul>
+						<li>Currently enrolled at the Crater School of Business, Innovation, and Science where business is the glue to all of the classes taken, such as computer applications, media, entrepreneur, interactive math, English, and chemistry, with the advantages
+							of internship placement and college credits through the two-year program known as CSB. </li>
+					</ul>
+				</div>
+				<h3 style="font-size: 20px; padding-bottom: 10px;">WORK EXPERIENCE</h3>
+				<p style="font-size: 18px;"><b>Diamond Lake Square Dance Stage</b></p>
+				<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;">
+					<ul>
+						<li>Assisted in putting together a stage for the Annual Square Dance Festival at Diamond Lake by carrying wood planks and assembling while working with a team of Young Marines along with others.</li>
+					</ul>
+				</div>
+				<p style="font-size: 18px;"><b>Battle of the Bones</b></p>
+				<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;">
+					<ul>
+						<li>Raised money for schools, businesses, and charities by selling goods and services, such as raffle tickets, cookies, and prizes, to customers by communicating and having the qualities of a salesman.</li>
+						</ul>
+				</div>
+				<p style="font-size: 18px;"><b>Private Tutoring</b></p>
+				<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;">
+					<ul>
+						<li>Helps sibling with everyday learning by assisting with homework that has to do with reading, writing, and math.</li>
+						<li>Assisted classmates on various subjects before, during, and after school.</li>
+						</ul>
+				</div>
+						<h3 style="font-size: 20px; padding-bottom: 10px;">ACTIVITIES</h3>
+						<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;">
+							<ul>
+								<li>Southern Oregon Gymnastics academy, tricking and freerunning, 2014-2016</li>
+							</ul>
+						</div>
+						<h3 style="font-size: 20px; padding-bottom: 10px;">COMPUTER SKILLS</h3>
+						<table width="85%" border="0" style=" padding-bottom: 10px;">
+							<tbody>
+								<tr>
+									<td align="left" valign="top">
+										<h3 style="font-size: 20px; text-indent: 15px; padding-bottom: 10px;">- Expert Skills</h3>
+										<div style="margin-left: 40px; font-size: 18px;">
+											<ul>
+												<li>Windows 3.1-10 </li>
+												<li>Photoshop/ Illustrator</li>
+												<li>Linux command lines</li>
+												<li>Word processing</li>
+												<li>Excel/ Google Sheets</li>
+												<li>Mac OS X 10.1-10.12</li>
+											</ul>
+										</div>
+									</td>
+									<td align="left" valign="top">
+										<h3 style="font-size: 20px; text-indent: 15px; padding-bottom: 10px;">- Intermediate Skills</h3>
+										<div style="margin-left: 40px; font-size: 18px;">
+											<ul>
+												<li>HTML/CSS Programming</li>
+												<li>FontLab Studio 5</li>
+												<li>Video Editing</li>
+												<li>Android SDK</li>
+												<li>Xcode</li>
+												<li>JavaScript Programming</li>
+											</ul>
+										</div>
+									</td>
+									<td align="left" valign="top">
+										<h3 style="font-size: 20px; text-indent: 15px; padding-bottom: 10px;">- Beginning Skills</h3>
+										<div style="margin-left: 40px; font-size: 18px;">
+											<ul>
+												<li>C++ Programming</li>
+												<li>Unreal Engine 4</li>
+												<li>Python Programming</li>
+												<li>FL Studio 12</li>
+												<li>Java Programming</li>
+												<li>PHP Programming</li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<h3 style="font-size: 20px; padding-bottom: 10px;">REFERENCES</h3>
+						<table width="85%" border="0" style="padding-bottom: 40px;">
+							<tbody>
+								<tr>
+									<td align="left" valign="top">
+										<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;">
+											<p>
+												Jeremy Sinks<br> 655 North Third Street<br> Central Point, OR 97502<br>
+												<a href="tel:(541) 494-6300">(541) 494-6300</a></p>
+										</div>
+									</td>
+									<td align="left" valign="top">
+										<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;">
+											<p>
+												Mike Rogan<br> 655 North Third Street<br> Central Point, OR 97502<br>
+												<a href="tel:(541) 494-6300">(541) 494-6300</a></p>
+										</div>
+									</td>
+									<td align="left" valign="top">
+										<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;">
+											<p>
+												Rob Chisholm<br> 534 E Main Street<br> Medford, OR 97504<br>
+												<a href="tel:(541) 944-8966">(541) 944-8966</a></p>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+				</div>
 			</div>
 		</div>
-	</div>
-	<div id="footer">
-		<p>All Rights Reserved &copy;</p>
-		<p><a href="mailto:walters601391@district6.org">Sean Walters</a></p>
-	</div>
+		<div id="footer">
+			<p>All Rights Reserved &copy;</p>
+			<p><a href="mailto:walters601391@district6.org">Sean Walters</a></p>
+		</div>
 </body>
 
 </html>
