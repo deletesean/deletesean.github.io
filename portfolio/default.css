@@ -158,10 +158,6 @@ svg{
   color: #fff;
   font-family: "coves";
   width: 820px;
-    white-space:nowrap;
-    overflow:hidden;
-    -webkit-animation: type 1s steps(9999999999, end);
-    animation: type 1s steps(9999999999, end);
 }
 
 @keyframes type{
