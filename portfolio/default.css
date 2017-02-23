@@ -150,6 +150,11 @@
   #content img {
     display: inline-block;
     float: right;
+    border: solid;
+    border-width: 5px;
+    border-radius: 15px;
+    border-color: #fff;
+    overflow: hidden;
   }
   @keyframes type {
     from {
@@ -383,6 +388,11 @@
   #content img {
     display: inline-block;
     float: right;
+    border: solid;
+    border-width: 5px;
+    border-radius: 15px;
+    border-color: #fff;
+    overflow: hidden;
   }
   @keyframes type {
     from {
