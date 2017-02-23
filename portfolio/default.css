@@ -140,9 +140,9 @@
     background: black;
   }
   #content-text {
-    margin-left: 35px;
-    padding-top: 15px;
-    padding-bottom: 25px;
+    margin-left: 25px;
+    padding-top: 25px;
+    padding-bottom: 13px;
     color: #afafaf;
     font-family: "coves";
     width: 600px;
@@ -155,6 +155,7 @@
     border-radius: 15px;
     border-color: #fff;
     overflow: hidden;
+    margin-right: 15px;
   }
   @keyframes type {
     from {
@@ -378,9 +379,9 @@
     background: black;
   }
   #content-text {
-    margin-left: 35px;
-    padding-top: 15px;
-    padding-bottom: 25px;
+    margin-left: 25px;
+    padding-top: 25px;
+    padding-bottom: 13px;
     color: #afafaf;
     font-family: "coves";
     width: 600px;
@@ -393,6 +394,7 @@
     border-radius: 15px;
     border-color: #fff;
     overflow: hidden;
+    margin-right: 15px;
   }
   @keyframes type {
     from {
