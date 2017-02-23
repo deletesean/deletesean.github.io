@@ -147,10 +147,6 @@
     font-family: "coves";
     width: 820px;
   }
-  #content img {
-    display: inline-block;
-    float: right;
-  }
   @keyframes type {
     from {
       width: 0;
@@ -379,10 +375,6 @@
     color: #afafaf;
     font-family: "coves";
     width: 820px;
-  }
-  #content img {
-    display: inline-block;
-    float: right;
   }
   @keyframes type {
     from {
