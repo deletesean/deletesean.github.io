@@ -7,498 +7,467 @@
 @import url("https://notseanwalters.github.io/seanwalters/assets/fonts/axis/stylesheet.css");
 @import url("https://notseanwalters.github.io/seanwalters/assets/fonts/streamster/stylesheet.css");
 @media screen and (orientation: landscape) {
-#background1 {
-  background: url("https://notseanwalters.github.io/seanwalters/assets/images/background3.png");
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-right: 0px;
-  z-index: -3;
-  font-size: 1em;
-  background-repeat: no-repeat;
-  background-size: cover;
+  #background1 {
+    background: url("https://notseanwalters.github.io/seanwalters/assets/images/background3.png");
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    z-index: -3;
+    font-size: 1em;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #background2 {
+    background: url("https://notseanwalters.github.io/seanwalters/assets/images/background2.png");
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    z-index: -3;
+    font-size: 1em;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #background3 {
+    background: url("https://notseanwalters.github.io/seanwalters/assets/images/background7.png");
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    z-index: -3;
+    font-size: 1em;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #background4 {
+    background: url("https://notseanwalters.github.io/seanwalters/assets/images/background5.png");
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    z-index: -3;
+    font-size: 1em;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #background5 {
+    background: url("https://notseanwalters.github.io/seanwalters/assets/images/background4.png");
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    z-index: -3;
+    font-size: 1em;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  html {
+    background-color: black;
+    z-index: -100;
+  }
+  #wrapper {
+    width: 900px;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0px 20px 50px #000000;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border: solid;
+    border-width: 5px;
+    border-radius: 15px;
+    border-color: #333;
+    overflow: hidden;
+  }
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  #header {
+    width: 900px;
+    height: 125px;
+    padding-top: 4.6px;
+    padding-bottom: 10px;
+    background-color: black;
+  }
+  #navbar {
+    width: 900px;
+    height: 52px;
+    background-color: black;
+    font-family: "coves";
+    font-size: 27.4px;
+    text-align: center;
+    padding-top: 8px;
+  }
+  #content {
+    width: 900px;
+    background-color: black;
+    height: auto;
+    color: white;
+  }
+  svg {
+    width: 900px;
+    height: 120px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    background: black;
+  }
+  #content-text {
+    margin-left: 35px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    color: #afafaf;
+    font-family: "coves";
+    width: 820px;
+  }
+  #content img {
+    display: inline-block;
+    float: right;
+  }
+  @keyframes type {
+    from {
+      width: 0;
+    }
+  }
+  @-webkit-keyframes type {
+    from {
+      width: 0;
+    }
+  }
+  #footer {
+    width: 900px;
+    margin: 0 auto;
+    font-family: "coves";
+    font-size: 20px;
+    color: white;
+    text-shadow: 1px 1px #000;
+  }
+  #footer p {
+    text-decoration: none;
+    padding: 5px 0;
+    text-align: center;
+  }
+  #footer a {
+    text-decoration: none;
+    color: #800000;
+  }
+  #footer a:hover {
+    text-decoration: underline;
+    color: #800000;
+  }
+  #navbar a {
+    padding: 10px 15px 10px 15px;
+    border-right: 2px solid #ababab;
+    border-top: 2px solid #ababab;
+    border-bottom: 2px solid #ababab;
+    border-left: 2px solid #ababab;
+    border-radius: 15px 15px 15px;
+    text-decoration: none;
+    color: #ababab;
+  }
+  #button1:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: rgba(0, 0, 0, );
+    border-right: 3px solid #800000;
+    border-bottom: 3px solid #800000;
+    border-top: 3px solid #800000;
+    border-left: 3px solid #800000;
+  }
+  #button2:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: rgba(0, 0, 0, );
+    border-right: 3px solid #6800ff;
+    border-bottom: 3px solid #6800ff;
+    border-top: 3px solid #6800ff;
+    border-left: 3px solid #6800ff;
+  }
+  #button3:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: rgba(0, 0, 0, );
+    border-right: 3px solid #008eff;
+    border-bottom: 3px solid #008eff;
+    border-top: 3px solid #008eff;
+    border-left: 3px solid #008eff;
+  }
+  #button4:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: rgba(0, 0, 0, );
+    border-right: 3px solid #ff0058;
+    border-bottom: 3px solid #ff0058;
+    border-top: 3px solid #ff0058;
+    border-left: 3px solid #ff0058;
+  }
+  #button5:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: rgba(0, 0, 0, );
+    border-right: 3px solid #fffd00;
+    border-bottom: 3px solid #fffd00;
+    border-top: 3px solid #fffd00;
+    border-left: 3px solid #fffd00;
+  }
 }
 
-#background2 {
-  background: url("https://notseanwalters.github.io/seanwalters/assets/images/background2.png");
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-right: 0px;
-  z-index: -3;
-  font-size: 1em;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-#background3 {
-  background: url("https://notseanwalters.github.io/seanwalters/assets/images/background7.png");
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-right: 0px;
-  z-index: -3;
-  font-size: 1em;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-#background4 {
-  background: url("https://notseanwalters.github.io/seanwalters/assets/images/background5.png");
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-right: 0px;
-  z-index: -3;
-  font-size: 1em;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-#background5 {
-  background: url("https://notseanwalters.github.io/seanwalters/assets/images/background4.png");
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-right: 0px;
-  z-index: -3;
-  font-size: 1em;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-html {
-  background-color: black;
-  z-index: -100;
-}
-
-#wrapper {
-  width: 900px;
-  margin: 0 auto;
-  display: block;
-  box-shadow: 0px 20px 50px #000000;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  border: solid;
-  border-width: 5px;
-  border-radius: 15px;
-  border-color: #333;
-  overflow: hidden;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-}
-
-#header {
-  width: 900px;
-  height: 125px;
-  padding-top: 4.6px;
-  padding-bottom: 10px;
-  background-color: black;
-}
-
-#navbar {
-  width: 900px;
-  height: 52px;
-  background-color: black;
-  font-family: "coves";
-  font-size: 27.4px;
-  text-align: center;
-  padding-top: 8px;
-}
-
-#content {
-  width: 900px;
-  background-color: black;
-  height: auto;
-  color: white;
-}
-  
-svg{
-  width: 900px;
-  height: 120px;
-  display: block;
-  position: relative;
-  overflow: hidden; 
-  margin: 0 auto;
-  background: black;
-}
-  
-#content-text {
-  margin-left: 35px;
-  padding-top: 15px;
-  padding-bottom: 25px;
-  color: #afafaf;
-  font-family: "coves";
-  width: 820px;
-}
-
-@keyframes type{
-    from { width: 0; }
-}
-
-@-webkit-keyframes type{
-    from { width: 0; }
-}
-
-#footer {
-  width: 900px;
-  margin: 0 auto;
-  font-family: "coves";
-  font-size: 20px;
-  color: white;
-  text-shadow: 1px 1px #000;
-}
-
-#footer p {
-  text-decoration: none;
-  padding: 5px 0;
-  text-align: center;
-}
-
-#footer a {
-  text-decoration: none;
-  color: #800000;
-}
-
-#footer a:hover {
-  text-decoration: underline;
-  color: #800000;
-}
-
-#navbar a {
-  padding: 10px 15px 10px 15px;
-  border-right: 2px solid #ababab;
-  border-top: 2px solid #ababab;
-  border-bottom: 2px solid #ababab;
-  border-left: 2px solid #ababab;
-  border-radius: 15px 15px 15px;
-  text-decoration: none;
-  color: #ababab;
-}
-
-#button1:hover {
-  text-decoration: none;
-  color: #fff;
-  background-color: rgba(0, 0, 0, );
-  border-right: 3px solid #800000;
-  border-bottom: 3px solid #800000;
-  border-top: 3px solid #800000;
-  border-left: 3px solid #800000;
-}
-
-#button2:hover {
-  text-decoration: none;
-  color: #fff;
-  background-color: rgba(0, 0, 0, );
-  border-right: 3px solid #6800ff;
-  border-bottom: 3px solid #6800ff;
-  border-top: 3px solid #6800ff;
-  border-left: 3px solid #6800ff;
-}
-
-#button3:hover {
-  text-decoration: none;
-  color: #fff;
-  background-color: rgba(0, 0, 0, );
-  border-right: 3px solid #008eff;
-  border-bottom: 3px solid #008eff;
-  border-top: 3px solid #008eff;
-  border-left: 3px solid #008eff;
-}
-
-#button4:hover {
-  text-decoration: none;
-  color: #fff;
-  background-color: rgba(0, 0, 0, );
-  border-right: 3px solid #ff0058;
-  border-bottom: 3px solid #ff0058;
-  border-top: 3px solid #ff0058;
-  border-left: 3px solid #ff0058;
-}
-
-#button5:hover {
-  text-decoration: none;
-  color: #fff;
-  background-color: rgba(0, 0, 0, );
-  border-right: 3px solid #fffd00;
-  border-bottom: 3px solid #fffd00;
-  border-top: 3px solid #fffd00;
-  border-left: 3px solid #fffd00;
-}
-}
 @media screen and (orientation: portrait) {
   #background1 {
-  background: url("https://notseanwalters.github.io/seanwalters/assets/images/background3.png");
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-right: 0px;
-  z-index: -3;
-  font-size: 1em;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-#background2 {
-  background: url("https://notseanwalters.github.io/seanwalters/assets/images/background2.png");
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-right: 0px;
-  z-index: -3;
-  font-size: 1em;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-#background3 {
-  background: url("https://notseanwalters.github.io/seanwalters/assets/images/background7.png");
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-right: 0px;
-  z-index: -3;
-  font-size: 1em;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-#background4 {
-  background: url("https://notseanwalters.github.io/seanwalters/assets/images/background5.png");
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-right: 0px;
-  z-index: -3;
-  font-size: 1em;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-#background5 {
-  background: url("https://notseanwalters.github.io/seanwalters/assets/images/background4.png");
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-right: 0px;
-  z-index: -3;
-  font-size: 1em;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-html {
-  background-color: black;
-  z-index: -100;
-}
-
-#wrapper {
-  width: 900px;
-  margin: 0 auto;
-  display: block;
-  box-shadow: 0px 20px 50px #000000;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  border: solid;
-  border-width: 5px;
-  border-radius: 15px;
-  border-color: #333;
-  overflow: hidden;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-}
-
-#header {
-  width: 900px;
-  height: 125px;
-  padding-top: 4.6px;
-  padding-bottom: 10px;
-  background-color: black;
-}
-
-#navbar {
-  width: 900px;
-  height: 52px;
-  background-color: black;
-  font-family: "coves";
-  font-size: 27.4px;
-  text-align: center;
-  padding-top: 8px;
-}
-
-#content {
-  width: 900px;
-  background-color: black;
-  height: auto;
-  color: white;
-}
-  
-svg{
-  width: 900px;
-  height: 120px;
-  display: block;
-  position: relative;
-  overflow: hidden; 
-  margin: 0 auto;
-  background: black;
-}
-  
-#content-text {
-  margin-left: 35px;
-  padding-top: 15px;
-  padding-bottom: 25px;
-  color: #afafaf;
-  font-family: "coves";
-  width: 820px;
-}
-
-@keyframes type{
-    from { width: 0; }
-}
-
-@-webkit-keyframes type{
-    from { width: 0; }
-}
-
-#footer {
-  width: 900px;
-  margin: 0 auto;
-  font-family: "coves";
-  font-size: 20px;
-  color: white;
-  text-shadow: 1px 1px #000;
-}
-
-#footer p {
-  text-decoration: none;
-  padding: 5px 0;
-  text-align: center;
-}
-
-#footer a {
-  text-decoration: none;
-  color: #800000;
-}
-
-#footer a:hover {
-  text-decoration: underline;
-  color: #800000;
-}
-
-#navbar a {
-  padding: 10px 15px 10px 15px;
-  border-right: 2px solid #ababab;
-  border-top: 2px solid #ababab;
-  border-bottom: 2px solid #ababab;
-  border-left: 2px solid #ababab;
-  border-radius: 15px 15px 15px;
-  text-decoration: none;
-  color: #ababab;
-}
-
-#button1:hover {
-  text-decoration: none;
-  color: #fff;
-  background-color: rgba(0, 0, 0, );
-  border-right: 3px solid #800000;
-  border-bottom: 3px solid #800000;
-  border-top: 3px solid #800000;
-  border-left: 3px solid #800000;
-}
-
-#button2:hover {
-  text-decoration: none;
-  color: #fff;
-  background-color: rgba(0, 0, 0, );
-  border-right: 3px solid #6800ff;
-  border-bottom: 3px solid #6800ff;
-  border-top: 3px solid #6800ff;
-  border-left: 3px solid #6800ff;
-}
-
-#button3:hover {
-  text-decoration: none;
-  color: #fff;
-  background-color: rgba(0, 0, 0, );
-  border-right: 3px solid #008eff;
-  border-bottom: 3px solid #008eff;
-  border-top: 3px solid #008eff;
-  border-left: 3px solid #008eff;
-}
-
-#button4:hover {
-  text-decoration: none;
-  color: #fff;
-  background-color: rgba(0, 0, 0, );
-  border-right: 3px solid #ff0058;
-  border-bottom: 3px solid #ff0058;
-  border-top: 3px solid #ff0058;
-  border-left: 3px solid #ff0058;
-}
-
-#button5:hover {
-  text-decoration: none;
-  color: #fff;
-  background-color: rgba(0, 0, 0, );
-  border-right: 3px solid #fffd00;
-  border-bottom: 3px solid #fffd00;
-  border-top: 3px solid #fffd00;
-  border-left: 3px solid #fffd00;
-}
+    background: url("https://notseanwalters.github.io/seanwalters/assets/images/background3.png");
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    z-index: -3;
+    font-size: 1em;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #background2 {
+    background: url("https://notseanwalters.github.io/seanwalters/assets/images/background2.png");
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    z-index: -3;
+    font-size: 1em;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #background3 {
+    background: url("https://notseanwalters.github.io/seanwalters/assets/images/background7.png");
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    z-index: -3;
+    font-size: 1em;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #background4 {
+    background: url("https://notseanwalters.github.io/seanwalters/assets/images/background5.png");
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    z-index: -3;
+    font-size: 1em;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #background5 {
+    background: url("https://notseanwalters.github.io/seanwalters/assets/images/background4.png");
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    z-index: -3;
+    font-size: 1em;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  html {
+    background-color: black;
+    z-index: -100;
+  }
+  #wrapper {
+    width: 900px;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0px 20px 50px #000000;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border: solid;
+    border-width: 5px;
+    border-radius: 15px;
+    border-color: #333;
+    overflow: hidden;
+  }
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  #header {
+    width: 900px;
+    height: 125px;
+    padding-top: 4.6px;
+    padding-bottom: 10px;
+    background-color: black;
+  }
+  #navbar {
+    width: 900px;
+    height: 52px;
+    background-color: black;
+    font-family: "coves";
+    font-size: 27.4px;
+    text-align: center;
+    padding-top: 8px;
+  }
+  #content {
+    width: 900px;
+    background-color: black;
+    height: auto;
+    color: white;
+  }
+  svg {
+    width: 900px;
+    height: 120px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    background: black;
+  }
+  #content-text {
+    margin-left: 35px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    color: #afafaf;
+    font-family: "coves";
+    width: 820px;
+  }
+  #content img {
+    display: inline-block;
+    float: right;
+  }
+  @keyframes type {
+    from {
+      width: 0;
+    }
+  }
+  @-webkit-keyframes type {
+    from {
+      width: 0;
+    }
+  }
+  #footer {
+    width: 900px;
+    margin: 0 auto;
+    font-family: "coves";
+    font-size: 20px;
+    color: white;
+    text-shadow: 1px 1px #000;
+  }
+  #footer p {
+    text-decoration: none;
+    padding: 5px 0;
+    text-align: center;
+  }
+  #footer a {
+    text-decoration: none;
+    color: #800000;
+  }
+  #footer a:hover {
+    text-decoration: underline;
+    color: #800000;
+  }
+  #navbar a {
+    padding: 10px 15px 10px 15px;
+    border-right: 2px solid #ababab;
+    border-top: 2px solid #ababab;
+    border-bottom: 2px solid #ababab;
+    border-left: 2px solid #ababab;
+    border-radius: 15px 15px 15px;
+    text-decoration: none;
+    color: #ababab;
+  }
+  #button1:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: rgba(0, 0, 0, );
+    border-right: 3px solid #800000;
+    border-bottom: 3px solid #800000;
+    border-top: 3px solid #800000;
+    border-left: 3px solid #800000;
+  }
+  #button2:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: rgba(0, 0, 0, );
+    border-right: 3px solid #6800ff;
+    border-bottom: 3px solid #6800ff;
+    border-top: 3px solid #6800ff;
+    border-left: 3px solid #6800ff;
+  }
+  #button3:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: rgba(0, 0, 0, );
+    border-right: 3px solid #008eff;
+    border-bottom: 3px solid #008eff;
+    border-top: 3px solid #008eff;
+    border-left: 3px solid #008eff;
+  }
+  #button4:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: rgba(0, 0, 0, );
+    border-right: 3px solid #ff0058;
+    border-bottom: 3px solid #ff0058;
+    border-top: 3px solid #ff0058;
+    border-left: 3px solid #ff0058;
+  }
+  #button5:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: rgba(0, 0, 0, );
+    border-right: 3px solid #fffd00;
+    border-bottom: 3px solid #fffd00;
+    border-top: 3px solid #fffd00;
+    border-left: 3px solid #fffd00;
+  }
 }

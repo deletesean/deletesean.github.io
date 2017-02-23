@@ -14,26 +14,26 @@
 
 <body>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script>
-	jQuery('body').css('display','none');
-	jQuery(document).ready(function() {
-		jQuery('body').fadeIn();
-		jQuery('a').on('click',function(event){
-			var thetarget = this.getAttribute('target')
-			if (thetarget != "_blank"){			
-				var thehref = this.getAttribute('href')
-				event.preventDefault();
-				jQuery('body').fadeOut(function(){
-					//alert(thehref)
-					window.location = thehref					
-				});
-			}
+	<script>
+		jQuery('body').css('display', 'none');
+		jQuery(document).ready(function() {
+			jQuery('body').fadeIn();
+			jQuery('a').on('click', function(event) {
+				var thetarget = this.getAttribute('target')
+				if (thetarget != "_blank") {
+					var thehref = this.getAttribute('href')
+					event.preventDefault();
+					jQuery('body').fadeOut(function() {
+						//alert(thehref)
+						window.location = thehref
+					});
+				}
+			});
 		});
-	});
-	setTimeout(function(){
-		jQuery('body').fadeIn();
-	},1000)
-</script>
+		setTimeout(function() {
+			jQuery('body').fadeIn();
+		}, 1000)
+	</script>
 	<div id="background1"></div>
 	</div>
 	<div id="wrapper">
@@ -48,8 +48,7 @@
 			<a href="https://notseanwalters.github.io/seanwalters/portfolio/showcase" id="button5">Showcase</a>
 		</div>
 		<div id="content">
-			<svg 
-	 width="600px" height="100px" viewBox="0 0 600 100">
+			<svg width="600px" height="100px" viewBox="0 0 600 100">
 <style type="text/css">
 
 <![CDATA[
@@ -145,7 +144,8 @@
 	<text x="0" y="88">HOME</text>
 </g>
 </svg>
-			<p id="content-text" style="font-size: 18px;">Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. </p>
+			<p id="content-text" style="font-size: 18px;">Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text.
+				<img src="http://garrettchiz.ddns.net/CSB/Year1/tri2/Portfolio/assets/img/Home/homedisplay.png" width="247" height="309"></p>
 		</div>
 	</div>
 	<div id="footer">
