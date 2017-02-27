@@ -197,47 +197,37 @@
   #button1:hover {
     text-decoration: none;
     color: #000;
-    background-color: #ff3232;
-    border-width: 100px;
+    background-color: #ff6a6a;
     border: solid;
-    border-radius: 5px;
-    border-color: #ff3232;
+    border-color: #ff6a6a;
   }
   #button2:hover {
     text-decoration: none;
     color: #000;
-    background-color: #ff3232;
-    border-width: 100px;
+    background-color: #AA8CC5;
     border: solid;
-    border-radius: 5px;
-    border-color: #ff3232;
+    border-color: #AA8CC5;
   }
   #button3:hover {
     text-decoration: none;
     color: #000;
-    background-color: #ff3232;
-    border-width: 100px;
+    background-color: #c1d8ff;
     border: solid;
-    border-radius: 5px;
-    border-color: #ff3232;
+    border-color: #c1d8ff; 
   }
   #button4:hover {
     text-decoration: none;
     color: #000;
-    background-color: #ff3232;
-    border-width: 100px;
+    background-color: #ffb1d8;
     border: solid;
-    border-radius: 5px;
-    border-color: #ff3232;
+    border-color: #ffb1d8;
   }
   #button5:hover {
     text-decoration: none;
     color: #000;
-    background-color: #ff3232;
-    border-width: 100px;
+    background-color: #ffffd3;
     border: solid;
-    border-radius: 5px;
-    border-color: #ff3232;
+    border-color: #ffffd3;
   }
 }
 @media screen and (max-width: 1150px) {  
@@ -425,46 +415,36 @@
   #button1:hover {
     text-decoration: none;
     color: #000;
-    background-color: #ff3232;
-    border-width: 1px;
+    background-color: #ff6a6a;
     border: solid;
-    border-radius: 5px;
-    border-color: #ff3232;
+    border-color: #ff6a6a;
   }
   #button2:hover {
     text-decoration: none;
     color: #000;
-    background-color: #ff3232;
-    border-width: 100px;
+    background-color: #AA8CC5;
     border: solid;
-    border-radius: 5px;
-    border-color: #ff3232;
+    border-color: #AA8CC5;
   }
   #button3:hover {
     text-decoration: none;
     color: #000;
-    background-color: #ff3232;
-    border-width: 100px;
+    background-color: #c1d8ff;
     border: solid;
-    border-radius: 5px;
-    border-color: #ff3232;
+    border-color: #c1d8ff; 
   }
   #button4:hover {
     text-decoration: none;
     color: #000;
-    background-color: #ff3232;
-    border-width: 100px;
+    background-color: #ffb1d8;
     border: solid;
-    border-radius: 5px;
-    border-color: #ff3232;
+    border-color: #ffb1d8;
   }
   #button5:hover {
     text-decoration: none;
     color: #000;
-    background-color: #ff3232;
-    border-width: 100px;
+    background-color: #ffffd3;
     border: solid;
-    border-radius: 5px;
-    border-color: #ff3232;
+    border-color: #ffffd3;
   }
 }
