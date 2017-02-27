@@ -115,12 +115,12 @@
   }
   #navbar {
     width: 100%;
-    height: 50px;
+    height: 45px;
     background-color: black;
     font-family: "coves";
     font-size: 27px;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 15px;
   }
   #content {
     width: 100%;
@@ -190,7 +190,7 @@
     color: #800000;
   }
   #navbar a {
-    padding: 8px 8px 8px 8px;
+    padding: 14px 14px 14px 14px;
     text-decoration: none;
     color: #dadada;
   }
@@ -326,7 +326,7 @@
     height: auto;
     background-color: black;
     font-family: "coves";
-    font-size: 27.4px;
+    font-size: 27px;
     text-align: center;
     padding-top: 15px;
   }
@@ -398,7 +398,7 @@
     color: #800000;
   }
   #navbar a {
-    padding: 10px 15px 10px 15px;
+    padding: 5px 5px 5px 5px;
     text-decoration: none;
     color: #dadada;
   }
