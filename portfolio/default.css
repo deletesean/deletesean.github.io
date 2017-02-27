@@ -120,7 +120,7 @@
     font-family: "coves";
     font-size: 27.4px;
     text-align: center;
-    padding-top: 8px;
+    padding-top: 50px;
   }
   #content {
     width: 100%;
@@ -190,59 +190,44 @@
     color: #800000;
   }
   #navbar a {
-    padding: 10px 15px 10px 15px;
-    border-right: 2px solid #ababab;
-    border-top: 2px solid #ababab;
-    border-bottom: 2px solid #ababab;
-    border-left: 2px solid #ababab;
-    border-radius: 15px 15px 15px;
+    padding: 1%;
     text-decoration: none;
-    color: #ababab;
+    color: #d4d4d4;
   }
   #button1:hover {
     text-decoration: none;
-    color: #fff;
-    background-color: rgba(0, 0, 0, );
-    border-right: 3px solid #800000;
-    border-bottom: 3px solid #800000;
-    border-top: 3px solid #800000;
-    border-left: 3px solid #800000;
+    color: #000;
+    background-color: #ff4c4c;
+    border: solid;
+    border-color: #ff4c4c;
   }
   #button2:hover {
     text-decoration: none;
-    color: #fff;
-    background-color: rgba(0, 0, 0, );
-    border-right: 3px solid #6800ff;
-    border-bottom: 3px solid #6800ff;
-    border-top: 3px solid #6800ff;
-    border-left: 3px solid #6800ff;
+    color: #000;
+    background-color: #ff4c4c;
+    border: solid;
+    border-color: #ff4c4c;
   }
   #button3:hover {
     text-decoration: none;
-    color: #fff;
-    background-color: rgba(0, 0, 0, );
-    border-right: 3px solid #008eff;
-    border-bottom: 3px solid #008eff;
-    border-top: 3px solid #008eff;
-    border-left: 3px solid #008eff;
+    color: #000;
+    background-color: #ff4c4c;
+    border: solid;
+    border-color: #ff4c4c; 
   }
   #button4:hover {
     text-decoration: none;
-    color: #fff;
-    background-color: rgba(0, 0, 0, );
-    border-right: 3px solid #ff0058;
-    border-bottom: 3px solid #ff0058;
-    border-top: 3px solid #ff0058;
-    border-left: 3px solid #ff0058;
+    color: #000;
+    background-color: #ff4c4c;
+    border: solid;
+    border-color: #ff4c4c;
   }
   #button5:hover {
     text-decoration: none;
-    color: #fff;
-    background-color: rgba(0, 0, 0, );
-    border-right: 3px solid #fffd00;
-    border-bottom: 3px solid #fffd00;
-    border-top: 3px solid #fffd00;
-    border-left: 3px solid #fffd00;
+    color: #000;
+    background-color: #ff4c4c;
+    border: solid;
+    border-color: #ff4c4c;
   }
 }
 @media screen and (max-width: 1150px) {  
@@ -353,7 +338,8 @@
     font-family: "coves";
     font-size: 27.4px;
     text-align: center;
-    padding-top: 8px;
+    padding-top: 50px;
+
   }
   #content {
     width: 100%;
@@ -424,11 +410,6 @@
   }
   #navbar a {
     padding: 10px 15px 10px 15px;
-    border-right: 2px solid #ababab;
-    border-top: 2px solid #ababab;
-    border-bottom: 2px solid #ababab;
-    border-left: 2px solid #ababab;
-    border-radius: 15px 15px 15px;
     text-decoration: none;
     color: #ababab;
   }
@@ -436,45 +417,25 @@
     text-decoration: none;
     color: #fff;
     background-color: rgba(0, 0, 0, );
-    border-right: 3px solid #800000;
-    border-bottom: 3px solid #800000;
-    border-top: 3px solid #800000;
-    border-left: 3px solid #800000;
   }
   #button2:hover {
     text-decoration: none;
     color: #fff;
     background-color: rgba(0, 0, 0, );
-    border-right: 3px solid #6800ff;
-    border-bottom: 3px solid #6800ff;
-    border-top: 3px solid #6800ff;
-    border-left: 3px solid #6800ff;
   }
   #button3:hover {
     text-decoration: none;
     color: #fff;
     background-color: rgba(0, 0, 0, );
-    border-right: 3px solid #008eff;
-    border-bottom: 3px solid #008eff;
-    border-top: 3px solid #008eff;
-    border-left: 3px solid #008eff;
   }
   #button4:hover {
     text-decoration: none;
     color: #fff;
     background-color: rgba(0, 0, 0, );
-    border-right: 3px solid #ff0058;
-    border-bottom: 3px solid #ff0058;
-    border-top: 3px solid #ff0058;
-    border-left: 3px solid #ff0058;
   }
   #button5:hover {
     text-decoration: none;
     color: #fff;
     background-color: rgba(0, 0, 0, );
-    border-right: 3px solid #fffd00;
-    border-bottom: 3px solid #fffd00;
-    border-top: 3px solid #fffd00;
-    border-left: 3px solid #fffd00;
   }
 }
