@@ -115,12 +115,12 @@
   }
   #navbar {
     width: 100%;
-    height: 52px;
+    height: 50px;
     background-color: black;
     font-family: "coves";
-    font-size: 27.4px;
+    font-size: 27px;
     text-align: center;
-    padding-top: 8px;
+    padding-top: 10px;
   }
   #content {
     width: 100%;
@@ -151,10 +151,10 @@
     border: solid;
     border-width: 2px;
     border-radius: 15px;
-    border-color: #fff;
+    border-color: #dadada;
     overflow: hidden;
     margin-right: 15px;
-    margin-left: 1px;
+    margin-left: 6px;
     margin-bottm: 1px;
     margin-top: 1px;
   }
@@ -190,44 +190,34 @@
     color: #800000;
   }
   #navbar a {
-    padding: 10px 15px 10px 15px;
+    padding: 8px 8px 8px 8px;
     text-decoration: none;
-    color: #ababab;
+    color: #dadada;
   }
   #button1:hover {
     text-decoration: none;
     color: #000;
     background-color: #ff6a6a;
-    border: solid;
-    border-color: #ff6a6a;
   }
   #button2:hover {
     text-decoration: none;
     color: #000;
     background-color: #AA8CC5;
-    border: solid;
-    border-color: #AA8CC5;
   }
   #button3:hover {
     text-decoration: none;
     color: #000;
     background-color: #c1d8ff;
-    border: solid;
-    border-color: #c1d8ff; 
   }
   #button4:hover {
     text-decoration: none;
     color: #000;
     background-color: #ffb1d8;
-    border: solid;
-    border-color: #ffb1d8;
   }
   #button5:hover {
     text-decoration: none;
     color: #000;
     background-color: #ffffd3;
-    border: solid;
-    border-color: #ffffd3;
   }
 }
 @media screen and (max-width: 1150px) {  
@@ -410,41 +400,31 @@
   #navbar a {
     padding: 10px 15px 10px 15px;
     text-decoration: none;
-    color: #ababab;
+    color: #dadada;
   }
   #button1:hover {
     text-decoration: none;
     color: #000;
     background-color: #ff6a6a;
-    border: solid;
-    border-color: #ff6a6a;
   }
   #button2:hover {
     text-decoration: none;
     color: #000;
     background-color: #AA8CC5;
-    border: solid;
-    border-color: #AA8CC5;
   }
   #button3:hover {
     text-decoration: none;
     color: #000;
     background-color: #c1d8ff;
-    border: solid;
-    border-color: #c1d8ff; 
   }
   #button4:hover {
     text-decoration: none;
     color: #000;
     background-color: #ffb1d8;
-    border: solid;
-    border-color: #ffb1d8;
   }
   #button5:hover {
     text-decoration: none;
     color: #000;
     background-color: #ffffd3;
-    border: solid;
-    border-color: #ffffd3;
   }
 }
