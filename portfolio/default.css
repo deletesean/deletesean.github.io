@@ -146,6 +146,16 @@
     font-family: "coves";
     width: 95%;
   }
+    #content-text a {
+    font-family: "coves";
+    width: 95%; 
+    text-decoration: none; 
+  }
+  #content-text a:hover {
+    font-family: "coves";
+    width: 95%; 
+    text-decoration: underline;
+  }
   #content img {
     display: inline-block;
     float: right;
@@ -353,6 +363,16 @@
     color: #afafaf;
     font-family: "coves";
     width: 95%;
+  }
+    #content-text a {
+    font-family: "coves";
+    width: 95%; 
+    text-decoration: none; 
+  }
+  #content-text a:hover {
+    font-family: "coves";
+    width: 95%; 
+    text-decoration: underline;
   }
   #content img {
     display: inline-block;
