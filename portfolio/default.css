@@ -158,17 +158,13 @@
     text-decoration: underline;
   }
   #content img {
-    display: inline-block;
-    float: right;
+    display: block;
     border: solid;
     border-width: 2px;
     border-radius: 15px;
     border-color: #dadada;
     overflow: hidden;
-    margin-right: 15px;
-    margin-left: 6px;
-    margin-bottm: 1px;
-    margin-top: 1px;
+    margin: auto;
   }
   @keyframes type {
     from {
