@@ -14,30 +14,30 @@
 
 <body>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script>
-	jQuery('body').css('display','none');
-	jQuery(document).ready(function() {
-		jQuery('body').fadeIn();
-		jQuery('a').on('click',function(event){
-			var thetarget = this.getAttribute('target')
-			if (thetarget != "_blank"){			
-				var thehref = this.getAttribute('href')
-				event.preventDefault();
-				jQuery('body').fadeOut(function(){
-					//alert(thehref)
-					window.location = thehref					
-				});
-			}
+	<script>
+		jQuery('body').css('display', 'none');
+		jQuery(document).ready(function() {
+			jQuery('body').fadeIn();
+			jQuery('a').on('click', function(event) {
+				var thetarget = this.getAttribute('target')
+				if (thetarget != "_blank") {
+					var thehref = this.getAttribute('href')
+					event.preventDefault();
+					jQuery('body').fadeOut(function() {
+						//alert(thehref)
+						window.location = thehref
+					});
+				}
+			});
 		});
-	});
-	setTimeout(function(){
-		jQuery('body').fadeIn();
-	},1000)
-</script>
+		setTimeout(function() {
+			jQuery('body').fadeIn();
+		}, 1000)
+	</script>
 	<div id="background3"></div>
 	<div id="wrapper">
 		<div id="header">
-			<a href="https://notseanwalters.github.io/seanwalters/portfolio"><img src="https://notseanwalters.github.io/seanwalters/assets/images/banner_blue.png" height="auto" width="100%" style="display: block;"/></a>
+			<a href="https://notseanwalters.github.io/seanwalters/portfolio"><img src="https://notseanwalters.github.io/seanwalters/assets/images/banner_blue.png" height="auto" width="100%" style="display: block;" /></a>
 		</div>
 		<div id="navbar">
 			<a href="https://notseanwalters.github.io/seanwalters/portfolio" id="button1">Home</a>
@@ -47,8 +47,7 @@
 			<a href="https://notseanwalters.github.io/seanwalters/portfolio/showcase" id="button5">Showcase</a>
 		</div>
 		<div id="content">
-			<svg  
-	 width="600px" height="100px" viewBox="0 0 600 100">
+			<svg width="600px" height="100px" viewBox="0 0 600 100">
 <style type="text/css">
 
 <![CDATA[
@@ -144,7 +143,12 @@
 	<text x="-28" y="80">EDU. RESEARCH</text>
 </g>
 </svg>
-			<p id="content-text" style="font-size: 18px;">Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. Size 18 text. </p>
+			<h3 style="color: #fff; text-align: center; font-size: 35px; padding-bottom: 25px; padding-top: 40px;" id="content-text">S o u t h e r n  O r e g o n  U n i v e r s i t y</h3>
+			<h3 style="color: #d6d6d6; text-align: center;font-size: 25px; padding-bottom: 25px; padding-top: 30px;" id="content-text">About Southern Oregon University</h3>
+			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">Southern Oregon University was established in 1872, founded in 1926, and was formally known as Southern Oregon College (SOC) and Southern Oregon State College (SOSC). Southern Oregon University is a public liberal arts college and is located in Ashland,
+				Oregon. As stated on their website, this is what Southern Oregon University thinks about themselves: “The faculty and staff at Southern Oregon University are dedicated to your success at every level. Our programs are challenging, creative and practical.
+				Students connect what they learn with the community through internships, capstone projects, and research.”
+			</p>
 		</div>
 	</div>
 	<div id="footer">
