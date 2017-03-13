@@ -14,30 +14,30 @@
 
 <body>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script>
-	jQuery('body').css('display','none');
-	jQuery(document).ready(function() {
-		jQuery('body').fadeIn();
-		jQuery('a').on('click',function(event){
-			var thetarget = this.getAttribute('target')
-			if (thetarget != "_blank"){			
-				var thehref = this.getAttribute('href')
-				event.preventDefault();
-				jQuery('body').fadeOut(function(){
-					//alert(thehref)
-					window.location = thehref					
-				});
-			}
+	<script>
+		jQuery('body').css('display', 'none');
+		jQuery(document).ready(function() {
+			jQuery('body').fadeIn();
+			jQuery('a').on('click', function(event) {
+				var thetarget = this.getAttribute('target')
+				if (thetarget != "_blank") {
+					var thehref = this.getAttribute('href')
+					event.preventDefault();
+					jQuery('body').fadeOut(function() {
+						//alert(thehref)
+						window.location = thehref
+					});
+				}
+			});
 		});
-	});
-	setTimeout(function(){
-		jQuery('body').fadeIn();
-	},1000)
-</script>
+		setTimeout(function() {
+			jQuery('body').fadeIn();
+		}, 1000)
+	</script>
 	<div id="background4"></div>
 	<div id="wrapper">
 		<div id="header">
-			<a href="https://notseanwalters.github.io/seanwalters/portfolio"><img src="https://notseanwalters.github.io/seanwalters/assets/images/banner_pink.png" height="auto" width="100%" style="display: block;"/></a>
+			<a href="https://notseanwalters.github.io/seanwalters/portfolio"><img src="https://notseanwalters.github.io/seanwalters/assets/images/banner_pink.png" height="auto" width="100%" style="display: block;" /></a>
 		</div>
 		<div id="navbar">
 			<a href="https://notseanwalters.github.io/seanwalters/portfolio" id="button1">Home</a>
@@ -47,8 +47,7 @@
 			<a href="https://notseanwalters.github.io/seanwalters/portfolio/showcase" id="button5">Showcase</a>
 		</div>
 		<div id="content">
-			<svg  
-	 width="600px" height="100px" viewBox="0 0 600 100">
+			<svg width="600px" height="100px" viewBox="0 0 600 100">
 <style type="text/css">
 
 <![CDATA[
@@ -147,40 +146,76 @@
 			<a href="http://roosterteeth.com/"><img src="https://notseanwalters.github.io/seanwalters/assets/images/rt1.jpg" style="margin-top: 40px; border: solid; border-radius: 999px; border-color: white; border-width: 2px;" width="auto" height="250"></a>
 			<h3 style="color: #fff; text-align: center; font-size: 35px; padding-bottom: 25px; padding-top: 40px;" id="content-text">Content Production at Rooster Teeth Productions</h3>
 			<h3 style="color: #f4f4f4; text-align: center;font-size: 25px; padding-bottom: 25px; padding-top: 30px;" id="content-text">About Rooster Teeth Productions</h3>
-			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">Rooster Teeth is a production studio based in Austin, TX responsible for some of the most watched and celebrated online series ever. The company ignited an Internet revolution and helped redefine contemporary animation when it created Red vs. Blue, longest-running web and American science fiction series in history. Rooster Teeth also produces the globally acclaimed animated show RWBY, the first western anime series to be distributed in Japan, the comedy gamer series Immersion, a reality format that brings video game theory to the real world, the chart-topping RT Podcast, and hilarious live action shorts such as Million Dollars, But… and Social Disorder. With a massive global footprint of more than 20 million subscribers to its YouTube network, 3 million unique monthly visitors to RoosterTeeth.com and 1.8 million registered community members, Rooster Teeth has one of the most active and engaged fan bases in the world. In 2011, Rooster Teeth expanded into live events with RTX, an annual gaming and Internet convention held in Austin, TX, which started as a fan event for 400 people but quickly grew to attract more than 40,000 attendees from around the world in 2015. Rooster Teeth launched its first international live event in January 2016 with RTX Australia. The company broke Indiegogo crowd funding records after rallying its dedicated fan base for Rooster Teeth's first feature film, Lazer Team, which raised $2.48M. In addition Rooster Teeth operates the popular online gaming destinations Achievement Hunter, Funhaus, The Slo Mo Guys, Kinda Funny, Cow Chop, The Know, and ScrewAttack. In November of 2014, Rooster Teeth became a subsidiary of Fullscreen, Inc., a global youth media company that develops online creators and produces multi-platform entertainment experiences.
+			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">Rooster Teeth is a production studio based in Austin, TX responsible for some of the most watched and celebrated online series ever. The company ignited an Internet revolution and helped redefine contemporary animation when it created Red vs. Blue,
+				longest-running web and American science fiction series in history. Rooster Teeth also produces the globally acclaimed animated show RWBY, the first western anime series to be distributed in Japan, the comedy gamer series Immersion, a reality format
+				that brings video game theory to the real world, the chart-topping RT Podcast, and hilarious live action shorts such as Million Dollars, But… and Social Disorder. With a massive global footprint of more than 20 million subscribers to its YouTube network,
+				3 million unique monthly visitors to RoosterTeeth.com and 1.8 million registered community members, Rooster Teeth has one of the most active and engaged fan bases in the world. In 2011, Rooster Teeth expanded into live events with RTX, an annual gaming
+				and Internet convention held in Austin, TX, which started as a fan event for 400 people but quickly grew to attract more than 40,000 attendees from around the world in 2015. Rooster Teeth launched its first international live event in January 2016
+				with RTX Australia. The company broke Indiegogo crowd funding records after rallying its dedicated fan base for Rooster Teeth's first feature film, Lazer Team, which raised $2.48M. In addition Rooster Teeth operates the popular online gaming destinations
+				Achievement Hunter, Funhaus, The Slo Mo Guys, Kinda Funny, Cow Chop, The Know, and ScrewAttack. In November of 2014, Rooster Teeth became a subsidiary of Fullscreen, Inc., a global youth media company that develops online creators and produces multi-platform
+				entertainment experiences.
 			</p>
 			<img src="https://notseanwalters.github.io/seanwalters/assets/images/campus4.jpg" style="margin-bottom: 5px; border: none;" width="auto" height="630px">
 			<h3 style="color: #f4f4f4; text-align: center;font-size: 25px; padding-bottom: 25px; padding-top: 30px;" id="content-text">Rooster Teeth Production's Mission Statement</h3>
 			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">“Who Works At Fullscreen? Creators. Producers. Designers. Managers. Thinkers. Doers. Relationship builders. United by a common passion for new possibilities in media and a common mission to empower today’s creators.”
 			</p>
-						<a href="http://roosterteeth.com/"><img src="https://notseanwalters.github.io/seanwalters/assets/images/rt5.png" style="margin-top: 40px; border: none;" width="auto" height="120"></a>
+			<a href="http://roosterteeth.com/"><img src="https://notseanwalters.github.io/seanwalters/assets/images/full.png" style="margin-top: 40px; border: none;" width="auto" height="120"></a>
+
+			<a href="http://roosterteeth.com/"><img src="https://notseanwalters.github.io/seanwalters/assets/images/rt5.png" style="margin-top: 40px; border: none;" width="auto" height="120"></a>
 			<h3 style="color: #f4f4f4; text-align: center;font-size: 25px; padding-bottom: 25px; padding-top: 30px;" id="content-text">History of Rooster Teeth Productions</h3>
-			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">Rooster Teeth Productions was founded on April 1, 2003 by Matt Hullum, Burnie Burns, Geoff Ramsey, Gus Sorola, and Joel Heyman. Rooster Teeth’s first huge success began after the creation of the longest-running webseries of all time, Red vs. Blue, which premiered in April 2003. This ignited an Internet revolution and helped redefine contemporary animation. Rooster Teeth’s next big success was their following animated series, RWBY. One of the founders of Rooster Teeth Productions, Geoff Ramsey, created a division within Rooster Teeth, named Achievement Hunter in 2008. Geoff constructed a team of gamers and entertainers to make up Achievement Hunter at the time, and later on they would triple in numbers. This was their first division made within Rooster Teeth and it was the go to spot for gaming related things under Rooster Teeth on the Internet. Overtime, more and more divisions were created and this is what makes Rooster Teeth unique compared to other related online gaming related outlets. For example, a team working at Inside Gaming, a division within Machinima, left the company and was brought on by Rooster Teeth to create their next huge division, Funhaus. Each division at Rooster Teeth has their own little niche to satisfy the different needs content consumers need on the Internet. Rooster Teeth since then has been adding onto their diverse cast of teams and members to construct a beautiful company with many different flavors for their audience to watch, love, and relate with.
+			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">Rooster Teeth Productions was founded on April 1, 2003 by Matt Hullum, Burnie Burns, Geoff Ramsey, Gus Sorola, and Joel Heyman. Rooster Teeth’s first huge success began after the creation of the longest-running webseries of all time, Red vs. Blue,
+				which premiered in April 2003. This ignited an Internet revolution and helped redefine contemporary animation. Rooster Teeth’s next big success was their following animated series, RWBY. One of the founders of Rooster Teeth Productions, Geoff Ramsey,
+				created a division within Rooster Teeth, named Achievement Hunter in 2008. Geoff constructed a team of gamers and entertainers to make up Achievement Hunter at the time, and later on they would triple in numbers. This was their first division made
+				within Rooster Teeth and it was the go to spot for gaming related things under Rooster Teeth on the Internet. Overtime, more and more divisions were created and this is what makes Rooster Teeth unique compared to other related online gaming related
+				outlets. For example, a team working at Inside Gaming, a division within Machinima, left the company and was brought on by Rooster Teeth to create their next huge division, Funhaus. Each division at Rooster Teeth has their own little niche to satisfy
+				the different needs content consumers need on the Internet. Rooster Teeth since then has been adding onto their diverse cast of teams and members to construct a beautiful company with many different flavors for their audience to watch, love, and relate
+				with.
 			</p>
-						<img src="https://notseanwalters.github.io/seanwalters/assets/images/ashland.jpg" style="margin-bottom: 5px; border: none;" width="auto" height="450px">
+			<img src="https://notseanwalters.github.io/seanwalters/assets/images/ashland.jpg" style="margin-bottom: 5px; border: none;" width="auto" height="450px">
 			<h3 style="color: #f4f4f4; text-align: center;font-size: 25px; padding-bottom: 25px; padding-top: 30px;" id="content-text">More On Rooster Teeth</h3>
-			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">“Rooster Teeth is a pioneering creative production studio responsible for award-winning online videos such as "Red vs. Blue," the longest-running web series in history; globally acclaimed animated series "RWBY;" comedy gamer series, "The Gauntlet;" comedy series "Rooster Teeth Shorts;" and "Immersion," a show that tests video game concepts in the real world. Rooster Teeth founded and operates "Achievement Hunter," the popular gaming website, and produces the award-winning "Rooster Teeth Podcast," voted Best Gaming Podcast at the 2013 Podcast Awards. With a dedicated worldwide fan community, Rooster Teeth created RTX, an annual gaming and Internet convention held in Austin, TX, which attracts tens of thousands of gamers, online video fans and Rooster Teeth community members from around the world. The Rooster Teeth YouTube channel became the 4th most viewed YouTube channel in the world (non-music) in 2013.  The Rooster Teeth multi-channel network has over 20 million YouTube subscribers and more than 5 billion views, and the Rooster Teeth website has 3 million unique monthly visitors with 1.8 million registered community members. Founded by Matt Hullum and Burnie Burns, Rooster Teeth is a subsidiary of Fullscreen, Inc., a global media company that develops online creators and produces multi-platform entertainment experiences.” - Rooster Teeth.
+			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">“Rooster Teeth is a pioneering creative production studio responsible for award-winning online videos such as "Red vs. Blue," the longest-running web series in history; globally acclaimed animated series "RWBY;" comedy gamer series, "The Gauntlet;"
+				comedy series "Rooster Teeth Shorts;" and "Immersion," a show that tests video game concepts in the real world. Rooster Teeth founded and operates "Achievement Hunter," the popular gaming website, and produces the award-winning "Rooster Teeth Podcast,"
+				voted Best Gaming Podcast at the 2013 Podcast Awards. With a dedicated worldwide fan community, Rooster Teeth created RTX, an annual gaming and Internet convention held in Austin, TX, which attracts tens of thousands of gamers, online video fans and
+				Rooster Teeth community members from around the world. The Rooster Teeth YouTube channel became the 4th most viewed YouTube channel in the world (non-music) in 2013. The Rooster Teeth multi-channel network has over 20 million YouTube subscribers and
+				more than 5 billion views, and the Rooster Teeth website has 3 million unique monthly visitors with 1.8 million registered community members. Founded by Matt Hullum and Burnie Burns, Rooster Teeth is a subsidiary of Fullscreen, Inc., a global media
+				company that develops online creators and produces multi-platform entertainment experiences.” - Rooster Teeth.
 			</p>
 			<h3 style="color: #f4f4f4; text-align: center;font-size: 25px; padding-bottom: 25px; padding-top: 30px;" id="content-text">Service Description</h3>
-			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">The service that Rooster Teeth Productions provides is entertainment. More specifically, Rooster Teeth Productions mainly produce videos and upload them onto services such as YouTube and their own website for millions of people to watch. They generate money through ad revenue and sponsors. Rooster Teeth offers a paid subscription service to people who would like to “sponsor” them and receive perks, such as having the ability to watch content earlier than others and only be able to watch certain sponsor-only content. There are many other ways that Rooster Teeth Productions produces revenue, such as through their paid events and merchandise/products that they sell on their signature Rooster Teeth Store. 
+			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">The service that Rooster Teeth Productions provides is entertainment. More specifically, Rooster Teeth Productions mainly produce videos and upload them onto services such as YouTube and their own website for millions of people to watch. They generate
+				money through ad revenue and sponsors. Rooster Teeth offers a paid subscription service to people who would like to “sponsor” them and receive perks, such as having the ability to watch content earlier than others and only be able to watch certain
+				sponsor-only content. There are many other ways that Rooster Teeth Productions produces revenue, such as through their paid events and merchandise/products that they sell on their signature Rooster Teeth Store.
 			</p>
 			<img src="https://notseanwalters.github.io/seanwalters/assets/images/comp.jpg" style="margin-bottom: 5px; border: none;" width="auto" height="250">
 			<h3 style="color: #f4f4f4; text-align: center;font-size: 25px; padding-bottom: 25px; padding-top: 30px;" id="content-text">Product Description</h3>
-			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">Rooster Teeth sells a variety of merchandise/products, from jackets and backpacks to onesies and mugs. Rooster Teeth also has a division named Rooster Teeth Games, who have both developed and published games that sell on the biggest PC digital distribution platform known as Steam. Overall, Rooster Teeth sells lots of different kinds of merchandise, video games, and other amazing products, such as their new movie. 
+			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">Rooster Teeth sells a variety of merchandise/products, from jackets and backpacks to onesies and mugs. Rooster Teeth also has a division named Rooster Teeth Games, who have both developed and published games that sell on the biggest PC digital distribution
+				platform known as Steam. Overall, Rooster Teeth sells lots of different kinds of merchandise, video games, and other amazing products, such as their new movie.
 			</p>
-						<img src="https://notseanwalters.github.io/seanwalters/assets/images/comp.jpg" style="margin-bottom: 5px; border: none;" width="auto" height="250">
+			<img src="https://notseanwalters.github.io/seanwalters/assets/images/comp.jpg" style="margin-bottom: 5px; border: none;" width="auto" height="250">
 			<h3 style="color: #f4f4f4; text-align: center;font-size: 25px; padding-bottom: 25px; padding-top: 30px;" id="content-text">Job Description</h3>
-			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">Rooster Teeth Productions is looking for a Video Production Intern to become a part of their Funhaus team in Los Angeles, CA. I will be exposed to all areas of the business via a solid foundation of learning through training and work experience. They are looking for fun, energetic, skilled college students who want to learn the ins and outs of online video production and post-production through the use of the Adobe Creative Suite. They also have the need for production assistance on studio and field productions with both live action and video game gameplay. This could include live sound recording, studio camera work, and production assistance, as well as general help in maintaining equipment in the studio. This internship is available to students who are currently enrolled in a film program in college/university. I will be required to get school credit. They record 14 episodes of their various shows a week. In the last month, these broadcasts have accumulated over 25 million views across youtube (excluding their website views). They use the 2015 Adobe Creative Suite to utilize Photoshop, Premiere, and After Effects for our post-production needs. They also currently utilize the latest in professional video equipment including a Elgato capture devices, Alesis audio mixers, Canon DSLRs, and Audio-Technica standing microphones.
+			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">Rooster Teeth Productions is looking for a Video Production Intern to become a part of their Funhaus team in Los Angeles, CA. I will be exposed to all areas of the business via a solid foundation of learning through training and work experience. They
+				are looking for fun, energetic, skilled college students who want to learn the ins and outs of online video production and post-production through the use of the Adobe Creative Suite. They also have the need for production assistance on studio and
+				field productions with both live action and video game gameplay. This could include live sound recording, studio camera work, and production assistance, as well as general help in maintaining equipment in the studio. This internship is available to
+				students who are currently enrolled in a film program in college/university. I will be required to get school credit. They record 14 episodes of their various shows a week. In the last month, these broadcasts have accumulated over 25 million views
+				across youtube (excluding their website views). They use the 2015 Adobe Creative Suite to utilize Photoshop, Premiere, and After Effects for our post-production needs. They also currently utilize the latest in professional video equipment including
+				a Elgato capture devices, Alesis audio mixers, Canon DSLRs, and Audio-Technica standing microphones.
 			</p>
 			<h3 style="color: #f4f4f4; text-align: center;font-size: 25px; padding-bottom: 25px; padding-top: 30px;" id="content-text">Job Responsibilities and Qualifications</h3>
-			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">I must have the ability to create comedic Adobe Photoshops for videos, convert video, music, and image files into formats suitable for editing, use Adobe Premiere to sync/edit videos, gather assets for the original programming (video files, pictures, music, etc.), and complete various office duties. I must be currently enrolled in college and taking the internship for course credit (I must provide a letter of verification), be in the Los Angeles area, have experience in Adobe Creative Suite (Premiere CC 2015, Audition, Photoshop, etc.) and Google Docs, have some knowledge of video games (retro to current gen.), have good understanding of navigating the internet (social media savvy), be a team player, be able to meet deadlines, and be hardworking and driven.
+			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">I must have the ability to create comedic Adobe Photoshops for videos, convert video, music, and image files into formats suitable for editing, use Adobe Premiere to sync/edit videos, gather assets for the original programming (video files, pictures,
+				music, etc.), and complete various office duties. I must be currently enrolled in college and taking the internship for course credit (I must provide a letter of verification), be in the Los Angeles area, have experience in Adobe Creative Suite (Premiere
+				CC 2015, Audition, Photoshop, etc.) and Google Docs, have some knowledge of video games (retro to current gen.), have good understanding of navigating the internet (social media savvy), be a team player, be able to meet deadlines, and be hardworking
+				and driven.
 			</p>
 			<img src="https://notseanwalters.github.io/seanwalters/assets/images/campus3.jpg" style="margin-bottom: 5px; border: none;" width="auto" height="500px">
 			<h3 style="color: #f4f4f4; text-align: center;font-size: 25px; padding-bottom: 25px; padding-top: 30px;" id="content-text">Job Salary and Benefits</h3>
-			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">For this summer internship, I would not receive any money, only experience for that job at their company, which can be very valuable. After doing the internship, I would apply for an actual full time job there and hopefully get the opportunity to work there. The salary would be about $35,000 to $50,000 and the benefits, from what I have read online from former employees, are that Rooster Teeth has very good 401k and health plans. 
+			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">For this summer internship, I would not receive any money, only experience for that job at their company, which can be very valuable. After doing the internship, I would apply for an actual full time job there and hopefully get the opportunity to work
+				there. The salary would be about $35,000 to $50,000 and the benefits, from what I have read online from former employees, are that Rooster Teeth has very good 401k and health plans.
 			</p>
 			<h3 style="color: #f4f4f4; text-align: center;font-size: 25px; padding-bottom: 25px; padding-top: 30px;" id="content-text">Why Working At Rooster Teeth Productions Would Be A Good Fit For Me</h3>
-			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">Firstly, I have been watching Rooster Teeth content for a long time and I have followed along with them on their journey throughout, ever since around 2011. I have melded relationships with the employees I see through their content, learning more about them, and their personalities. They have grown to be Internet Personalities and they seem like awesome people to get to work with. I really hope to work with these people that I have known, in a way, in the future because they appear to really genuinely enjoy their jobs entertaining others, producing, and editing tons of content for the world to see. They are all very different people from each other who have incredible chemistry and I could add on to that. Working there will help me improve upon my ability to create content, from editing photo and video to keeping track of equipment and other important things in order to have great production. Since I already know how to do some of those things and I am certainly open for improvement, I think it is a great place to work at. I would just love to be around these amazing people and work alongside with them, improving my skills and helping carry Rooster Teeth further with my drive, video by video.
+			<p style="text-indent: 40px; font-size: 18px; line-height: 27px; padding-bottom: 30px;" id="content-text">Firstly, I have been watching Rooster Teeth content for a long time and I have followed along with them on their journey throughout, ever since around 2011. I have melded relationships with the employees I see through their content, learning more about
+				them, and their personalities. They have grown to be Internet Personalities and they seem like awesome people to get to work with. I really hope to work with these people that I have known, in a way, in the future because they appear to really genuinely
+				enjoy their jobs entertaining others, producing, and editing tons of content for the world to see. They are all very different people from each other who have incredible chemistry and I could add on to that. Working there will help me improve upon
+				my ability to create content, from editing photo and video to keeping track of equipment and other important things in order to have great production. Since I already know how to do some of those things and I am certainly open for improvement, I think
+				it is a great place to work at. I would just love to be around these amazing people and work alongside with them, improving my skills and helping carry Rooster Teeth further with my drive, video by video.
 			</p>
 		</div>
 	</div>
