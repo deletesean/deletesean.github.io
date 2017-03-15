@@ -7,147 +7,71 @@
 	<link rel="icon" href="https://notseanwalters.github.io/seanwalters/assets/images/portfolio_resume_icon.ico" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" href="https://notseanwalters.github.io/seanwalters/portfolio/default.css">
 	<style>
-
+		#myBtn {
+			display: none;
+			position: fixed;
+			bottom: 3.7%;
+			right: 3.7%;
+			z-index: 99;
+			border: none;
+			outline: none;
+			background-color: rgba(0, 0, 0, 0.6);
+			color: white;
+			cursor: pointer;
+			padding: 0px;
+			border-radius: 999px;
+		}
+		
+		#myBtn:hover {
+			background-color: rgba(255, 255, 255, 0.1);
+		}
 	</style>
 </head>
-
 
 <body>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script>
 		jQuery('body').css('display', 'none');
 		jQuery(document).ready(function() {
-			jQuery('body').fadeIn();
-			jQuery('a').on('click', function(event) {
-				var thetarget = this.getAttribute('target')
-				if (thetarget != "_blank") {
-					var thehref = this.getAttribute('href')
-					event.preventDefault();
-					jQuery('body').fadeOut(function() {
-						//alert(thehref)
-						window.location = thehref
-					});
-				}
-			});
-		});
+				jQuery('body').fadeIn();
+				jQuery('a').on('click', function(event) {
+					var thetarget = this.getAttribute('target') if (thetarget != "_blank") {
+						var thehref = this.getAttribute('href') event.preventDefault();
+						jQuery('body').fadeOut(function() {
+							//alert(thehref)
+							window.location = thehref
+						});
+					}
+				});
+			}
+
+		);
 		setTimeout(function() {
-			jQuery('body').fadeIn();
-		}, 1000)
+				jQuery('body').fadeIn();
+			}
+
+			, 1000)
 	</script>
 	<div id="background2"></div>
 	<div id="wrapper">
 		<div id="header">
-			<a href="https://notseanwalters.github.io/seanwalters/portfolio"><img src="https://notseanwalters.github.io/seanwalters/assets/images/banner_purple.png" height="auto" width="100%" style="display: block;"/></a>
+			<a href="https://notseanwalters.github.io/seanwalters/portfolio"><img src="https://notseanwalters.github.io/seanwalters/assets/images/banner_purple.png" height="auto" width="100%" style="display: block;" /></a>
 		</div>
-		<div id="navbar">
-			<a href="https://notseanwalters.github.io/seanwalters/portfolio" id="button1">Home</a>
-			<a href="https://notseanwalters.github.io/seanwalters/portfolio/resume" id="button2">Resume</a>
-			<a href="https://notseanwalters.github.io/seanwalters/portfolio/education" id="button3">Education Research</a>
-			<a href="https://notseanwalters.github.io/seanwalters/portfolio/career" id="button4">Career Exploration</a>
-			<a href="https://notseanwalters.github.io/seanwalters/portfolio/showcase" id="button5">Showcase</a>
-		</div>
-		<div id="content">
-			<svg width="600px" height="100px" viewBox="0 0 600 100">
-<style type="text/css">
+		<div id="navbar"> <a href="https://notseanwalters.github.io/seanwalters/portfolio" id="button1">Home</a> <a href="https://notseanwalters.github.io/seanwalters/portfolio/resume" id="button2">Resume</a> <a href="https://notseanwalters.github.io/seanwalters/portfolio/education"
+				id="button3">Education Research</a> <a href="https://notseanwalters.github.io/seanwalters/portfolio/career" id="button4">Career Exploration</a> <a href="https://notseanwalters.github.io/seanwalters/portfolio/showcase" id="button5">Showcase</a> </div>
+		<div id="content"> <svg width="600px" height="100px" viewBox="0 0 600 100"> <style type="text/css"> <![CDATA[ text {
+	filter: url(#filter);
+	fill: white;
+	font-family: lazer;
+	font-size: 100px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
 
-<![CDATA[
-
-	text {
-		filter: url(#filter);
-		fill: white;
-    	font-family: lazer;
-    	font-size: 100px;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-     		}
-]]>
-</style>
-	<defs>
-
-		<filter id="filter">
-		    <feFlood flood-color="" result="" />
-		    <feFlood flood-color="limegreen" result="flood1" />
-		    <feFlood flood-color="#551a8b" result="flood2" />
-			<feOffset in="SourceGraphic" dx="3" dy="0" result="off1a"/>
-			<feOffset in="SourceGraphic" dx="2" dy="0" result="off1b"/>
-			<feOffset in="SourceGraphic" dx="-3" dy="0" result="off2a"/>
-			<feOffset in="SourceGraphic" dx="-2" dy="0" result="off2b"/>
-		    <feComposite in="flood1" in2="off1a" operator="in"  result="comp1" />
-		    <feComposite in="flood2" in2="off2a" operator="in" result="comp2" />
-
- 		  	<feMerge x="0" width="100%" result="merge1">
-				<feMergeNode in = "black" />
-				<feMergeNode in = "comp1" />
-				<feMergeNode in = "off1b" />
-
-				<animate 
-					attributeName="y" 
-		    		id = "y"
-		    		dur ="4s"
-		    		
-		    		values = '104px; 104px; 30px; 105px; 30px; 2px; 2px; 50px; 40px; 105px; 105px; 20px; 6ßpx; 40px; 104px; 40px; 70px; 10px; 30px; 104px; 102px'
-
-		    		keyTimes = '0; 0.362; 0.368; 0.421; 0.440; 0.477; 0.518; 0.564; 0.593; 0.613; 0.644; 0.693; 0.721; 0.736; 0.772; 0.818; 0.844; 0.894; 0.925; 0.939; 1'
-
-		    		repeatCount = "indefinite" />
- 
-				<animate attributeName="height" 
-		    		id = "h" 
-		    		dur ="4s"
-		    		
-		    		values = '10px; 0px; 10px; 30px; 50px; 0px; 10px; 0px; 0px; 0px; 10px; 50px; 40px; 0px; 0px; 0px; 40px; 30px; 10px; 0px; 50px'
-
-		    		keyTimes = '0; 0.362; 0.368; 0.421; 0.440; 0.477; 0.518; 0.564; 0.593; 0.613; 0.644; 0.693; 0.721; 0.736; 0.772; 0.818; 0.844; 0.894; 0.925; 0.939; 1'
-
-		    		repeatCount = "indefinite" />
-		    </feMerge>
- 			
-
- 			<feMerge x="0" width="100%" y="60px" height="65px" result="merge2">
-				<feMergeNode in = "black" />
-				<feMergeNode in = "comp2" />
-				<feMergeNode in = "off2b" />
-
-				<animate attributeName="y" 
-		    		id = "y"
-		    		dur ="4s"
-		    		values = '103px; 104px; 69px; 53px; 42px; 104px; 78px; 89px; 96px; 100px; 67px; 50px; 96px; 66px; 88px; 42px; 13px; 100px; 100px; 104px;' 
-
-		    		keyTimes = '0; 0.055; 0.100; 0.125; 0.159; 0.182; 0.202; 0.236; 0.268; 0.326; 0.357; 0.400; 0.408; 0.461; 0.493; 0.513; 0.548; 0.577; 0.613; 1'
-
- 		    		repeatCount = "indefinite" />
- 
-				<animate attributeName="height" 
-		    		id = "h"
-		    		dur = "4s"
-					
-					values = '0px; 0px; 0px; 16px; 16px; 12px; 12px; 0px; 0px; 5px; 10px; 22px; 33px; 11px; 0px; 0px; 10px'
-
-		    		keyTimes = '0; 0.055; 0.100; 0.125; 0.159; 0.182; 0.202; 0.236; 0.268; 0.326; 0.357; 0.400; 0.408; 0.461; 0.493; 0.513;  1'
-		    		 
-		    		repeatCount = "indefinite" />
-		    </feMerge>
-			
-		 	<feMerge>
- 				<feMergeNode in="SourceGraphic" />	
-
-				<feMergeNode in="merge1" /> 
- 			<feMergeNode in="merge2" />
-
-		    </feMerge>
-	    </filter>
-
-	</defs>
-
-<g>
-	<text x="90" y="80">RESUME</text>
-</g>
-</svg>
+]]> </style> <defs> <filter id="filter"> <feFlood flood-color="" result="" /> <feFlood flood-color="limegreen" result="flood1" /> <feFlood flood-color="#551a8b" result="flood2" /> <feOffset in="SourceGraphic" dx="3" dy="0" result="off1a"/> <feOffset in="SourceGraphic" dx="2" dy="0" result="off1b"/> <feOffset in="SourceGraphic" dx="-3" dy="0" result="off2a"/> <feOffset in="SourceGraphic" dx="-2" dy="0" result="off2b"/> <feComposite in="flood1" in2="off1a" operator="in" result="comp1" /> <feComposite in="flood2" in2="off2a" operator="in" result="comp2" /> <feMerge x="0" width="100%" result="merge1"> <feMergeNode in="black" /> <feMergeNode in="comp1" /> <feMergeNode in="off1b" /> <animate attributeName="y" id="y" dur="4s" values='104px; 104px; 30px; 105px; 30px; 2px; 2px; 50px; 40px; 105px; 105px; 20px; 6ßpx; 40px; 104px; 40px; 70px; 10px; 30px; 104px; 102px' keyTimes='0; 0.362; 0.368; 0.421; 0.440; 0.477; 0.518; 0.564; 0.593; 0.613; 0.644; 0.693; 0.721; 0.736; 0.772; 0.818; 0.844; 0.894; 0.925; 0.939; 1' repeatCount="indefinite" /> <animate attributeName="height" id="h" dur="4s" values='10px; 0px; 10px; 30px; 50px; 0px; 10px; 0px; 0px; 0px; 10px; 50px; 40px; 0px; 0px; 0px; 40px; 30px; 10px; 0px; 50px' keyTimes='0; 0.362; 0.368; 0.421; 0.440; 0.477; 0.518; 0.564; 0.593; 0.613; 0.644; 0.693; 0.721; 0.736; 0.772; 0.818; 0.844; 0.894; 0.925; 0.939; 1' repeatCount="indefinite" /> </feMerge> <feMerge x="0" width="100%" y="60px" height="65px" result="merge2"> <feMergeNode in="black" /> <feMergeNode in="comp2" /> <feMergeNode in="off2b" /> <animate attributeName="y" id="y" dur="4s" values='103px; 104px; 69px; 53px; 42px; 104px; 78px; 89px; 96px; 100px; 67px; 50px; 96px; 66px; 88px; 42px; 13px; 100px; 100px; 104px;' keyTimes='0; 0.055; 0.100; 0.125; 0.159; 0.182; 0.202; 0.236; 0.268; 0.326; 0.357; 0.400; 0.408; 0.461; 0.493; 0.513; 0.548; 0.577; 0.613; 1' repeatCount="indefinite" /> <animate attributeName="height" id="h" dur="4s" values='0px; 0px; 0px; 16px; 16px; 12px; 12px; 0px; 0px; 5px; 10px; 22px; 33px; 11px; 0px; 0px; 10px' keyTimes='0; 0.055; 0.100; 0.125; 0.159; 0.182; 0.202; 0.236; 0.268; 0.326; 0.357; 0.400; 0.408; 0.461; 0.493; 0.513;  1' repeatCount="indefinite" /> </feMerge> <feMerge> <feMergeNode in="SourceGraphic" /> <feMergeNode in="merge1" /> <feMergeNode in="merge2" /> </feMerge> </filter> </defs> <g> <text x="90" y="80">RESUME</text> </g> </svg>
 			<div id="content-text">
 				<h3 style="font-size: 25px; color: white; padding-bottom: 10px;">Sean Walters</h3>
-				<p style="font-size: 18px; color: white; padding-bottom: 10px;">574 Grey Hawk Way<br> Central Point, OR 97502<br>
-					<a style="color: #885ead;" href="tel:(541) 292-1862">(541) 292-1862</a><br>
-					<a style="color: #885ead;" href="mailto:walters601391@district6.org">walters601391@district6.org</a><br></p>
+				<p style="font-size: 18px; color: white; padding-bottom: 10px;">574 Grey Hawk Way<br> Central Point, OR 97502<br> <a style="color: #885ead;" href="tel:(541) 292-1862">(541) 292-1862</a><br> <a style="color: #885ead;" href="mailto:walters601391@district6.org">walters601391@district6.org</a><br></p>
 				<h3 style="font-size: 20px; color: white; padding-bottom: 10px;">PROFILE</h3>
 				<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;">
 					<ul>
@@ -161,7 +85,8 @@
 					</ul>
 				</div>
 				<h3 style="font-size: 20px; color: white; padding-bottom: 10px;">EDUCATION</h3>
-				<h3 style="font-size: 20px;">Crater School of Business Innovation and Science - Central Point, OR</h3>
+				<h3 style="font-size: 20px;">Crater School of Business Innovation and Science - Central Point,
+OR</h3>
 				<p style="font-size: 18px;">Junior status - graduating June 2018</p>
 				<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;">
 					<ul>
@@ -212,7 +137,7 @@
 										<li>Video Editing Software</li>
 										<li>Recording Software/Hardware</li>
 										<li>Adobe Premiere</li>
-										<li>Notepad ++</li>
+										<li>Notepad++</li>
 										<li>HxD (Hex Editor)</li>
 										<li>70 WPM (Keyboarding)</li>
 										<li>YouTube (Managing a channel)</li>
@@ -256,23 +181,17 @@
 						<tr>
 							<td align="left" valign="top">
 								<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;">
-									<p>
-										Jeremy Sinks<br> 655 North Third Street<br> Central Point, OR 97502<br>
-										<a style="color: #885ead;" href="tel:(541) 494-6300">(541) 494-6300</a></p>
+									<p> Jeremy Sinks<br> 655 North Third Street<br> Central Point, OR 97502<br> <a style="color: #885ead;" href="tel:(541) 494-6300">(541) 494-6300</a></p>
 								</div>
 							</td>
 							<td align="left" valign="top">
 								<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;">
-									<p>
-										Mike Rogan<br> 655 North Third Street<br> Central Point, OR 97502<br>
-										<a style="color: #885ead;" href="tel:(541) 494-6300">(541) 494-6300</a></p>
+									<p> Mike Rogan<br> 655 North Third Street<br> Central Point, OR 97502<br> <a style="color: #885ead;" href="tel:(541) 494-6300">(541) 494-6300</a></p>
 								</div>
 							</td>
 							<td align="left" valign="top">
 								<div style="margin-left: 25px; font-size: 18px; padding-bottom: 10px;">
-									<p>
-										Mark Walters<br> 574 Grey Hawk Way<br> Central Point, OR 97502<br>
-										<a style="color: #885ead;" href="tel:(541) 497-0506">(541) 497-0506</a></p>
+									<p> Mark Walters<br> 574 Grey Hawk Way<br> Central Point, OR 97502<br> <a style="color: #885ead;" href="tel:(541) 497-0506">(541) 497-0506</a></p>
 								</div>
 							</td>
 						</tr>
@@ -282,9 +201,33 @@
 		</div>
 	</div>
 	<div id="footer">
-		<p>All Rights Reserved &copy;</p>
+		<p>All Rights Reserved &copy;
+		</p>
 		<p><a href="mailto:walters601391@district6.org">Sean Walters</a></p>
 	</div>
+	<button onclick="topFunction()" id="myBtn" title="Go To Top"><img width="80px" height="80px" src="https://notseanwalters.github.io/seanwalters/assets/images/scroll.png" /></button>
+	<script>
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {
+			scrollFunction()
+		}
+
+		;
+
+		function scrollFunction() {
+			if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+				document.getElementById("myBtn").style.display = "block";
+			} else {
+				document.getElementById("myBtn").style.display = "none";
+			}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function topFunction() {
+			document.body.scrollTop = 0;
+			document.documentElement.scrollTop = 0;
+		}
+	</script>
 </body>
 
 </html>
