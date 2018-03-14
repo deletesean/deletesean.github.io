@@ -75,10 +75,6 @@ body {
     transition: 0.5s;
 }
 
-.sidebox:hover {
-	opacity: 0.3;
-}
-
 .sidebox .closebox {
 	width: 100%;
 	height: 100%;
@@ -88,10 +84,6 @@ body {
 	z-index: 6;
    position: absolute;
    transition: 1s;
-}
-
-.sidebox .closebox:hover {
-   opacity: 0.2;
 }
 
 .opennavbutton {
@@ -104,12 +96,6 @@ body {
     height: 100%;
     background: darkred;
 	transition: 0.5s;
-}
-
-.opennavbutton:hover {
-	opacity: 1;
-	background: darkred;
-	width: 8em;
 }
 
 .sidenav {
@@ -385,7 +371,7 @@ body {
 }
 
 .content-main-wrap:hover h1 {
-	color: #cccccc;
+	color: #c1c1c1;
 	text-shadow: 1px 1px red, 2px 2px red, 3px 3px red, 4px 4px red, 5px 5px red, 6px 6px red, 7px 7px red, 8px 8px red, 9px 9px red, 10px 10px red;
 }
 
@@ -409,7 +395,7 @@ body {
 .content-sec-wrap {
 	width: 100%;
 	padding: 25px 0 25px 0;
-	background: #ffd8d8;
+	background: #cccccc;
 }
 
 .content-sec-contain {
@@ -428,7 +414,7 @@ body {
 }
 
 .content-sec-wrap:hover h1 {
-	color: #cccccc;
+	color: #aaaaaa;
 	text-shadow: 1px 1px red, 2px 2px red, 3px 3px red, 4px 4px red, 5px 5px red, 6px 6px red, 7px 7px red, 8px 8px red, 9px 9px red, 10px 10px red;
 }
 

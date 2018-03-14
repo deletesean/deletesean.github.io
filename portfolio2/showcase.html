@@ -3,93 +3,151 @@
 <head>
 <meta charset="UTF-8">
 <title>Sean Walters</title>
-<meta name="Description" content="Template's Digital Portfolio, a professional curriculum vitae of who I am and where I want to go, includes a resume, education roadmap, career plan, and a showcase of my talents.">
+<meta name="Description" content="Sean Walters' Digital Portfolio, a professional curriculum vitae of who I am and where I want to go, includes a resume, internship description, education roadmap, career plan, and a showcase of my talents.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="assets/css/main.css" rel="stylesheet" type="text/css">
-<link rel="icon" type="image/png" href="assets/images/favicon6.png" />
+<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/images/favicon1.png" />
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 </head>
 
+<body>
+
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+
 <script>
-$(window).scroll(function() {
-    if ($(this).scrollTop() == 0) {
-        $('#head-wrap').css({
-                'box-shadow': 'none',
-                '-moz-box-shadow' : 'none',
-                '-webkit-box-shadow' : 'none' });
-    }
-    else {
-        $('#head-wrap').css({
-                'box-shadow': '0px 3px 15px #999',
-                '-moz-box-shadow' : '0px 3px 15px #999',
-                '-webkit-box-shadow' : '0px 3px 15px #999' });
-    }
-});
+AOS.init({
+  duration: 2000,
+})
 </script>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  
+  <div class="section1">
+  <img src="assets/images/nav1.png">
+  <a class="layer1" style="margin-top: 80px;" href="index.html">Home</a>
+  <div id="underline1"></div>
+  </div>
+  
+  <div class="section2">
+  <img src="assets/images/nav2.png">
+  <a class="layer2" href="resume.html">Resume</a>
+  <div id="underline2"></div>
+  </div>
+  
+  <div class="section3">
+  <img src="assets/images/nav3.png">
+  <a class="layer3" href="internship.html">Internship</a>
+  <div id="underline3"></div>
+  </div>
+  
+  <div class="section4">
+  <img src="assets/images/nav4.png">
+  <a class="layer4" href="education.html">Education</a>
+  <div id="underline4"></div>
+    </div>
+  
+  <div class="section5">
+  <img src="assets/images/nav5.png">
+  <a class="layer5" href="career.html">Career</a>
+  <div id="underline5"></div>
+  </div>
+  
+  <div class="section6">
+  <img src="assets/images/nav6.png">
+  <a class="layer6" href="showcase.html">Showcase</a>
+  <div id="underline6"></div>
+  </div>
+</div>
+
+  <div id="mySidebox" class="sidebox">
+  <a href="javascript:void(0)" class="closebox" onmouseover="closeNav()">
+  <div>
+  </div>
+  </a>
+</div>
+
+<span onmouseenter="openNav()">
+	<div class="opennavbutton">
+	</div>
+</span>
+
+  <div id="main">
     	<div>
-        	<video id="autoplay-video" autoplay loop>
-  <source src="assets/images/headerlogo6.mp4" type="video/mp4">
+        	<video style="cursor: crosshair; transition:1s;" data-aos="fade" id="autoplay-video1" autoplay loop>
+  <source src="assets/images/headerlogo1.mp4" type="video/mp4">
 </video>
         </div>
-<div class="content-main-wrap-top">
-	<div class="content-main-contain">
-    	<div align="center">
-        	<iframe width="640" height="360" src="https://www.youtube.com/embed/vSK3maq8Cyk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-    	<h1>A Video Artifact</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non sapien ligula. Suspendisse sagittis feugiat efficitur. Suspendisse at risus eu magna fringilla lobortis in at ligula. Fusce maximus, magna eget lacinia consectetur, elit tortor aliquet eros, id imperdiet lectus ex vitae enim.</p>
+
+<div class="content-sec-wrap" style="height:580px; margin: 1px 0 0 0;">
+
+		<div data-aos="fade-right" class="container1" style="transition: 2.5s;">
+		  <a href="internship.html"><img src="assets/images/3col-internship.png" class="image1">
+			<div class="text1">Internship</div>
+			<div class="text11">_______</div>
+			<div style="margin-left: 295px; margin-top: -265px" class="text12">Working in the business,</div>
+			<div style="margin-left: 295px; margin-top: -215px" class="text12">community involvement,</div>
+			<div style="margin-left: 295px; margin-top: -165px" class="text12">and gained experience.</div>
+			</a>
     </div>
-</div>
-<div class="content-sec-wrap">
-	<div class="content-sec-contain">
-    	<h1>Graphic Design Artifact</h1>
-        <div align="center">
-        	<a href="#gdart"><img src="assets/images/showcase1.png" style="width: 800px; height: 300px;"></a>
-        </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non sapien ligula. Suspendisse sagittis feugiat efficitur. Suspendisse at risus eu magna fringilla lobortis in at ligula. Fusce maximus, magna eget lacinia consectetur, elit tortor aliquet eros, id imperdiet lectus ex vitae enim.</p>
+
+		<div data-aos="fade-up" class="container2" style="transition: 2.5s; width: 0; height: 0;">
+		  <a href="education.html"><img src="assets/images/3col-education.png" class="image2">
+			<div class="text2">Education</div>
+			<div class="text22">_______</div>
+			<div style="margin-left: 790px; margin-top: -265px" class="text23">All about the college,</div>
+			<div style="margin-left: 790px; margin-top: -215px" class="text23">undergraduate program,</div>
+			<div style="margin-left: 790px; margin-top: -165px" class="text23">and found opportunities.</div>
+			</a>
+		</div>
+		
+		<div data-aos="fade-left" class="container3" style="transition: 2.5s; width: 0; height: 0;">
+		  <a href="career.html"><img src="assets/images/3col-career.png" class="image3">
+			<div class="text3">Career</div>
+			<div class="text33">_______</div>
+			<div style="margin-left: 1325px; margin-top: -265px" class="text34">The chosen career field,</div>
+			<div style="margin-left: 1325px; margin-top: -215px" class="text34">focused company,</div>
+			<div style="margin-left: 1325px; margin-top: -165px" class="text34">and possible future job.</div>
+			</a>
+		</div>
+		
     </div>
-</div>
-<br class="clear">
-<div class="content-main-wrap">
-    <div class="content-main-contain">
-    	<div class="content-3-col">
-        	<a href="#art1" class="col-btn">
-            <h3>Math Artifact</h3>
-            <img src="assets/images/3col-show1.png" style="width: 290px; height:200px;">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non sapien ligula. Suspendisse sagittis feugiat efficitur. Suspendisse at risus eu magna fringilla lobortis in at ligula. Fusce maximus, magna eget lacinia consectetur, elit tortor aliquet eros, id imperdiet lectus ex vitae enim.</p>
-            </a>
-        </div>
-        <div class="content-3-col" id="mid-col">
-        	<a href="#art2" class="col-btn">
-            <h3>Science Artifact</h3>
-            <img src="assets/images/3col-show2.png" style="width: 290px; height:200px;">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non sapien ligula. Suspendisse sagittis feugiat efficitur. Suspendisse at risus eu magna fringilla lobortis in at ligula. Fusce maximus, magna eget lacinia consectetur, elit tortor aliquet eros, id imperdiet lectus ex vitae enim.</p>
-            </a>
-        </div>
-        <div class="content-3-col">
-        	<a href="art3" class="col-btn">
-            <h3>Writing Artifact</h3>
-            <img src="assets/images/3col-show3.png" style="width: 290px; height:200px;">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non sapien ligula. Suspendisse sagittis feugiat efficitur. Suspendisse at risus eu magna fringilla lobortis in at ligula. Fusce maximus, magna eget lacinia consectetur, elit tortor aliquet eros, id imperdiet lectus ex vitae enim.</p>
-            </a>
-        </div>
-    </div>
-</div>
-<br class="clear">
-<div id="foot-wrap">
+<div class="foot-wrap">
 	<div id="foot-contain">
-    	<div id="copyright-contain">
-    		<h1>&copy Mom Sludge 2018</h1>
-        	<h2><a href="mailto:thiccmoist@doggo.com">thiccmoist@doggo.com</a></h2>
-    	</div>
-        <div id="social-media-contain">
-        	<a href="#"><img src="assets/images/social1.png" style="width: 50px; height:50px;"></a>
-            <a href="#"><img src="assets/images/social2.png" style="width: 50px; height:50px;"></a>
-            <a href="#"><img src="assets/images/social3.png" style="width: 50px; height:50px;"></a>
-            <a href="#"><img src="assets/images/social4.png" style="width: 50px; height:50px;"></a>
-        </div>
-    <br class="clear">
+			<div class="topnav">
+			  <a data-aos="fade-up" style="transition: 1s; cursor: crosshair; margin-top: 37px; margin-left: 190px;">&copy Sean Walters 2018</a>
+			  <a data-aos="fade-up" style="transition: 1s; margin-top: 37px; margin-left: 40px; padding: 40px 44px 46px 44px;" href="mailto:teamlads127@gmail.com">Contact</a>
+			</div>
+			<div id="letters"><p>S</p></div>
+		<div class="social1">
+            <a href="#"><img data-aos="zoom-in" style="transition: 1s;" src="assets/images/social1.png"></a>
+			</div>
+		<div class="social2">
+            <a href="#"><img data-aos="zoom-in" style="transition: 1s;" src="assets/images/social2.png"></a>
+			</div>
+		<div class="social3">
+            <a href="#"><img data-aos="zoom-in" style="transition: 1s;" src="assets/images/social3.png"></a>
+			</div>
     </div>
 </div>
 
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "85px";
+    document.getElementById("main").style.marginRight = "-180px";
+	document.getElementById("mySidebox").style.width = "2000px";
+}
 
-</body></html>
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+    document.getElementById("main").style.marginRight= "0";
+    document.body.style.backgroundColor = "white";
+	document.getElementById("mySidebox").style.width = "0";
+}
+</script>
+</div>
+</body>
+</html>
