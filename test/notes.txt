@@ -1,0 +1,33 @@
+/////
+
+VERSIONS
+
+/////
+
+DELAY
+
+No Delay - will have empty black screen for a few seconds
+
+Random Delay - chaos
+
+Set Delay - staggered pattern / one by one
+
+Set Delay - no delay for even, delay for odd / checkerboard pattern
+
+/////
+
+SIZE
+
+144p
+
+240p
+
+360p
+
+480p
+
+720p
+
+900p
+
+1080p

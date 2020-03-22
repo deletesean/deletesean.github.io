@@ -1,0 +1,70 @@
+html {
+    background-color: grey;
+    /*
+    -ms-overflow-style: none;
+    */
+}
+
+/*
+html::-webkit-scrollbar {
+    display: none;
+  }
+*/
+
+/* the scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    margin-right: 20px;
+}
+
+/* the buttons on the scrollbar (arrows pointing upwards and downwards) */
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+/* the draggable scrolling handle */
+::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: white;
+}
+
+/* the track (progress bar) of the scrollbar */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* the track (progress bar) NOT covered by the handle */
+::-webkit-scrollbar-track-piece {
+}
+
+/* the bottom corner of the scrollbar, where both horizontal and vertical scrollbars meet */
+::-webkit-scrollbar-corner {
+}
+
+/* the draggable resizing handle that appears at the bottom corner of some elements */
+::-webkit-resizer {
+}
+
+body {
+    margin: 0;
+}
+
+#main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    overflow-x:hidden;
+    overflow-y:scroll;
+}
+
+video {
+    width: 144px;
+    height: 144px;
+    float: left;
+}
