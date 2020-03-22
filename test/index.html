@@ -6,11 +6,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="main.css" rel="stylesheet" type="text/css">
+    <script src="script.js"></script>
 </head>
 
 <body>
+    <div id="menu">
+        <input id="resInput" placeholder="resolution" title="video render resolution - 72, 144, 240, 360, 480, 720, 900, 1080, 1440, 2160 - pixels" type="number" min="72" max="2160">
+        <input id="sizeInput" placeholder="size" title="video element size - 1 to 5000 - pixels" type="number" min="1" max="5000">
+        <input id="amountInput" placeholder="amount" title="amount of video elements generated - 1 to 241" type="number" min="1" max="241">
+        <input id="initialInput" placeholder="initial video" title="inital video - 1 to 241" type="number" min="1" max="241">
+        <input id="speedInput" placeholder="speed" title="video playback speed - 0 to 16" type="number" min="0" max="3">
+        <input id="delayTypeInput" placeholder="delay type" title="delay between each video autoplay - 0 is none, 1 is staggered, 2 is checkerboard, 3 is random" type="number" min="0" max="3">
+        <input id="delayAmountInput" placeholder="delay amount" title="amount of delay between each video autoplay - 0 to 20000" type="number" min="0" max="20000">
+        <input id="timeInput" placeholder="start time" title="start time of each video - 0 is same, 1 is staggered, 2 is checkerboard, 3 is random" type="number" min="0" max="20">
+        <a id="button" onclick="myFunction()">CREATE</a>
+        <a id="help" href="notes.txt" target="_blank">?</a>
+    </div>
     <div id="main"></div>
-    <script src="script.js"></script>
+    <audio autoplay>
+        <source src="social.mp3" type="audio/mpeg">
+    </audio>
 </body>
 
 </html>

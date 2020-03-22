@@ -1,33 +1,48 @@
-/////
+//////////
 
 VERSIONS
 
-/////
+//////////
 
 DELAY
 
 No Delay - will have empty black screen for a few seconds
-
+Staggered Delay - staggered pattern / one by one
+Checkerboard Delay - no delay for even, delay for odd / checkerboard pattern
 Random Delay - chaos
 
-Set Delay - staggered pattern / one by one
+//////////
 
-Set Delay - no delay for even, delay for odd / checkerboard pattern
+START TIME
 
-/////
+Same Start Time - all videos have the same start time - 0 seconds
+Staggered Start Time - each video has a start time increasing one by one
+Random Start Time - each video has a random start time from 0 - 20 seconds
+
+//////////
 
 SIZE
 
 144p
-
 240p
-
 360p
-
 480p
-
 720p
-
 900p
-
 1080p
+
+//////////
+
+USER INPUT
+
+Video Resolution - 72p, 144p, 240p, 360p, 480p, 720p, 1080p, 1440p, 2160p - higher for better quality & worse performance - lower for worse quality & better performance - default ?
+Video Size - min, max, default - 1px, 10000px, 
+Video Amount - min, max, default - 1, 241, 100 - higher for more videos & worse performance - lower for less videos & better performance
+
+Delay - none, staggered, checkerboard, random
+
+Start Time - same, staggered, random
+
+If user input does not match available options or provide input, set setting to default value
+
+//////////
