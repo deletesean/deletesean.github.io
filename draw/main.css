@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css?family=Heebo:900&display=swap');
+
+* {
+    user-select: none;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: default;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: black;
+}
+
+#hover {
+    position: absolute;
+    z-index: 0;
+}
+
+#drag {
+    width: 102%;
+    height: 102%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+#demo1 {
+    width: 102%;
+    height: 102%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+#demo {
+    transition: transform 0.1s;
+}
+
+#demo2 {
+    font-size: 0.9em;
+    letter-spacing: 0.85em;
+    line-height: 1.1em;
+    overflow-wrap: break-word;
+}
+
+.x {
+    margin-left: -1.1px;
+    transition: 1s;
+    background-color: white;
+}
+
+.x:hover {
+    transition: 0s;
+  }
+
+  #size {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: red;
+    position: absolute;
+    padding-top: 10px;
+    padding-left: 30px;
+    z-index: 10;
+    display: none;
+}
+
+#ramount {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: magenta;
+    position: absolute;
+    padding-top: 30px;
+    padding-left: 30px;
+    z-index: 10;
+    display: none;
+}
+
+#counter {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: blue;
+    position: absolute;
+    padding-top: 50px;
+    padding-left: 30px;
+    z-index: 10;
+    display: none;
+}
+
+#hue {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: grey;
+    position: absolute;
+    padding-top: 70px;
+    padding-left: 30px;
+    z-index: 10;
+    display: none;
+}
+
+#squaretop {
+    position: absolute;
+    height: 40%;
+    width: 100%;
+    background-color: black;
+    z-index: 9;
+}
+
+#squarebottom {
+    position: absolute;
+    bottom: 0;
+    height: 40%;
+    width: 100%;
+    background-color: black;
+    z-index: 9;
+}
+
+#squareleft {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 40%;
+    background-color: black;
+    z-index: 9;
+}
+
+#squareright {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 40%;
+    background-color: black;
+    z-index: 9;
+}
+
+#cover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.25;
+    z-index: 8;
+}
