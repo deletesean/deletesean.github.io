@@ -1,0 +1,35 @@
+<!DOCTYPE html> 
+<html lang = "en-US">
+<head>
+<meta charset="UTF-8">
+<title>Miles Inada Project 1_1</title>
+<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script> 
+<script>
+
+
+//	Global Variables
+var myStage;
+
+function init(){
+	myStage = new createjs.Stage(document.getElementById("myCanvas"));
+	createjs.Ticker._setFPS(60);
+	createjs.Ticker.addEventListener('tick', gameLoop);
+//	1. As the last step in your init() function, make a call to an initGame() function you'll define below.
+}
+
+//	2. Write an initGame() function that sends a console message. 	
+
+function gameLoop(){
+//	3. Get rid of the gameLoop comment, cuz it'll be annoying.
+	console.log("hello world");
+}
+
+
+</script>
+</head>
+<body onload="init()">
+	<canvas id="myCanvas" width="1024" height="768"></canvas>
+</body>
+</html>
+
+
