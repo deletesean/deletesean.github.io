@@ -14,7 +14,7 @@ Set up procedural target movement and keyboard input for hero movement.
 	<script src="js/collisionGnome.js"></script>
 	<script>
 		// GLOBAL VARIABLES
-		var myFrameRate = 200;
+		var myFrameRate = 60;
 		// STAGE
 		var myStage;
 		var stageWidth;
@@ -25,14 +25,11 @@ Set up procedural target movement and keyboard input for hero movement.
 		var target_1;
 		var target_2;
 		var target_3;
-		// START POSITIONS
-		var heroStartPositionX = 800;
-		var heroStartPositionY = 450;
 		// SPEEDS
-		var heroStartSpeed = 2;
-		// ACTUAL MAX SPEED WILL BE targetMaxSpeed + targetMinSpeed
-		var targetMinSpeed = 1;
-		var targetMaxSpeed = 1;
+		var heroStartSpeed = 3;
+		// ACTUAL MAX SPEED WILL BE 'targetMaxSpeed' + 'targetMinSpeed'
+		var targetMinSpeed = 0.1;
+		var targetMaxSpeed = 0.1;
 		// INITIALIZATION - HAPPENS ONLY ONCE
 		function init() {
 			myStage = new createjs.Stage(document.getElementById("myCanvas"));
@@ -42,7 +39,6 @@ Set up procedural target movement and keyboard input for hero movement.
 			createjs.Ticker._setFPS(myFrameRate);
 			initGame();
 		}
-		// END init()
 		function initGame() {
 			// BITMAPS
 			bg = new createjs.Bitmap("img/bg_new.png");
@@ -50,6 +46,7 @@ Set up procedural target movement and keyboard input for hero movement.
 			target_1 = new createjs.Bitmap("img/tri_eye_2.png");
 			target_2 = new createjs.Bitmap("img/circ_face_2.png");
 			target_3 = new createjs.Bitmap("img/key.png");
+			textSpeed = new createjs.BitmapText([text="test"]);
 			// REGISTER POINTS
 			bg.regX = 0;
 			bg.regY = 0;
@@ -64,7 +61,7 @@ Set up procedural target movement and keyboard input for hero movement.
 			// POSITIONS
 			bg.x = 0;
 			bg.y = 0;
-			hero.x = Math.random() * 0.92 * stageWidth + 64;
+			hero.x = Math.random() * 0.85 * stageHeight + 64;
 			hero.y = Math.random() * 0.85 * stageHeight + 64;
 			target_1.x = Math.random() * 0.92 * stageWidth + 64;
 			target_1.y = Math.random() * 0.85 * stageHeight + 64;
@@ -78,14 +75,17 @@ Set up procedural target movement and keyboard input for hero movement.
 			target_1.ySpeed = Math.random() * targetMaxSpeed + targetMinSpeed;
 			target_2.xSpeed = Math.random() * targetMaxSpeed + targetMinSpeed;
 			target_2.ySpeed = Math.random() * targetMaxSpeed + targetMinSpeed;
-			target_3.xSpeed = Math.random() * targetMaxSpeed + targetMinSpeed;
-			target_3.ySpeed = Math.random() * targetMaxSpeed + targetMinSpeed;
 			// LAYERS
 			myStage.addChild(bg);
 			myStage.addChild(target_3);
 			myStage.addChild(target_2);
 			myStage.addChild(target_1);
 			myStage.addChild(hero);
+			// DIRECTIONS
+			target_1.xDirection = Math.random();
+			target_1.yDirection = Math.random();
+			target_2.xDirection = Math.random();
+			target_2.yDirection = Math.random();
 		}
 		// THE MAIN LOOP - PUT CODE IN HERE THAT WILL CHANGE EVERY 'TICK'
 		function drawNewFrame(evt) {
@@ -104,50 +104,119 @@ Set up procedural target movement and keyboard input for hero movement.
 			else if (hero.y > stageHeight) {
 				hero.y = 0;
 			}
-			// IF TARGET HITS HERO
-			if (hero.x < (target_1.x + 128) && hero.x > (target_1.x - 128) && hero.y < (target_1.y + 128) && hero.y > (target_1.y - 128)) {
-				hero.speed = 0;
-				console.log("hit");
-			}
+			// RANDOM STARTING X AND Y DIRECTIONS FOR TARGETS
+			randomMoveTarget();
 			// MOVE TARGETS
 			moveTarget(target_1);
 			moveTarget(target_2);
 			moveTarget(target_3);
+			// IF HERO HITS TARGET_1
+			if (hero.x < (target_1.x + 75) && hero.x > (target_1.x - 75) && hero.y < (target_1.y + 75) && hero.y > (target_1.y - 75)) {
+				hero.speed = 0.1;
+				console.log("hero hit target_1");
+			}
+			// IF HERO HITS TARGET_2
+			if (hero.x < (target_2.x + 75) && hero.x > (target_2.x - 75) && hero.y < (target_2.y + 75) && hero.y > (target_2.y - 75)) {
+				hero.speed = 0.1;
+				console.log("hero hit target_2");
+			}
+			// IF HERO HITS TARGET_3
+			if (hero.x < (target_3.x + 75) && hero.x > (target_3.x - 75) && hero.y < (target_3.y + 75) && hero.y > (target_3.y - 75)) {
+				hero.speed = hero.speed * 1.1;
+				target_3.x = Math.random() * 0.92 * stageWidth + 64;
+				target_3.y = Math.random() * 0.85 * stageHeight + 64;
+				console.log("hero hit target_3");
+			}
 			// UPDATE THE STAGE
 			myStage.update();
 		}
-		// END drawNewFrame()
 		// KEYBOARD INPUT FUNCTION
 		function handleKeyboardInput() {
 			// USE KEYSTROKES
-			if (keyMonkey["w"] || keyMonkey["up"]) { hero.y -= hero.speed; }
-			if (keyMonkey["s"] || keyMonkey["down"]) { hero.y += hero.speed; }
-			if (keyMonkey["d"] || keyMonkey["right"]) { hero.x += hero.speed; }
-			if (keyMonkey["a"] || keyMonkey["left"]) { hero.x -= hero.speed; }
+			if ((keyMonkey["w"] || keyMonkey["up"]) && (keyMonkey["a"] || keyMonkey["left"])) {
+				hero.x -= hero.speed;
+				hero.y -= hero.speed;
+			}
+			else if ((keyMonkey["w"] || keyMonkey["up"]) && (keyMonkey["d"] || keyMonkey["right"])) {
+				hero.x += hero.speed;
+				hero.y -= hero.speed;
+			}
+			else if ((keyMonkey["s"] || keyMonkey["down"]) && (keyMonkey["a"] || keyMonkey["left"])) {
+				hero.x -= hero.speed;
+				hero.y += hero.speed;
+			}
+			else if ((keyMonkey["s"] || keyMonkey["down"]) && (keyMonkey["d"] || keyMonkey["right"])) {
+				hero.x += hero.speed;
+				hero.y += hero.speed;
+			}
+			else if (keyMonkey["w"] || keyMonkey["up"]) {
+				hero.y -= hero.speed;
+			}
+			else if (keyMonkey["s"] || keyMonkey["down"]) {
+				hero.y += hero.speed;
+			}
+			else if (keyMonkey["d"] || keyMonkey["right"]) {
+				hero.x += hero.speed;
+			}
+			else if (keyMonkey["a"] || keyMonkey["left"]) {
+				hero.x -= hero.speed;
+			}
+			if (keyMonkey["space_bar"]) {
+				hero.speed = 3;
+			}
 		}
-		// END handleKeyboardInput()
-		// MOVE TARGET FUNCTION
+		// RANDOM STARTING X AND Y DIRECTIONS FOR TARGETS
+		function randomMoveTarget() {
+			// RANDOM X AND Y DIRECTIONS FOR TARGET 1
+			if (target_1.xDirection < 0.5) {
+				target_1.x += target_1.xSpeed;
+			}
+			if (target_1.xDirection > 0.5) {
+				target_1.x -= target_1.xSpeed;
+			}
+			if (target_1.yDirection < 0.5) {
+				target_1.y -= target_1.ySpeed;
+			}
+			if (target_1.yDirection > 0.5) {
+				target_1.y += target_1.ySpeed;
+			}
+			// RANDOM X AND Y DIRECTIONS FOR TARGET 2
+			if (target_2.xDirection < 0.5) {
+				target_2.x += target_2.xSpeed;
+			}
+			if (target_2.xDirection > 0.5) {
+				target_2.x -= target_2.xSpeed;
+			}
+			if (target_2.yDirection < 0.5) {
+				target_2.y -= target_2.ySpeed;
+			}
+			if (target_2.yDirection > 0.5) {
+				target_2.y += target_2.ySpeed;
+			}
+		}
+		// MOVE TARGETS
 		function moveTarget(thisTarget) {
-			// thisTarget.y += thisTarget.speed;
-			thisTarget.x += thisTarget.xSpeed;
-			thisTarget.y += thisTarget.ySpeed;
+			// BOUNCE ON X
 			if (thisTarget.x >= (stageWidth - 64) || thisTarget.x <= 64) {
 				thisTarget.xSpeed = thisTarget.xSpeed * -1;
+				// IF BOUNCE NEAR CORNER, INCREASE SPEED AND LOG IT
 				if (thisTarget.x <= 200 && thisTarget.y <= 200 || thisTarget.x <= 200 && thisTarget.y >= 700 || thisTarget.x >= 1400 && thisTarget.y <= 200 || thisTarget.x >= 200 && thisTarget.y >= 1400) {
 					thisTarget.xSpeed = thisTarget.xSpeed * 1.1;
 					thisTarget.ySpeed = thisTarget.ySpeed * 1.1;
 					console.log(Math.round(thisTarget.xSpeed) + " + " + Math.round(thisTarget.x) + " + " + Math.round(thisTarget.y));
 				}
 			}
+			// BOUNCE ON Y
 			if (thisTarget.y >= (stageHeight - 64) || thisTarget.y <= 64) {
 				thisTarget.ySpeed = thisTarget.ySpeed * -1;
+				// IF BOUNCE NEAR CORNER, INCREASE SPEED AND LOG IT
 				if (thisTarget.x <= 200 && thisTarget.y <= 200 || thisTarget.x <= 200 && thisTarget.y >= 700 || thisTarget.x >= 1400 && thisTarget.y <= 200 || thisTarget.x >= 200 && thisTarget.y >= 1400) {
 					thisTarget.xSpeed = thisTarget.xSpeed * 1.1;
 					thisTarget.ySpeed = thisTarget.ySpeed * 1.1;
 					console.log(Math.round(thisTarget.xSpeed) + " + " + Math.round(thisTarget.x) + " + " + Math.round(thisTarget.y));
 				}
 			}
-			// RESET TARGET
+			// RESET TARGET VARIABLES
 			if (thisTarget.xSpeed >= 30000) {
 				thisTarget.x = Math.random() * 0.92 * stageWidth + 64;
 				thisTarget.y = Math.random() * 0.85 * stageHeight + 64;
@@ -156,7 +225,6 @@ Set up procedural target movement and keyboard input for hero movement.
 				console.log("reset " + "'" + thisTarget + "'");
 			}
 		}
-		// END moveTarget()
 	</script>
 </head>
 
