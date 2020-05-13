@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en-US">
-
 <!--
 EMDA 203 - Project_1_2 Template - Spring 2020.
 Place the assets on a canvas using JavaScript and CreateJS.
@@ -30,7 +29,7 @@ Set up procedural target movement and keyboard input for hero movement.
 		var heroStartPositionX = 800;
 		var heroStartPositionY = 450;
 		// SPEEDS
-		var heroStartSpeed = 1;
+		var heroStartSpeed = 2;
 		// ACTUAL MAX SPEED WILL BE targetMaxSpeed + targetMinSpeed
 		var targetMinSpeed = 1;
 		var targetMaxSpeed = 1;
@@ -39,7 +38,7 @@ Set up procedural target movement and keyboard input for hero movement.
 			myStage = new createjs.Stage(document.getElementById("myCanvas"));
 			stageWidth = myStage.canvas.width;
 			stageHeight = myStage.canvas.height;
-			createjs.Ticker.addEventListener('tick', gameLoop);
+			createjs.Ticker.addEventListener('tick', drawNewFrame);
 			createjs.Ticker._setFPS(myFrameRate);
 			initGame();
 		}
@@ -77,8 +76,10 @@ Set up procedural target movement and keyboard input for hero movement.
 			hero.speed = heroStartSpeed;
 			target_1.xSpeed = Math.random() * targetMaxSpeed + targetMinSpeed;
 			target_1.ySpeed = Math.random() * targetMaxSpeed + targetMinSpeed;
-			target_2.speed = Math.random() * targetMaxSpeed + targetMinSpeed;
-			target_3.speed = Math.random() * targetMaxSpeed + targetMinSpeed;
+			target_2.xSpeed = Math.random() * targetMaxSpeed + targetMinSpeed;
+			target_2.ySpeed = Math.random() * targetMaxSpeed + targetMinSpeed;
+			target_3.xSpeed = Math.random() * targetMaxSpeed + targetMinSpeed;
+			target_3.ySpeed = Math.random() * targetMaxSpeed + targetMinSpeed;
 			// LAYERS
 			myStage.addChild(bg);
 			myStage.addChild(target_3);
@@ -86,12 +87,10 @@ Set up procedural target movement and keyboard input for hero movement.
 			myStage.addChild(target_1);
 			myStage.addChild(hero);
 		}
-		// THE MAIN LOOP
-		function gameLoop(evt) {
-			// PUT CODE IN HERE THAT WILL CHANGE EVERY 'TICK'
+		// THE MAIN LOOP - PUT CODE IN HERE THAT WILL CHANGE EVERY 'TICK'
+		function drawNewFrame(evt) {
 			// CHECK FOR KEYBOARD INPUT
 			handleKeyboardInput();
-
 			// HERO LOOPS AROUND STAGE EDGE
 			if (hero.x < 0) {
 				hero.x = stageWidth;
@@ -105,55 +104,22 @@ Set up procedural target movement and keyboard input for hero movement.
 			else if (hero.y > stageHeight) {
 				hero.y = 0;
 			}
-
 			// IF TARGET HITS HERO
-			if ((hero.x + 100) > hero.x > (hero.x - 100) == target_1.x) {
+			if (hero.x < (target_1.x + 128) && hero.x > (target_1.x - 128) && hero.y < (target_1.y + 128) && hero.y > (target_1.y - 128)) {
 				hero.speed = 0;
-				target_1.xSpeed = 0;
-				target_1.ySpeed = 0;
 				console.log("hit");
 			}
-
 			// MOVE TARGETS
-			// moveTarget(target_1);
-			// moveTarget(target_2);
-			// moveTarget(target_3);
-			// target_1.y += target_1.ySpeed;
-
-			target_1.x += target_1.xSpeed;
-			target_1.y += target_1.ySpeed;
-
-			if (target_1.x >= (stageWidth - 64) || target_1.x <= 64) {
-				target_1.xSpeed = target_1.xSpeed * -1;
-				if (target_1.x <= 200 && target_1.y <= 200 || target_1.x <= 200 && target_1.y >= 700 || target_1.x >= 1400 && target_1.y <= 200 || target_1.x >= 200 && target_1.y >= 1400) {
-					target_1.xSpeed = target_1.xSpeed * 1.1;
-					target_1.ySpeed = target_1.ySpeed * 1.1;
-					console.log(Math.round(target_1.xSpeed) + " + " + Math.round(target_1.x) + " + " + Math.round(target_1.y));
-				}
-			}
-			if (target_1.y >= (stageHeight - 64) || target_1.y <= 64) {
-				target_1.ySpeed = target_1.ySpeed * -1;
-				if (target_1.x <= 200 && target_1.y <= 200 || target_1.x <= 200 && target_1.y >= 700 || target_1.x >= 1400 && target_1.y <= 200 || target_1.x >= 200 && target_1.y >= 1400) {
-					target_1.xSpeed = target_1.xSpeed * 1.1;
-					target_1.ySpeed = target_1.ySpeed * 1.1;
-					console.log(Math.round(target_1.xSpeed) + " + " + Math.round(target_1.x) + " + " + Math.round(target_1.y));
-				}
-			}
-			// RESET TARGET
-			if (target_1.xSpeed >= 20000) {
-				target_1.x = Math.random() * 0.92 * stageWidth + 64;
-				target_1.y = Math.random() * 0.85 * stageHeight + 64;
-				target_1.xSpeed = Math.random() * targetMaxSpeed + targetMinSpeed;
-				target_1.ySpeed = Math.random() * targetMaxSpeed + targetMinSpeed;
-				console.log("reset 'target_1'");
-			}
+			moveTarget(target_1);
+			moveTarget(target_2);
+			moveTarget(target_3);
+			// UPDATE THE STAGE
 			myStage.update();
 		}
 		// END drawNewFrame()
 		// KEYBOARD INPUT FUNCTION
 		function handleKeyboardInput() {
-			// WRITE CODE TO ALLOW KEY STROKES TO CONTROL MOVEMENT OF YOUR HERO
-			// FOR EXAMPLE:
+			// USE KEYSTROKES
 			if (keyMonkey["w"] || keyMonkey["up"]) { hero.y -= hero.speed; }
 			if (keyMonkey["s"] || keyMonkey["down"]) { hero.y += hero.speed; }
 			if (keyMonkey["d"] || keyMonkey["right"]) { hero.x += hero.speed; }
@@ -161,9 +127,35 @@ Set up procedural target movement and keyboard input for hero movement.
 		}
 		// END handleKeyboardInput()
 		// MOVE TARGET FUNCTION
-		// function moveTarget(thisTarget) {
-		// 	thisTarget.y += thisTarget.speed;
-		// }
+		function moveTarget(thisTarget) {
+			// thisTarget.y += thisTarget.speed;
+			thisTarget.x += thisTarget.xSpeed;
+			thisTarget.y += thisTarget.ySpeed;
+			if (thisTarget.x >= (stageWidth - 64) || thisTarget.x <= 64) {
+				thisTarget.xSpeed = thisTarget.xSpeed * -1;
+				if (thisTarget.x <= 200 && thisTarget.y <= 200 || thisTarget.x <= 200 && thisTarget.y >= 700 || thisTarget.x >= 1400 && thisTarget.y <= 200 || thisTarget.x >= 200 && thisTarget.y >= 1400) {
+					thisTarget.xSpeed = thisTarget.xSpeed * 1.1;
+					thisTarget.ySpeed = thisTarget.ySpeed * 1.1;
+					console.log(Math.round(thisTarget.xSpeed) + " + " + Math.round(thisTarget.x) + " + " + Math.round(thisTarget.y));
+				}
+			}
+			if (thisTarget.y >= (stageHeight - 64) || thisTarget.y <= 64) {
+				thisTarget.ySpeed = thisTarget.ySpeed * -1;
+				if (thisTarget.x <= 200 && thisTarget.y <= 200 || thisTarget.x <= 200 && thisTarget.y >= 700 || thisTarget.x >= 1400 && thisTarget.y <= 200 || thisTarget.x >= 200 && thisTarget.y >= 1400) {
+					thisTarget.xSpeed = thisTarget.xSpeed * 1.1;
+					thisTarget.ySpeed = thisTarget.ySpeed * 1.1;
+					console.log(Math.round(thisTarget.xSpeed) + " + " + Math.round(thisTarget.x) + " + " + Math.round(thisTarget.y));
+				}
+			}
+			// RESET TARGET
+			if (thisTarget.xSpeed >= 30000) {
+				thisTarget.x = Math.random() * 0.92 * stageWidth + 64;
+				thisTarget.y = Math.random() * 0.85 * stageHeight + 64;
+				thisTarget.xSpeed = Math.random() * targetMaxSpeed + targetMinSpeed;
+				thisTarget.ySpeed = Math.random() * targetMaxSpeed + targetMinSpeed;
+				console.log("reset " + "'" + thisTarget + "'");
+			}
+		}
 		// END moveTarget()
 	</script>
 </head>
