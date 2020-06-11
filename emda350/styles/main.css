@@ -1,0 +1,462 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,400;1,700&display=swap');
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+* {
+    box-sizing: border-box;
+    font-size: 25px;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* BODY */
+
+body {
+    margin: 0;
+    background-color: black;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* BACKGROUND COLOR */
+
+.backgroundColor {
+    background-image: linear-gradient(to bottom right, #0000FF, #ff00FF);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* BACKGROUND VIDEO */
+
+.backgroundVideo {
+    position: fixed;
+    width: 100%;
+    filter: blur(15px) brightness(20%);
+    -o-filter: blur(15px);
+    opacity: 100%;
+    z-index: -2;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* NAV */
+
+.nav, .nav2 {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    width: 100%;
+    height: 45px;
+    transition: 0.6s;
+    opacity: 0.5;
+}
+
+.nav {
+    display: grid;
+    grid-template-columns: auto 15px 45px 15px 15px 15px 45px 15px 15px 15px 15px 45px 15px 15px 15px 15px 15px 15px 15px 15px auto;
+    grid-template-areas: 
+    ". nav_1 . nav_2 . nav_3 . nav_4 . nav_5 . nav_6 . nav_7 . nav_8 . nav_9 . nav_10 .";
+    align-items: center;
+}
+
+.nav2 {
+    bottom: 0;
+    display: grid;
+    grid-template-columns: 15px 15px 15px 15px 15px 15px 15px 15px 15px 15px 15px 15px 15px 15px 15px 15px 15px 15px 15px auto;
+    grid-template-areas: 
+    ". nav_1 . nav_2 . nav_3 . nav_4 . nav_5 . nav_6 . nav_7 . nav_8 . nav_9 . nav_10 .";
+    align-items: center;
+}
+
+.nav2 img {
+    object-fit: cover;
+}
+
+.nav:hover, .nav2:hover {
+    height: 100px;
+    opacity: 1;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* NAV BUTTON GRID */
+
+.nav_1 {
+    grid-area: nav_1;
+    width: 15px;
+    height: 15px;
+    background-color: #C295D8;
+}
+
+.nav_2 {
+    grid-area: nav_2;
+    width: 15px;
+    height: 15px;
+    background-color: #E6B2C6;
+}
+
+.nav_3 {
+    grid-area: nav_3;
+    width: 15px;
+    height: 15px;
+    background-color: #EEEEEE;
+}
+
+.nav_4 {
+    grid-area: nav_4;
+    width: 15px;
+    height: 15px;
+    background-color: #B9CCED;
+}
+
+.nav_5 {
+    grid-area: nav_5;
+    width: 15px;
+    height: 15px;
+    background-color: #5D6A7D;
+}
+
+.nav_6 {
+    grid-area: nav_6;
+    width: 15px;
+    height: 15px;
+    background-color: #939C9F;
+}
+
+.nav_7 {
+    grid-area: nav_7;
+    width: 15px;
+    height: 15px;
+    background-color: #D1CEBD;
+}
+
+.nav_8 {
+    grid-area: nav_8;
+    width: 15px;
+    height: 15px;
+    background-color: #FFEACB;
+}
+
+.nav_9 {
+    grid-area: nav_9;
+    width: 15px;
+    height: 15px;
+    background-color: #FFB99A;
+}
+
+.nav_10 {
+    grid-area: nav_10;
+    width: 15px;
+    height: 15px;
+    background-color: #FF6464;
+}
+
+.nav_21 {
+    grid-area: nav_1;
+    width: 15px;
+    height: 15px;
+    background-color: #C295D8;
+}
+
+.nav_22 {
+    grid-area: nav_2;
+    width: 15px;
+    height: 15px;
+    background-color: #E6B2C6;
+}
+
+.nav_23 {
+    grid-area: nav_3;
+    width: 15px;
+    height: 15px;
+    background-color: #EEEEEE;
+}
+
+.nav_24 {
+    grid-area: nav_4;
+    width: 15px;
+    height: 15px;
+    background-color: #B9CCED;
+}
+
+.nav_25 {
+    grid-area: nav_5;
+    width: 15px;
+    height: 15px;
+    background-color: #5D6A7D;
+}
+
+.nav_26 {
+    grid-area: nav_6;
+    width: 15px;
+    height: 15px;
+    background-color: #939C9F;
+}
+
+.nav_27 {
+    grid-area: nav_7;
+    width: 15px;
+    height: 15px;
+    background-color: #D1CEBD;
+}
+
+.nav_28 {
+    grid-area: nav_8;
+    width: 15px;
+    height: 15px;
+    background-color: #FFEACB;
+}
+
+.nav_29 {
+    grid-area: nav_9;
+    width: 15px;
+    height: 15px;
+    background-color: #FFB99A;
+}
+
+.nav_30 {
+    grid-area: nav_10;
+    width: 15px;
+    height: 15px;
+    background-color: #FF6464;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* MAIN GRID */
+
+.main {
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1420px 1fr;
+    grid-template-rows: 145px 650px 155px 620px;
+    grid-template-areas: 
+    ". . ."
+    ". content ."
+    ". . ."
+    "footer footer footer";
+}
+
+.content {
+    grid-area: content;
+    height: 650px;
+    display: grid;
+    grid-template-columns: 770px 150px 500px;
+    grid-template-areas: 
+    "contentText . contentImage";
+}
+
+.footer {
+    grid-area: footer;
+    background: rgba(255, 255, 255, 0.1);
+    height: 620px;
+    display: grid;
+    grid-template-columns: 250px auto auto auto 150px auto 150px auto 150px auto 250px;
+    grid-template-rows: 100%;
+    grid-template-areas: 
+    ". info . portfolio . pages . socialLinks . contact .";
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* CONTENT GRID */
+
+.contentText {
+    grid-area: contentText;
+    background: rgba(255, 255, 255, 0.1);
+    display: grid;
+    grid-template-rows: 50px 30px 50px 55px 50px 185px 50px 65px 50px;
+    grid-template-areas: 
+    "."
+    "header"
+    "."
+    "title"
+    "."
+    "body"
+    "."
+    "button"
+    ".";
+}
+
+.contentImage {
+    grid-area: contentImage;
+    display: grid;
+    grid-template-rows: 550px 100px;
+    grid-template-areas: 
+    "hero"
+    "socials";
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* CONTENT TEXT GRID */
+
+.header {
+    grid-area: header;
+    background: rgba(255, 255, 255, 0.1);
+    font: 25px/30px 'Roboto Condensed', sans-serif;
+    letter-spacing: 3px;
+    color: white;
+}
+
+.title {
+    grid-area: title;
+    background: rgba(255, 255, 255, 0.1);
+    font: bold 45px/55px 'Roboto Condensed', sans-serif;
+    letter-spacing: 26px;
+    color: #00DCFF;
+}
+
+.body {
+    grid-area: body;
+    background: rgba(255, 255, 255, 0.1);
+    font: 20px/35px 'Roboto Condensed', sans-serif;
+    letter-spacing: 3px;
+    color: #DDD;
+}
+
+.button {
+    grid-area: button;
+    background: rgba(255, 255, 255, 0.1);
+    font: bold 15px/35px 'Roboto Condensed', sans-serif;
+    letter-spacing: 8px;
+    color: #CCC;
+    height: 65px;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* CONTENT IMAGE GRID */
+
+.hero {
+    grid-area: hero;
+    background-image: url("/images/hero.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    mix-blend-mode: luminosity;
+    filter: contrast(125%);
+    /* background-position: 0px -130px; */
+    /* background-size: 100%; */
+    z-index: -2;
+}
+
+.socials {
+    grid-area: socials;
+    background: rgba(255, 255, 255, 0.1);
+    display: grid;
+    grid-template-columns: 40px auto 35px auto 35px auto 35px auto 35px auto 35px auto 35px auto 40px;
+    grid-template-areas: 
+    ". social_1 . social_2 . social_3 . social_4 . social_5 . social_6 . social_7 .";
+    align-items: center;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* SOCIALS GRID */
+
+.socials img {
+    width: 30px;
+}
+
+.social_1 {
+    grid-area: social_1;
+    background: rgba(255, 255, 255, 0.1);
+    filter: invert(100%);
+}
+
+.social_2 {
+    grid-area: social_2;
+    background: rgba(255, 255, 255, 0.1);
+    filter: invert(100%);
+}
+
+.social_3 {
+    grid-area: social_3;
+    background: rgba(255, 255, 255, 0.1);
+    filter: invert(100%);
+}
+
+.social_4 {
+    grid-area: social_4;
+    background: rgba(255, 255, 255, 0.1);
+    filter: invert(100%);
+}
+
+.social_5 {
+    grid-area: social_5;
+    background: rgba(255, 255, 255, 0.1);
+    filter: invert(100%);
+}
+
+.social_6 {
+    grid-area: social_6;
+    background: rgba(255, 255, 255, 0.1);
+    filter: invert(100%);
+}
+
+.social_7 {
+    grid-area: social_7;
+    background: rgba(255, 255, 255, 0.1);
+    filter: invert(100%);
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* FOOTER GRID */
+
+.info {
+    grid-area: info;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.portfolio {
+    grid-area: portfolio;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.pages {
+    grid-area: pages;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.socialLinks {
+    grid-area: socialLinks;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.contact {
+    grid-area: contact;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* FOOTER TEXT STYLES */
+
+.titleSmall {
+    background: rgba(255, 255, 255, 0.1);
+    font: bold 25px/55px 'Roboto Condensed', sans-serif;
+    letter-spacing: 15px;
+    color: #00DCFF;
+}
+
+.headerSmall {
+    grid-area: headerSmall;
+    background: rgba(255, 255, 255, 0.1);
+    font: 20px/30px 'Roboto Condensed', sans-serif;
+    letter-spacing: 2px;
+    color: white;
+}
+
+.bodySmall {
+    grid-area: bodySmall;
+    background: rgba(255, 255, 255, 0.1);
+    font: 15px/35px 'Roboto Condensed', sans-serif;
+    letter-spacing: 2px;
+    color: #DDD;
+}
