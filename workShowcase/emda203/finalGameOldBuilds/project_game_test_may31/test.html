@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--
+EMDA 203 - Project_1_3 Template - Spring 2020.
+Using for loops to generate objects, storing them in arrays, and writing functions to create and move these objects.
+-->
+
+<head>
+	<meta charset="UTF-8">
+	<title>Sean Walters - Project 1_3</title>
+	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+	<script src="scripts/KeyMonkey.js"></script>
+	<script src="scripts/collisionGnome.js"></script>
+	<script>
+		// GLOBAL VARIABLES
+		var myFrameRate = 60;
+		// STAGE
+		var myStage;
+		var stageWidth;
+		var stageHeight;
+		var stageMargin = 128; // don't start objects closer to the edge than this amount
+		// OBJECTS
+		var background;
+		var hero;
+		var wall;
+		var targetsArray = [];
+		// HERO
+		var heroStartPositionX = 200;
+		//var heroStartPositionY = 200;
+		var heroStartSpeedX = 5;
+		var heroStartSpeedY = 5;
+		// TARGETS
+		var numberOfTargets = 1;
+		var targetsArrayScaleX = 0.01;
+		var targetsArrayScaleY = 1;
+		var targetPositionStartX = 500;
+		var targetPositionStartY = 400;
+		var targetPositionOffsetX = 4.5;
+		var targetPositionOffsetY = 0;
+		// INITIALIZATION
+		function init() {
+			myStage = new createjs.Stage(document.getElementById("myCanvas"));
+			stageWidth = myStage.canvas.width;
+			stageHeight = myStage.canvas.height;
+			createjs.Ticker.addEventListener('tick', gameLoop);
+			createjs.Ticker._setFPS(myFrameRate);
+			initGame();
+		}
+		function initGame() {
+			// BITMAPS
+			background = new createjs.Bitmap("images/background.png");
+			hero = new createjs.Bitmap("images/hitman90.png");
+			wall = new createjs.Bitmap("images/1pxBlack.png");
+			// REGISTER POINTS
+			hero.regX = 35;
+			hero.regY = 35;
+			wall.regX = 1;
+			wall.regY = 1;
+			// POSITIONS
+			hero.x = heroStartPositionX;
+			hero.y = stageHeight / 2;
+			wall.x = stageWidth / 2;
+			wall.y = stageHeight / 2;
+			// SPEEDS
+			hero.speedX = heroStartSpeedX;
+			hero.speedY = heroStartSpeedY;
+			// SCALES
+			hero.scaleX = 1;
+			hero.scaleY = 1;
+			wall.scaleX = 1;
+			wall.scaleY = 50;
+			// LAYERS
+			myStage.addChild(background);
+			myStage.addChild(hero);
+			myStage.addChild(wall);
+			// FUNCTIONS
+			//makeTargets(numberOfTargets);
+			// OTHER
+			collisionGnome.setDebug(true);
+		}
+		// MAIN LOOP
+		function gameLoop(evt) {
+			handleKeyboardInput();
+			heroBoundaryCheck();
+			myStage.update();
+		}
+		// KEYBOARD INPUT
+		function handleKeyboardInput() {
+			if (keyMonkey["w"] || keyMonkey["up"]) { hero.y -= hero.speedY; }
+			if (keyMonkey["s"] || keyMonkey["down"]) { hero.y += hero.speedY; }
+			if (keyMonkey["d"] || keyMonkey["right"]) { hero.x += hero.speedX; }
+			if (keyMonkey["a"] || keyMonkey["left"]) { hero.x -= hero.speedX; }
+		}
+		// MAKE TARGETS
+		// function makeTargets(howManyTargets) {
+		// 	for (var i = 0; i < howManyTargets; i++) {
+		// 		targetsArray[i] = new createjs.Bitmap("images/1pxBlack.png");
+		// 		var whichTarget = Math.floor(Math.random() * 3);
+		// 		if (whichTarget === 0) {
+		// 			targetsArray[i] = new createjs.Bitmap("images/1pxRed.png");
+		// 		} else if (whichTarget === 1) {
+		// 			targetsArray[i] = new createjs.Bitmap("images/1pxBlue.png");
+		// 		} else {
+		// 			targetsArray[i] = new createjs.Bitmap("images/1pxBlack.png");
+		// 		}
+
+		// 		targetsArray[i].regX = 150;
+		// 		targetsArray[i].regY = 150;
+
+		// 		targetsArray[i].x += targetPositionStartX;
+		// 		targetsArray[i].y += targetPositionStartY;
+		// 		targetPositionStartX += targetPositionOffsetX;
+		// 		targetPositionStartY += targetPositionOffsetY;
+
+		// 		targetsArray[i].scaleX = targetsArrayScaleX;
+		// 		targetsArray[i].scaleY = targetsArrayScaleY;
+
+		// 		myStage.addChild(targetsArray[i]);
+
+		// 		console.log("makeTargets() made a new target! There are now " + targetsArray.length + " targets in the array");
+		// 		console.log(targetsArray);
+		// 	}
+		// }
+		// HERO BOUNDARY CHECK
+		function heroBoundaryCheck() {
+			if (hero.x > stageWidth - hero.regX) {
+				hero.x = stageWidth - hero.regX;
+			}
+			if (hero.x < 0 + hero.regX) {
+				hero.x = 0 + hero.regX;
+			}
+			if (hero.y > stageHeight - hero.regY) {
+				hero.y = stageHeight - hero.regY;
+			}
+			if (hero.y < 0 + hero.regY) {
+				hero.y = 0 + hero.regY;
+			}
+			if (hero.x == targetsArray.x && hero.y == targetsArray.y) {
+				hero.speedX = 0;
+				hero.speedY = 0;
+			}
+			if (hero.x > (wall.x - hero.regX)) {
+				hero.x = wall.x - hero.regX;
+			}
+		}
+	</script>
+</head>
+
+<body onload="init()">
+	<canvas id="myCanvas" width="1900" height="925">Sorry. You need an HTML5 compatible browser to see this.</canvas>
+</body>
+
+</HTML>

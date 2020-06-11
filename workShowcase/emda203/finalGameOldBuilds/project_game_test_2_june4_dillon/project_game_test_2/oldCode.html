@@ -1,0 +1,152 @@
+<script>
+// if (heroSideLeft > wallSideLeft) {
+    // 	hero.x = wallRightSide + hero.regX;
+    // 	console.log("this")
+    // }
+    // // HERO HITS TOP OR BOTTOM SIDE
+    // if (heroSideRight > wallSideLeft && heroSideLeft < wallSideRight) {
+    // 	// HERO HITS TOP SIDE
+    // 	if (heroSideBottom < wallSideTop) {
+    // 		hero.y = wallArray[i].y - hero.regY;
+    // 	}
+    // 	// HERO HITS BOTTOM SIDE
+    // 	if (heroSideTop > wallSideBottom) {
+    // 		hero.y = wallArray[i].y + hero.regY;
+    // 	}
+    // }
+    // // HERO HITS LEFT OR RIGHT SIDE
+    // if (heroSideBottom > wallSideTop && heroSideTop < wallSideBottom) {
+    // 	// HERO HITS LEFT SIDE
+    // 	if (heroSideRight < wallSideLeft) {
+    // 		hero.x = wallArray[i].y - hero.regY;
+    // 	}
+    // 	// HERO HITS RIGHT SIDE
+    // 	if (heroSideLeft > wallSideRight) {
+    // 		hero.x = wallArray[i].y + hero.regY;
+    // 	}
+    // }
+    // if ((hero.x + hero.regX) > (wallArray[i].x - wallArray[i].regX)) {
+    // // HERO HITS TOP
+    // 	if ((hero.y + heroRegOffsetY) < (wallArray[i].y + wallArray[i].regY)) {
+    // 		hero.y = wallArray[i].y - hero.regY;
+    // 		console.log("HERO HIT TOP");
+    // 	}
+    // // HERO HITS BOTTOM
+    // 	if ((hero.y - heroRegOffsetY) > (wallArray[i].y - wallArray[i].regY)) {
+    // 		hero.y = wallArray[i].y + hero.regY;
+    // 		console.log("HERO HIT BOTTOM");
+    // 	}
+    // }
+    // // HERO HITS LEFT
+    // if ((hero.x + heroRegOffsetX) < (wallArray[i].x - wallArray[i].regX) && (hero.y + hero.regY) > (wallArray[i].y - wallArray[i].regY)) {
+    // 	hero.x = (wallArray[i].x - wallArray[i].regX) - hero.regX;
+    // 	console.log("HERO HIT LEFT");
+    // }
+    // // HERO HITS RIGHT
+    // if ((hero.x - heroRegOffsetX) > (wallArray[i].x + wallArray[i].regX) && (hero.y - hero.regY) < (wallArray[i].y + wallArray[i].regY)) {
+    // 	hero.x = (wallArray[i].x + wallArray[i].regX) + hero.regX;
+    // 	console.log("HERO HIT RIGHT");
+    // }
+    // if ((hero.y + hero.regY) > (wallArray[0].y - wallArray[0].regY) && (hero.y - hero.regY) < (wallArray[wallArray.length - 1].y + wallArray[wallArray.length - 1].regY)) {
+    // 	hero.x = wallArray[0].x - hero.regX;
+    // }
+    // if ((hero.y + hero.regY) > wallArray[0].y && (hero.x - hero.regX) > (wallArray[i].x - hero.regX)) {
+    // 	hero.y = wallArray[0].y - hero.regY;
+    // }
+    // if ((hero.y + hero.regY) > wallArray[0].y && hero.) {
+    // 	hero.y = wallArray[0].y - hero.regY;
+    // }
+    // if ((hero.x + hero.regX) > wallArray[i].x && hero.x < wallArray[i].x && (hero.y + hero.regY) > wallArray[0].y) {
+    // 	hero.x = wallArray[i].x - hero.regX;
+    // }
+    // if ((hero.x - hero.regX) < wallArray[i].x && hero.x > wallArray[i].x && (hero.y + hero.regY) > wallArray[0].y) {
+    // 	hero.x = wallArray[i].x + hero.regX;
+    // }
+    // if ((hero.y - hero.regY) < wallArray[wallArray.length - 1].y && hero.y > wallArray[wallArray.length - 1].y) {
+    // 	hero.y = wallArray[wallArray.length - 1].y + hero.regY;
+    // }
+    // if ((hero.x + hero.regX) > wallArray[i].x && (hero.x - hero.regX) < wallArray[i].x) {
+    // 	hero.x = wallArray[i].x - hero.regX;
+    // }
+    // if (hero.x < wallArray[i].x) {
+    // 	hero.x = wallArray[i].x - hero.regX;
+    // }
+    // if (hero.x > wallArray[i].x) {
+    // 	hero.x = wallArray[i].x + hero.regX;
+    // }
+    // // roll a random integer: 0, 1, or 2 and store it in the new variable 'whichWall'
+				// var whichWall = Math.floor(Math.random() * 3);
+				// // This switch statement checks our 'whichWall' value and assigns a different Bitmap 
+				// // for each possible value... 0, 1, or 2
+				// switch (whichWall) {
+				// 	case 0:
+				// 		wallArray[i] = new createjs.Bitmap("images/1pxBlack.png");
+				// 		break;
+				// 	case 1:
+				// 		wallArray[i] = new createjs.Bitmap("images/1pxBlack.png");
+				// 		break;
+				// 	case 2:
+				// 		wallArray[i] = new createjs.Bitmap("images/1pxBlack.png");
+				// 		break;
+				// }
+
+				// if (i > 20) {
+				// 	wallArray[i] = new createjs.Bitmap(wallTypeBlack);
+				// }
+				// if (i < 20) {
+				// 	wallArray[i] = new createjs.Bitmap(wallTypeBlue);
+				// }
+                
+			//console.log("HERO " + "x " + hero.x + " regX " + hero.regX + " y " + hero.y + " regY " + hero.regY + " top " + heroSideTop + " bottom " + heroSideBottom + " left " + heroSideLeft + " right " + heroSideRight);
+			//console.log("WALL " + "x " + wallArray[0].x + " regX " + wallArray[0].regX + " y " + wallArray[0].y + " regY " + wallArray[0].regY + " top " + wallFirstSideTop + " bottom " + wallFirstSideBottom + " left " + wallFirstSideLeft + " right " + wallFirstSideRight);
+
+		// // add direction changes to array (building 1)
+		// wallStartBottom[0] = wallLengthY[0];
+		// wallStartRight[0] = wallLengthY[0] + wallLengthX[0];
+		// wallStartTop[0] = wallLengthY[0] + wallLengthX[0] + wallLengthY[0];
+		// // add direction changes to array (building 2)
+		// wallStartBottom[1] = wallLengthY[1];
+		// wallStartRight[1] = wallLengthY[1] + wallLengthX[1];
+		// wallStartTop[1] = wallLengthY[1] + wallLengthX[1] + wallLengthY[1];
+        
+		// add wall amount to array (building 1)
+		// wallAmountSet[0] = (wallLengthX[0] + wallLengthY[0]) * 2 + 1;
+		// // add wall amount to array (building 2)
+		// wallAmountSet[1] = (wallLengthX[1] + wallLengthY[1]) * 2 + 1;
+
+		// // current build in loop
+		// var wallPositionCurrentX = wallPositionX[wallArrayCount];
+		// var wallPositionCurrentY = wallPositionY[wallArrayCount];
+		// var wallLengthCurrentX = wallLengthX[wallArrayCount];
+		// var wallLengthCurrentY = wallLengthY[wallArrayCount];
+		// var wallStartBottomCurrent = wallStartBottom[wallArrayCount];
+		// var wallStartRightCurrent = wallStartRight[wallArrayCount];
+		// var wallStartTopCurrent = wallStartTop[wallArrayCount];
+        // var wallAmountSetCurrent = wallAmountSet[wallArrayCount];
+        
+			// if (keyMonkeyHold["c"]) {
+			// 	hero.speed = heroSpeedCrouch;
+			// }
+			// if (keyMonkeyHold["shift"]) {
+			// 	hero.speed = 4;
+			// 	console.log(hero.speed);
+			// }
+			// if (keyMonkeyRelease["shift"]) {
+			// 	hero.speed = heroSpeedWalk;
+			// 	console.log(hero.speed);
+			// }
+			// if (keyMonkeyHold["shift"]) {
+			// 	hero.speed = heroSpeedCrouch;
+			// }
+			// else {
+			// 	hero.speed = heroSpeedWalk;
+			// }
+			// if (keyMonkeyHit["c"] && heroCrouch == false) {
+			// 	hero.speed = heroSpeedCrouch;
+			// 	heroCrouch = true;
+			// }
+			// else if (keyMonkeyHit["c"] && heroCrouch == true) {
+			// 	hero.speed = heroSpeedWalk;
+			// 	heroCrouch = false;
+			// }
+</script>

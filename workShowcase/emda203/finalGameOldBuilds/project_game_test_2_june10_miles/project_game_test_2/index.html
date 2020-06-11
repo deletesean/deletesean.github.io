@@ -1,0 +1,3269 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!-- EMDA 203 - Project_1_5 Tutorial - Spring 2018
+** Adds collision detection via collisionGnome.js
+** Adds a game clock for timed events
+** Adds scoring
+** Adds win condition and game re-set 
+Also, adding a target type and a switch statement to assign target types
+-->
+
+<head>
+	<meta charset="UTF-8">
+	<title>Pixel Hitman - June 1st</title>
+
+	<style>
+		html {
+			background: black;
+		}
+		@font-face {
+			font-family: "perfect_dos_vga_437regular";
+			src: url("fonts/dos_437-webfont.woff2") format("woff2"),
+				url("fonts/dos_437-webfont.woff") format("woff"),
+         		url('dos_437-webfont.ttf') format('truetype'),
+         		url('dos_437-webfont.svg#perfect_dos_vga_437regular') format('svg');
+			font-weight: normal;
+			font-style: normal;
+		}
+	</style>
+
+	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+	<script src="scripts/KeyMonkeyEvolved.js"></script>
+	<script src="scripts/collisionGnome.js"></script>
+	<script>
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// FOR BALANCING GAMEPLAY - DIFFICULTY, ETC.
+		// cross pickup meter increase amounts
+		var crossIncreaseMeters = 20;
+		var crossRedIncreaseMeters = 50;
+		// health decreases with game time
+		var healthTimer = 0;
+		var healthTimerMax = 180;
+		// stamina decrease with game time
+		var staminaIdleTimer = 0;
+		var staminaIdleTimerMax = 120;
+		// stamina decreases with movement (run)
+		var staminaTimer = 0;
+		var staminaTimerMax = 30;
+		// stamina decreases with movement (sprint)
+		var staminaTimerSprint = 0;
+		var staminaTimerMaxSprint = 10;
+		// light decreases with game time
+		var lightTimer = 0;
+		var lightTimerMax = 30;
+		// health decreases with slime collision
+		var slimeDamageTimer = 0;
+		var slimeDamageTimeMax = 1;
+		// health decreases with ghost collision
+		var ghostDamageTimer = 0;
+		var ghostDamageTimerMax = 5;
+
+
+
+		// other
+		var gameWin = false;
+
+		var userPressEnd = false;
+
+		var heroPickup = false;
+
+		var staminaChange = false;
+
+		var backgroundGreyShow = false;
+
+		// GLOBAL VARIABLES
+		var myFrameRate = 60;
+		var gameStartTimer = 0;
+
+		// GAME
+		var gameClock;
+		var gameOver;
+		var gameOverDuration = 60;
+
+		// STAGE
+		var myStage;
+		var stageWidthCustom = 1900;
+		var stageHeightCustom = 925;
+		var stageWidth;
+		var stageHeight;
+		// targets can't spawn this close to stage edges
+		var stageMargin = 200;
+
+		// BACKGROUND (BLACK)
+		var backgroundBlack;
+		var backgroundBlackSourceSet = "images/backgroundBlack.png";
+
+		// BACKGROUND (GREY)
+		var backgroundGrey;
+		var backgroundGreySourceSet = "images/backgroundGrey.png";
+
+		// BACKGROUND SHADE
+		var backgroundShade;
+		var backgroundShadeSourceSet = "images/backgroundBlack.png";
+		var backgroundShadeAlpha = 0.4;
+
+		// TEXT
+		var textX = 20;
+		var textY = 30;
+		var textSpacing = 20;
+		var textCount = 1;
+
+		// WIN / LOSE (TEXT)
+		var winText;
+		var loseText;
+
+		// METERS (TEXT)
+		var metersText;
+
+		// SCORE (TEXT)
+		//var score;
+		//var scoreText;
+
+		// HEALTH (TEXT)
+		var health = 100;
+		var healthText;
+
+		// STAMINA (TEXT)
+		var stamina = 100;
+		var staminaText;
+
+		// var staminaTimerRegain = 0;
+		// var staminaTimerRegain2 = 60;
+		// var staminaRegainCount = 0;
+		// var staminaRegainCountMax = 60;
+
+		// LIGHT (TEXT)
+		var light = 100;
+		var lightText;
+
+		// CROSSES (TEXT)
+		var crossText;
+		var crossCollectedText = 0;
+
+		// LASER
+		var laser;
+		var laserSourceSet = "images/ghostRed40x40.png";
+
+		var laserX = 700;
+		var laserY = 435;
+		var laserRegX = 20;
+		var laserRegY = 20;
+		var laserAlpha = 0.2;
+		var laserSpeedX = 3;
+		var laserSpeedY = 3;
+
+		var laserRandomX = Math.random();
+		var laserRandomY = Math.random();
+
+		// var laserDamageTimer = 0;
+		// var laserDamageTimeMax = 1;
+
+		// EXIT
+		var exitCreate = false;
+
+		var exit;
+		var exitSourceSet = "images/star40x40.png";
+		var exitX = 1775;
+		var exitY = stageHeightCustom / 2;
+		var exitRegX = 20;
+		var exitRegY = 20;
+
+		// EXIT GLOW
+		var exitGlow;
+		var exitGlowSourceSet = "images/glowRedMore200x200.png";
+		var exitGlowRegX = 100;
+		var exitGlowRegY = 100;
+
+		// HERO
+		var heroCanMove = true;
+
+		var hero;
+		var heroSourceSet = "images/hitman58x40.png";
+		var heroRegX = 29;
+		var heroRegY = 20;
+
+		var heroSprint;
+		var heroCrouch;
+		var heroProne;
+
+		var heroSpeedProne = 0.5;
+		var heroSpeedCrouch = 1;
+		var heroSpeedRun = 2;
+		var heroSpeedSprint = 3;
+		var heroSpeedDefault = heroSpeedRun;
+
+		var heroAlphaProne = 0.1;
+		var heroAlphaCrouch = 0.3;
+		var heroAlphaRun = 0.5;
+		var heroAlphaSprint = 0.7;
+		var heroAlphaDefault = heroAlphaRun;
+
+		var heroPositionX = 125;
+		var heroPositionY = (stageHeightCustom / 2) - 0.5;
+		var heroDirectionCurrent = "none";
+
+		var heroCollisionOffset = 1;
+
+		var heroFlashlight = false;
+
+		var heroChangeSpeed = false;
+
+		// GLOW (HERO)
+		var glow;
+		var heroGlowSourceSet = "images/glow200x200.png";
+		var heroGlowRegX = 100;
+		var heroGlowRegY = 100;
+		var heroGlowCollisionOffset = 0.6;
+
+		var heroGlowAlphaProne = 0;
+		var heroGlowAlphaCrouch = 0.33;
+		var heroGlowAlphaRun = 0.66;
+		var heroGlowAlphaSprint = 1;
+		var heroGlowAlphaDefault = heroGlowAlphaRun;
+		var heroGlowAlphaStart = 0;
+
+		// CROSSES
+		var crossPositionX = [
+			// Math.floor(Math.random() * (max - min)) + min, // # - location (min to max)
+			
+			Math.floor(Math.random() * (490 - 260)) + 260, // 1 - stairs (260 to 490)
+			Math.floor(Math.random() * (490 - 260)) + 260, // 2 - stairs room (260 to 490)
+			Math.floor(Math.random() * (490 - 260)) + 260, // 3 - lobby (260 to 490)
+			Math.floor(Math.random() * (940 - 260)) + 260, // 4 - hallway, left (260 to 940)
+
+			Math.floor(Math.random() * (1640 - 970)) + 970, // 5 - hallway, right (970 to 1640)
+
+			Math.floor(Math.random() * (630 - 510)) + 510, // 6 - bath (510 to 630)
+			Math.floor(Math.random() * (630 - 510)) + 510, // 7 - bath room, left (510 to 630)
+			Math.floor(Math.random() * (1090 - 510)) + 510, // 8 - main open area, left (510 to 1090)
+			Math.floor(Math.random() * (770 - 510)) + 510, // 9 - solo room (510 to 770)
+
+			Math.floor(Math.random() * (1110 - 790)) + 790, // 10 - hallway, entrance (790 to 1110)
+
+			Math.floor(Math.random() * (1440 - 1130)) + 1130, // 11 - closet room (1130 to 1440)
+
+			Math.floor(Math.random() * (1640 - 1460)) + 1460, // 12 - closet (1460 to 1640)
+
+			Math.floor(Math.random() * (810 - 650)) + 650, // 13 - bath room, right (650 to 810)
+
+			Math.floor(Math.random() * (1090 - 830)) + 830, // 14 - main open area, top left (830 to 1090)
+
+			Math.floor(Math.random() * (1640 - 1110)) + 1110, // 15 - main open area, top right (1110 to 1640)
+			Math.floor(Math.random() * (1490 - 1110)) + 1110, // 16 - private room (1110 to 1490)
+			Math.floor(Math.random() * (1490 - 1110)) + 1110, // 17 - main open area, under private room (1110 to 1490)
+
+			Math.floor(Math.random() * (1640 - 1510)) + 1510, // 18 - main open area, right (1510 to 1640)
+		];
+
+		var crossPositionY = [
+			Math.floor(Math.random() * (210 - 140)) + 140, // 1 - stairs (140 to 210)
+			Math.floor(Math.random() * (340 - 230)) + 230, // 2 - stairs room (230 to 340)
+			Math.floor(Math.random() * (660 - 360)) + 360, // 3 - lobby (360 to 660)
+
+			Math.floor(Math.random() * (780 - 680)) + 680, // 4 - hallway, left (680 to 780)
+			Math.floor(Math.random() * (780 - 680)) + 680, // 5 - hallway, right (680 to 780)
+
+			Math.floor(Math.random() * (210 - 140)) + 140, // 6 - bath (140 to 210)
+			Math.floor(Math.random() * (340 - 230)) + 230, // 7 - bath room, left (230 to 340)
+			Math.floor(Math.random() * (510 - 360)) + 360, // 8 - main open area, left (360 to 510)
+
+			Math.floor(Math.random() * (660 - 530)) + 530, // 9 - solo room (530 to 660)
+			Math.floor(Math.random() * (660 - 530)) + 530, // 10 - hallway, entrance (530 to 660)
+			Math.floor(Math.random() * (660 - 530)) + 530, // 11 - closet room (530 to 660)
+			Math.floor(Math.random() * (660 - 530)) + 530, // 12 - closet (530 to 660)
+
+			Math.floor(Math.random() * (340 - 140)) + 140, // 13 - bath room, right (140 to 340)
+			Math.floor(Math.random() * (340 - 140)) + 140, // 14 - main open area, top left (140 to 340)
+
+			Math.floor(Math.random() * (230 - 140)) + 140, // 15 - main open area, top right (140 to 230)
+			Math.floor(Math.random() * (390 - 250)) + 250, // 16 - private room (250 to 390)
+
+			Math.floor(Math.random() * (510 - 410)) + 410, // 17 - main open area, under private room (410 to 510)
+			Math.floor(Math.random() * (510 - 250)) + 250, // 18 - main open area, right (250 to 510)
+		];
+
+		var crossArray = [];
+		var crossSourceSet = "images/crossBlack10x14.png";
+		var crossSourceSetRed = "images/crossRed10x14.png";
+		var crossAmountSet = 5;
+
+		var crossRegX = 7;
+		var crossRegY = 5;
+		var crossScaleX = 1;
+		var crossScaleY = 1;
+		var crossAlpha = 1;
+		var crossAlphaRed = 0.5;
+		var crossCollisionOffset = 1;
+
+		var crossRandomRed = Math.floor(Math.random() * crossAmountSet);
+
+		// CROSS GLOW
+		var crossGlowRed;
+		var glowSourceSetRed = "images/glowRed200x200.png";
+		var crossGlowRedRegX = 100;
+		var crossGlowRedRegY = 100;
+
+		// SLIMES
+		var slimePositionX = [
+			600, // (0) HORI - hallway, left
+			955, // (1) HORI - hallway, middle
+			955, // (2) VERT - main open area, middle, bottom left of private room
+			1575, // (3) HORI - main open area, right, bottom right of private room
+			1300, // (4) HORI - main open area, top, above private room
+			380, // (5) HORI - lobby
+			670, // (6) HORI - bath room
+			645, // (7) HORI - solo room
+			1286, // (8) VERT - closet room
+			435, // (9) VERT - stairs
+			1300, // (10) VERT - private room
+		];
+
+		var slimePositionY = [
+			725, // (0) HORI - hallway, left
+			725, // (1) HORI - hallway, middle
+			450, // (2) VERT - main open area, middle, bottom left of private room
+			455, // (3) HORI - main open area, right, bottom right of private room
+			185, // (4) HORI - main open area, top, above private room
+			575, // (5) HORI - lobby
+			280, // (6) HORI - bath room
+			595, // (7) HORI - solo room
+			595, // (8) VERT - closet room
+			175, // (9) VERT - stairs
+			320, // (10) VERT - private room
+		];
+
+		var slimeArray = [];
+		var slimeSourceSet = "images/slimeBlack12x12.png";
+		var slimeAmountSet = 11;
+		var slimeSpeed = 3;
+
+		var slimeX_default = 0;
+		var slimeY_default = 0;
+		var slimeRegX = 20;
+		var slimeRegY = 20;
+		var slimeScaleX = 1;
+		var slimeScaleY = 1;
+
+		var slimeCollisionOffset = 1;
+		var slimeAlpha = 1;
+
+		// GHOSTS
+		var ghostArray = [];
+		var ghostSourceSet = "images/ghostBlack40x40.png";
+		var ghostAmountSet = 20;
+
+		var ghostX_default = 0;
+		var ghostY_default = 0;
+		var ghostRegX = 20;
+		var ghostRegY = 20;
+		var ghostScaleX = 1;
+		var ghostScaleY = 1;
+		var ghostSpeedDefault = 3;
+
+		var ghostDirectionChangeTimer = 0;
+		var ghostDirectionChangeTimer2 = 0;
+
+		var ghostDirectionChangeTime = 1;
+		var ghostDirectionChangeTime2_min = 1;
+		var ghostDirectionChangeTime2_max = 60;
+		var ghostDirectionChangeTime2 = Math.floor(Math.random() * ghostDirectionChangeTime2_max) + ghostDirectionChangeTime2_min;
+
+		var ghostCollisionOffset = 1;
+		var ghostAlpha = 1;
+
+		var activateGhosts = false;
+
+		// GLOWS
+		var glowArray = [];
+		var glowSourceSet = "images/glow200x200.png";
+
+		var glowCollisionOffset = 0.6;
+		var glowAlpha = Math.random();
+
+		// AMMO TEXT
+		var ammoNormalText;
+		var ammoStrongText;
+		var ammoGhostText;
+		var ammoDrillText;
+		var ammoBounceText;
+		var ammoStickyText;
+
+		// BULLETS
+		var bulletColorWhite = "images/2pxWhite.png";
+		var bulletColorBlack = "images/2pxBlack.png";
+		var bulletColorRed = "images/2pxRed.png";
+		var bulletColorGreen = "images/2pxGreen.png";
+		var bulletColorYellow = "images/2pxYellow.png";
+		var bulletColorBlue = "images/2pxBlue.png";
+		var bulletColorPink = "images/2pxPink.png";
+
+		var bulletType = "normal";
+
+		// bullet speed - slowest = 4
+		// bullet speed - fastest = 11
+
+		var bulletSpeedNormal = 11; // will be very useful for slimes, so fast is good for that
+		var bulletSpeedStrong = 4; // must be 4 or less (any more over will be too fast)
+		var bulletSpeedGhost = 7; // slower = needs more precisely timed shot
+		var bulletSpeedDrill = 8; // must be 8 or less (any more over will be too fast)
+		var bulletSpeedBounce = 9; // timing does not really matter
+		var bulletSpeedSticky = 10; // don't seem super useful currently
+
+		var bulletPositionStartX;
+		var bulletPositionStartY;
+		var bulletFired = false;
+
+		var bulletDirection = "none";
+
+		var bulletAmountNormal = 10;
+		var bulletAmountStrong = 30;
+		var bulletAmountGhost = 10;
+		var bulletAmountDrill = 5;
+		var bulletAmountBounce = 5;
+		var bulletAmountSticky = 10;
+
+		var bulletArray = [];
+		var bulletArrayCount = 0;
+		var bulletAlpha = 0.5;
+
+		var bulletOffsetX = 0;
+		var bulletOffsetY = 0;
+
+		var bulletCollisionOffset = 5;
+
+		// // TARGETS
+		// var targetsArray = [];
+		// var targetAmountSet = 0;
+		// var targetSpeedMin = 2;
+		// var targetSpeedMax = 6;
+		// var targetScaleMin = 0.1;
+		// var targetScaleMax = 0.5;
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// BUILDING VALUES - WALLS, DOORS
+
+		// set wall colors
+		var wallColorBlack = "images/2pxBlack.png";
+		var wallColorRed = "images/2pxRed.png";
+		var wallColorGreen = "images/2pxGreen.png";
+		var wallColorBlue = "images/2pxBlue.png";
+		var wallColorCyan = "images/2pxCyan.png";
+		var wallColorYellow = "images/2pxYellow.png";
+		var wallColorPink = "images/2pxPink.png";
+		var wallColorWhite = "images/2pxWhite.png";
+
+		// set wall types using wall colors
+		var wallTypeWall = wallColorBlack;
+		var wallTypeDoor = wallColorWhite;
+		var wallTypeWindow = wallColorCyan;
+
+		// set wall alpha for different types
+		var wallTypeDoorAlpha = 0.1;
+		var wallTypeWindowAlpha = 0.1;
+
+		var wallRegX = 1;
+		var wallRegY = 1;
+		var wallScaleX = 1;
+		var wallScaleY = 1;
+
+		// set wall position offsets for direction changes
+		var wallPositionOffsetX_none = 0;
+		var wallPositionOffsetX_add = 2;
+		var wallPositionOffsetX_subtract = -2;
+
+		var wallPositionOffsetY_none = 0;
+		var wallPositionOffsetY_add = 2;
+		var wallPositionOffsetY_subtract = -2;
+
+		var wallPositionOffsetX = wallPositionOffsetX_none;
+		var wallPositionOffsetY = wallPositionOffsetY_add;
+
+		// set wall collision boundary scale or offset
+		var wallCollisionOffset = 5;
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// SET UP WALLS
+		{
+			// THIS IS WHERE YOU SET UP WALLS
+			// YOU CAN EITHER SET MANUAL WALLS OR SET RANDOM WALLS
+			// IF YOU SET MANUAL WALLS, JUST SET THE X AND Y VALUES FOR THEIR POSITIONS AND LENGTHS
+			// IF YOU SET RANDOM WALLS, YOU CAN EITHER SET A MANUAL AMOUNT OR A RANDOM AMOUNT 
+
+			// START....
+
+			// I WANT TO MANUALLY SET WALLS
+			// set wall X positions
+			var wallPositionX = [
+				250, // 1.1 - main building (left wall)
+				250, // 1.2 - main building (top wall)
+				1650, // 1.3 - main building (right wall)
+				250, // 1.4 - main building (bottom wall)
+				250, // 2.1 - hallway left (top wall)
+				1010, // 2.2 - hallway right (top wall)
+				1650, // 2.3 - hallway right (right wall)
+				500, // 3.1 - lobby (right wall)
+				250, // 4.1 - stairs (bottom wall)
+				250, // 5.1 - stairs room (bottom wall)
+				500, // 6.1 - bath (all walls)
+				500, // 7.1 - room bath (bottom wall)
+				820, // 7.2 - room bath (right wall)
+				500, // 8.1 - room solo (top wall)
+				780, // 8.2 - room solo (right wall)
+				1450, // 9.1 - closet (left wall)
+				1120, // 10.1 - room closet (left wall)
+				1120, // 10.2 - room closet (top wall)
+				1100, // 11.1 - private building (all walls)
+				0, // 0.0 - empty
+			];
+			// set wall Y positions
+			var wallPositionY = [
+				130, // 1.1 - main building (left wall)
+				130, // 1.2 - main building (top wall)
+				130, // 1.3 - main building (right wall)
+				790, // 1.4 - main building (bottom wall)
+				670, // 2.1 - hallway left (top wall)
+				670, // 2.2 - hallway right (top wall)
+				670, // 2.3 - hallway right (right wall)
+				130, // 3.1 - lobby (right wall)
+				220, // 4.1 - stairs (bottom wall)
+				350, // 5.1 - stairs room (bottom wall)
+				130, // 6.1 - bath (all walls)
+				350, // 7.1 - room bath (bottom wall)
+				130, // 7.2 - room bath (right wall)
+				520, // 8.1 - room solo (top wall)
+				520, // 8.2 - room solo (right wall)
+				520, // 9.1 - closet (left wall)
+				520, // 10.1 - room closet (left wall)
+				520, // 10.2 - room closet (top wall)
+				240, // 11.1 - private building (all walls)
+				0, // 0.0 - empty
+			];
+			// set wall X lengths
+			var wallLengthX = [
+				0, // 1.1 - main building (left wall)
+				350, // 1.2 - main building (top wall)
+				0, // 1.3 - main building (right wall)
+				350, // 1.4 - main building (bottom wall)
+				160, // 2.1 - hallway left (top wall)
+				160, // 2.2 - hallway right (top wall)
+				0, // 2.3 - hallway right (right wall)
+				0, // 3.1 - lobby (right wall)
+				62, // 4.1 - stairs (bottom wall)
+				62, // 5.1 - stairs room (bottom wall)
+				70, // 6.1 - bath (all walls)
+				80, // 7.1 - room bath (bottom wall)
+				0, // 7.2 - room bath (right wall)
+				70, // 8.1 - room solo (top wall)
+				0, // 8.2 - room solo (right wall)
+				0, // 9.1 - closet (left wall)
+				0, // 10.1 - room closet (left wall)
+				132, // 10.2 - room closet (top wall)
+				200, // 11.1 - private building (all walls)
+				4, // 0.0 - empty
+			];
+			// set wall Y lengths
+			var wallLengthY = [
+				165, // 1.1 - main building (left wall)
+				0, // 1.2 - main building (top wall)
+				135, // 1.3 - main building (right wall)
+				0, // 1.4 - main building (bottom wall)
+				0, // 2.1 - hallway left (top wall)
+				0, // 2.2 - hallway right (top wall)
+				30, // 2.3 - hallway right (right wall)
+				135, // 3.1 - lobby (right wall)
+				0, // 4.1 - stairs (bottom wall)
+				0, // 5.1 - stairs room (bottom wall)
+				45, // 6.1 - bath (all walls)
+				0, // 7.1 - room bath (bottom wall)
+				55, // 7.2 - room bath (right wall)
+				0, // 8.1 - room solo (top wall)
+				37, // 8.2 - room solo (right wall)
+				37, // 9.1 - closet (left wall)
+				37, // 10.1 - room closet (left wall)
+				0, // 10.2 - room closet (top wall)
+				80, // 11.1 - private building (all walls)
+				4, // 0.0 - empty
+			];
+
+			// bug - the final building/wall will be missing some of its last few blocks to fully complete its wall, so compensate for this final building/wall with extra length
+
+			// set amount of manual walls through length of position X array
+			var wallAmountManual = wallPositionX.length;
+
+			// OR....
+
+			// I WANT TO RANDOMLY SET WALLS
+			// toggle random wall positions
+			var wallRandomPosition = false;
+			// toggle random wall lengths
+			var wallRandomLength = false;
+
+			// bug - if random position is false and random length is true, there will be some floating blocks (most likely the starting blocks for the next building?)
+
+			// THEN....
+
+			// IF I RANDOMLY SET WALLS, I MUST ALSO CHOOSE IF....
+
+			// I WANT TO MANUALLY SET THE AMOUNT OF RANDOM WALLS
+			// set random wall amount with number or use "wallAmountManual" to match the amount of manual walls
+			var wallAmountRandom = 3;
+
+			// OR....
+
+			// I WANT TO RANDOMLY SET THE AMOUNT OF RANDOM WALLS
+			// toggle random amount of random walls
+			var wallAmountRandomRandom = false;
+			// set minimum for random number of walls
+			var wallAmountRandomMin = 0;
+			// set maximum for random number of walls
+			var wallAmountRandomMax = 10;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// SET UP DOORS
+		{
+			// THIS IS WHERE YOU SET UP DOORS
+			// YOU CAN EITHER SET MANUAL DOORS OR SET RANDOM DOORS
+			// IF YOU SET MANUAL DOORS, JUST SET THE X AND Y VALUES FOR THEIR POSITIONS AND LENGTHS
+			// IF YOU SET RANDOM DOORS, YOU CAN EITHER SET A MANUAL AMOUNT OR A RANDOM AMOUNT
+
+			// START....
+
+			// I WANT TO MANUALLY SET DOORS
+			// set door positions
+			var doorStart = [
+				145, // 1.1 - main building (left wall)
+				undefined, // 1.2 - main building (top wall)
+				60, // 1.3 - main building (right wall)
+				undefined, // 1.4 - main building (bottom wall)
+				45, // 2.1 - hallway left (top wall)
+				260, // 2.2 - hallway right (top wall)
+				undefined, // 2.3 - hallway right (right wall)
+				130, // 3.1 - lobby (right wall)
+				20, // 4.1 - stairs (bottom wall)
+				60, // 5.1 - stairs room (bottom wall)
+				120, // 6.1 - bath (all walls)
+				55, // 7.1 - room bath (bottom wall)
+				undefined, // 7.2 - room bath (right wall)
+				55, // 8.1 - room solo (top wall)
+				undefined, // 8.2 - room solo (right wall)
+				undefined, // 9.1 - closet (left wall)
+				15, // 10.1 - room closet (left wall)
+				undefined, // 10.2 - room closet (top wall)
+				20, // 11.1 - private building (all walls)
+			];
+
+			// OR....
+
+			// I WANT TO RANDOMLY SET DOORS
+			// set random door positions
+			var doorRandomPosition = false;
+
+			// THEN....
+
+			// I WANT TO MANUALLY SET DOOR LENGTHS
+			// set door length
+			var doorLengthSet = 40;
+
+			// OR....
+
+			// I WANT TO RANDOMLY SET DOOR LENGTHS
+			// set random door lengths
+			var doorRandomLength = false;
+			var doorLengthRandomMin = 25;
+			var doorLengthRandomMax = 150;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// SET UP WINDOWS
+		{
+			// THIS IS WHERE YOU SET UP WINDOWS
+			// YOU CAN EITHER SET MANUAL WINDOWS OR SET RANDOM WINDOWS
+			// IF YOU SET MANUAL WINDOWS, JUST SET THE X AND Y VALUES FOR THEIR POSITIONS AND LENGTHS
+			// IF YOU SET RANDOM WINDOWS, YOU CAN EITHER SET A MANUAL AMOUNT OR A RANDOM AMOUNT
+
+			// START....
+
+			// I WANT TO MANUALLY SET WINDOWS
+			// set window positions
+			var windowStart = [
+				215, // 1.1 - main building (left wall)
+				480, // 1.2 - main building (top wall)
+				155, // 1.3 - main building (right wall)
+				345, // 1.4 - main building (bottom wall)
+				undefined, // 2.1 - hallway left (top wall)
+				undefined, // 2.2 - hallway right (top wall)
+				20, // 2.3 - hallway right (right wall)
+				70, // 3.1 - lobby (right wall)
+				undefined, // 4.1 - stairs (bottom wall)
+				undefined, // 5.1 - stairs room (bottom wall)
+				undefined, // 6.1 - bath (all walls)
+				undefined, // 7.1 - room bath (bottom wall)
+				undefined, // 7.2 - room bath (right wall)
+				undefined, // 8.1 - room solo (top wall)
+				30, // 8.2 - room solo (right wall)
+				30, // 9.1 - closet (left wall)
+				undefined, // 10.1 - room closet (left wall)
+				75, // 10.2 - room closet (top wall)
+				undefined, // 11.1 - private building (all walls)
+			];
+
+			// OR....
+
+			// I WANT TO RANDOMLY SET WINDOWS
+			// set random window positions
+			var windowRandomPosition = false;
+
+			// THEN....
+
+			// I WANT TO MANUALLY SET WINDOW LENGTHS
+			// set window length
+			var windowLengthSet = 15;
+
+			// OR....
+
+			// I WANT TO RANDOMLY SET WINDOW LENGTHS
+			// set random window lengths
+			var windowRandomLength = false;
+			var windowLengthRandomMin = 25;
+			var windowLengthRandomMax = 150;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// WALL CALCULATIONS (DON'T TOUCH)
+		{
+			var wallCount = 0;
+			var wallArray = [];
+
+			// array count for iterating through each building
+			var wallArrayCount = 0;
+
+			// if random amounts of random walls are on
+			if (wallAmountRandomRandom == true) {
+				wallAmountRandom = Math.floor(Math.random() * wallAmountRandomMax) + wallAmountRandomMin;
+			}
+			// if random wall positions are on
+			if (wallRandomPosition == true) {
+				// empty array for random positions to be applied
+				var wallPositionX = [];
+				var wallPositionY = [];
+				// loop and iterate through each building and assign them their random position values through calcualtions
+				for (i = 0; i < wallAmountRandom; i++) {
+					wallPositionX[wallArrayCount] = Math.floor(Math.random() * (stageWidthCustom - stageMargin * 3)) + stageMargin;
+					wallPositionY[wallArrayCount] = Math.floor(Math.random() * (stageHeightCustom - stageMargin * 3)) + stageMargin;
+					wallArrayCount++;
+				}
+				// reset wall array count for next use
+				wallArrayCount = 0;
+			}
+			// if random wall lengths are on
+			if (wallRandomLength == true) {
+				// array for lengths
+				var wallLengthX = [];
+				var wallLengthY = [];
+				// loop and iterate through each building and assign them their random length values through calcualtions
+				for (i = 0; i < wallAmountRandom; i++) {
+					wallLengthX[wallArrayCount] = Math.floor(Math.random() * 50) + 40;
+					wallLengthY[wallArrayCount] = Math.floor(Math.random() * 50) + 40;
+					wallArrayCount++;
+				}
+				// reset wall array count for next use
+				wallArrayCount = 0;
+			}
+			// set number of buildings through array length of given or generated wall lengths
+			var wallAmountCount = wallPositionX.length;
+			// empty arrays for direction changes through future calcuations with given or random wall lengths
+			var wallStartBottom = [];
+			var wallStartRight = [];
+			var wallStartTop = [];
+			// wall array for wall amounts
+			var wallAmountSet = [];
+			// calculate total wall amount of X
+			var wallLengthX_sum = wallLengthX.reduce(function (a, b) {
+				return a + b;
+			}, 0);
+			// calculate total wall amount of Y
+			var wallLengthY_sum = wallLengthY.reduce(function (a, b) {
+				return a + b;
+			}, 0);
+			// calculate all total wall amounts of X and Y
+			var wallAmountSetAll = (wallLengthX_sum + wallLengthY_sum) * 2 + 1;
+			// loop and iterate through each building and assign them their values through calcualtions based on the given positions and lengths in their arrays
+			for (i = 0; i < wallAmountCount; i++) {
+				wallStartBottom[wallArrayCount] = wallLengthY[wallArrayCount];
+				wallStartRight[wallArrayCount] = wallLengthY[wallArrayCount] + wallLengthX[wallArrayCount];
+				wallStartTop[wallArrayCount] = wallLengthY[wallArrayCount] + wallLengthX[wallArrayCount] + wallLengthY[wallArrayCount];
+
+				wallAmountSet[wallArrayCount] = (wallLengthX[wallArrayCount] + wallLengthY[wallArrayCount]) * 2;
+
+				wallArrayCount++;
+			}
+			// reset wall array count for next use
+			wallArrayCount = 0;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// DOOR CALCULATIONS (DON'T TOUCH)
+		{
+			// set empty array for door end and use in future calcuations to determine the arrays values based on generated or randomized door start values
+			var doorEnd = [];
+			// if door random lengths are on
+			if (doorRandomLength == true) {
+				// set empty array for door length and use in future calculations to determine the arrays values through randomized values
+				var doorLength = [];
+				// loop and iterate through each door of each building and assign random values for their lengths between the given minimum and maximum values
+				for (i = 0; i < wallAmountCount; i++) {
+					doorLength[wallArrayCount] = Math.floor(Math.random() * doorLengthRandomMax) + doorLengthRandomMin;
+					wallArrayCount++;
+				}
+				// reset wall array count for next use
+				wallArrayCount = 0;
+			}
+			// if door random lengths are off
+			if (doorRandomLength == false) {
+				var doorLength = doorLengthSet;
+			}
+			// if door random positions are on
+			if (doorRandomPosition == true) {
+				// set empty array for door start values to be randomly generated and added to it in future calculations
+				var doorStart = [];
+				// calculate the max lengths of given or generated wall lengths on the x axis
+				var wallLengthX_max = Math.max.apply(Math, wallLengthX);
+				// calculate the max lengths of given or generated wall lengths on the y axis
+				var wallLengthY_max = Math.max.apply(Math, wallLengthY);
+				// calculate the max lengths given or generated for wall lengths on the x and y axis
+				var wallLengthMax = wallLengthX_max + wallLengthY_max;
+				// for the amount of walls generated, assign each door for each building a random
+				for (i = 0; i < wallAmountCount; i++) {
+					doorStart[wallArrayCount] = Math.floor(Math.random() * wallLengthMax) + 0;
+					wallArrayCount++;
+				}
+				// reset wall array count for next use
+				wallArrayCount = 0;
+			}
+			// loop and iterate through each door and assign them their values for calcualtions based on the given positions and lengths in their arrays
+			for (i = 0; i < doorStart.length; i++) {
+				// if door random lengths are on
+				if (doorRandomLength == true) {
+					// set each door end of each building to equal each door start 
+					doorEnd[wallArrayCount] = doorStart[wallArrayCount] + doorLength[wallArrayCount];
+				}
+				if (doorRandomLength == false) {
+					doorEnd[wallArrayCount] = doorStart[wallArrayCount] + doorLength;
+				}
+				wallArrayCount++;
+			}
+			// reset wall array count for next use (the "makeWall" loop)
+			wallArrayCount = 0;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// WINDOW CALCULATIONS (DON'T TOUCH)
+		{
+			// set empty array for window end and use in future calcuations to determine the arrays values based on generated or randomized window start values
+			var windowEnd = [];
+			// if window random lengths are on
+			if (windowRandomLength == true) {
+				// set empty array for window length and use in future calculations to determine the arrays values through randomized values
+				var windowLength = [];
+				// loop and iterate through each window of each building and assign random values for their lengths between the given minimum and maximum values
+				for (i = 0; i < wallAmountCount; i++) {
+					windowLength[wallArrayCount] = Math.floor(Math.random() * windowLengthRandomMax) + windowLengthRandomMin;
+					wallArrayCount++;
+				}
+				// reset wall array count for next use
+				wallArrayCount = 0;
+			}
+			// if window random lengths are off
+			if (windowRandomLength == false) {
+				var windowLength = windowLengthSet;
+			}
+			// if window random positions are on
+			if (windowRandomPosition == true) {
+				// set empty array for window start values to be randomly generated and added to it in future calculations
+				var windowStart = [];
+				// calculate the max lengths of given or generated wall lengths on the x axis
+				var wallLengthX_max = Math.max.apply(Math, wallLengthX);
+				// calculate the max lengths of given or generated wall lengths on the y axis
+				var wallLengthY_max = Math.max.apply(Math, wallLengthY);
+				// calculate the max lengths given or generated for wall lengths on the x and y axis
+				var wallLengthMax = wallLengthX_max + wallLengthY_max;
+				// for the amount of walls generated, assign each window for each building a random
+				for (i = 0; i < wallAmountCount; i++) {
+					windowStart[wallArrayCount] = Math.floor(Math.random() * wallLengthMax) + 0;
+					wallArrayCount++;
+				}
+				// reset wall array count for next use
+				wallArrayCount = 0;
+			}
+			// loop and iterate through each window and assign them their values for calcualtions based on the given positions and lengths in their arrays
+			for (i = 0; i < windowStart.length; i++) {
+				// if window random lengths are on
+				if (windowRandomLength == true) {
+					// set each window end of each building to equal each window start 
+					windowEnd[wallArrayCount] = windowStart[wallArrayCount] + windowLength[wallArrayCount];
+				}
+				if (windowRandomLength == false) {
+					windowEnd[wallArrayCount] = windowStart[wallArrayCount] + windowLength;
+				}
+				wallArrayCount++;
+			}
+			// reset wall array count for next use (the "makeWall" loop)
+			wallArrayCount = 0;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// INITIALIZATION - init() only runs once
+		function init() {
+			// initialize stage
+			myStage = new createjs.Stage(document.getElementById("myCanvas"));
+			stageWidth = myStage.canvas.width;
+			stageHeight = myStage.canvas.height;
+			// initialize ticker	
+			createjs.Ticker.addEventListener('tick', gameLoop);
+			createjs.Ticker._setFPS(myFrameRate);
+			// initialize game
+			initGame();
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// INITIALIZATION GAME - initGame() runs at init and reset
+		function initGame() {
+			// initialize game variables
+			score = 0;
+
+			backgroundBlack = null;
+			backgroundGrey = null;
+			backgroundShade = null;
+			crossGlowRed = null;
+			laser = null;
+			hero = null;
+
+			wallArray = [];
+			crossArray = [];
+			slimeArray = [];
+			glowArray = [];
+			ghostArray = [];
+			//targetsArray = [];
+
+			gameClock = 0;
+			gameOver = false;
+			// initialize stage objects
+			makeBackgroundBlack(backgroundBlackSourceSet);
+			makeBackgroundGrey(backgroundGreySourceSet);
+			makeBackgroundShade(backgroundShadeSourceSet);
+
+			makeExitGlow(exitGlowSourceSet);
+			makeExit(exitSourceSet);
+
+			makeGlows(ghostAmountSet);
+
+			makeHeroGlow(heroGlowSourceSet);
+			
+			makeCrosses(crossAmountSet);
+
+			makeSlimes(slimeAmountSet);
+
+			makeHero(heroSourceSet);
+
+			makeGhosts(ghostAmountSet);
+
+			makeLaser(laserSourceSet);
+
+			makeWalls(wallAmountSetAll);
+
+			//makeTargets(targetAmountSet);
+
+			makeMetersText();
+			makeHealthText();
+			makeStaminaText();
+			makeLightText();
+
+			makeCrossText();
+
+			makeAmmoText();
+			makeAmmoNormalText();
+			makeAmmoStrongText();
+			makeAmmoGhostText();
+			makeAmmoDrillText();
+			makeAmmoBounceText();
+			makeAmmoStickyText();
+			//makeScoreText();
+
+			makeWinText();
+			makeLoseText();
+
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAIN LOOP - gameLoop() - This function is called 60 x per second, on every 'tick' event
+		function gameLoop(evt) {
+
+			if (crossCollectedText == crossAmountSet && exitCreate == false) {
+				exit.alpha = 1;
+				exitGlow.alpha = 1;
+				collisionGnome.addCollider(exit, 1);
+				exitCreate = true;
+			}
+
+			moveHeroGlow();
+			if (heroCanMove == true) {
+				playerControls();
+			}
+			moveLaser();
+			moveSlimes();
+			moveGlows();
+			moveGhosts();
+			//moveTargets();
+			if (bulletFired == true) {
+				moveBullet();
+			}
+			checkMeters();
+			checkHeroBoundary();
+			//checkTargetsBoundary();
+			checkCollisions();
+			if (gameOver === false) {
+				updateText();
+			}
+			checkGameOver();
+			handleGameOver();
+			gameClock++;
+			myStage.update();
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE BACKGROUND (BLACK)
+		function makeBackgroundBlack(backgroundBlackSource) { // takes a string containing the filepath i.e. "images/background.png"
+			backgroundBlack = new createjs.Bitmap(backgroundBlackSource);
+			myStage.addChild(backgroundBlack);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE BACKGROUND (GREY)
+		function makeBackgroundGrey(backgroundGreySource) { // takes a string containing the filepath i.e. "images/background.png"
+			backgroundGrey = new createjs.Bitmap(backgroundGreySource);
+			myStage.addChild(backgroundGrey);
+			backgroundGrey.alpha = 0;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE BACKGROUND SHADE
+		function makeBackgroundShade(backgroundShadeSource) { // takes a string containing the filepath i.e. "images/background.png"
+			backgroundShade = new createjs.Bitmap(backgroundShadeSource);
+			myStage.addChild(backgroundShade);
+			backgroundShade.alpha = backgroundShadeAlpha;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE SCORE TEXT
+		// function makeScoreText() {
+		// 	scoreText = new createjs.Text("Score: " + score, "40px Arial", "#ffff00");
+		// 	scoreText.x = 50;
+		// 	scoreText.y = 75;
+		// 	scoreText.textBaseline = "alphabetic";
+		// 	myStage.addChild(scoreText);
+		// }
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		function makeWinText() {
+			winText = new createjs.Text("ESCAPED", "350px perfect_dos_vga_437regular", "red");
+			winText.textBaseline = "alphabetic";
+			winText.alpha = 0;
+			winText.x = 280;
+			winText.y = 545;
+			myStage.addChild(winText);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		function makeLoseText() {
+			loseText = new createjs.Text("INSANITY", "315px perfect_dos_vga_437regular", "red");
+			loseText.textBaseline = "alphabetic";
+			loseText.alpha = 0;
+			loseText.x = 240;
+			loseText.y = 535;
+			myStage.addChild(loseText);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		function makeMetersText() {
+			metersText = new createjs.Text("METERS", "15px perfect_dos_vga_437regular", "white");
+			metersText.textBaseline = "alphabetic";
+			metersText.x = textX;
+			metersText.y = textY;
+			myStage.addChild(metersText);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		function makeHealthText() {
+			healthText = new createjs.Text("Sanity: " + health, "15px perfect_dos_vga_437regular", "#bbb");
+			healthText.textBaseline = "alphabetic";
+			healthText.x = textX;
+			healthText.y = metersText.y + textSpacing * textCount;
+			myStage.addChild(healthText);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		function makeStaminaText() {
+			textCount++;
+			staminaText = new createjs.Text("Breath: " + stamina, "15px perfect_dos_vga_437regular", "#bbb");
+			staminaText.textBaseline = "alphabetic";
+			staminaText.x = textX;
+			staminaText.y = metersText.y + textSpacing * textCount;
+			myStage.addChild(staminaText);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		function makeLightText() {
+			textCount++;
+			lightText = new createjs.Text("Light: " + light, "15px perfect_dos_vga_437regular", "#bbb");
+			lightText.textBaseline = "alphabetic";
+			lightText.x = textX;
+			lightText.y = metersText.y + textSpacing * textCount;
+			myStage.addChild(lightText);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		function makeCrossText() {
+			textCount++;
+			textCount++;
+			crossText = new createjs.Text("Crosses: " + crossCollectedText, "15px perfect_dos_vga_437regular", "red");
+			crossText.textBaseline = "alphabetic";
+			crossText.x = textX;
+			crossText.y = metersText.y + textSpacing * textCount;
+			myStage.addChild(crossText);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		function makeAmmoText() {
+			textCount *= 7.525;
+			ammoText = new createjs.Text("Ammo", "15px perfect_dos_vga_437regular", "white");
+			ammoText.textBaseline = "alphabetic";
+			ammoText.x = textX;
+			ammoText.y = metersText.y + textSpacing * textCount;
+			myStage.addChild(ammoText);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		function makeAmmoNormalText() {
+			textCount++;
+			ammoNormalText = new createjs.Text("(1) Normal: " + bulletAmountNormal, "15px perfect_dos_vga_437regular", "#bbb");
+			ammoNormalText.textBaseline = "alphabetic";
+			ammoNormalText.x = textX;
+			ammoNormalText.y = metersText.y + textSpacing * textCount;
+			myStage.addChild(ammoNormalText);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		function makeAmmoStrongText() {
+			textCount++;
+			ammoStrongText = new createjs.Text("(2) Explosive: " + bulletAmountStrong, "15px perfect_dos_vga_437regular", "#bbb");
+			ammoStrongText.textBaseline = "alphabetic";
+			ammoStrongText.x = textX;
+			ammoStrongText.y = metersText.y + textSpacing * textCount;
+			myStage.addChild(ammoStrongText);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		function makeAmmoGhostText() {
+			textCount++;
+			ammoGhostText = new createjs.Text("(3) Ghost: " + bulletAmountGhost, "15px perfect_dos_vga_437regular", "#bbb");
+			ammoGhostText.textBaseline = "alphabetic";
+			ammoGhostText.x = textX;
+			ammoGhostText.y = metersText.y + textSpacing * textCount;
+			myStage.addChild(ammoGhostText);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		function makeAmmoDrillText() {
+			textCount++;
+			ammoDrillText = new createjs.Text("(4) Drill: " + bulletAmountDrill, "15px perfect_dos_vga_437regular", "#bbb");
+			ammoDrillText.textBaseline = "alphabetic";
+			ammoDrillText.x = textX;
+			ammoDrillText.y = metersText.y + textSpacing * textCount;
+			myStage.addChild(ammoDrillText);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		function makeAmmoBounceText() {
+			textCount++;
+			ammoBounceText = new createjs.Text("(5) Bounce: " + bulletAmountBounce, "15px perfect_dos_vga_437regular", "#bbb");
+			ammoBounceText.textBaseline = "alphabetic";
+			ammoBounceText.x = textX;
+			ammoBounceText.y = metersText.y + textSpacing * textCount;
+			myStage.addChild(ammoBounceText);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		function makeAmmoStickyText() {
+			textCount++;
+			ammoStickyText = new createjs.Text("(6) Sticky: " + bulletAmountSticky, "15px perfect_dos_vga_437regular", "#bbb");
+			ammoStickyText.textBaseline = "alphabetic";
+			ammoStickyText.x = textX;
+			ammoStickyText.y = metersText.y + textSpacing * textCount;
+			myStage.addChild(ammoStickyText);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE WALL
+		function makeWalls(wallAmount) {
+			// LOOP FOR AS LONG AS THERE ARE WALLS
+			for (var i = 0; i <= wallAmount; i++) {
+				// if wall length y for current array is zero (so it only has an x length, making it a horizontal wall)
+				if (wallLengthY[wallArrayCount] == 0) {
+					// CHANGE WALL DIRECTION (RIGHT)
+					// if wall count (the iteration of array) is greater than...
+					if (wallCount >= wallStartBottom[wallArrayCount]) {
+						wallPositionOffsetX = wallPositionOffsetX_add;
+						wallPositionOffsetY = wallPositionOffsetY_none;
+					}
+				}
+				// if wall length x for current array is zero (so it only has an y length, making it a vertical wall)
+				else if (wallLengthX[wallArrayCount] == 0) {
+					// don't do anything and don't change wall direction, just keeping building the wall downwards (verical) using the same default offset (x = 0 and y = 4)
+				}
+				// if wall length x or y don't have values of zero, change wall directions when necessary in order to create a full box/building
+				else {
+					// CHANGE WALL DIRECTION (RIGHT)
+					if (wallCount >= wallStartBottom[wallArrayCount]) {
+						wallPositionOffsetX = wallPositionOffsetX_add;
+						wallPositionOffsetY = wallPositionOffsetY_none;
+					}
+					// CHANGE WALL DIRECTION (UP)
+					if (wallCount >= wallStartRight[wallArrayCount]) {
+						wallPositionOffsetX = wallPositionOffsetX_none;
+						wallPositionOffsetY = wallPositionOffsetY_subtract;
+					}
+					// CHANGE WALL DIRECTION (LEFT)
+					if (wallCount >= wallStartTop[wallArrayCount]) {
+						wallPositionOffsetX = wallPositionOffsetX_subtract;
+						wallPositionOffsetY = wallPositionOffsetY_none;
+					}
+				}
+				// DOOR BITMAP
+				// if the wall count (the iteration through the array) is greater than the calculated door start value and less than the calculated door end value
+				if (doorStart[wallArrayCount] < wallCount && wallCount < doorEnd[wallArrayCount]) {
+					// create a door bitmap
+					wallArray[i] = new createjs.Bitmap(wallTypeDoor);
+					// apply a name value to the window for later identification
+					wallArray[i].name = "door";
+					// apply alpha for door
+					wallArray[i].alpha = wallTypeDoorAlpha;
+					// apply a collider for wall
+					collisionGnome.addCollider(wallArray[i], wallCollisionOffset);
+				}
+				// WINDOW BITMAP
+				// if the wall count (the iteration through the array) is greater than the calculated window start value and less than the calculated window end value
+				else if (windowStart[wallArrayCount] < wallCount && wallCount < windowEnd[wallArrayCount]) {
+					// create a window bitmap
+					wallArray[i] = new createjs.Bitmap(wallTypeWindow);
+					// apply a name value to the window for later identification
+					wallArray[i].name = "window";
+					// apply alpha for window
+					wallArray[i].alpha = wallTypeWindowAlpha;
+					// apply a collider for wall
+					collisionGnome.addCollider(wallArray[i], wallCollisionOffset);
+				}
+				// WALL BITMAP
+				// if the wall count is not within the start and end values of the door or window
+				else {
+					// create a wall bitmap
+					wallArray[i] = new createjs.Bitmap(wallTypeWall);
+					// apply a name value to the window for later identification
+					wallArray[i].name = "wall";
+					// apply a collider for wall
+					collisionGnome.addCollider(wallArray[i], wallCollisionOffset);
+				}
+				// REGISTER POINTS
+				wallArray[i].regX = wallRegX;
+				wallArray[i].regY = wallRegY;
+				// SCALES
+				wallArray[i].scaleX = wallScaleX;
+				wallArray[i].scaleY = wallScaleY;
+				// POSITIONS
+				wallArray[i].x = wallPositionX[wallArrayCount];
+				wallArray[i].y = wallPositionY[wallArrayCount];
+				// POSITION OFFSETS
+				wallPositionX[wallArrayCount] += wallPositionOffsetX;
+				wallPositionY[wallArrayCount] += wallPositionOffsetY;
+				// OTHER
+				myStage.addChild(wallArray[i]);
+				wallCount++;
+				// CHANGE BUILDING
+				if (wallCount == wallAmountSet[wallArrayCount] + 1) {
+					wallCount = 0;
+					wallArrayCount++;
+
+					wallPositionOffsetX = wallPositionOffsetX_none;
+					wallPositionOffsetY = wallPositionOffsetY_add;
+				}
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		function checkMeters() {
+
+			// HEALTH LOWERS EVERY UPDATE
+			if (healthTimer == healthTimerMax && health > 0) {
+				health--;
+				healthTimer = 0;
+			}
+			else {
+				healthTimer++;
+			}
+
+			// STAMINA LOWERS EVERY UPDATE
+			if (staminaIdleTimer == staminaIdleTimerMax && stamina > 0) {
+				stamina--;
+				staminaIdleTimer = 0;
+			}
+			else {
+				staminaIdleTimer++;
+			}
+
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		// MAKE CROSSES
+		function makeCrosses(crossAmount) {
+			// shuffle numbers 0 to 17 for truly random, non-repeating numbers used for random spawns
+			function shuffle(array) {
+				var i = array.length,
+					j = 0,
+					temp;
+				while (i--) {
+					j = Math.floor(Math.random() * (i + 1));
+					// swap randomly chosen element with current element
+					temp = array[i];
+					array[i] = array[j];
+					array[j] = temp;
+				}
+				return array;
+			}
+			
+			var randomNumbers = shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]);
+
+			for (var i = 0; i < crossAmount; i++) {
+				if (i == crossRandomRed) {
+					// create crossGlowRed first
+					crossGlowRed = new createjs.Bitmap(glowSourceSetRed);
+					myStage.addChild(crossGlowRed);
+					crossGlowRed.regX = crossGlowRedRegX;
+					crossGlowRed.regY = crossGlowRedRegY;
+					crossGlowRed.alpha = 1;
+					// create crossRed after
+					crossArray[i] = new createjs.Bitmap(crossSourceSetRed);
+					myStage.addChild(crossArray[i]);
+					crossArray[i].alpha = crossAlphaRed;
+					crossArray[i].color = "red";
+					crossArray[i].x = crossPositionX[randomNumbers[i]];
+					crossArray[i].y = crossPositionY[randomNumbers[i]];
+					crossArray[i].regX = crossRegX;
+					crossArray[i].regY = crossRegY;
+					crossArray[i].scaleX = crossScaleX;
+					crossArray[i].scaleY = crossScaleY;
+					collisionGnome.addCollider(crossArray[i], crossCollisionOffset);
+					// set crossGlowRed position to crossRed position
+					crossGlowRed.x = crossArray[crossRandomRed].x;
+					crossGlowRed.y = crossArray[crossRandomRed].y;
+				}
+				else {
+					crossArray[i] = new createjs.Bitmap(crossSourceSet);
+					myStage.addChild(crossArray[i]);
+					crossArray[i].alpha = crossAlpha;
+					crossArray[i].x = crossPositionX[randomNumbers[i]];
+					crossArray[i].y = crossPositionY[randomNumbers[i]];
+					crossArray[i].regX = crossRegX;
+					crossArray[i].regY = crossRegY;
+					crossArray[i].scaleX = crossScaleX;
+					crossArray[i].scaleY = crossScaleY;
+					collisionGnome.addCollider(crossArray[i], crossCollisionOffset);
+				}
+				//crossRandom = Math.floor(Math.random() * 18);
+				//console.log("i is " + i);
+				//console.log(randomNumbers[i]);
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE EXIT GLOW
+		function makeExitGlow(exitGlowSource) {
+			exitGlow = new createjs.Bitmap(exitGlowSourceSet);
+			myStage.addChild(exitGlow);
+			exitGlow.regX = exitGlowRegX;
+			exitGlow.regY = exitGlowRegY;
+			exitGlow.alpha = 0;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE EXIT
+		function makeExit(exitSource) {
+			exit = new createjs.Bitmap(exitSource);
+			myStage.addChild(exit);
+			exit.x = exitX;
+			exit.y = exitY;
+			exit.regX = exitRegX;
+			exit.regY = exitRegY;
+			exitGlow.x = exitX;
+			exitGlow.y = exitY;
+			exit.alpha = 0;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE LASER
+		function makeLaser(laserSource) {
+			laser = new createjs.Bitmap(laserSource);
+			myStage.addChild(laser);
+			collisionGnome.addCollider(laser, 1);
+
+			laser.x = laserX;
+			laser.y = laserY;
+			laser.regX = laserRegX;
+			laser.regY = laserRegY;
+			laser.alpha = laserAlpha;
+			
+			laser.speedX = laserSpeedX;
+			laser.speedY = laserSpeedY;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MOVE LASER
+		function moveLaser() {
+			if (laserRandomX > 0.5) {
+				laser.x += laser.speedX;
+			}
+			else {
+				laser.x -= laser.speedX;
+			}
+			if (laserRandomY > 0.5) {
+				laser.y += laser.speedY;
+			}
+			else {
+				laser.y -= laser.speedY;
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE HERO
+		function makeHero(heroSource) {
+			hero = new createjs.Bitmap(heroSource);
+			myStage.addChild(hero);
+			collisionGnome.addCollider(hero, heroCollisionOffset);
+			hero.x = heroPositionX;
+			hero.y = heroPositionY;
+			hero.regX = heroRegX;
+			hero.regY = heroRegY;
+			hero.speed = heroSpeedDefault;
+			hero.alpha = heroAlphaDefault;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// PLAYER CONTROLS
+		// bug (fixed) - if diagonal hero movement is enabled, hero can get stuck on walls - hitting wall bottom and going right, hitting wall top and going left
+		// bug (fixed) - if diagonal hero movement is enabled, hero can boost movement speed on walls - hitting wall bottom and going left, hitting wall top and going right
+		function playerControls() {
+			// this code would make the background change to black and allow ghosts to spawn in after either the player has moved or the timer ran out (60 seconds)
+			// this has been commented out because I believe that it causes some problems with resetting the game and I would rather have the player with less knowledge of the map anyways
+			// if (heroDirectionCurrent !== "none" && activateGhosts == false) {
+			// 	activateGhosts = true;
+			// 	makeGhosts(ghostAmountSet);
+			// 	backgroundGrey.alpha = 0;
+			// }
+			// else if (gameStartTimer == 60 && activateGhosts == false) {
+			// 	activateGhosts = true;
+			// 	makeGhosts(ghostAmountSet);
+			// 	backgroundGrey.alpha = 0;
+			// }
+			// gameStartTimer++;
+
+			// END GAME KEY
+			if (keyMonkeyHit["o"] && userPressEnd == false) {
+				userPressEnd = true;
+			}
+
+			// UP
+			if (keyMonkeyHold["w"] || keyMonkeyHold["up"]) {
+				hero.y -= hero.speed;
+				heroDirectionCurrent = "up";
+				//console.log(hero.speed);
+				if (stamina > 0 && staminaTimer == staminaTimerMax) {
+					if (hero.speed == heroSpeedRun || hero.speed == heroSpeedSprint) {
+						if (heroSprint !== true) {
+							stamina--;
+							staminaTimer = 0;
+						}
+					}
+				}
+				else {
+					staminaTimer++;
+				}
+			}
+			// DOWN
+			if (keyMonkeyHold["s"] || keyMonkeyHold["down"]) {
+				hero.y += hero.speed;
+				heroDirectionCurrent = "down";
+				//console.log(hero.speed);
+				if (stamina > 0 && staminaTimer == staminaTimerMax) {
+					if (hero.speed == heroSpeedRun || hero.speed == heroSpeedSprint) {
+						if (heroSprint !== true) {
+							stamina--;
+							staminaTimer = 0;
+						}
+					}
+				}
+				else {
+					staminaTimer++;
+				}
+			}
+			// LEFT
+			if (keyMonkeyHold["a"] || keyMonkeyHold["left"]) {
+				hero.x -= hero.speed;
+				heroDirectionCurrent = "left";
+				//console.log(hero.speed);
+				if (stamina > 0 && staminaTimer == staminaTimerMax) {
+					if (hero.speed == heroSpeedRun || hero.speed == heroSpeedSprint) {
+						if (heroSprint !== true) {
+							stamina--;
+							staminaTimer = 0;
+						}
+					}
+				}
+				else {
+					staminaTimer++;
+				}
+			}
+			// RIGHT
+			if (keyMonkeyHold["d"] || keyMonkeyHold["right"]) {
+				hero.x += hero.speed;
+				heroDirectionCurrent = "right";
+				//console.log(hero.speed);
+				if (stamina > 0 && staminaTimer == staminaTimerMax) {
+					if (hero.speed == heroSpeedRun || hero.speed == heroSpeedSprint) {
+						if (heroSprint !== true) {
+							stamina--;
+							staminaTimer = 0;
+						}
+					}
+				}
+				else {
+					staminaTimer++;
+				}
+			}
+			
+			// STAMINA REGAIN
+			// staminaTimerRegain++;
+			// if (stamina < 100 && staminaTimerRegain == staminaTimerRegain2) {
+			// 	stamina++;
+			// 	staminaTimerRegain = 0;
+			// }
+			// stamina regain has been disabled because it causes issues that I don't want to deal with right now
+			// the issue involves being able to still continuously sprint at zero stamina
+
+			if (keyMonkeyHit["shift"] && stamina > 0) {
+				console.log("prone toggled off");
+				console.log("crouch toggled off");
+				console.log("sprint turned on");
+			}
+			// SPRINT (TOGGLE ON)
+			if (keyMonkeyHold["shift"] && stamina > 0) {
+				hero.speed = heroSpeedSprint;
+				heroCrouch = false;
+				heroProne = false;
+				heroSprint = true;
+				// console.log("prone toggled off");
+				// console.log("crouch toggled off");
+				// console.log("sprint turned on");
+				hero.alpha = heroAlphaSprint;
+				if (heroFlashlight == true) {
+					heroGlow.alpha = heroGlowAlphaSprint;
+				}
+				if (stamina >= 0 && staminaTimerSprint == staminaTimerMaxSprint) {
+					stamina --;
+					staminaTimerSprint = 0;
+				}
+				else {
+					staminaTimerSprint++;
+				}
+			}
+			// SPRINT (TOGGLE OFF)
+			if (keyMonkeyRelease["shift"] && stamina > 0) {
+				hero.speed = heroSpeedDefault;
+				heroSprint = false;
+				console.log("sprint turned off");
+				hero.alpha = heroAlphaDefault;
+				if (heroFlashlight == true) {
+					heroGlow.alpha = heroGlowAlphaDefault;
+				}
+			}
+			// SPRINT TURNS OFF IF STAMINA IS ZERO
+			if (stamina == 0 && staminaChange == false) {
+				if (heroChangeSpeed == false) {
+					hero.speed = heroSpeedDefault;
+				}
+				heroChangeSpeed = true;
+				heroSprint = false;
+				console.log("sprint turned off");
+				hero.alpha = heroAlphaDefault;
+				if (heroFlashlight == true) {
+					heroGlow.alpha = heroGlowAlphaDefault;
+				}
+				staminaChange = true;
+			}
+			// CROUCH (TOGGLE ON)
+			if (keyMonkeyHit["c"] && hero.speed !== heroSpeedCrouch) {
+				hero.speed = heroSpeedCrouch;
+				heroProne = false;
+				heroCrouch = true;
+				heroSprint = false;
+				console.log("sprint turned off");
+				console.log("prone toggled off");
+				console.log("crouch toggled on");
+				hero.alpha = heroAlphaCrouch;
+				if (heroFlashlight == true) {
+					heroGlow.alpha = heroGlowAlphaCrouch;
+				}
+			}
+			// CROUCH (TOGGLE OFF)
+			else if (keyMonkeyHit["c"] && hero.speed == heroSpeedCrouch) {
+				hero.speed = heroSpeedDefault;
+				heroCrouch = false;
+				console.log("crouch toggled off");
+				hero.alpha = heroAlphaDefault;
+				if (heroFlashlight == true) {
+					heroGlow.alpha = heroGlowAlphaDefault;
+				}
+			}
+			// PRONE (TOGGLE ON)
+			if (keyMonkeyHit["x"] && hero.speed !== heroSpeedProne) {
+				hero.speed = heroSpeedProne;
+				heroCrouch = false;
+				heroProne = true;
+				heroSprint = false;
+				console.log("sprint turned off");
+				console.log("crouch toggled off");
+				console.log("prone toggled on");
+				hero.alpha = heroAlphaProne;
+				if (heroFlashlight == true) {
+					heroGlow.alpha = heroGlowAlphaProne;
+				}
+			}
+			// PRONE (TOGGLE OFF)
+			else if (keyMonkeyHit["x"] && hero.speed == heroSpeedProne) {
+				hero.speed = heroSpeedDefault;
+				heroProne = false;
+				console.log("prone toggled off");
+				hero.alpha = heroAlphaDefault;
+				if (heroFlashlight == true) {
+					heroGlow.alpha = heroGlowAlphaDefault;
+				}
+			}
+			// FLASHLIGHT (TOGGLE ON)
+			if (keyMonkeyHit["f"] && heroGlow.alpha == heroGlowAlphaProne) {
+				if (heroSprint == true) {
+					heroGlow.alpha = heroGlowAlphaSprint;
+				}
+				else if (heroCrouch == true) {
+					heroGlow.alpha = heroGlowAlphaCrouch;
+				}
+				else if (heroProne == true) {
+					heroGlow.alpha = heroGlowAlphaProne;
+				}
+				else {
+					heroGlow.alpha = heroGlowAlphaDefault;
+				}
+				heroFlashlight = true;
+				console.log("flashlight toggled on");
+			}
+			// FLASHLIGHT (TOGGLE OFF)
+			else if (keyMonkeyHit["f"] && heroGlow.alpha !== heroGlowAlphaProne) {
+				heroGlow.alpha = heroGlowAlphaProne;
+				heroFlashlight = false;
+				console.log("flashlight toggled off");
+			}
+			// // LIGHT INCREASES
+			// if (heroFlashlight == false && light < 100) {
+			// 	light++;
+			// }
+			// IF FLASHLIGHT IS ON
+			if (heroFlashlight == true && heroGlow.alpha !== heroGlowAlphaProne) {
+				// LIGHT DECREASES
+				if (light > 0 && lightTimer == lightTimerMax) {
+					light--;
+					lightTimer = 0;
+				}
+				else {
+					lightTimer++;
+				}
+			}
+			// FLASHLIGHT TURNS OFF IF LIGHT IS ZERO
+			if (light <= 0) {
+				heroGlow.alpha = heroGlowAlphaProne;
+				heroFlashlight = false;
+				//console.log("flashlight toggled off");
+			}
+			
+			// PICKUP (ACTIVATE)
+			if (keyMonkeyHit["e"] && heroPickup == false) {
+				heroPickup = true;
+				console.log("hero pickup activated");
+			}
+			else if (keyMonkeyHold["e"]) {
+				heroPickup = false;
+				console.log("hero pickup de-activated");
+			}
+			// PICKUP (DE-ACTIVATE)
+			if (keyMonkeyRelease["e"] && heroPickup == true) {
+				heroPickup = false;
+				console.log("hero pickup de-activated");
+			}
+
+			// SHOOT NORMAL BULLET (WITH AMMO)
+			if (keyMonkeyHit["space_bar"] && bulletAmountNormal > 0 && bulletType == "normal" && heroDirectionCurrent !== "none") {
+				console.log("fired a normal bullet");
+				console.log("normal bullet amount was: " + bulletAmountNormal);
+				bulletAmountNormal--;
+				bulletDirection = heroDirectionCurrent;
+				makeBullet();
+				bulletFired = true;
+				console.log("normal bullet amount is now: " + bulletAmountNormal);
+			}
+			// SHOOT NORMAL BULLET (WITHOUT AMMO)
+			else if (keyMonkeyHit["space_bar"] && bulletAmountNormal == 0 && bulletType == "normal") {
+				console.log("out of normal ammo");
+			}
+			// SHOOT STRONG BULLET (WITH AMMO)
+			if (keyMonkeyHit["space_bar"] && bulletAmountStrong > 0 && bulletType == "strong" && heroDirectionCurrent !== "none") {
+				console.log("fired a strong bullet");
+				console.log("strong bullet amount was: " + bulletAmountStrong);
+				bulletAmountStrong--;
+				bulletDirection = heroDirectionCurrent;
+				makeBullet();
+				bulletFired = true;
+				console.log("strong bullet amount is now: " + bulletAmountStrong);
+			}
+			// SHOOT STRONG BULLET (WITHOUT AMMO)
+			else if (keyMonkeyHit["space_bar"] && bulletAmountStrong == 0 && bulletType == "strong") {
+				console.log("out of strong ammo");
+			}
+			// SHOOT GHOST BULLET (WITH AMMO)
+			if (keyMonkeyHit["space_bar"] && bulletAmountGhost > 0 && bulletType == "ghost" && heroDirectionCurrent !== "none") {
+				console.log("fired a ghost bullet");
+				console.log("ghost bullet amount was: " + bulletAmountGhost);
+				bulletAmountGhost--;
+				bulletDirection = heroDirectionCurrent;
+				makeBullet();
+				bulletFired = true;
+				console.log("ghost bullet amount is now: " + bulletAmountGhost);
+			}
+			// SHOOT GHOST BULLET (WITHOUT AMMO)
+			else if (keyMonkeyHit["space_bar"] && bulletAmountGhost == 0 && bulletType == "ghost") {
+				console.log("out of ghost ammo");
+			}
+			// SHOOT DRILL BULLET (WITH AMMO)
+			if (keyMonkeyHit["space_bar"] && bulletAmountDrill > 0 && bulletType == "drill" && heroDirectionCurrent !== "none") {
+				console.log("fired a drill bullet");
+				console.log("drill bullet amount was: " + bulletAmountDrill);
+				bulletAmountDrill--;
+				bulletDirection = heroDirectionCurrent;
+				makeBullet();
+				bulletFired = true;
+				console.log("drill bullet amount is now: " + bulletAmountDrill);
+			}
+			// SHOOT DRILL BULLET (WITHOUT AMMO)
+			else if (keyMonkeyHit["space_bar"] && bulletAmountDrill == 0 && bulletType == "drill") {
+				console.log("out of drill ammo");
+			}
+			// SHOOT BOUNCE BULLET (WITH AMMO)
+			if (keyMonkeyHit["space_bar"] && bulletAmountBounce > 0 && bulletType == "bounce" && heroDirectionCurrent !== "none") {
+				console.log("fired a bounce bullet");
+				console.log("bounce bullet amount was: " + bulletAmountBounce);
+				bulletAmountBounce--;
+				bulletDirection = heroDirectionCurrent;
+				makeBullet();
+				bulletFired = true;
+				console.log("bounce bullet amount is now: " + bulletAmountBounce);
+			}
+			// SHOOT BOUNCE BULLET (WITHOUT AMMO)
+			else if (keyMonkeyHit["space_bar"] && bulletAmountBounce == 0 && bulletType == "bounce") {
+				console.log("out of bounce ammo");
+			}
+			// SHOOT STICKY BULLET (WITH AMMO)
+			if (keyMonkeyHit["space_bar"] && bulletAmountSticky > 0 && bulletType == "sticky" && heroDirectionCurrent !== "none") {
+				console.log("fired a sticky bullet");
+				console.log("sticky bullet amount was: " + bulletAmountSticky);
+				bulletAmountSticky--;
+				bulletDirection = heroDirectionCurrent;
+				makeBullet();
+				bulletFired = true;
+				console.log("sticky bullet amount is now: " + bulletAmountSticky);
+			}
+			// SHOOT STICKY BULLET (WITHOUT AMMO)
+			else if (keyMonkeyHit["space_bar"] && bulletAmountSticky == 0 && bulletType == "sticky") {
+				console.log("out of sticky ammo");
+			}
+			// SWITCH TO NORMAL BULLET
+			if (keyMonkeyHit["1"]) {
+				bulletType = "normal";
+				console.log("current bullet: normal");
+			}
+			// SWITCH TO STRONG BULLET
+			if (keyMonkeyHit["2"]) {
+				bulletType = "strong";
+				console.log("current bullet: strong");
+			}
+			// SWITCH TO GHOST BULLET
+			if (keyMonkeyHit["3"]) {
+				bulletType = "ghost";
+				console.log("current bullet: ghost");
+			}
+			// SWITCH TO DRILL BULLET
+			if (keyMonkeyHit["4"]) {
+				bulletType = "drill";
+				console.log("current bullet: drill");
+			}
+			// SWITCH TO BOUNCE BULLET
+			if (keyMonkeyHit["5"]) {
+				bulletType = "bounce";
+				console.log("current bullet: bounce");
+			}
+			// SWITCH TO STICKY BULLET
+			if (keyMonkeyHit["6"]) {
+				bulletType = "sticky";
+				console.log("current bullet: sticky");
+			}
+			// DEBUG (TOGGLE ON)
+			if (keyMonkeyHit["p"]) {
+				collisionGnome.setDebug(true);
+			}
+			// SHOW BACKGROUND GREY (TOGGLE ON)
+			if (keyMonkeyHit["m"] && backgroundGreyShow == false) {
+				backgroundGreyShow = true;
+				backgroundGrey.alpha = 1;
+			}
+			// SHOW BACKGROUND GREY (TOGGLE OFF)
+			else if (keyMonkeyHit["m"] && backgroundGreyShow == true) {
+				backgroundGreyShow = false;
+				backgroundGrey.alpha = 0;
+			}
+			// FILL HEALTH
+			if (keyMonkeyHit["j"]) {
+				health = 100;
+			}
+			// FILL HEALTH
+			if (keyMonkeyHit["k"]) {
+				stamina = 100;
+			}
+			// FILL HEALTH
+			if (keyMonkeyHit["l"]) {
+				light = 100;
+			}
+			keyMonkey.clear();
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE HERO GLOW
+		function makeHeroGlow(heroGlowSource) {
+			heroGlow = new createjs.Bitmap(heroGlowSource);
+
+			heroGlow.x = heroPositionX;
+			heroGlow.y = heroPositionY;
+			heroGlow.regX = heroGlowRegX;
+			heroGlow.regY = heroGlowRegY;
+			heroGlow.alpha = heroGlowAlphaStart;
+			
+			myStage.addChild(heroGlow);
+			collisionGnome.addCollider(heroGlow, heroGlowCollisionOffset);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MOVE HERO GLOW
+		function moveHeroGlow() {
+			heroGlow.x = hero.x;
+			heroGlow.y = hero.y;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE SLIMES
+		function makeSlimes(slimeAmount) {
+
+			// SLIME (ALL)
+			for (var i = 0; i < slimeAmount; i++) {
+				slimeArray[i] = new createjs.Bitmap(slimeSourceSet);
+				myStage.addChild(slimeArray[i]);
+				collisionGnome.addCollider(slimeArray[i], slimeCollisionOffset);
+				slimeArray[i].x = slimePositionX[i];
+				slimeArray[i].y = slimePositionY[i];
+				slimeArray[i].regX = 6;
+				slimeArray[i].regY = 6;
+				slimeArray[i].scaleX = 1;
+				slimeArray[i].scaleY = 1;
+				slimeArray[i].alpha = 1;
+
+				slimeArray[i].speed = slimeSpeed;
+				//slimeArray[i].speedY = slimeSpeed;
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		// MOVE SLIMES
+		function moveSlimes() {
+			for (i = 0; i < slimeArray.length; i++) {
+				// MOVING LEFT
+				if (i == 1 ||
+					i == 5
+					) {
+					slimeArray[i].x -= slimeArray[i].speed;
+					slimeArray[i].direction = "left";
+				}
+				// MOVING RIGHT
+				if (i == 0 ||
+					i == 3 ||
+					i == 4 ||
+					i == 6 ||
+					i == 7
+					) {
+					slimeArray[i].x += slimeArray[i].speed;
+					slimeArray[i].direction = "right";
+				}
+				// MOVING UP
+				if (i == 10
+					) {
+					slimeArray[i].y -= slimeArray[i].speed;
+					slimeArray[i].direction = "up";
+				}
+				// MOVING DOWN
+				if (i == 2 ||
+					i == 8 ||
+					i == 9
+					) {
+					slimeArray[i].y += slimeArray[i].speed;
+					slimeArray[i].direction = "down";
+				}
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE ENEMY GLOWS
+		function makeGlows(ghostAmount) {
+			
+			// GLOWS (ALL)
+			for (var i = 0; i < ghostAmount; i++) {
+
+				glowArray[i] = new createjs.Bitmap(glowSourceSet);
+
+				glowArray[i].regX = 100;
+				glowArray[i].regY = 100;
+				glowArray[i].scaleX = 1;
+				glowArray[i].scaleY = 1;
+				glowArray[i].x = -glowArray[i].regX;
+				glowArray[i].y = -glowArray[i].regY;
+				glowArray[i].alpha = Math.random();
+				//glowArray[i].alpha = glowAlpha;
+				//glowArray[i].alpha = 1;
+				//glowArray[i].class = "glow";
+				// REMOVE GLOWS FOR SPECIFIC GHOSTS
+				// 16 - stairs
+				// 13 - lobby
+				// 3 - hallway, left
+				// 7 - bath
+				// 14 - bath room
+				// 9 - solo room
+				// 6 - main open area, top left corner, right of bath room
+				// 2 - private room
+				// 17 - main open area, bottom right hall corner, bottom right of private room
+				// 5 - closet
+				if (i !== 16 &&
+					i !== 13 &&
+					i !== 3 &&
+					i !== 7 &&
+					i !== 14 &&
+					i !== 9 &&
+					i !== 6 &&
+					i !== 2 &&
+					i !== 17 &&
+					i !== 5
+					){
+					myStage.addChild(glowArray[i]);
+					collisionGnome.addCollider(glowArray[i], glowCollisionOffset);
+				}
+
+			}
+
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MOVE GLOWS
+		function moveGlows() {
+			for (i = 0; i < glowArray.length; i++) {
+				glowArray[i].x = ghostArray[i].x;
+				glowArray[i].y = ghostArray[i].y;
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE GHOSTS
+		function makeGhosts(ghostAmount) {
+
+			// GHOSTS (ALL)
+			for (var i = 0; i < ghostAmount; i++) {
+				ghostArray[i] = new createjs.Bitmap(ghostSourceSet);
+				myStage.addChild(ghostArray[i]);
+				collisionGnome.addCollider(ghostArray[i], ghostCollisionOffset);
+				ghostArray[i].x = ghostX_default;
+				ghostArray[i].y = ghostY_default;
+				ghostArray[i].regX = ghostRegX;
+				ghostArray[i].regY = ghostRegY;
+				ghostArray[i].scaleX = ghostScaleX;
+				ghostArray[i].scaleY = ghostScaleY;
+				ghostArray[i].speed = ghostSpeedDefault;
+				ghostArray[i].health = 5;
+				ghostArray[i].alpha = ghostAlpha;
+			}
+
+			// OVERWRITE EACH GHOST WITH NEW POSITIONS FROM THE FIRST IN THE ARRAY TO THE NEXT
+
+			// GHOST [0] - RANDOM PATH (FAST TURN) - main open area, entrance, left, between bath room and solo room
+			var ghostArrayCount = 0;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 625;
+			ghostArray[ghostArrayCount].y = 435;
+
+			// GHOST [1] - RANDOM PATH (FAST TURN) - closet room
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 1375;
+			ghostArray[ghostArrayCount].y = 595;
+
+			// GHOST [2] - RANDOM PATH (FAST TURN) - private room
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 1300;
+			ghostArray[ghostArrayCount].y = 320;
+
+			// GHOST [3] - RANDOM PATH (FAST TURN) - hallway, left
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 410;
+			ghostArray[ghostArrayCount].y = 730;
+
+			// GHOST [4] - RANDOM PATH (FAST TURN) - outside main building, right
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 1780;
+			ghostArray[ghostArrayCount].y = 450;
+
+			// GHOST [5] - RANDOM PATH (FAST TURN) - closet
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 1550;
+			ghostArray[ghostArrayCount].y = 595;
+			
+			// GHOST [6] - RANDOM PATH (FAST TURN) - main open area, top left corner, right of bath room
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 940;
+			ghostArray[ghostArrayCount].y = 250;
+			
+			// GHOST [7] - RANDOM PATH (FAST TURN) - bath
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 570;
+			ghostArray[ghostArrayCount].y = 175;
+
+			// GHOST [8] - RANDOM PATH (FAST TURN) - stairs room
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 315;
+			ghostArray[ghostArrayCount].y = 285;
+
+			// GHOST [9] - RANDOM PATH (SLOW TURN) - solo room
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 700;
+			ghostArray[ghostArrayCount].y = 595;
+
+			// GHOST [10] - RANDOM PATH (SLOW TURN) - hallway entrance
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 950;
+			ghostArray[ghostArrayCount].y = 670;
+
+			// GHOST [11] - RANDOM PATH (SLOW TURN) - outside main building, top
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 1110;
+			ghostArray[ghostArrayCount].y = 60;
+
+			// GHOST [12] - RANDOM PATH (SLOW TURN) - outside main building, bottom
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 780;
+			ghostArray[ghostArrayCount].y = 860;
+
+			// GHOST [13] - RANDOM PATH (SLOW TURN) - lobby
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 410;
+			ghostArray[ghostArrayCount].y = 550;
+
+			// GHOST [14] - RANDOM PATH (SLOW TURN) - bath room
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 750;
+			ghostArray[ghostArrayCount].y = 210;
+
+			// GHOST [15] - RANDOM PATH (SLOW TURN) - hallway, right
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 1460;
+			ghostArray[ghostArrayCount].y = 730;
+			
+			// GHOST [16] - RANDOM PATH (SLOW TURN) - stairs
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 450;
+			ghostArray[ghostArrayCount].y = 175;
+			
+			// GHOST [17] - RANDOM PATH (SLOW TURN) - main open area, bottom right hall corner, bottom right of private room
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 1575;
+			ghostArray[ghostArrayCount].y = 445;
+
+			// GHOST [18] - SET BOX PATH - outside private room, bottom left
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 960;
+			ghostArray[ghostArrayCount].y = 460;
+
+			// GHOST [19] - SET BOX PATH - outside private room, top right
+			ghostArrayCount += 1;
+			// apply new x and y positions
+			ghostArray[ghostArrayCount].x = 1570;
+			ghostArray[ghostArrayCount].y = 185;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MOVE GHOSTS
+		function moveGhosts() {
+
+			// MOVE GHOSTS [0] to [8] - IN RANDOM DIRECTIONS (FAST TURN)
+			var ghostArrayStart = 0;
+			var ghostArrayEnd = 8;
+			for (i = ghostArrayStart; i <= ghostArrayEnd; i++) {
+				if (ghostDirectionChangeTimer == 0) {
+					// roll a random integer: 0, 1, 2, or 3 and store it in the new variable 'whichDirection'
+					ghostArray[i].direction = Math.floor(Math.random() * 4);
+				}
+				ghostDirectionChangeTimer++;
+				// This switch statement checks our 'whichDirection' value and assigns a different speed for each possible value... 0, 1, or 2
+				switch (ghostArray[i].direction) {
+					case 0:
+						ghostArray[i].x += ghostArray[i].speed;
+						break;
+					case 1:
+						ghostArray[i].x -= ghostArray[i].speed;
+						break;
+					case 2:
+						ghostArray[i].y += ghostArray[i].speed;
+						break;
+					case 3:
+						ghostArray[i].y -= ghostArray[i].speed;
+						break;
+				}
+				if (ghostDirectionChangeTimer == ghostDirectionChangeTime) {
+					ghostDirectionChangeTimer = 0;
+					ghostDirectionChangeTime = Math.floor(Math.random() * 2) + 1;
+				}
+				// if ghostArray[0] goes off left side
+				if ((ghostArray[i].x + glowArray[i].regX) < 0) {
+					ghostArray[i].x = stageWidth + glowArray[i].regX;
+				}
+				// if ghostArray[0] goes off right side
+				if ((ghostArray[i].x - glowArray[i].regX) > stageWidth) {
+					ghostArray[i].x = 0 - glowArray[i].regX;
+				}
+				// if ghostArray[0] goes off top side
+				if ((ghostArray[i].y + glowArray[i].regY) < 0) {
+					ghostArray[i].y = stageHeight + glowArray[i].regY;
+				}
+				// if ghostArray[0] goes off bottom side
+				if ((ghostArray[i].y - glowArray[i].regY) > stageHeight) {
+					ghostArray[i].y = 0 - glowArray[i].regY;
+				}
+			}
+
+			// MOVE GHOSTS [9] to [17] - IN RANDOM DIRECTIONS (SLOW TURN)
+			var ghostArrayStart = 9;
+			var ghostArrayEnd = 17;
+			for (i = ghostArrayStart; i <= ghostArrayEnd; i++) {
+				if (ghostDirectionChangeTimer2 == 0) {
+					// roll a random integer: 0, 1, 2, or 3 and store it in the new variable 'whichDirection'
+					ghostArray[i].direction2 = Math.floor(Math.random() * 4);
+				}
+				ghostDirectionChangeTimer2++;
+				// This switch statement checks our 'whichDirection' value and assigns a different speed for each possible value... 0, 1, or 2
+				switch (ghostArray[i].direction2) {
+					case 0:
+						ghostArray[i].x += ghostArray[i].speed;
+						break;
+					case 1:
+						ghostArray[i].x -= ghostArray[i].speed;
+						break;
+					case 2:
+						ghostArray[i].y += ghostArray[i].speed;
+						break;
+					case 3:
+						ghostArray[i].y -= ghostArray[i].speed;
+						break;
+				}
+				if (ghostDirectionChangeTimer2 == ghostDirectionChangeTime2) {
+					ghostDirectionChangeTimer2 = 0;
+					ghostDirectionChangeTime2 = Math.floor(Math.random() * ghostDirectionChangeTime2_max) + ghostDirectionChangeTime2_min;
+				}
+				// if ghostArray[0] goes off left side
+				if ((ghostArray[i].x + glowArray[i].regX) < 0) {
+					ghostArray[i].x = stageWidth + glowArray[i].regX;
+				}
+				// if ghostArray[0] goes off right side
+				if ((ghostArray[i].x - glowArray[i].regX) > stageWidth) {
+					ghostArray[i].x = 0 - glowArray[i].regX;
+				}
+				// if ghostArray[0] goes off top side
+				if ((ghostArray[i].y + glowArray[i].regY) < 0) {
+					ghostArray[i].y = stageHeight + glowArray[i].regY;
+				}
+				// if ghostArray[0] goes off bottom side
+				if ((ghostArray[i].y - glowArray[i].regY) > stageHeight) {
+					ghostArray[i].y = 0 - glowArray[i].regY;
+				}
+			}
+
+			// MOVE GHOST [18] to [19] - ALONG A SET BOX PATH
+			var ghostArrayStart = 18;
+			var ghostArrayEnd = 19;
+			for (i = ghostArrayStart; i <= ghostArrayEnd; i++) {
+				// move ghostArray[i] right
+				if (ghostArray[i].x <= 1570 && ghostArray[i].y >= 460) {
+					//console.log("move ghostArray[i] right");
+					ghostArray[i].x += ghostArray[i].speed;
+					ghostArray[i].y += 0;
+				}
+				// move ghostArray[i] up
+				else if (ghostArray[i].x > 1570 && ghostArray[i].y > 185) {
+					//console.log("move ghostArray[i] up");
+					ghostArray[i].x += 0;
+					ghostArray[i].y -= ghostArray[i].speed;
+				}
+				// move ghostArray[i] left
+				else if (ghostArray[i].y <= 185 && ghostArray[i].x > 960) {
+					//console.log("move ghostArray[i] left");
+					ghostArray[i].x -= ghostArray[1].speed;
+					ghostArray[i].y += 0;
+				}
+				// move ghostArray[i] down
+				else if (ghostArray[i].y < 460 && ghostArray[i].x < 1570) {
+					//console.log("move ghostArray[i] down");
+					ghostArray[i].x += 0;
+					ghostArray[i].y += ghostArray[i].speed;
+				}
+			}
+
+			// MOVE GHOST (2) - BOUNCING
+
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE BULLET
+		function makeBullet() {
+			var i = bulletArray.length;
+			if (bulletType == "normal") {
+				bulletArray[i] = new createjs.Bitmap(bulletColorWhite);
+				bulletArray[i].class = "normal";
+			}
+			else if (bulletType == "strong") {
+				bulletArray[i] = new createjs.Bitmap(bulletColorRed);
+				bulletArray[i].class = "strong";
+			}
+			else if (bulletType == "ghost") {
+				bulletArray[i] = new createjs.Bitmap(bulletColorGreen);
+				bulletArray[i].class = "ghost";
+			}
+			else if (bulletType == "drill") {
+				bulletArray[i] = new createjs.Bitmap(bulletColorYellow);
+				bulletArray[i].class = "drill";
+			}
+			else if (bulletType == "bounce") {
+				bulletArray[i] = new createjs.Bitmap(bulletColorBlue);
+				bulletArray[i].class = "bounce";
+			}
+			else if (bulletType == "sticky") {
+				bulletArray[i] = new createjs.Bitmap(bulletColorPink);
+				bulletArray[i].class = "sticky";
+			}
+			setBulletOffset();
+			bulletArray[i].x = hero.x + bulletOffsetX;
+			bulletArray[i].y = hero.y + bulletOffsetY;
+			myStage.addChild(bulletArray[i]);
+			bulletArray[i].regX = 2;
+			bulletArray[i].regY = 2;
+			bulletArray[i].speed = bulletSpeedNormal;
+			bulletArray[i].alpha = bulletAlpha;
+			collisionGnome.addCollider(bulletArray[i], bulletCollisionOffset);
+			//console.log("finished making bullet");
+		}
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// SET BULLET OFFSET
+		function setBulletOffset() {
+			if (heroDirectionCurrent == "up") {
+				bulletOffsetX = 0;
+				bulletOffsetY = 0;
+			}
+			if (heroDirectionCurrent == "down") {
+				bulletOffsetX = 0;
+				bulletOffsetY = 0;
+			}
+			if (heroDirectionCurrent == "left") {
+				bulletOffsetX = -24;
+				bulletOffsetY = -7;
+			}
+			if (heroDirectionCurrent == "right") {
+				bulletOffsetX = 24;
+				bulletOffsetY = -7;
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MOVE BULLET
+		function moveBullet() {
+			for (var i = 0; i < bulletArray.length; i++) {
+				if (bulletArray[i].name == null) {
+					bulletArray[i].name = bulletDirection;
+				}
+				else if (bulletArray[i].name == "up") {
+					if (bulletArray[i].class == "normal") {
+						bulletArray[i].y -= bulletSpeedNormal;
+					}
+					else if (bulletArray[i].class == "strong") {
+						bulletArray[i].y -= bulletSpeedStrong;
+					}
+					else if (bulletArray[i].class == "ghost") {
+						bulletArray[i].y -= bulletSpeedGhost;
+					}
+					else if (bulletArray[i].class == "drill") {
+						bulletArray[i].y -= bulletSpeedDrill;
+					}
+					else if (bulletArray[i].class == "bounce") {
+						bulletArray[i].y -= bulletSpeedBounce;
+					}
+					else if (bulletArray[i].class == "sticky") {
+						bulletArray[i].y -= bulletSpeedSticky;
+					}
+				}
+				else if (bulletArray[i].name == "down") {
+					if (bulletArray[i].class == "normal") {
+						bulletArray[i].y += bulletSpeedNormal;
+					}
+					else if (bulletArray[i].class == "strong") {
+						bulletArray[i].y += bulletSpeedStrong;
+					}
+					else if (bulletArray[i].class == "ghost") {
+						bulletArray[i].y += bulletSpeedGhost;
+					}
+					else if (bulletArray[i].class == "drill") {
+						bulletArray[i].y += bulletSpeedDrill;
+					}
+					else if (bulletArray[i].class == "bounce") {
+						bulletArray[i].y += bulletSpeedBounce;
+					}
+					else if (bulletArray[i].class == "sticky") {
+						bulletArray[i].y += bulletSpeedSticky;
+					}
+				}
+				else if (bulletArray[i].name == "left") {
+					if (bulletArray[i].class == "normal") {
+						bulletArray[i].x -= bulletSpeedNormal;
+					}
+					else if (bulletArray[i].class == "strong") {
+						bulletArray[i].x -= bulletSpeedStrong;
+					}
+					else if (bulletArray[i].class == "ghost") {
+						bulletArray[i].x -= bulletSpeedGhost;
+					}
+					else if (bulletArray[i].class == "drill") {
+						bulletArray[i].x -= bulletSpeedDrill;
+					}
+					else if (bulletArray[i].class == "bounce") {
+						bulletArray[i].x -= bulletSpeedBounce;
+					}
+					else if (bulletArray[i].class == "sticky") {
+						bulletArray[i].x -= bulletSpeedSticky;
+					}
+				}
+				else if (bulletArray[i].name == "right") {
+					if (bulletArray[i].class == "normal") {
+						bulletArray[i].x += bulletSpeedNormal;
+					}
+					else if (bulletArray[i].class == "strong") {
+						bulletArray[i].x += bulletSpeedStrong;
+					}
+					else if (bulletArray[i].class == "ghost") {
+						bulletArray[i].x += bulletSpeedGhost;
+					}
+					else if (bulletArray[i].class == "drill") {
+						bulletArray[i].x += bulletSpeedDrill;
+					}
+					else if (bulletArray[i].class == "bounce") {
+						bulletArray[i].x += bulletSpeedBounce;
+					}
+					else if (bulletArray[i].class == "sticky") {
+						bulletArray[i].x += bulletSpeedSticky;
+					}
+				}
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		// MAKE TARGETS
+		{
+			// function makeTargets(targetAmount) {
+			// 	for (var i = 0; i < targetAmount; i++) {
+			// 		// roll a random integer: 0, 1, or 2 and store it in the new variable 'whichTarget'
+			// 		var whichTarget = Math.floor(Math.random() * 3);
+			// 		// This switch statement checks our 'whichTarget' value and assigns a different Bitmap for each possible value... 0, 1, or 2
+			// 		switch (whichTarget) {
+			// 			case 0:
+			// 				targetsArray[i] = new createjs.Bitmap("images/1pxCyan.png");
+			// 				break;
+			// 			case 1:
+			// 				targetsArray[i] = new createjs.Bitmap("images/1pxYellow.png");
+			// 				break;
+			// 			case 2:
+			// 				targetsArray[i] = new createjs.Bitmap("images/1pxPink.png");
+			// 				break;
+			// 		}
+			// 		targetsArray[i].regX = 1;
+			// 		targetsArray[i].regY = 1;
+
+			// 		targetsArray[i].x = Math.floor(Math.random() * (stageWidth - 2 * stageMargin)) + stageMargin;
+			// 		targetsArray[i].y = Math.floor(Math.random() * (stageHeight - 2 * stageMargin)) + stageMargin;
+			// 		targetsArray[i].scaleX = targetsArray[i].scaleY = rollRange(targetScaleMin, targetScaleMax, false);
+
+			// 		targetsArray[i].speedX = rollRange(targetSpeedMin, targetSpeedMax, true);
+			// 		targetsArray[i].speedY = rollRange(targetSpeedMin, targetSpeedMax, true);
+
+			// 		var coinTossX = Math.random(); // flip a coin to see if the target starts off moving left or right
+			// 		if (coinTossX > .5) { targetsArray[i].speedX = - targetsArray[i].speedX; }
+			// 		var coinTossY = Math.random(); // flip a coin to see if the target starts off moving up or down
+			// 		if (coinTossY > .5) { targetsArray[i].speedY = - targetsArray[i].speedY; }
+
+			// 		collisionGnome.addCollider(targetsArray[i], 1);
+			// 		myStage.addChild(targetsArray[i]);
+			// 	}
+			// }
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MOVE TARGETS
+		// function moveTargets() {
+		// 	for (var i = 0; i < targetsArray.length; i++) {
+		// 		targetsArray[i].x += targetsArray[i].speedX;
+		// 		targetsArray[i].y += targetsArray[i].speedY;
+		// 	}
+		// }
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// CHECK HERO BOUNDARIES
+		function checkHeroBoundary() {
+			// IF HERO GOES OFF LEFT SIDE OF SCREEN
+			if (hero.x < 0 - heroGlow.regX) {
+				hero.x = stageWidth + heroGlow.regX;
+				console.log("hero went off of left side of screen");
+			}
+			// IF HERO GOES OFF RIGHT SIDE OF SCREEN
+			if (hero.x > stageWidth + heroGlow.regX) {
+				hero.x = -heroGlow.regX;
+				console.log("hero went off of right side of screen");
+			}
+			// IF HERO GOES OFF TOP SIDE OF SCREEN
+			if (hero.y < 0 - heroGlow.regY) {
+				hero.y = stageHeight + heroGlow.regY;
+				console.log("hero went off of top side of screen");
+			}
+			// IF HERO GOES OFF BOTTOM SIDE OF SCREEN
+			if (hero.y > stageHeight + heroGlow.regY) {
+				hero.y = -heroGlow.regY;
+				console.log("hero went off of bottom side of screen");
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// CHECK TARGET BOUNDARIES
+		// function checkTargetsBoundary() {
+		// 	for (var i = 0; i < targetsArray.length; i++) {
+		// 		if (targetsArray[i].x > stageWidth - targetsArray[i].regX || targetsArray[i].x < targetsArray[i].regX) {
+		// 			//console.log("off STAGE");
+		// 			targetsArray[i].speedX = -targetsArray[i].speedX;
+		// 		}
+		// 		if (targetsArray[i].y > stageHeight - targetsArray[i].regY || targetsArray[i].y < targetsArray[i].regY) {
+		// 			//console.log("off STAGE");
+		// 			targetsArray[i].speedY = -targetsArray[i].speedY;
+		// 		}
+		// 	}
+		// }
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// CHECK COLLISIONS
+		function checkCollisions() {
+			// WALL ARRAY COLLISION CHECK
+			// for loop that checks every wall block in the wall array
+			for (var i = wallArray.length - 1; i >= 0; i--) {
+
+				// WALL-BULLET COLLISION CHECK
+				// for loop that checks every bullet in the bullet array
+				for (var a = bulletArray.length - 1; a >= 0; a--) {
+					// if a bullet in the bullet array collides with a block in the wall array
+					if (bulletArray[a].collidesWith(wallArray[i])) {
+						//console.log("bullet hit wall");
+						// if the bullet in the bullet array is normal
+						if (bulletArray[a].class == "normal") {
+							// if the block in the wall array is a wall or door block
+							if (wallArray[i].name == "wall" || wallArray[i].name == "door") {
+								myStage.removeChild(bulletArray[a]);
+								bulletArray.splice(a, 1);
+								console.log("normal bullet hit wall or door");
+							}
+							// if the block in the wall array is a window block
+							if (wallArray[i].name == "window") {
+								myStage.removeChild(bulletArray[a]);
+								bulletArray.splice(a, 1);
+								myStage.removeChild(wallArray[i]);
+								wallArray.splice(i, 1);
+								console.log("normal bullet hit window");
+							}
+						}
+						// if the bullet in the bullet array is strong
+						else if (bulletArray[a].class == "strong") {
+							myStage.removeChild(bulletArray[a]);
+							bulletArray.splice(a, 1);
+							myStage.removeChild(wallArray[i]);
+							wallArray.splice(i, 1);
+							console.log("strong bullet hit wall, door, or window");
+						}
+						// if the bullet in the bullet array is drill
+						else if (bulletArray[a].class == "drill") {
+							myStage.removeChild(wallArray[i]);
+							wallArray.splice(i, 1);
+							console.log("drill bullet hit any wall, door, or window");
+						}
+						// if the bullet in the bullet array is bounce
+						else if (bulletArray[a].class == "bounce") {
+
+							//console.log("bullet bounced");
+
+							// if bullet is moving up
+							if (bulletArray[a].name == "up") {
+								bulletArray[a].name = "down";
+								bulletArray[a].y += bulletSpeedBounce;
+								//console.log("bullet bounced down");
+							}
+
+							// if bullet is moving down
+							else if (bulletArray[a].name == "down") {
+								bulletArray[a].name = "up";
+								bulletArray[a].y -= bulletSpeedBounce;
+								//console.log("bullet bounced up");
+							}
+
+							// if bullet is moving right
+							else if (bulletArray[a].name == "right") {
+								bulletArray[a].name = "left";
+								bulletArray[a].x -= bulletSpeedBounce;
+								//console.log("bounce bullet bounced left");
+							}
+
+							// if bullet is moving left
+							else if (bulletArray[a].name == "left") {
+								bulletArray[a].name = "right";
+								bulletArray[a].x += bulletSpeedBounce;
+								//console.log("bounce bullet bounced right");
+							}
+						}
+						// if the bullet in the bullet array is sticky
+						else if (bulletArray[a].class == "sticky") {
+							bulletArray[a].name = "";
+						}
+					}
+				}
+
+				// WALL-LASER COLLISION CHECK
+				if (laser.collidesWith(wallArray[i])) {
+					//console.log("laser hit wall");
+					// LASER BOUNDARY POINTS
+					var laserSideTop = laser.y - laser.regY;
+					var laserSideBottom = laser.y + laser.regY;
+					var laserSideLeft = laser.x - laser.regX;
+					var laserSideRight = laser.x + laser.regX;
+					// WALL BOUNDARY POINTS
+					var wallSideTop = wallArray[i].y - wallArray[i].regY;
+					var wallSideBottom = wallArray[i].y + wallArray[i].regY;
+					var wallSideLeft = wallArray[i].x - wallArray[i].regX;
+					var wallSideRight = wallArray[i].x + wallArray[i].regX;
+					// LASER HITS LEFT SIDE
+					if (laserSideRight < wallSideLeft && laserSideBottom > wallSideTop && laserSideTop < wallSideBottom) {
+						laser.x -= laser.speedX + 6;
+						laser.speedX = -laser.speedX;
+						//console.log("laser hit left side of wall");
+					}
+					// LASER HITS RIGHT SIDE
+					else if (laserSideLeft > wallSideRight && laserSideBottom > wallSideTop && laserSideTop < wallSideBottom) {
+						laser.x += laser.speedX + 6;
+						laser.speedX = -laser.speedX;
+						//console.log("laser hit right side of wall");
+					}
+					// LASER HITS TOP SIDE
+					else if (laserSideBottom < wallSideTop && laserSideRight > wallSideLeft && laserSideLeft < wallSideRight) {
+						laser.y -= laser.speedY + 6;
+						laser.speedY = -laser.speedY;
+						//console.log("laser hit top side of wall");
+					}
+					// LASER HITS BOTTOM SIDE
+					else if (laserSideTop > wallSideBottom && laserSideRight > wallSideLeft && laserSideLeft < wallSideRight) {
+						laser.y += laser.speedY + 6;
+						laser.speedY = -laser.speedY;
+						//console.log("laser hit bottom side of wall");
+					}
+				}
+
+				// WALL-GHOST COLLISION CHECK
+				for (var b = ghostArray.length - 1; b >= 0; b--) {
+					if (ghostArray[b].collidesWith(wallArray[i])) {
+						//console.log("ghost hit wall");
+						
+						// GHOST BOUNDARY POINTS
+						var ghostSideTop = ghostArray[b].y - ghostArray[b].regY;
+						var ghostSideBottom = ghostArray[b].y + ghostArray[b].regY;
+						var ghostSideLeft = ghostArray[b].x - ghostArray[b].regX;
+						var ghostSideRight = ghostArray[b].x + ghostArray[b].regX;
+						// WALL BOUNDARY POINTS
+						var wallSideTop = wallArray[i].y - wallArray[i].regY;
+						var wallSideBottom = wallArray[i].y + wallArray[i].regY;
+						var wallSideLeft = wallArray[i].x - wallArray[i].regX;
+						var wallSideRight = wallArray[i].x + wallArray[i].regX;
+						// GHOST HITS LEFT SIDE
+						if (ghostSideRight < wallSideLeft && ghostSideBottom > wallSideTop && ghostSideTop < wallSideBottom) {
+							ghostArray[b].x = wallSideLeft - (ghostArray[b].regX + ghostArray[b].speed + 1);
+							//console.log("ghost hit left side of wall");
+						}
+						// GHOST HITS RIGHT SIDE
+						else if (ghostSideLeft > wallSideRight && ghostSideBottom > wallSideTop && ghostSideTop < wallSideBottom) {
+							ghostArray[b].x = wallSideRight + (ghostArray[b].regX + ghostArray[b].speed + 1);
+							//console.log("ghost hit right side of wall");
+						}
+						// GHOST HITS TOP SIDE
+						else if (ghostSideBottom < wallSideTop && ghostSideRight > wallSideLeft && ghostSideLeft < wallSideRight) {
+							ghostArray[b].y = wallSideTop - (ghostArray[b].regY + ghostArray[b].speed + 1);
+							//console.log("ghost hit top side of wall");
+						}
+						// GHOST HITS BOTTOM SIDE
+						else if (ghostSideTop > wallSideBottom && ghostSideRight > wallSideLeft && ghostSideLeft < wallSideRight) {
+							ghostArray[b].y = wallSideBottom + (ghostArray[b].regY + ghostArray[b].speed + 1);
+							//console.log("ghost hit bottom side of wall");
+						}
+					}
+				}
+
+				// WALL-SLIME COLLISION CHECK
+				for (var c = slimeArray.length - 1; c >= 0; c--) {
+					if (slimeArray[c].collidesWith(wallArray[i])) {
+						if (slimeArray[c].direction == "left") {
+							slimeArray[c].x += slimeArray[c].speed;
+							slimeArray[c].speed = -slimeArray[c].speed;
+							slimeArray[c].direction = "right";
+						}
+						else if (slimeArray[c].direction == "right") {
+							slimeArray[c].x -= slimeArray[c].speed;
+							slimeArray[c].speed = -slimeArray[c].speed;
+							slimeArray[c].direction = "left";
+						}
+						else if (slimeArray[c].direction == "up") {
+							slimeArray[c].y += slimeArray[c].speed;
+							slimeArray[c].speed = -slimeArray[c].speed;
+							slimeArray[c].direction = "down";
+						}
+						else if (slimeArray[c].direction == "down") {
+							slimeArray[c].y -= slimeArray[c].speed;
+							slimeArray[c].speed = -slimeArray[c].speed;
+							slimeArray[c].direction = "up";
+						}
+					}
+				}
+
+				// WALL-HERO COLLISION CHECK
+				// if the hero collides with a wall block in the wall array
+				if (hero.collidesWith(wallArray[i]) && wallArray[i].name == "wall") {
+					//console.log("hero hit wall");
+
+					// HERO BOUNDARY POINTS
+					var heroSideTop = hero.y - hero.regY;
+					var heroSideBottom = hero.y + hero.regY;
+					var heroSideLeft = hero.x - hero.regX;
+					var heroSideRight = hero.x + hero.regX;
+					// WALL BOUNDARY POINTS
+					wallSideTop = wallArray[i].y - wallArray[i].regY;
+					wallSideBottom = wallArray[i].y + wallArray[i].regY;
+					wallSideLeft = wallArray[i].x - wallArray[i].regX;
+					wallSideRight = wallArray[i].x + wallArray[i].regX;
+					// HERO HITS LEFT SIDE
+					if (heroSideRight < wallSideLeft && heroSideBottom > wallSideTop && heroSideTop < wallSideBottom) {
+						hero.x = wallSideLeft - (hero.regX + heroSpeedSprint + 1);
+						//console.log("hero hit left side of wall");
+					}
+					// HERO HITS RIGHT SIDE
+					else if (heroSideLeft > wallSideRight && heroSideBottom > wallSideTop && heroSideTop < wallSideBottom) {
+						hero.x = wallSideRight + (hero.regX + heroSpeedSprint + 1);
+						//console.log("hero hit right side of wall");
+					}
+					// HERO HITS TOP SIDE
+					else if (heroSideBottom < wallSideTop && heroSideRight > wallSideLeft && heroSideLeft < wallSideRight) {
+						hero.y = wallSideTop - (hero.regY + heroSpeedSprint + 1);
+						//console.log("hero hit top side of wall");
+					}
+					// HERO HITS BOTTOM SIDE
+					else if (heroSideTop > wallSideBottom && heroSideRight > wallSideLeft && heroSideLeft < wallSideRight) {
+						hero.y = wallSideBottom + (hero.regY + heroSpeedSprint + 1);
+						//console.log("hero hit bottom side of wall");
+					}
+				}
+			}
+
+			// BULLET HITS BULLET
+			// problem - how do I check collision between items that are in the same array? - is it possible? - not going to worry about this slight issue in the game
+			// for loop that checks every bullet in the bullet array
+			// for (var a = bulletArray.length - 1; a >= 0; a--) {
+			// 	// if a bullet in the bullet array collides with a block in the wall array
+			// 	if (bulletArray[a].collidesWith(bulletArray[a])) {
+			// 		if (bulletArray[a].class == "strong") {
+			// 			myStage.removeChild(bulletArray[a]);
+			// 			bulletArray.splice(a, 1);
+			// 			console.log("bullet hit bullet");
+			// 		}
+			// 	}
+			// }
+
+			// // HERO HIT ENEMY GLOW
+			// for (var i = glowArray.length - 1; i >= 0; i--) {
+			// }
+
+			// HERO-LASER COLLISION CHECK
+			if (hero.collidesWith(laser)) {
+				console.log("hero hit laser");
+					health = 0;
+			}
+
+			// BULLET ARRAY COLLISION CHECK
+			// for loop that checks every bullet in the bullet array
+			for (var a = bulletArray.length - 1; a >= 0; a--) {
+
+				// BULLET-LASER COLLISION CHECK
+				// if a bullet in the bullet array collides with laser
+				if (bulletArray[a].collidesWith(laser)) {
+					// remove bullet
+					myStage.removeChild(bulletArray[a]);
+					bulletArray.splice(a, 1);
+				}
+			}
+
+			// SLIME ARRAY COLLISION CHECK
+			for (var i = slimeArray.length - 1; i >= 0; i--) {
+
+				// SLIME-HERO COLLISION CHECK
+				if (hero.collidesWith(slimeArray[i])) {
+					console.log("hero hit slime");
+					if (health > 0 && slimeDamageTimer == slimeDamageTimeMax) {
+						health--;
+						slimeDamageTimer = 0;
+					}
+					else {
+						slimeDamageTimer++;
+					}
+				}
+
+				// SLIME-BULLET COLLISION CHECK
+				// for loop that checks every bullet in the bullet array
+				for (var a = bulletArray.length - 1; a >= 0; a--) {
+					// if a bullet in the bullet array collides with a block in the wall array
+					if (bulletArray[a].collidesWith(slimeArray[i])) {
+
+						//console.log("bullet hit slime");
+
+						// if bullet is normal
+						if (bulletArray[a].class == "normal") {
+							myStage.removeChild(slimeArray[i]);
+							slimeArray.splice(i, 1);
+							myStage.removeChild(bulletArray[a]);
+							bulletArray.splice(a, 1);
+							console.log("normal bullet hit slime");
+						}
+						// if bullet is strong
+						else if (bulletArray[a].class == "strong") {
+							myStage.removeChild(slimeArray[i]);
+							slimeArray.splice(i, 1);
+							console.log("strong bullet hit slime");
+						}
+						// if bullet is drill
+						else if (bulletArray[a].class == "drill") {
+							slimeArray[i].alpha = 0.5;
+							console.log("drill bullet hit slime");
+						}
+						// if bullet is bounce
+						else if (bulletArray[a].class == "bounce") {
+							
+							//console.log("bullet bounced");
+							
+							// slow ghost speed
+							slimeArray[i].speed = 1;
+
+							// invert bullet direction
+
+							// if bullet is moving up
+							if (bulletArray[a].name == "up") {
+								bulletArray[a].name = "down";
+								bulletArray[a].y += bulletSpeedBounce;
+								//console.log("bullet bounced down");
+							}
+							
+							// if bullet is moving down
+							else if (bulletArray[a].name == "down") {
+								bulletArray[a].name = "up";
+								bulletArray[a].y -= bulletSpeedBounce;
+								//console.log("bullet bounced up");
+							}
+
+							// if bullet is moving right
+							else if (bulletArray[a].name == "right") {
+								bulletArray[a].name = "left";
+								bulletArray[a].x -= bulletSpeedBounce;
+								//console.log("bounce bullet bounced left");
+							}
+
+							// if bullet is moving left
+							else if (bulletArray[a].name == "left") {
+								bulletArray[a].name = "right";
+								bulletArray[a].x += bulletSpeedBounce;
+								//console.log("bounce bullet bounced right");
+							}
+						}
+						// if the bullet in the bullet array is sticky
+						else if (bulletArray[a].class == "sticky") {
+							if (bulletArray[a].name == "left" || bulletArray[a].name == "right" || bulletArray[a].name == "up" || bulletArray[a].name == "down") {
+								bulletArray[a].name = "";
+								bulletArray[a].x = slimeArray[i].x;
+								bulletArray[a].y = slimeArray[i].y;
+								slimeArray[i].speed = 0;
+								console.log("sticky bullet hit slime");
+							}
+						}
+					}
+				}
+			}
+
+			// GHOST ARRAY COLLISION CHECK
+			for (var i = ghostArray.length - 1; i >= 0; i--) {
+
+				// GHOST-HERO COLLISION CHECK
+				if (hero.collidesWith(ghostArray[i])) {
+					if (heroProne !== true || stamina == 0) {
+						console.log("hero hit ghost");
+						if (health > 0 && ghostDamageTimer == ghostDamageTimerMax) {
+							health--;
+							ghostDamageTimer = 0;
+						}
+						else {
+							ghostDamageTimer++;
+						}
+					}
+				}
+
+				// GHOST GLOW-HERO COLLISION CHECK
+				else if (hero.collidesWith(glowArray[i])) {
+					if (heroCrouch !== true && heroProne !== true || stamina == 0) {
+						console.log("hero hit ghost glow");
+						if (health > 0 && ghostDamageTimer == ghostDamageTimerMax) {
+							health--;
+							ghostDamageTimer = 0;
+						}
+						else {
+							ghostDamageTimer++;
+						}
+					}
+				}
+
+				// GHOST-HERO GLOW COLLISION CHECK
+				else if (heroGlow.collidesWith(ghostArray[i])) {
+					if (heroCrouch !== true && heroProne !== true && heroFlashlight == true || stamina == 0) {
+						console.log("hero glow hit ghost");
+						if (health > 0 && ghostDamageTimer == ghostDamageTimerMax) {
+							health--;
+							ghostDamageTimer = 0;
+						}
+						else {
+							ghostDamageTimer++;
+						}
+					}
+				}
+
+				// GHOST GLOW-HERO GLOW COLLISION CHECK
+				else if (heroGlow.collidesWith(glowArray[i])) {
+					if (heroSprint == true || heroFlashlight == true) {
+						if (heroCrouch !== true && heroProne !== true || stamina == 0) {
+							console.log("hero glow hit ghost glow");
+						if (health > 0 && ghostDamageTimer == ghostDamageTimerMax) {
+							health--;
+							ghostDamageTimer = 0;
+						}
+						else {
+							ghostDamageTimer++;
+						}
+						}
+					}
+				}
+				
+				// GHOST-BULLET COLLISION CHECK
+				// for loop that checks every bullet in the bullet array
+				for (var a = bulletArray.length - 1; a >= 0; a--) {
+					// if a bullet in the bullet array collides with a block in the wall array
+					if (bulletArray[a].collidesWith(ghostArray[i])) {
+
+						//console.log("bullet hit ghost");
+
+						// if bullet is normal
+						if (bulletArray[a].class == "normal") {
+							ghostArray[i].x = hero.x;
+							ghostArray[i].y = hero.y;
+							console.log("normal bullet hit ghost");
+						}
+						// if bullet is strong
+						else if (bulletArray[a].class == "strong") {
+							glowArray[i].alpha = 0;
+							console.log("strong bullet hit ghost");
+						}
+						// if bullet is ghost
+						else if (bulletArray[a].class == "ghost") {
+							myStage.removeChild(bulletArray[a]);
+							bulletArray.splice(a, 1);
+							ghostArray[i].x = -500;
+							ghostArray[i].y = -500;
+							console.log("ghost bullet hit ghost");
+						}
+						// if bullet is drill
+						else if (bulletArray[a].class == "drill") {
+							glowArray[i].alpha = 1;
+							glowArray[i].scale = 2;
+							console.log("drill bullet hit ghost");
+						}
+						// if bullet is bounce, invert bullet direction and slow ghost speed
+						else if (bulletArray[a].class == "bounce") {
+							
+							//console.log("bullet bounced");
+							
+							// slow ghost speed
+							ghostArray[i].speed = 1;
+
+							// invert bullet direction
+
+							// if bullet is moving up
+							if (bulletArray[a].name == "up") {
+								bulletArray[a].name = "down";
+								bulletArray[a].y += bulletSpeedBounce;
+								//console.log("bullet bounced down");
+							}
+							// if bullet is moving down
+							else if (bulletArray[a].name == "down") {
+								bulletArray[a].name = "up";
+								bulletArray[a].y -= bulletSpeedBounce;
+								//console.log("bullet bounced up");
+							}
+							// if bullet is moving right
+							else if (bulletArray[a].name == "right") {
+								bulletArray[a].name = "left";
+								bulletArray[a].x -= bulletSpeedBounce;
+								//console.log("bounce bullet bounced left");
+							}
+							// if bullet is moving left
+							else if (bulletArray[a].name == "left") {
+								bulletArray[a].name = "right";
+								bulletArray[a].x += bulletSpeedBounce;
+								//console.log("bounce bullet bounced right");
+							}
+						}
+						// if bullet is sticky, stop bullet movement, make bullet position equal to ghost position, and freeze ghost
+						else if (bulletArray[a].class == "sticky") {
+							if (bulletArray[a].name == "left" || bulletArray[a].name == "right" || bulletArray[a].name == "up" || bulletArray[a].name == "down") {
+								bulletArray[a].name = "";
+								bulletArray[a].x = ghostArray[i].x;
+								bulletArray[a].y = ghostArray[i].y;
+								ghostArray[i].speed = 0;
+								console.log("sticky bullet hit ghost");
+							}
+						}
+					}
+				}
+			}
+
+			// CROSS ARRAY COLLISION CHECK
+			// for loop that checks every cross in the cross array
+			for (i = 0; i < crossArray.length; i++) {
+				// HERO-CROSS COLLISION CHECK
+				if (hero.collidesWith(crossArray[i]) && heroPickup == true) {
+					if (crossArray[i].color == "red") {
+						console.log("hero collected the red cross");
+						myStage.removeChild(crossArray[i]);
+						crossArray.splice(i, 1);;
+						myStage.removeChild(crossGlowRed);
+						crossGlowRed.alpha = 0;
+						crossCollectedText++;
+						bulletAmountNormal += 20;
+						bulletAmountStrong += 50;
+						bulletAmountGhost += 20;
+						bulletAmountDrill += 10;
+						bulletAmountBounce += 10;
+						bulletAmountSticky += 20;
+						// if health is less than or equal to (100 - crossRedIncreaseMeters), increase by crossRedIncreaseMeters
+						if (health <= (100 - crossRedIncreaseMeters)) {
+							health += crossRedIncreaseMeters;
+						}
+						// else, set health to 100
+						else {
+							health = 100;
+						}
+						// if stamina is less than or equal to (100 - crossRedIncreaseMeters), increase by crossRedIncreaseMeters
+						if (stamina <= (100 - crossRedIncreaseMeters)) {
+							stamina += crossRedIncreaseMeters;
+						}
+						// else, set stamina to 100
+						else {
+							stamina = 100;
+						}
+						// if light is less than or equal to (100 - crossRedIncreaseMeters), increase by crossRedIncreaseMeters
+						if (light <= (100 - crossRedIncreaseMeters)) {
+							light += crossRedIncreaseMeters;
+						}
+						// else, set light to 100
+						else {
+							light = 100;
+						}
+					}
+					else {
+						console.log("hero collected a cross");
+						myStage.removeChild(crossArray[i]);
+						crossArray.splice(i, 1);;
+						crossCollectedText++;
+						bulletAmountNormal += 10;
+						bulletAmountStrong += 30;
+						bulletAmountGhost += 10;
+						bulletAmountDrill += 5;
+						bulletAmountBounce += 5;
+						bulletAmountSticky += 10;
+						// if health is less than or equal to (100 - crossIncreaseMeters), increase by crossIncreaseMeters
+						if (health <= (100 - crossIncreaseMeters)) {
+							health += crossIncreaseMeters;
+						}
+						// else, set health to 100
+						else {
+							health = 100;
+						}
+						// if stamina is less than or equal to (100 - crossIncreaseMeters), increase by crossIncreaseMeters
+						if (stamina <= (100 - crossIncreaseMeters)) {
+							stamina += crossIncreaseMeters;
+						}
+						// else, set stamina to 100
+						else {
+							stamina = 100;
+						}
+						// if light is less than or equal to (100 - crossIncreaseMeters), increase by crossIncreaseMeters
+						if (light <= (100 - crossIncreaseMeters)) {
+							light += crossIncreaseMeters;
+						}
+						// else, set light to 100
+						else {
+							light = 100;
+						}
+					}
+				}
+			}
+
+			// HERO-EXIT COLLISION CHECK
+			if (hero.collidesWith(exit) && gameWin == false && gameOver == false) {
+				gameWin = true;
+				console.log("you escaped!");
+			}
+
+			// IF NOT GAME OVER
+			// if (!gameOver) {
+			// 	for (var i = targetsArray.length - 1; i >= 0; i--) {
+			// 		if (hero.collidesWith(targetsArray[i])) {
+			// 			score++;
+			// 			myStage.removeChild(targetsArray[i]);
+			// 			targetsArray.splice(i, 1);
+			// 		}
+			// 	}
+			// }
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// UPDATE TEXT
+		function updateText() {
+			winText.text = "ESCAPED";
+			loseText.text = "INSANITY";
+
+			metersText.text = "METERS";
+			healthText.text = "Sanity: " + Math.floor(health);
+			staminaText.text = "Breath: " + stamina;
+			lightText.text = "Light: " + light;
+			crossText.text = "Crosses: " + crossCollectedText + " / " + crossAmountSet;
+
+			ammoText.text = "AMMO";
+			ammoNormalText.text = "(1) Normal: " + bulletAmountNormal;
+			ammoStrongText.text = "(2) Explosive: " + bulletAmountStrong;
+			ammoGhostText.text = "(3) Ghost: " + bulletAmountGhost;
+			ammoDrillText.text = "(4) Drill: " + bulletAmountDrill;
+			ammoBounceText.text = "(5) Bounce: " + bulletAmountBounce;
+			ammoStickyText.text = "(6) Sticky: " + bulletAmountSticky;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// // SCORE AND GAME OVER
+		// function updateScoreText() {
+		// 	if (!gameOver) {
+		// 		scoreText.text = "Score: " + score;
+		// 	}
+		// 	else {
+		// 		scoreText.text = "You Win!";
+		// 	}
+		// }
+
+		// GAME OVER CHECK
+		function checkGameOver() {
+			// game over conditions (user input)
+			if (userPressEnd == true) {
+				userPressEnd = false;
+				heroCanMove = false;
+				gameOver = true;
+				//bulletFired = false;
+				gameClock = 0;
+				console.log("game over - you pressed the 'restart game' button");
+				loseText.alpha = 0.3;
+			}
+			// game over conditions (death)
+			if (health == 0 && gameOver === false) {
+				heroCanMove = false;
+				gameOver = true;
+				//bulletFired = false;
+				gameClock = 0;
+				console.log("game over - you died!");
+				loseText.alpha = 0.3;
+			}
+			// game over conditions (win)
+			if (gameWin == true && gameOver === false) {
+				gameOver = true;
+				//bulletFired = false;
+				gameClock = 0;
+				gameWin == false;
+				console.log("game over - you win!");
+				winText.alpha = 0.3;
+			}
+		}
+
+		// GAME OVER HANDLE
+		function handleGameOver() {
+			if (gameOver === true) {
+				if (gameClock > gameOverDuration) {
+					console.log("hello from handleGameOver");
+					myStage.removeAllChildren();
+					initGame();
+					location.reload();
+				}
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// UTILITIES
+		function rollRange(bottomEnd, topEnd, integerIfTrue) {
+			// returns a random # between bottomEnd and topEnd
+			// The integerIfTrue parameter takes a boolean argument
+			if (integerIfTrue) {
+				return Math.floor(Math.random() * (topEnd - bottomEnd + 1)) + bottomEnd;
+			} else {
+				return Math.random() * (topEnd - bottomEnd + 1) + bottomEnd;
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	</script>
+</head>
+
+<body onload="init()">
+	<canvas id="myCanvas" width="1900" height="925">Sorry. You need an HTML5 compatible browser to see this.</canvas>
+</body>
+
+</HTML>

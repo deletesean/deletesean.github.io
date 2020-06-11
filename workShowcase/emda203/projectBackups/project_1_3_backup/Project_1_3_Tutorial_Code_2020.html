@@ -1,0 +1,203 @@
+<HTML>
+<!-- EMDA 203 - Project_1_3 Template - Spring 2020
+
+Using for loops to generate objects, storing them in arrays, and writing functions to create and move these objects.
+
+-->
+<head>
+<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+<script src="js/KeyMonkey.js"></script>
+<script src="js/collisionGnome.js"></script>
+<script>
+
+// ************************ GLOBAL VARIABLES *********************
+var myStage;
+var stageWidth;
+var stageHeight;
+var myFrameRate = 60;
+var stageMargin = 128; // don't start objects closer to the edge than this amount
+
+var hero;
+var heroStartSpeedX = 5;
+var heroStartSpeedY = 5;
+var heroStartPositionX; 
+var heroStartPositionY; 
+
+var targetsArray = [];
+var numberOfTargets = 25;
+var targetMaxSpeed = 6; 
+var targetMinSpeed = 2;
+var targetMaxScale = 1.15;
+var targetMinScale = .85;
+
+var bg;
+
+// ************ INITIALIZATION - Happens only once ****************
+
+function init(){
+	// Initialize myStage
+	myStage = new createjs.Stage(document.getElementById("myCanvas"));
+	stageWidth = myStage.canvas.width;
+	stageHeight = myStage.canvas.height;
+	
+	// Access the createjs Ticker class to use its addEventListener and _setFPS methods
+	// to listen for 60 'tick' events per second. When we hear a 'tick', run drawNewFrame()
+	createjs.Ticker.addEventListener('tick', gameLoop);   
+	createjs.Ticker._setFPS(myFrameRate);	// sets the framerate
+	initGame();
+}// END init()
+
+function initGame(){
+	if(heroStartPositionX == null){
+		heroStartPositionX = stageWidth/2;
+	}
+	if(heroStartPositionY == null){
+		heroStartPositionY = stageHeight/2;
+	}
+	//console.log("heroStartPositionX: " + heroStartPositionX);
+
+	// initialize background
+	bg = new createjs.Bitmap("images/background.png");
+	myStage.addChild(bg);
+	
+	// initialize targets
+	//makeTargets (numberOfTargets);
+
+	// initialize hero
+	hero = new createjs.Bitmap("images/hero.png");
+	
+	hero.x = heroStartPositionX;
+	hero.y = heroStartPositionY;
+	//hero.regX = 64;
+	//hero.regY = 64;
+	hero.speedX = heroStartSpeedX;
+	hero.speedY = heroStartSpeedY;
+	
+	//add hero to stage
+	myStage.addChild(hero);
+}
+
+// *****************  	MAIN LOOP  	************************
+
+// gameLoop() This function is called 60 x per second, on every 'tick' event
+
+function gameLoop(evt){
+
+	//targetBoundaryCheck();
+    heroBoundaryCheck();
+	//moveTargets();	
+	handleKeyboardInput();  // Check for keyboard input
+	myStage.update();
+	
+}// end gameLoop()
+
+// ***************** 	KEYBOARD INPUT   ******************
+
+function handleKeyboardInput(){
+
+	if(keyMonkey["w"] || keyMonkey["up"]) 	{hero.y -= hero.speedY; }
+	if(keyMonkey["s"] || keyMonkey["down"]) {hero.y += hero.speedY; }
+	if(keyMonkey["d"] || keyMonkey["right"]) {hero.x += hero.speedX; }
+	if(keyMonkey["a"] || keyMonkey["left"]) {hero.x -= hero.speedX; }
+
+}// end handleKeyboardInput()
+
+// ***************** 	MAKE TARGETS    *************************
+
+function makeTargets(howManyTargets){
+	
+	for (var i =0; i<howManyTargets; i++){
+		targetsArray[i] = new createjs.Bitmap("images/target01.png");
+        // var whichTarget = Math.floor(Math.random()*3); 
+        // if (whichTarget === 0){
+        //  	targetsArray[i] = new createjs.Bitmap("images/target01.png");
+        // } else if (whichTarget === 1) {
+        // 	targetsArray[i] = new createjs.Bitmap("images/target02.png");
+        // } else {
+        // 	targetsArray[i] = new createjs.Bitmap("images/target03.png");
+        // }// end else
+        
+        targetsArray[i].regX = 32;
+        targetsArray[i].regY = 32;
+        
+        targetsArray[i].x = Math.floor(Math.random()*(stageWidth-2*stageMargin))+stageMargin;
+        targetsArray[i].y = Math.floor(Math.random()*(stageWidth-2*stageMargin))+stageMargin;
+        targetsArray[i].scaleX = targetsArray[i].scaleY = rollRange(targetMinScale, targetMaxScale, false);
+    
+        targetsArray[i].speedX = rollRange(targetMinSpeed, targetMaxSpeed, true);
+        targetsArray[i].speedY = rollRange(targetMinSpeed, targetMaxSpeed, true);
+    
+    	var coinTossX = Math.random();
+    	var coinTossY = Math.random();
+    	if(coinTossX > .5) { targetsArray[i].speedX = - targetsArray[i].speedX; }
+     	if(coinTossY > .5) { targetsArray[i].speedY = - targetsArray[i].speedY; }
+      		        
+        myStage.addChild(targetsArray[i]);
+        //console.log("makeTargets() made a new target! There are now " + targetsArray.length + " targets in the array");  
+        //console.log(targetsArray);     
+	} // END FOR LOOP
+} // end MakeTargets()
+
+
+// ***************** 	MOVEMENT AND BOUNDARY CHECKS    ************
+
+function moveTargets(){
+	for(var i = 0; i < targetsArray.length; i++){
+		targetsArray[i].x += targetsArray[i].speedX;
+		targetsArray[i].y += targetsArray[i].speedY;
+	} // end for
+} // end moveTargets()
+		
+function targetBoundaryCheck(){
+	for(var i = 0; i<targetsArray.length; i++){	
+
+		if(targetsArray[i].x > stageWidth-targetsArray[i].regX || targetsArray[i].x < targetsArray[i].regX) {
+			//console.log("off STAGE");
+			targetsArray[i].speedX = -targetsArray[i].speedX;
+		}// end if
+		if(targetsArray[i].y > stageHeight-targetsArray[i].regY || targetsArray[i].y < targetsArray[i].regY) {
+			//console.log("off STAGE");
+			targetsArray[i].speedY = -targetsArray[i].speedY;
+		}// end if
+	}// end for
+}// end targetBoundaryCheck()
+		
+function heroBoundaryCheck(){
+
+	if(hero.x > stageWidth + hero.regX) {
+		hero.x = -hero.regX;
+	}// end if
+	if(hero.x < 0 - hero.regX) {
+		hero.x = stageWidth + hero.regX - 1;
+	}// end if
+	if(hero.y > stageWidth + hero.regY) {
+		hero.y = -hero.regY +1;
+	}// end if
+	if(hero.y < 0 - hero.regY) {
+		hero.y = stageWidth + hero.regY - 1;
+	}// end if	
+
+}// end heroBoundaryCheck()
+
+// ***************** 	UTILITIES     *************************
+
+function rollRange(bottomEnd, topEnd, integerIfTrue){ 
+// returns a random # between bottomEnd and topEnd. 
+// The integerIfTrue parameter takes a boolean argument. 
+	if(integerIfTrue){
+		return Math.floor(Math.random() * (topEnd - bottomEnd + 1)) + bottomEnd;
+	}else{
+		return Math.random() * (topEnd - bottomEnd + 1) + bottomEnd;
+	}// end else
+}// end rollRange()
+
+// ***************** 	END JAVASCRIPT     *************************		
+</script>
+
+<title>The Madness of King Nicholai</title>
+</head>
+
+<body onload="init()">
+<canvas id="myCanvas" width="1024" height="1024">Sorry. You need an HTML5 compatible browser to see this.</canvas>
+</body>
+</HTML>

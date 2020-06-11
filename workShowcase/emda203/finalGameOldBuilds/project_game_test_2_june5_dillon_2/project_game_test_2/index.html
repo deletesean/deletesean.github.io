@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!-- EMDA 203 - Project_1_5 Tutorial - Spring 2018
+** Adds collision detection via collisionGnome.js
+** Adds a game clock for timed events
+** Adds scoring
+** Adds win condition and game re-set 
+Also, adding a target type and a switch statement to assign target types
+-->
+
+<head>
+	<meta charset="UTF-8">
+	<title>Pixel Hitman - June 1st</title>
+	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+	<script src="scripts/KeyMonkeyEvolved.js"></script>
+	<script src="scripts/collisionGnome.js"></script>
+	<script>
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// GLOBAL VARIABLES
+		var myFrameRate = 60;
+		var debugSet = false;
+
+		// STAGE
+		var myStage;
+		var stageWidthCustom = 1900;
+		var stageHeightCustom = 925;
+		var stageWidth;
+		var stageHeight;
+		// targets can't spawn this close to stage edges
+		var stageMargin = 200;
+
+		// GAME
+		var gameClock;
+		var gameOver;
+		var gameOverDuration = 200;
+
+		// BACKGROUND
+		var background;
+		var backgroundSourceSet = "images/backgroundBlack.png";
+
+		// BACKGROUND SHADE
+
+		var backgroundShade;
+		var backgroundShadeSourceSet = "images/backgroundBlack.png";
+		var backgroundShadeAlpha = 0.5;
+
+		// SCORE
+		var scoreText;
+		var score;
+
+		// HERO
+		var hero;
+		var heroSourceSet = "images/hitman58x40.png";
+		var heroRegX = 29;
+		var heroRegY = 20;
+
+		var heroSpeedProne = 0.1;
+		var heroSpeedCrouch = 0.25;
+		var heroSpeedWalk = 0.5;
+		var heroSpeedRun = 1;
+		var heroSpeedSprint = 2;
+		var heroSpeedDefault = heroSpeedRun;
+
+		var heroPositionX = 125;
+		var heroPositionY = (stageHeightCustom / 2) - 0.5;
+		var heroDirectionCurrent = "none";
+
+		var heroCollisionOffset = 1;
+
+		// GLOW
+		var glow;
+		var glowSourceSet = "images/glow200x200.png";
+		var glowRegX = 100;
+		var glowRegY = 100;
+		var glowPositionX = heroPositionX;
+		var glowPositionY = heroPositionY;
+
+		// BULLETS
+		var bulletColorWhite = "images/2pxWhite.png";
+		var bulletColorBlack = "images/2pxBlack.png";
+		var bulletColorRed = "images/2pxRed.png";
+
+		var bulletStrong = false;
+
+		var bulletSpeedNormal = 5;
+		var bulletSpeedStrong = 2;
+		var bulletPositionStartX;
+		var bulletPositionStartY;
+		var bulletFired = false;
+
+		var bulletDirection = "none";
+
+		var bulletAmountNormal = 100;
+		var bulletAmountStrong = 100;
+
+		var bulletArray = [];
+		var bulletArrayCount = 0;
+
+		var bulletOffsetX = 0;
+		var bulletOffsetY = 0;
+
+		var bulletCollisionOffset = 0;
+
+		// JOHN (ENEMY)
+		var john;
+		var johnSourceSet = "images/enemy200x200.png";
+		var johnRegX = 100;
+		var johnRegY = 100;
+		var johnSpeed = 1;
+
+		var johnPositionX = 965;
+		var johnPositionY = 460;
+
+		var johnCollisionOffset = 1;
+
+		// TARGETS
+		var targetsArray = [];
+		var targetAmountSet = 0;
+		var targetSpeedMin = 2;
+		var targetSpeedMax = 6;
+		var targetScaleMin = 0.1;
+		var targetScaleMax = 0.5;
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// BUILDING VALUES - WALLS, DOORS
+
+		// set wall colors
+		var wallColorBlack = "images/2pxBlack.png";
+		var wallColorRed = "images/2pxRed.png";
+		var wallColorGreen = "images/2pxGreen.png";
+		var wallColorBlue = "images/2pxBlue.png";
+		var wallColorCyan = "images/2pxCyan.png";
+		var wallColorYellow = "images/2pxYellow.png";
+		var wallColorPink = "images/2pxPink.png";
+
+		// set wall types using wall colors
+		var wallTypeWall = wallColorBlack;
+		var wallTypeDoor = wallColorYellow;
+		var wallTypeWindow = wallColorPink;
+
+		// set wall alpha for different types
+		var wallTypeDoorAlpha = 1;
+		var wallTypeWindowAlpha = 1;
+
+		var wallRegX = 1;
+		var wallRegY = 1;
+		var wallScaleX = 1;
+		var wallScaleY = 1;
+
+		// set wall position offsets for direction changes
+		var wallPositionOffsetX_none = 0;
+		var wallPositionOffsetX_add = 2;
+		var wallPositionOffsetX_subtract = -2;
+
+		var wallPositionOffsetY_none = 0;
+		var wallPositionOffsetY_add = 2;
+		var wallPositionOffsetY_subtract = -2;
+
+		var wallPositionOffsetX = wallPositionOffsetX_none;
+		var wallPositionOffsetY = wallPositionOffsetY_add;
+
+		// set wall collision boundary scale or offset
+		var wallCollisionOffset = 5;
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// SET UP WALLS
+		{
+			// THIS IS WHERE YOU SET UP WALLS
+			// YOU CAN EITHER SET MANUAL WALLS OR SET RANDOM WALLS
+			// IF YOU SET MANUAL WALLS, JUST SET THE X AND Y VALUES FOR THEIR POSITIONS AND LENGTHS
+			// IF YOU SET RANDOM WALLS, YOU CAN EITHER SET A MANUAL AMOUNT OR A RANDOM AMOUNT 
+
+			// START....
+
+			// I WANT TO MANUALLY SET WALLS
+			// set wall X positions
+			var wallPositionX = [
+				250, // 1.1 - main building (left wall)
+				250, // 1.2 - main building (top wall)
+				1650, // 1.3 - main building (right wall)
+				250, // 1.4 - main building (bottom wall)
+				250, // 2.1 - hallway left (top wall)
+				1010, // 2.2 - hallway right (top wall)
+				1650, // 2.3 - hallway right (right wall)
+				500, // 3.1 - lobby (right wall)
+				250, // 4.1 - stairs (bottom wall)
+				250, // 5.1 - stairs room (bottom wall)
+				500, // 6.1 - bath (all walls)
+				500, // 7.1 - room bath (bottom wall)
+				820, // 7.2 - room bath (right wall)
+				500, // 8.1 - room solo (top wall)
+				780, // 8.2 - room solo (right wall)
+				1450, // 9.1 - closet (left wall)
+				1120, // 10.1 - room closet (left wall)
+				1120, // 10.2 - room closet (top wall)
+				1100, // 11.1 - private building (all walls)
+				0, // 0.0 - empty
+			];
+			// set wall Y positions
+			var wallPositionY = [
+				130, // 1.1 - main building (left wall)
+				130, // 1.2 - main building (top wall)
+				130, // 1.3 - main building (right wall)
+				790, // 1.4 - main building (bottom wall)
+				670, // 2.1 - hallway left (top wall)
+				670, // 2.2 - hallway right (top wall)
+				670, // 2.3 - hallway right (right wall)
+				130, // 3.1 - lobby (right wall)
+				220, // 4.1 - stairs (bottom wall)
+				350, // 5.1 - stairs room (bottom wall)
+				130, // 6.1 - bath (all walls)
+				350, // 7.1 - room bath (bottom wall)
+				130, // 7.2 - room bath (right wall)
+				520, // 8.1 - room solo (top wall)
+				520, // 8.2 - room solo (right wall)
+				520, // 9.1 - closet (left wall)
+				520, // 10.1 - room closet (left wall)
+				520, // 10.2 - room closet (top wall)
+				240, // 11.1 - private building (all walls)
+				0, // 0.0 - empty
+			];
+			// set wall X lengths
+			var wallLengthX = [
+				0, // 1.1 - main building (left wall)
+				350, // 1.2 - main building (top wall)
+				0, // 1.3 - main building (right wall)
+				350, // 1.4 - main building (bottom wall)
+				160, // 2.1 - hallway left (top wall)
+				160, // 2.2 - hallway right (top wall)
+				0, // 2.3 - hallway right (right wall)
+				0, // 3.1 - lobby (right wall)
+				62, // 4.1 - stairs (bottom wall)
+				62, // 5.1 - stairs room (bottom wall)
+				70, // 6.1 - bath (all walls)
+				80, // 7.1 - room bath (bottom wall)
+				0, // 7.2 - room bath (right wall)
+				70, // 8.1 - room solo (top wall)
+				0, // 8.2 - room solo (right wall)
+				0, // 9.1 - closet (left wall)
+				0, // 10.1 - room closet (left wall)
+				132, // 10.2 - room closet (top wall)
+				200, // 11.1 - private building (all walls)
+				4, // 0.0 - empty
+			];
+			// set wall Y lengths
+			var wallLengthY = [
+				165, // 1.1 - main building (left wall)
+				0, // 1.2 - main building (top wall)
+				135, // 1.3 - main building (right wall)
+				0, // 1.4 - main building (bottom wall)
+				0, // 2.1 - hallway left (top wall)
+				0, // 2.2 - hallway right (top wall)
+				30, // 2.3 - hallway right (right wall)
+				135, // 3.1 - lobby (right wall)
+				0, // 4.1 - stairs (bottom wall)
+				0, // 5.1 - stairs room (bottom wall)
+				45, // 6.1 - bath (all walls)
+				0, // 7.1 - room bath (bottom wall)
+				55, // 7.2 - room bath (right wall)
+				0, // 8.1 - room solo (top wall)
+				37, // 8.2 - room solo (right wall)
+				37, // 9.1 - closet (left wall)
+				37, // 10.1 - room closet (left wall)
+				0, // 10.2 - room closet (top wall)
+				80, // 11.1 - private building (all walls)
+				4, // 0.0 - empty
+			];
+
+			// bug - the final building/wall will be missing some of its last few blocks to fully complete its wall, so compensate for this final building/wall with extra length
+
+			// set amount of manual walls through length of position X array
+			var wallAmountManual = wallPositionX.length;
+
+			// OR....
+
+			// I WANT TO RANDOMLY SET WALLS
+			// toggle random wall positions
+			var wallRandomPosition = false;
+			// toggle random wall lengths
+			var wallRandomLength = false;
+
+			// bug - if random position is false and random length is true, there will be some floating blocks (most likely the starting blocks for the next building?)
+
+			// THEN....
+
+			// IF I RANDOMLY SET WALLS, I MUST ALSO CHOOSE IF....
+
+			// I WANT TO MANUALLY SET THE AMOUNT OF RANDOM WALLS
+			// set random wall amount with number or use "wallAmountManual" to match the amount of manual walls
+			var wallAmountRandom = 3;
+
+			// OR....
+
+			// I WANT TO RANDOMLY SET THE AMOUNT OF RANDOM WALLS
+			// toggle random amount of random walls
+			var wallAmountRandomRandom = false;
+			// set minimum for random number of walls
+			var wallAmountRandomMin = 0;
+			// set maximum for random number of walls
+			var wallAmountRandomMax = 10;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// SET UP DOORS
+		{
+			// THIS IS WHERE YOU SET UP DOORS
+			// YOU CAN EITHER SET MANUAL DOORS OR SET RANDOM DOORS
+			// IF YOU SET MANUAL DOORS, JUST SET THE X AND Y VALUES FOR THEIR POSITIONS AND LENGTHS
+			// IF YOU SET RANDOM DOORS, YOU CAN EITHER SET A MANUAL AMOUNT OR A RANDOM AMOUNT
+
+			// START....
+
+			// I WANT TO MANUALLY SET DOORS
+			// set door positions
+			var doorStart = [
+				145, // 1.1 - main building (left wall)
+				undefined, // 1.2 - main building (top wall)
+				60, // 1.3 - main building (right wall)
+				undefined, // 1.4 - main building (bottom wall)
+				45, // 2.1 - hallway left (top wall)
+				260, // 2.2 - hallway right (top wall)
+				undefined, // 2.3 - hallway right (right wall)
+				130, // 3.1 - lobby (right wall)
+				20, // 4.1 - stairs (bottom wall)
+				60, // 5.1 - stairs room (bottom wall)
+				120, // 6.1 - bath (all walls)
+				55, // 7.1 - room bath (bottom wall)
+				undefined, // 7.2 - room bath (right wall)
+				55, // 8.1 - room solo (top wall)
+				undefined, // 8.2 - room solo (right wall)
+				undefined, // 9.1 - closet (left wall)
+				15, // 10.1 - room closet (left wall)
+				undefined, // 10.2 - room closet (top wall)
+				20, // 11.1 - private building (all walls)
+			];
+
+			// OR....
+
+			// I WANT TO RANDOMLY SET DOORS
+			// set random door positions
+			var doorRandomPosition = false;
+
+			// THEN....
+
+			// I WANT TO MANUALLY SET DOOR LENGTHS
+			// set door length
+			var doorLengthSet = 40;
+
+			// OR....
+
+			// I WANT TO RANDOMLY SET DOOR LENGTHS
+			// set random door lengths
+			var doorRandomLength = false;
+			var doorLengthRandomMin = 25;
+			var doorLengthRandomMax = 150;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// SET UP WINDOWS
+		{
+			// THIS IS WHERE YOU SET UP WINDOWS
+			// YOU CAN EITHER SET MANUAL WINDOWS OR SET RANDOM WINDOWS
+			// IF YOU SET MANUAL WINDOWS, JUST SET THE X AND Y VALUES FOR THEIR POSITIONS AND LENGTHS
+			// IF YOU SET RANDOM WINDOWS, YOU CAN EITHER SET A MANUAL AMOUNT OR A RANDOM AMOUNT
+
+			// START....
+
+			// I WANT TO MANUALLY SET WINDOWS
+			// set window positions
+			var windowStart = [
+				215, // 1.1 - main building (left wall)
+				480, // 1.2 - main building (top wall)
+				155, // 1.3 - main building (right wall)
+				345, // 1.4 - main building (bottom wall)
+				undefined, // 2.1 - hallway left (top wall)
+				undefined, // 2.2 - hallway right (top wall)
+				20, // 2.3 - hallway right (right wall)
+				70, // 3.1 - lobby (right wall)
+				undefined, // 4.1 - stairs (bottom wall)
+				undefined, // 5.1 - stairs room (bottom wall)
+				undefined, // 6.1 - bath (all walls)
+				undefined, // 7.1 - room bath (bottom wall)
+				undefined, // 7.2 - room bath (right wall)
+				undefined, // 8.1 - room solo (top wall)
+				30, // 8.2 - room solo (right wall)
+				30, // 9.1 - closet (left wall)
+				undefined, // 10.1 - room closet (left wall)
+				75, // 10.2 - room closet (top wall)
+				undefined, // 11.1 - private building (all walls)
+			];
+
+			// OR....
+
+			// I WANT TO RANDOMLY SET WINDOWS
+			// set random window positions
+			var windowRandomPosition = false;
+
+			// THEN....
+
+			// I WANT TO MANUALLY SET WINDOW LENGTHS
+			// set window length
+			var windowLengthSet = 15;
+
+			// OR....
+
+			// I WANT TO RANDOMLY SET WINDOW LENGTHS
+			// set random window lengths
+			var windowRandomLength = false;
+			var windowLengthRandomMin = 25;
+			var windowLengthRandomMax = 150;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// WALL CALCULATIONS (DON'T TOUCH)
+		{
+			var wallCount = 0;
+			var wallArray = [];
+
+			// array count for iterating through each building
+			var wallArrayCount = 0;
+
+			// if random amounts of random walls are on
+			if (wallAmountRandomRandom == true) {
+				wallAmountRandom = Math.floor(Math.random() * wallAmountRandomMax) + wallAmountRandomMin;
+			}
+			// if random wall positions are on
+			if (wallRandomPosition == true) {
+				// empty array for random positions to be applied
+				var wallPositionX = [];
+				var wallPositionY = [];
+				// loop and iterate through each building and assign them their random position values through calcualtions
+				for (i = 0; i < wallAmountRandom; i++) {
+					wallPositionX[wallArrayCount] = Math.floor(Math.random() * (stageWidthCustom - stageMargin * 3)) + stageMargin;
+					wallPositionY[wallArrayCount] = Math.floor(Math.random() * (stageHeightCustom - stageMargin * 3)) + stageMargin;
+					wallArrayCount++;
+				}
+				// reset wall array count for next use
+				wallArrayCount = 0;
+			}
+			// if random wall lengths are on
+			if (wallRandomLength == true) {
+				// array for lengths
+				var wallLengthX = [];
+				var wallLengthY = [];
+				// loop and iterate through each building and assign them their random length values through calcualtions
+				for (i = 0; i < wallAmountRandom; i++) {
+					wallLengthX[wallArrayCount] = Math.floor(Math.random() * 50) + 40;
+					wallLengthY[wallArrayCount] = Math.floor(Math.random() * 50) + 40;
+					wallArrayCount++;
+				}
+				// reset wall array count for next use
+				wallArrayCount = 0;
+			}
+			// set number of buildings through array length of given or generated wall lengths
+			var wallAmountCount = wallPositionX.length;
+			// empty arrays for direction changes through future calcuations with given or random wall lengths
+			var wallStartBottom = [];
+			var wallStartRight = [];
+			var wallStartTop = [];
+			// wall array for wall amounts
+			var wallAmountSet = [];
+			// calculate total wall amount of X
+			var wallLengthX_sum = wallLengthX.reduce(function (a, b) {
+				return a + b;
+			}, 0);
+			// calculate total wall amount of Y
+			var wallLengthY_sum = wallLengthY.reduce(function (a, b) {
+				return a + b;
+			}, 0);
+			// calculate all total wall amounts of X and Y
+			var wallAmountSetAll = (wallLengthX_sum + wallLengthY_sum) * 2 + 1;
+			// loop and iterate through each building and assign them their values through calcualtions based on the given positions and lengths in their arrays
+			for (i = 0; i < wallAmountCount; i++) {
+				wallStartBottom[wallArrayCount] = wallLengthY[wallArrayCount];
+				wallStartRight[wallArrayCount] = wallLengthY[wallArrayCount] + wallLengthX[wallArrayCount];
+				wallStartTop[wallArrayCount] = wallLengthY[wallArrayCount] + wallLengthX[wallArrayCount] + wallLengthY[wallArrayCount];
+
+				wallAmountSet[wallArrayCount] = (wallLengthX[wallArrayCount] + wallLengthY[wallArrayCount]) * 2;
+
+				wallArrayCount++;
+			}
+			// reset wall array count for next use
+			wallArrayCount = 0;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// DOOR CALCULATIONS (DON'T TOUCH)
+		{
+			// set empty array for door end and use in future calcuations to determine the arrays values based on generated or randomized door start values
+			var doorEnd = [];
+			// if door random lengths are on
+			if (doorRandomLength == true) {
+				// set empty array for door length and use in future calculations to determine the arrays values through randomized values
+				var doorLength = [];
+				// loop and iterate through each door of each building and assign random values for their lengths between the given minimum and maximum values
+				for (i = 0; i < wallAmountCount; i++) {
+					doorLength[wallArrayCount] = Math.floor(Math.random() * doorLengthRandomMax) + doorLengthRandomMin;
+					wallArrayCount++;
+				}
+				// reset wall array count for next use
+				wallArrayCount = 0;
+			}
+			// if door random lengths are off
+			if (doorRandomLength == false) {
+				var doorLength = doorLengthSet;
+			}
+			// if door random positions are on
+			if (doorRandomPosition == true) {
+				// set empty array for door start values to be randomly generated and added to it in future calculations
+				var doorStart = [];
+				// calculate the max lengths of given or generated wall lengths on the x axis
+				var wallLengthX_max = Math.max.apply(Math, wallLengthX);
+				// calculate the max lengths of given or generated wall lengths on the y axis
+				var wallLengthY_max = Math.max.apply(Math, wallLengthY);
+				// calculate the max lengths given or generated for wall lengths on the x and y axis
+				var wallLengthMax = wallLengthX_max + wallLengthY_max;
+				// for the amount of walls generated, assign each door for each building a random
+				for (i = 0; i < wallAmountCount; i++) {
+					doorStart[wallArrayCount] = Math.floor(Math.random() * wallLengthMax) + 0;
+					wallArrayCount++;
+				}
+				// reset wall array count for next use
+				wallArrayCount = 0;
+			}
+			// loop and iterate through each door and assign them their values for calcualtions based on the given positions and lengths in their arrays
+			for (i = 0; i < doorStart.length; i++) {
+				// if door random lengths are on
+				if (doorRandomLength == true) {
+					// set each door end of each building to equal each door start 
+					doorEnd[wallArrayCount] = doorStart[wallArrayCount] + doorLength[wallArrayCount];
+				}
+				if (doorRandomLength == false) {
+					doorEnd[wallArrayCount] = doorStart[wallArrayCount] + doorLength;
+				}
+				wallArrayCount++;
+			}
+			// reset wall array count for next use (the "makeWall" loop)
+			wallArrayCount = 0;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// WINDOW CALCULATIONS (DON'T TOUCH)
+		{
+			// set empty array for window end and use in future calcuations to determine the arrays values based on generated or randomized window start values
+			var windowEnd = [];
+			// if window random lengths are on
+			if (windowRandomLength == true) {
+				// set empty array for window length and use in future calculations to determine the arrays values through randomized values
+				var windowLength = [];
+				// loop and iterate through each window of each building and assign random values for their lengths between the given minimum and maximum values
+				for (i = 0; i < wallAmountCount; i++) {
+					windowLength[wallArrayCount] = Math.floor(Math.random() * windowLengthRandomMax) + windowLengthRandomMin;
+					wallArrayCount++;
+				}
+				// reset wall array count for next use
+				wallArrayCount = 0;
+			}
+			// if window random lengths are off
+			if (windowRandomLength == false) {
+				var windowLength = windowLengthSet;
+			}
+			// if window random positions are on
+			if (windowRandomPosition == true) {
+				// set empty array for window start values to be randomly generated and added to it in future calculations
+				var windowStart = [];
+				// calculate the max lengths of given or generated wall lengths on the x axis
+				var wallLengthX_max = Math.max.apply(Math, wallLengthX);
+				// calculate the max lengths of given or generated wall lengths on the y axis
+				var wallLengthY_max = Math.max.apply(Math, wallLengthY);
+				// calculate the max lengths given or generated for wall lengths on the x and y axis
+				var wallLengthMax = wallLengthX_max + wallLengthY_max;
+				// for the amount of walls generated, assign each window for each building a random
+				for (i = 0; i < wallAmountCount; i++) {
+					windowStart[wallArrayCount] = Math.floor(Math.random() * wallLengthMax) + 0;
+					wallArrayCount++;
+				}
+				// reset wall array count for next use
+				wallArrayCount = 0;
+			}
+			// loop and iterate through each window and assign them their values for calcualtions based on the given positions and lengths in their arrays
+			for (i = 0; i < windowStart.length; i++) {
+				// if window random lengths are on
+				if (windowRandomLength == true) {
+					// set each window end of each building to equal each window start 
+					windowEnd[wallArrayCount] = windowStart[wallArrayCount] + windowLength[wallArrayCount];
+				}
+				if (windowRandomLength == false) {
+					windowEnd[wallArrayCount] = windowStart[wallArrayCount] + windowLength;
+				}
+				wallArrayCount++;
+			}
+			// reset wall array count for next use (the "makeWall" loop)
+			wallArrayCount = 0;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// INITIALIZATION - init() only runs once
+		function init() {
+			// initialize stage
+			myStage = new createjs.Stage(document.getElementById("myCanvas"));
+			stageWidth = myStage.canvas.width;
+			stageHeight = myStage.canvas.height;
+			// initialize ticker	
+			createjs.Ticker.addEventListener('tick', gameLoop);
+			createjs.Ticker._setFPS(myFrameRate);
+			// initialize game
+			initGame();
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// INITIALIZATION GAME - initGame() runs at init and reset
+		function initGame() {
+			// initialize game variables
+			backgroundShade = null;
+			background = null;
+			score = 0;
+			wallArray = [];
+			hero = null;
+			targetsArray = [];
+			gameClock = 0;
+			gameOver = false;
+			// initialize stage objects
+			makeBackground(backgroundSourceSet);
+			//makeScoreText();
+			makeGlow(glowSourceSet);
+			makeHero(heroSourceSet);
+			makeBackgroundShade(backgroundShadeSourceSet);
+			makeJohn(johnSourceSet);
+			makeWall(wallAmountSetAll);
+			//makeTargets(targetAmountSet);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAIN LOOP - gameLoop() - This function is called 60 x per second, on every 'tick' event
+		function gameLoop(evt) {
+			playerControls();
+			moveGlow();
+			moveJohn();
+			//moveTargets();
+			if (bulletFired == true) {
+				moveBullet();
+			}
+			checkHeroBoundary();
+			//checkTargetsBoundary();
+			checkCollisions();
+			//updateScoreText();
+			//checkGameOver();
+			//handleGameOver();
+			gameClock++;
+			myStage.update();
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE BACKGROUND
+		function makeBackground(backgroundSource) { // takes a string containing the filepath i.e. "images/background.png"
+			background = new createjs.Bitmap(backgroundSource);
+			myStage.addChild(background);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE BACKGROUND SHADE
+		function makeBackgroundShade(backgroundShadeSource) { // takes a string containing the filepath i.e. "images/background.png"
+			backgroundShade = new createjs.Bitmap(backgroundShadeSource);
+			myStage.addChild(backgroundShade);
+			backgroundShade.alpha = backgroundShadeAlpha;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE SCORE TEXT
+		// function makeScoreText() {
+		// 	scoreText = new createjs.Text("Score: " + score, "40px Arial", "#ffff00");
+		// 	scoreText.x = 50;
+		// 	scoreText.y = 75;
+		// 	scoreText.textBaseline = "alphabetic";
+		// 	myStage.addChild(scoreText);
+		// }
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE WALL
+		function makeWall(wallAmount) {
+			// LOOP FOR AS LONG AS THERE ARE WALLS
+			for (var i = 0; i <= wallAmount; i++) {
+				// if wall length y for current array is zero (so it only has an x length, making it a horizontal wall)
+				if (wallLengthY[wallArrayCount] == 0) {
+					// CHANGE WALL DIRECTION (RIGHT)
+					// if wall count (the iteration of array) is greater than...
+					if (wallCount >= wallStartBottom[wallArrayCount]) {
+						wallPositionOffsetX = wallPositionOffsetX_add;
+						wallPositionOffsetY = wallPositionOffsetY_none;
+					}
+				}
+				// if wall length x for current array is zero (so it only has an y length, making it a vertical wall)
+				else if (wallLengthX[wallArrayCount] == 0) {
+					// don't do anything and don't change wall direction, just keeping building the wall downwards (verical) using the same default offset (x = 0 and y = 4)
+				}
+				// if wall length x or y don't have values of zero, change wall directions when necessary in order to create a full box/building
+				else {
+					// CHANGE WALL DIRECTION (RIGHT)
+					if (wallCount >= wallStartBottom[wallArrayCount]) {
+						wallPositionOffsetX = wallPositionOffsetX_add;
+						wallPositionOffsetY = wallPositionOffsetY_none;
+					}
+					// CHANGE WALL DIRECTION (UP)
+					if (wallCount >= wallStartRight[wallArrayCount]) {
+						wallPositionOffsetX = wallPositionOffsetX_none;
+						wallPositionOffsetY = wallPositionOffsetY_subtract;
+					}
+					// CHANGE WALL DIRECTION (LEFT)
+					if (wallCount >= wallStartTop[wallArrayCount]) {
+						wallPositionOffsetX = wallPositionOffsetX_subtract;
+						wallPositionOffsetY = wallPositionOffsetY_none;
+					}
+				}
+				// DOOR BITMAP
+				// if the wall count (the iteration through the array) is greater than the calculated door start value and less than the calculated door end value
+				if (doorStart[wallArrayCount] < wallCount && wallCount < doorEnd[wallArrayCount]) {
+					// create a door bitmap
+					wallArray[i] = new createjs.Bitmap(wallTypeDoor);
+					// apply a name value to the window for later identification
+					wallArray[i].name = "door";
+					// apply alpha for door
+					wallArray[i].alpha = wallTypeDoorAlpha;
+					// apply a collider for wall
+					collisionGnome.addCollider(wallArray[i], wallCollisionOffset);
+				}
+				// WINDOW BITMAP
+				// if the wall count (the iteration through the array) is greater than the calculated window start value and less than the calculated window end value
+				else if (windowStart[wallArrayCount] < wallCount && wallCount < windowEnd[wallArrayCount]) {
+					// create a window bitmap
+					wallArray[i] = new createjs.Bitmap(wallTypeWindow);
+					// apply a name value to the window for later identification
+					wallArray[i].name = "window";
+					// apply alpha for window
+					wallArray[i].alpha = wallTypeWindowAlpha;
+					// apply a collider for wall
+					collisionGnome.addCollider(wallArray[i], wallCollisionOffset);
+				}
+				// WALL BITMAP
+				// if the wall count is not within the start and end values of the door or window
+				else {
+					// create a wall bitmap
+					wallArray[i] = new createjs.Bitmap(wallTypeWall);
+					// apply a name value to the window for later identification
+					wallArray[i].name = "wall";
+					// apply a collider for wall
+					collisionGnome.addCollider(wallArray[i], wallCollisionOffset);
+				}
+				// REGISTER POINTS
+				wallArray[i].regX = wallRegX;
+				wallArray[i].regY = wallRegY;
+				// SCALES
+				wallArray[i].scaleX = wallScaleX;
+				wallArray[i].scaleY = wallScaleY;
+				// POSITIONS
+				wallArray[i].x = wallPositionX[wallArrayCount];
+				wallArray[i].y = wallPositionY[wallArrayCount];
+				// POSITION OFFSETS
+				wallPositionX[wallArrayCount] += wallPositionOffsetX;
+				wallPositionY[wallArrayCount] += wallPositionOffsetY;
+				// OTHER
+				myStage.addChild(wallArray[i]);
+				wallCount++;
+				// CHANGE BUILDING
+				if (wallCount == wallAmountSet[wallArrayCount] + 1) {
+					wallCount = 0;
+					wallArrayCount++;
+
+					wallPositionOffsetX = wallPositionOffsetX_none;
+					wallPositionOffsetY = wallPositionOffsetY_add;
+				}
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE HERO
+		function makeHero(heroSource) {
+			hero = new createjs.Bitmap(heroSource);
+			hero.x = heroPositionX;
+			hero.y = heroPositionY;
+			myStage.addChild(hero);
+			hero.regX = heroRegX;
+			hero.regY = heroRegY;
+			hero.speed = heroSpeedDefault;
+			collisionGnome.addCollider(hero, heroCollisionOffset);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE GLOW
+		function makeGlow(glowSource) {
+			glow = new createjs.Bitmap(glowSource);
+			glow.x = glowPositionX;
+			glow.y = glowPositionY;
+			myStage.addChild(glow);
+			glow.regX = glowRegX;
+			glow.regY = glowRegY;
+			//glow.speed = glowSpeed;
+			//collisionGnome.addCollider(glow, glowCollisionOffset);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE JOHN
+		function makeJohn(johnSource) {
+			john = new createjs.Bitmap(johnSource);
+			john.x = johnPositionX;
+			john.y = johnPositionY;
+			myStage.addChild(john);
+			john.regX = johnRegX;
+			john.regY = johnRegY;
+			john.speed = johnSpeed;
+			collisionGnome.addCollider(john, johnCollisionOffset);
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		// MAKE BULLET
+		function makeBullet() {
+			var i = bulletArray.length;
+			if (bulletStrong == false) {
+				bulletArray[i] = new createjs.Bitmap(bulletColorWhite);
+				bulletArray[i].class = "normal";
+			}
+			else if (bulletStrong == true) {
+				bulletArray[i] = new createjs.Bitmap(bulletColorRed);
+				bulletArray[i].class = "strong";
+			}
+			setBulletOffset();
+			bulletArray[i].x = hero.x + bulletOffsetX;
+			bulletArray[i].y = hero.y + bulletOffsetY;
+			myStage.addChild(bulletArray[i]);
+			bulletArray[i].regX = 2;
+			bulletArray[i].regY = 2;
+			bulletArray[i].speed = bulletSpeedNormal;
+			collisionGnome.addCollider(bulletArray[i], bulletCollisionOffset);
+			//console.log("finished making bullet");
+		}
+
+		function setBulletOffset() {
+			if (heroDirectionCurrent == "up") {
+				bulletOffsetX = 10;
+				bulletOffsetY = 10;
+			}
+			if (heroDirectionCurrent == "down") {
+				bulletOffsetX = 10;
+				bulletOffsetY = 10;
+			}
+			if (heroDirectionCurrent == "left") {
+				bulletOffsetX = -25;
+				bulletOffsetY = -7;
+			}
+			if (heroDirectionCurrent == "right") {
+				bulletOffsetX = 25;
+				bulletOffsetY = -7;
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MAKE TARGETS
+		// function makeTargets(targetAmount) {
+		// 	for (var i = 0; i < targetAmount; i++) {
+		// 		// roll a random integer: 0, 1, or 2 and store it in the new variable 'whichTarget'
+		// 		var whichTarget = Math.floor(Math.random() * 3);
+		// 		// This switch statement checks our 'whichTarget' value and assigns a different Bitmap for each possible value... 0, 1, or 2
+		// 		switch (whichTarget) {
+		// 			case 0:
+		// 				targetsArray[i] = new createjs.Bitmap("images/1pxCyan.png");
+		// 				break;
+		// 			case 1:
+		// 				targetsArray[i] = new createjs.Bitmap("images/1pxYellow.png");
+		// 				break;
+		// 			case 2:
+		// 				targetsArray[i] = new createjs.Bitmap("images/1pxPink.png");
+		// 				break;
+		// 		}
+		// 		targetsArray[i].regX = 1;
+		// 		targetsArray[i].regY = 1;
+
+		// 		targetsArray[i].x = Math.floor(Math.random() * (stageWidth - 2 * stageMargin)) + stageMargin;
+		// 		targetsArray[i].y = Math.floor(Math.random() * (stageHeight - 2 * stageMargin)) + stageMargin;
+		// 		targetsArray[i].scaleX = targetsArray[i].scaleY = rollRange(targetScaleMin, targetScaleMax, false);
+
+		// 		targetsArray[i].speedX = rollRange(targetSpeedMin, targetSpeedMax, true);
+		// 		targetsArray[i].speedY = rollRange(targetSpeedMin, targetSpeedMax, true);
+
+		// 		var coinTossX = Math.random(); // flip a coin to see if the target starts off moving left or right
+		// 		if (coinTossX > .5) { targetsArray[i].speedX = - targetsArray[i].speedX; }
+		// 		var coinTossY = Math.random(); // flip a coin to see if the target starts off moving up or down
+		// 		if (coinTossY > .5) { targetsArray[i].speedY = - targetsArray[i].speedY; }
+
+		// 		collisionGnome.addCollider(targetsArray[i], 1);
+		// 		myStage.addChild(targetsArray[i]);
+		// 	}
+		// }
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MOVE HERO
+		// bug (fixed) - if diagonal hero movement is enabled, hero can get stuck on walls - hitting wall bottom and going right, hitting wall top and going left
+		// bug (fixed) - if diagonal hero movement is enabled, hero can boost movement speed on walls - hitting wall bottom and going left, hitting wall top and going right
+		function playerControls() {
+			// UP
+			if (keyMonkeyHold["w"] || keyMonkeyHold["up"]) {
+				hero.y -= hero.speed;
+				heroDirectionCurrent = "up";
+				console.log(hero.speed);
+			}
+			// DOWN
+			if (keyMonkeyHold["s"] || keyMonkeyHold["down"]) {
+				hero.y += hero.speed;
+				heroDirectionCurrent = "down";
+				console.log(hero.speed);
+			}
+			// LEFT
+			if (keyMonkeyHold["a"] || keyMonkeyHold["left"]) {
+				hero.x -= hero.speed;
+				heroDirectionCurrent = "left";
+				console.log(hero.speed);
+			}
+			// RIGHT
+			if (keyMonkeyHold["d"] || keyMonkeyHold["right"]) {
+				hero.x += hero.speed;
+				heroDirectionCurrent = "right";
+				console.log(hero.speed);
+			}
+			// SPRINT
+			if (keyMonkeyRelease["shift"]) {
+				hero.speed = heroSpeedDefault;
+				console.log("sprint is off");
+			}
+			if (keyMonkeyHold["shift"]) {
+				hero.speed = heroSpeedSprint;
+				console.log("sprint is on");
+			}
+			// WALK
+			if (keyMonkeyRelease["alt"]) {
+				hero.speed = heroSpeedDefault;
+				console.log("walk is off");
+			}
+			if (keyMonkeyHold["alt"]) {
+				hero.speed = heroSpeedWalk;
+				console.log("walk is on");
+			}
+			// CROUCH
+			if (keyMonkeyHit["c"] && hero.speed !== heroSpeedCrouch) {
+				hero.speed = heroSpeedCrouch;
+				console.log("crouch toggled on");
+			}
+			else if (keyMonkeyHit["c"] && hero.speed == heroSpeedCrouch) {
+				hero.speed = heroSpeedDefault;
+				console.log("crouch toggled off");
+			}
+			// PRONE
+			if (keyMonkeyHit["x"] && hero.speed !== heroSpeedProne) {
+				hero.speed = heroSpeedProne;
+				console.log("prone toggled on");
+			}
+			else if (keyMonkeyHit["x"] && hero.speed == heroSpeedProne) {
+				hero.speed = heroSpeedDefault;
+				console.log("prone toggled off");
+			}
+			// DEBUG (TOGGLE)
+			if (keyMonkey["p"]) {
+				collisionGnome.setDebug(true);
+			}
+			// SHOOT NORMAL BULLET
+			if (keyMonkeyHit["space_bar"] && bulletAmountNormal > 0 && bulletStrong == false && heroDirectionCurrent !== "none") {
+				console.log("fired a normal bullet");
+				console.log("normal bullet amount was: " + bulletAmountNormal);
+				bulletAmountNormal--;
+				bulletDirection = heroDirectionCurrent;
+				makeBullet();
+				bulletFired = true;
+				console.log("normal bullet amount is now: " + bulletAmountNormal);
+			}
+			else if (keyMonkeyHit["space_bar"] && bulletAmountNormal == 0 && bulletStrong == false) {
+				console.log("out of normal ammo");
+			}
+			// SHOOT STRONG BULLET
+			if (keyMonkeyHit["space_bar"] && bulletAmountStrong > 0 && bulletStrong == true && heroDirectionCurrent !== "none") {
+				console.log("fired a strong bullet");
+				console.log("strong bullet amount was: " + bulletAmountStrong);
+				bulletAmountStrong--;
+				bulletDirection = heroDirectionCurrent;
+				makeBullet();
+				bulletFired = true;
+				console.log("strong bullet amount is now: " + bulletAmountStrong);
+			}
+			else if (keyMonkeyHit["space_bar"] && bulletAmountStrong == 0 && bulletStrong == true) {
+				console.log("out of strong ammo");
+			}
+			// SWITCH BULLET
+			if (keyMonkeyHit["r"] && bulletStrong == false) {
+				bulletStrong = true;
+				console.log("bullet strong is true");
+			}
+			else if (keyMonkeyHit["r"] && bulletStrong !== false) {
+				bulletStrong = false;
+				console.log("bullet strong is false");
+			}
+			keyMonkey.clear();
+		}
+
+		// MOVE GLOW
+		function moveGlow() {
+			glow.x = hero.x;
+			glow.y = hero.y;
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MOVE TARGETS
+		// function moveTargets() {
+		// 	for (var i = 0; i < targetsArray.length; i++) {
+		// 		targetsArray[i].x += targetsArray[i].speedX;
+		// 		targetsArray[i].y += targetsArray[i].speedY;
+		// 	}
+		// }
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// MOVE BULLET
+		function moveBullet() {
+			for (var i = 0; i < bulletArray.length; i++) {
+				if (bulletArray[i].name == null) {
+					bulletArray[i].name = bulletDirection;
+				}
+				if (bulletArray[i].name == "up") {
+					if (bulletArray[i].class == "normal") {
+						bulletArray[i].y -= bulletSpeedNormal;
+					}
+					else if (bulletArray[i].class == "strong") {
+						bulletArray[i].y -= bulletSpeedStrong;
+					}
+				}
+				if (bulletArray[i].name == "down") {
+					if (bulletArray[i].class == "normal") {
+						bulletArray[i].y += bulletSpeedNormal;
+					}
+					else if (bulletArray[i].class == "strong") {
+						bulletArray[i].y += bulletSpeedStrong;
+					}
+				}
+				if (bulletArray[i].name == "left") {
+					if (bulletArray[i].class == "normal") {
+						bulletArray[i].x -= bulletSpeedNormal;
+					}
+					else if (bulletArray[i].class == "strong") {
+						bulletArray[i].x -= bulletSpeedStrong;
+					}
+				}
+				if (bulletArray[i].name == "right") {
+					if (bulletArray[i].class == "normal") {
+						bulletArray[i].x += bulletSpeedNormal;
+					}
+					else if (bulletArray[i].class == "strong") {
+						bulletArray[i].x += bulletSpeedStrong;
+					}
+				}
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		function moveJohn() {
+			// move john right
+			if (john.x <= 1200) {
+				john.x += 4;
+				john.y += 0;
+			}
+			// move john up
+			if (john.x >= 1200) {
+				john.x += 0;
+				john.y -= 4;
+			}
+			// else if (john.x > 900) {
+			// 	john.x += 0;
+			// 	john.y -= johnSpeed;
+			// }
+			// else if (john.x > 900) {
+			// 	john.x += 0;
+			// 	john.y -= johnSpeed;
+			// }
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// CHECK HERO BOUNDARIES
+		function checkHeroBoundary() {
+			if (hero.x > stageWidth + hero.regX) {
+				hero.x = -hero.regX;
+			}
+			if (hero.x < 0 - hero.regX) {
+				hero.x = stageWidth + hero.regX - 1;
+			}
+			if (hero.y > stageWidth + hero.regY) {
+				hero.y = -hero.regY + 1;
+			}
+			if (hero.y < 0 - hero.regY) {
+				hero.y = stageWidth + hero.regY - 1;
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// CHECK TARGET BOUNDARIES
+		// function checkTargetsBoundary() {
+		// 	for (var i = 0; i < targetsArray.length; i++) {
+		// 		if (targetsArray[i].x > stageWidth - targetsArray[i].regX || targetsArray[i].x < targetsArray[i].regX) {
+		// 			//console.log("off STAGE");
+		// 			targetsArray[i].speedX = -targetsArray[i].speedX;
+		// 		}
+		// 		if (targetsArray[i].y > stageHeight - targetsArray[i].regY || targetsArray[i].y < targetsArray[i].regY) {
+		// 			//console.log("off STAGE");
+		// 			targetsArray[i].speedY = -targetsArray[i].speedY;
+		// 		}
+		// 	}
+		// }
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// CHECK COLLISIONS
+		function checkCollisions() {
+			// for loop that checks every wall block in the wall array
+			for (var i = wallArray.length - 1; i >= 0; i--) {
+				// BULLET HITS WALL
+				// for loop that checks every bullet in the bullet array
+				for (var a = bulletArray.length - 1; a >= 0; a--) {
+					// if a bullet in the bullet array collides with a block in the wall array
+					if (bulletArray[a].collidesWith(wallArray[i])) {
+						//console.log("bullet hit wall");
+						// if the bullet in the bullet array is normal
+						if (bulletArray[a].class == "normal") {
+							// if the block in the wall array is a wall or door block
+							if (wallArray[i].name == "wall" || wallArray[i].name == "door") {
+								myStage.removeChild(bulletArray[a]);
+								bulletArray.splice(a, 1);
+								console.log("normal bullet hit wall or door");
+							}
+							// if the block in the wall array is a window block
+							if (wallArray[i].name == "window") {
+								myStage.removeChild(bulletArray[a]);
+								bulletArray.splice(a, 1);
+								myStage.removeChild(wallArray[i]);
+								wallArray.splice(i, 1);
+								console.log("normal bullet hit window");
+							}
+						}
+						// if the bullet in the bullet array is strong
+						else if (bulletArray[a].class == "strong") {
+							myStage.removeChild(bulletArray[a]);
+							bulletArray.splice(a, 1);
+							myStage.removeChild(wallArray[i]);
+							wallArray.splice(i, 1);
+							console.log("strong bullet hit anything");
+						}
+					}
+				}
+				// HERO HITS WALL
+				// if the hero collides with a wall block in the wall array
+				if (hero.collidesWith(wallArray[i]) && wallArray[i].name == "wall") {
+					console.log("hero hit wall");
+
+					// HERO REGISTER POINT OFFSET FOR COLLISION
+					//var heroRegOffset = hero.speed + 0.1;
+					//var heroRegOffsetX = hero.regX - (hero.speed + 0.1);
+					//var heroRegOffsetY = hero.regY - (hero.speed + 0.1);
+
+					// HERO BOUNDARY POINTS
+					var heroSideTop = hero.y - hero.regY;
+					var heroSideBottom = hero.y + hero.regY;
+					var heroSideLeft = hero.x - hero.regX;
+					var heroSideRight = hero.x + hero.regX;
+					// WALL BOUNDARY POINTS
+					var wallSideTop = wallArray[i].y - wallArray[i].regY;
+					var wallSideBottom = wallArray[i].y + wallArray[i].regY;
+					var wallSideLeft = wallArray[i].x - wallArray[i].regX;
+					var wallSideRight = wallArray[i].x + wallArray[i].regX;
+					// HERO HITS LEFT SIDE
+					if (heroSideRight < wallSideLeft && heroSideBottom > wallSideTop && heroSideTop < wallSideBottom) {
+						hero.x = wallSideLeft - (hero.regX + 4);
+						console.log("hit left");
+					}
+					// HERO HITS RIGHT SIDE
+					else if (heroSideLeft > wallSideRight && heroSideBottom > wallSideTop && heroSideTop < wallSideBottom) {
+						hero.x = wallSideRight + (hero.regX + 4);
+						console.log("hit right");
+					}
+					// HERO HITS TOP SIDE
+					else if (heroSideBottom < wallSideTop && heroSideRight > wallSideLeft && heroSideLeft < wallSideRight) {
+						hero.y = wallSideTop - (hero.regY + 4);
+						console.log("hit top");
+					}
+					// HERO HITS BOTTOM SIDE
+					else if (heroSideTop > wallSideBottom && heroSideRight > wallSideLeft && heroSideLeft < wallSideRight) {
+						hero.y = wallSideBottom + (hero.regY + 4);
+						console.log("hit bottom");
+					}
+				}
+				// HERO HITS JOHN
+				// if the hero collides with john
+				if (hero.collidesWith(john)) {
+				}
+			}
+			if (!gameOver) {
+				for (var i = targetsArray.length - 1; i >= 0; i--) {
+					if (hero.collidesWith(targetsArray[i])) {
+						score++;
+						myStage.removeChild(targetsArray[i]);
+						targetsArray.splice(i, 1);
+					}
+				}
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// // SCORE AND GAME OVER
+		// function updateScoreText() {
+		// 	if (!gameOver) {
+		// 		scoreText.text = "Score: " + score;
+		// 	}
+		// 	else {
+		// 		scoreText.text = "You Win!";
+		// 	}
+		// }
+		
+		function checkGameOver() {
+			// game over conditions
+			if (score === targetAmountSet && gameOver === false) {
+				gameOver = true;
+				gameClock = 0;
+				console.log('this game is over!');
+			}
+		}
+		function handleGameOver() {
+			if (gameOver === true) {
+				if (gameClock > gameOverDuration) {
+					console.log("hello from handleGameOver");
+					myStage.removeAllChildren();
+					initGame();
+				}
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// UTILITIES
+		function rollRange(bottomEnd, topEnd, integerIfTrue) {
+			// returns a random # between bottomEnd and topEnd
+			// The integerIfTrue parameter takes a boolean argument
+			if (integerIfTrue) {
+				return Math.floor(Math.random() * (topEnd - bottomEnd + 1)) + bottomEnd;
+			} else {
+				return Math.random() * (topEnd - bottomEnd + 1) + bottomEnd;
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	</script>
+</head>
+
+<body onload="init()">
+	<canvas id="myCanvas" width="1900" height="925">Sorry. You need an HTML5 compatible browser to see this.</canvas>
+</body>
+
+</HTML>

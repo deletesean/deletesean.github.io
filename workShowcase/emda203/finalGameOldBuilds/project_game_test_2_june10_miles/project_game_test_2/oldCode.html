@@ -1,0 +1,537 @@
+<script>
+// if (heroSideLeft > wallSideLeft) {
+    // 	hero.x = wallRightSide + hero.regX;
+    // 	console.log("this")
+    // }
+    // // HERO HITS TOP OR BOTTOM SIDE
+    // if (heroSideRight > wallSideLeft && heroSideLeft < wallSideRight) {
+    // 	// HERO HITS TOP SIDE
+    // 	if (heroSideBottom < wallSideTop) {
+    // 		hero.y = wallArray[i].y - hero.regY;
+    // 	}
+    // 	// HERO HITS BOTTOM SIDE
+    // 	if (heroSideTop > wallSideBottom) {
+    // 		hero.y = wallArray[i].y + hero.regY;
+    // 	}
+    // }
+    // // HERO HITS LEFT OR RIGHT SIDE
+    // if (heroSideBottom > wallSideTop && heroSideTop < wallSideBottom) {
+    // 	// HERO HITS LEFT SIDE
+    // 	if (heroSideRight < wallSideLeft) {
+    // 		hero.x = wallArray[i].y - hero.regY;
+    // 	}
+    // 	// HERO HITS RIGHT SIDE
+    // 	if (heroSideLeft > wallSideRight) {
+    // 		hero.x = wallArray[i].y + hero.regY;
+    // 	}
+    // }
+    // if ((hero.x + hero.regX) > (wallArray[i].x - wallArray[i].regX)) {
+    // // HERO HITS TOP
+    // 	if ((hero.y + heroRegOffsetY) < (wallArray[i].y + wallArray[i].regY)) {
+    // 		hero.y = wallArray[i].y - hero.regY;
+    // 		console.log("HERO HIT TOP");
+    // 	}
+    // // HERO HITS BOTTOM
+    // 	if ((hero.y - heroRegOffsetY) > (wallArray[i].y - wallArray[i].regY)) {
+    // 		hero.y = wallArray[i].y + hero.regY;
+    // 		console.log("HERO HIT BOTTOM");
+    // 	}
+    // }
+    // // HERO HITS LEFT
+    // if ((hero.x + heroRegOffsetX) < (wallArray[i].x - wallArray[i].regX) && (hero.y + hero.regY) > (wallArray[i].y - wallArray[i].regY)) {
+    // 	hero.x = (wallArray[i].x - wallArray[i].regX) - hero.regX;
+    // 	console.log("HERO HIT LEFT");
+    // }
+    // // HERO HITS RIGHT
+    // if ((hero.x - heroRegOffsetX) > (wallArray[i].x + wallArray[i].regX) && (hero.y - hero.regY) < (wallArray[i].y + wallArray[i].regY)) {
+    // 	hero.x = (wallArray[i].x + wallArray[i].regX) + hero.regX;
+    // 	console.log("HERO HIT RIGHT");
+    // }
+    // if ((hero.y + hero.regY) > (wallArray[0].y - wallArray[0].regY) && (hero.y - hero.regY) < (wallArray[wallArray.length - 1].y + wallArray[wallArray.length - 1].regY)) {
+    // 	hero.x = wallArray[0].x - hero.regX;
+    // }
+    // if ((hero.y + hero.regY) > wallArray[0].y && (hero.x - hero.regX) > (wallArray[i].x - hero.regX)) {
+    // 	hero.y = wallArray[0].y - hero.regY;
+    // }
+    // if ((hero.y + hero.regY) > wallArray[0].y && hero.) {
+    // 	hero.y = wallArray[0].y - hero.regY;
+    // }
+    // if ((hero.x + hero.regX) > wallArray[i].x && hero.x < wallArray[i].x && (hero.y + hero.regY) > wallArray[0].y) {
+    // 	hero.x = wallArray[i].x - hero.regX;
+    // }
+    // if ((hero.x - hero.regX) < wallArray[i].x && hero.x > wallArray[i].x && (hero.y + hero.regY) > wallArray[0].y) {
+    // 	hero.x = wallArray[i].x + hero.regX;
+    // }
+    // if ((hero.y - hero.regY) < wallArray[wallArray.length - 1].y && hero.y > wallArray[wallArray.length - 1].y) {
+    // 	hero.y = wallArray[wallArray.length - 1].y + hero.regY;
+    // }
+    // if ((hero.x + hero.regX) > wallArray[i].x && (hero.x - hero.regX) < wallArray[i].x) {
+    // 	hero.x = wallArray[i].x - hero.regX;
+    // }
+    // if (hero.x < wallArray[i].x) {
+    // 	hero.x = wallArray[i].x - hero.regX;
+    // }
+    // if (hero.x > wallArray[i].x) {
+    // 	hero.x = wallArray[i].x + hero.regX;
+    // }
+    // // roll a random integer: 0, 1, or 2 and store it in the new variable 'whichWall'
+				// var whichWall = Math.floor(Math.random() * 3);
+				// // This switch statement checks our 'whichWall' value and assigns a different Bitmap 
+				// // for each possible value... 0, 1, or 2
+				// switch (whichWall) {
+				// 	case 0:
+				// 		wallArray[i] = new createjs.Bitmap("images/1pxBlack.png");
+				// 		break;
+				// 	case 1:
+				// 		wallArray[i] = new createjs.Bitmap("images/1pxBlack.png");
+				// 		break;
+				// 	case 2:
+				// 		wallArray[i] = new createjs.Bitmap("images/1pxBlack.png");
+				// 		break;
+				// }
+
+				// if (i > 20) {
+				// 	wallArray[i] = new createjs.Bitmap(wallTypeBlack);
+				// }
+				// if (i < 20) {
+				// 	wallArray[i] = new createjs.Bitmap(wallTypeBlue);
+				// }
+                
+			//console.log("HERO " + "x " + hero.x + " regX " + hero.regX + " y " + hero.y + " regY " + hero.regY + " top " + heroSideTop + " bottom " + heroSideBottom + " left " + heroSideLeft + " right " + heroSideRight);
+			//console.log("WALL " + "x " + wallArray[0].x + " regX " + wallArray[0].regX + " y " + wallArray[0].y + " regY " + wallArray[0].regY + " top " + wallFirstSideTop + " bottom " + wallFirstSideBottom + " left " + wallFirstSideLeft + " right " + wallFirstSideRight);
+
+		// // add direction changes to array (building 1)
+		// wallStartBottom[0] = wallLengthY[0];
+		// wallStartRight[0] = wallLengthY[0] + wallLengthX[0];
+		// wallStartTop[0] = wallLengthY[0] + wallLengthX[0] + wallLengthY[0];
+		// // add direction changes to array (building 2)
+		// wallStartBottom[1] = wallLengthY[1];
+		// wallStartRight[1] = wallLengthY[1] + wallLengthX[1];
+		// wallStartTop[1] = wallLengthY[1] + wallLengthX[1] + wallLengthY[1];
+        
+		// add wall amount to array (building 1)
+		// wallAmountSet[0] = (wallLengthX[0] + wallLengthY[0]) * 2 + 1;
+		// // add wall amount to array (building 2)
+		// wallAmountSet[1] = (wallLengthX[1] + wallLengthY[1]) * 2 + 1;
+
+		// // current build in loop
+		// var wallPositionCurrentX = wallPositionX[wallArrayCount];
+		// var wallPositionCurrentY = wallPositionY[wallArrayCount];
+		// var wallLengthCurrentX = wallLengthX[wallArrayCount];
+		// var wallLengthCurrentY = wallLengthY[wallArrayCount];
+		// var wallStartBottomCurrent = wallStartBottom[wallArrayCount];
+		// var wallStartRightCurrent = wallStartRight[wallArrayCount];
+		// var wallStartTopCurrent = wallStartTop[wallArrayCount];
+        // var wallAmountSetCurrent = wallAmountSet[wallArrayCount];
+        
+			// if (keyMonkeyHold["c"]) {
+			// 	hero.speed = heroSpeedCrouch;
+			// }
+			// if (keyMonkeyHold["shift"]) {
+			// 	hero.speed = 4;
+			// 	console.log(hero.speed);
+			// }
+			// if (keyMonkeyRelease["shift"]) {
+			// 	hero.speed = heroSpeedWalk;
+			// 	console.log(hero.speed);
+			// }
+			// if (keyMonkeyHold["shift"]) {
+			// 	hero.speed = heroSpeedCrouch;
+			// }
+			// else {
+			// 	hero.speed = heroSpeedWalk;
+			// }
+			// if (keyMonkeyHit["c"] && heroCrouch == false) {
+			// 	hero.speed = heroSpeedCrouch;
+			// 	heroCrouch = true;
+			// }
+			// else if (keyMonkeyHit["c"] && heroCrouch == true) {
+			// 	hero.speed = heroSpeedWalk;
+			// 	heroCrouch = false;
+            // }
+            
+					// if (bulletArray[a].collidesWith(wallArray[i]) && wallArray[i].name == "window") {
+					// 	myStage.removeChild(bulletArray[a]);
+					// 	bulletArray.splice(a, 1);
+					// 	myStage.removeChild(wallArray[i]);
+					// 	wallArray.splice(i, 1);
+					// 	console.log("bullet hit window");
+					// }
+
+			// // move john left
+			// if (john.x > 1200 && john.y < 300) {
+			// 	john.x -= 4;
+			// 	john.y += 0;
+			// }
+			// // move john down
+			// if (john.x > 1200 && john.y < 300) {
+			// 	john.x += 0;
+			// 	john.y += 4;
+            // }
+            
+
+            
+		//var heroAlphaWalk = 0.1;
+        //var heroSpeedWalk = 0.5;
+        
+			// // WALK
+			// if (keyMonkeyRelease["alt"]) {
+			// 	hero.speed = heroSpeedDefault;
+			// 	console.log("walk is off");
+			// }
+			// if (keyMonkeyHold["alt"]) {
+			// 	hero.speed = heroSpeedWalk;
+			// 	console.log("walk is on");
+            // }
+            
+
+
+
+
+			//makeGlow(glowSourceSet);
+
+			//makeGlowJohn(glowJohnSourceSet);
+			//makeJohn(johnSourceSet);
+
+			//makeGlowLisa(glowLisaSourceSet);
+            //makeLisa(lisaSourceSet);
+            
+            
+            //moveGlow();
+
+            
+			//moveJohn();
+			//moveGlowJohn();
+			//moveLisa();
+            //moveGlowLisa();
+            
+            //updateScoreText();
+            
+
+            
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// // MAKE GLOW (HERO)
+		// function makeGlow(glowSource) {
+		// 	glow = new createjs.Bitmap(glowSource);
+		// 	glow.x = glowPositionX;
+		// 	glow.y = glowPositionY;
+		// 	myStage.addChild(glow);
+		// 	glow.regX = glowRegX;
+		// 	glow.regY = glowRegY;
+		// 	//glow.alpha = glowAlpha;
+		// 	glow.alpha = 0;
+		// 	collisionGnome.addCollider(glow, glowCollisionOffset);
+		// }
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// // MOVE GLOW (HERO)
+		// function moveGlow() {
+		// 	glow.x = hero.x;
+		// 	glow.y = hero.y;
+		// }
+            
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// // MAKE JOHN
+		// function makeJohn(johnSource) {
+		// 	john = new createjs.Bitmap(johnSource);
+		// 	john.x = johnPositionX;
+		// 	john.y = johnPositionY;
+		// 	myStage.addChild(john);
+		// 	john.regX = johnRegX;
+		// 	john.regY = johnRegY;
+		// 	john.speed = johnSpeed;
+		// 	collisionGnome.addCollider(john, johnCollisionOffset);
+		// }
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// // MOVE JOHN
+		// function moveJohn() {
+		// 	// move john right
+		// 	if (john.x <= 1570 && john.y >= johnPositionY) {
+		// 		//console.log("move john right");
+		// 		john.x += johnSpeed;
+		// 		john.y += 0;
+		// 	}
+		// 	// move john up
+		// 	else if (john.x > 1570 && john.y > 185) {
+		// 		//console.log("move john up");
+		// 		john.x += 0;
+		// 		john.y -= johnSpeed;
+		// 	}
+		// 	// move john left
+		// 	else if (john.y <= 185 && john.x > johnPositionX) {
+		// 		//console.log("move john left");
+		// 		john.x -= johnSpeed;
+		// 		john.y += 0;
+		// 	}
+		// 	// move john down
+		// 	else if (john.y < johnPositionY && john.x < 1570) {
+		// 		//console.log("move john down");
+		// 		john.x += 0;
+		// 		john.y += johnSpeed;
+		// 	}
+		// }
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// // MAKE GLOW (JOHN)
+		// function makeGlowJohn(glowJohnSource) {
+		// 	glowJohn = new createjs.Bitmap(glowJohnSource);
+		// 	glowJohn.x = glowJohnPositionX;
+		// 	glowJohn.y = glowJohnPositionY;
+		// 	myStage.addChild(glowJohn);
+		// 	glowJohn.regX = glowJohnRegX;
+		// 	glowJohn.regY = glowJohnRegY;
+		// 	glowJohn.alpha = glowJohnAlpha;
+		// 	collisionGnome.addCollider(glowJohn, glowJohnCollisionOffset);
+		// }
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// // MOVE GLOW (JOHN)
+		// function moveGlowJohn() {
+		// 	glowJohn.x = john.x;
+		// 	glowJohn.y = john.y;
+		// }
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// // MAKE LISA
+		// function makeLisa(lisaSource) {
+		// 	lisa = new createjs.Bitmap(lisaSource);
+		// 	lisa.x = lisaPositionX;
+		// 	lisa.y = lisaPositionY;
+		// 	myStage.addChild(lisa);
+		// 	lisa.regX = lisaRegX;
+		// 	lisa.regY = lisaRegY;
+		// 	lisa.speed = lisaSpeed;
+		// 	collisionGnome.addCollider(lisa, lisaCollisionOffset);
+		// }
+				
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// // MOVE LISA
+		// function moveLisa() {
+		// 	if (lisaTimer == 0) {
+		// 		// roll a random integer: 0, 1, 2, or 3 and store it in the new variable 'whichDirection'
+		// 		lisa.direction = Math.floor(Math.random() * 4);
+		// 	}
+		// 	lisaTimer++;
+		// 	// This switch statement checks our 'whichDirection' value and assigns a different speed for each possible value... 0, 1, or 2
+		// 	switch (lisa.direction) {
+		// 		case 0:
+		// 			lisa.x += lisaSpeed;
+		// 			break;
+		// 		case 1:
+		// 			lisa.x -= lisaSpeed;
+		// 			break;
+		// 		case 2:
+		// 			lisa.y += lisaSpeed;
+		// 			break;
+		// 		case 3:
+		// 			lisa.y -= lisaSpeed;
+		// 			break;
+		// 	}
+		// 	if (lisaTimer == 60) {
+		// 		lisaTimer = 0;
+		// 	}
+		// 	// if lisa goes off left side
+		// 	if ((lisa.x + glowLisa.regX) < 0) {
+		// 		lisa.x = stageWidth + glowLisa.regX;
+		// 	}
+		// 	// if lisa goes off right side
+		// 	if ((lisa.x - glowLisa.regX) > stageWidth) {
+		// 		lisa.x = 0 - glowLisa.regX;
+		// 	}
+		// 	// if lisa goes off top side
+		// 	if ((lisa.y + glowLisa.regY) < 0) {
+		// 		lisa.y = stageHeight + glowLisa.regY;
+		// 	}
+		// 	// if lisa goes off bottom side
+		// 	if ((lisa.y - glowLisa.regY) > stageHeight) {
+		// 		lisa.y = 0 - glowLisa.regY;
+		// 	}
+		// }
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// // MAKE GLOW (LISA)
+		// function makeGlowLisa(glowLisaSource) {
+		// 	glowLisa = new createjs.Bitmap(glowLisaSource);
+		// 	glowLisa.x = glowLisaPositionX;
+		// 	glowLisa.y = glowLisaPositionY;
+		// 	myStage.addChild(glowLisa);
+		// 	glowLisa.regX = glowLisaRegX;
+		// 	glowLisa.regY = glowLisaRegY;
+		// 	glowLisa.alpha = glowLisaAlpha;
+		// 	collisionGnome.addCollider(glowLisa, glowLisaCollisionOffset);
+		// }
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// // MOVE GLOW (LISA)
+		// function moveGlowLisa() {
+		// 	glowLisa.x = lisa.x;
+		// 	glowLisa.y = lisa.y;
+        // }
+        
+        
+					// HERO REGISTER POINT OFFSET FOR COLLISION
+					//var heroRegOffset = hero.speed + 0.1;
+					//var heroRegOffsetX = hero.regX - (hero.speed + 0.1);
+					//var heroRegOffsetY = hero.regY - (hero.speed + 0.1);
+
+		// // JOHN
+		// var john;
+		// var johnSourceSet = "images/enemy58x40.png";
+		// var johnRegX = 100;
+		// var johnRegY = 100;
+		// var johnSpeed = 2;
+
+		// var johnPositionX = 960;
+		// var johnPositionY = 460;
+
+		// var johnCollisionOffset = 1;
+
+		// // GLOW (JOHN)
+		// var glowJohn;
+		// var glowJohnSourceSet = "images/glow200x200.png";
+		// var glowJohnRegX = 100;
+		// var glowJohnRegY = 100;
+		// var glowJohnPositionX = johnPositionX;
+		// var glowJohnPositionY = johnPositionY;
+		// var glowJohnAlpha = 1;
+		// var glowJohnCollisionOffset = 0.5;
+
+		// // LISA
+		// var lisa;
+		// var lisaSourceSet = "images/lisa58x40.png";
+		// var lisaRegX = 100;
+		// var lisaRegY = 100;
+		// var lisaSpeed = 4;
+
+		// var lisaPositionX = 300;
+		// var lisaPositionY = 300;
+
+		// var lisaCollisionOffset = 1;
+
+		// // GLOW (LISA)
+		// var glowLisa;
+		// var glowLisaSourceSet = "images/glow200x200.png";
+		// var glowLisaRegX = 100;
+		// var glowLisaRegY = 100;
+		// var glowLisaPositionX = lisaPositionX;
+		// var glowLisaPositionY = lisaPositionY;
+		// var glowLisaAlpha = 1;
+        // var glowLisaCollisionOffset = 0.5;
+        
+
+        
+        //var heroAlphaWalk = 0.1;
+
+			// // HERO GLOW HITS JOHN GLOW
+			// // if hero glow collides with john glow
+			// if (glow.collidesWith(glowJohn) && heroSprint == true && glowHitJohnGlow == false) {
+			// 	glowHitJohnGlow = true;
+			// 	john.x = 0 - johnRegX;
+			// 	john.y = stageHeight + johnRegY - 1;
+			// 	// myStage.removeChild(john);
+			// 	// myStage.removeChild(glowJohn);
+			// 	health -= 1;
+			// 	glowHitJohnGlow = false;
+			// }
+
+			// // HERO HITS JOHN
+			// // if the hero collides with john
+			// if (hero.collidesWith(john) && heroCrouch == true && glowHitJohnGlow == false) {
+			// 	glowHitJohnGlow = true;
+			// 	john.x = 0 - johnRegX;
+			// 	john.y = stageHeight + johnRegY - 1;
+			// 	// myStage.removeChild(john);
+			// 	// myStage.removeChild(glowGohn);
+			// 	health -= 1;
+			// 	glowHitJohnGlow = false;
+            // }
+            
+            
+		//var lisaTimer = 0;
+		//var debugSet = false;
+        //var changeAlpha = 0;
+        
+		//var bulletWallBounceDelay = 0;
+
+		//var bulletWallBounce = true;
+
+        //var glowHitJohnGlow = false;
+        
+        
+				// HERO GLOW HITS WALL
+				// if hero glow collides with john glow
+				// if (glow.collidesWith(wallArray[i]) && glowHitJohnGlow == false) {
+				// 	glowHitJohnGlow = true;
+				// 	glowHitJohnGlow = false;
+                // }
+                
+							// myStage.removeChild(bulletArray[a]);
+							// bulletArray.splice(a, 1);
+							// ghostArray[i].x = hero.x;
+							// ghostArray[i].y = hero.y;
+
+                            //myStage.removeChild(glowArray[i]);
+                            
+		//var ghostSpeed = 4;
+
+        //var ghostSpeedMax = 3;
+        
+							// slimeArray[i].direction = "none";
+							// slimeArray[i].speed = 0;
+							// slimeArray[i].x = hero.x;
+                            // slimeArray[i].y = hero.y;
+                            
+
+                            
+			// Math.floor(Math.random() * stageWidthCustom) + 1,
+			// Math.floor(Math.random() * stageWidthCustom) + 1,
+			// Math.floor(Math.random() * stageWidthCustom) + 1,
+			// Math.floor(Math.random() * stageWidthCustom) + 1,
+			// Math.floor(Math.random() * stageWidthCustom) + 1,
+			// Math.floor(Math.random() * stageWidthCustom) + 1,
+			// Math.floor(Math.random() * stageWidthCustom) + 1,
+			// Math.floor(Math.random() * stageWidthCustom) + 1,
+			// Math.floor(Math.random() * stageWidthCustom) + 1,
+			// Math.floor(Math.random() * stageWidthCustom) + 1,
+			// 1420, // private room
+			// 1550, // closet
+			// 1370, // closet room
+			// 470, // stairs
+			// 545, // bath
+			// 530, // bath room
+			// 0, // start
+            // 0, // start
+            
+            
+			// Math.floor(Math.random() * stageHeightCustom) + 1,
+			// Math.floor(Math.random() * stageHeightCustom) + 1,
+			// Math.floor(Math.random() * stageHeightCustom) + 1,
+			// Math.floor(Math.random() * stageHeightCustom) + 1,
+			// Math.floor(Math.random() * stageHeightCustom) + 1,
+			// Math.floor(Math.random() * stageHeightCustom) + 1,
+			// Math.floor(Math.random() * stageHeightCustom) + 1,
+			// Math.floor(Math.random() * stageHeightCustom) + 1,
+			// Math.floor(Math.random() * stageHeightCustom) + 1,
+			// Math.floor(Math.random() * stageHeightCustom) + 1,
+			// 320, // private room
+			// 590, // closet
+			// 590, // closet room
+			// 175, // stairs
+			// 175, // bath
+			// 320, // bath room
+			// 0, // start
+			// 0, // start
+
+</script>
