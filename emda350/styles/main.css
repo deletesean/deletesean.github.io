@@ -335,7 +335,7 @@ body {
 
 .hero {
     grid-area: hero;
-    background-image: url("/images/hero.png");
+    background-image: url(../images/hero.png);
     background-repeat: no-repeat;
     background-size: cover;
     mix-blend-mode: luminosity;
