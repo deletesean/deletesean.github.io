@@ -11,40 +11,59 @@
             color: white;
         }
         body {
-            background-color: #222;
+            background-color: #111;
             margin: 0;
         }
         .nav {
             position: fixed;
-            display: block;
             top: 0;
             width: 100%;
             padding: 1em;
-            background-color: #555;
+            background-color: #333;
+            z-index: 10;
         }
-        a {
-            transition: 0.3s;
+        .nav a {
+            transition: 0.5s;
         }
-        a:hover {
-            color: #999;
+        .nav a:hover {
+            color: #777;
         }
         .nav a {
             float: left;
-            padding: 0.5em;
+            padding: 0.5em 1em 0.5em 1em;
         }
         .main {
             margin: 200px auto;
             width: 1000px;
-            background: #222;
+            background: #111;
         }
         .content a {
             display: block;
-            margin-top: 1em;
-            margin-bottom: 1em;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            padding-left: 1em;
+            transition: 0.3s;
+        }
+        .content a:hover {
+            background-color: #000;
         }
         .content img {
             width: 100%;
-        };
+            margin-top: 2em;
+        }
+        iframe {
+            margin-top: 2em;
+        }
+        .noteImages img {
+            filter: invert(100%);
+            transition: 1s;
+        }
+        .noteImages img:hover {
+            filter: invert(0%);
+        }
+        h2 {
+            margin-bottom: 2em;
+        }
     </style>
 
 </head>
@@ -61,47 +80,90 @@
     </div>
     <div class="main">
         <div class="content">
-            <h1>EMDA 203 - Digital Interactive Foundation</h1>
+            <h1>EMDA 203 - DIGITAL INTERACTIVE FOUNDATION</h1>
 
-            <a name="finalGame"></a>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+            <a name="finalGame" class="noHover"></a>
+            <br><br><br><br><br>
 
             <h2>Final Game</h2>
+            <img src="emda203/previews/finalGame.gif" alt="finalGame">
             <a href="emda203/finalGame/project_game_test_2/index.html" target="_blank">Click here to play it</a>
+            <a href="emda203/finalGame/project_game_test_2.zip" target="_blank">Click here to download it</a>
 
             <a name="previousBuilds"></a>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+            <br><br><br><br><br>
 
             <h2>Previous Game Builds</h2>
-            <a href="emda203/finalGameOldBuilds/project_game_may31/index.html" target="_blank">May 31st (1)</a>
-            <a href="emda203/finalGameOldBuilds/project_game_test_may31/test.html" target="_blank">May 31st (2)</a>
-            <a href="emda203/finalGameOldBuilds/project_game_test_2_june3_dillon/project_game_test_2/index.html" target="_blank">June 3rd - Dillon</a>
-            <a href="emda203/finalGameOldBuilds/project_game_test_2_june4_dillon/project_game_test_2/index.html" target="_blank">June 4th - Dillon</a>
-            <a href="emda203/finalGameOldBuilds/project_game_test_2_june5_dillon_1/project_game_test_2/index.html" target="_blank">June 5th - Dillon (1)</a>
-            <a href="emda203/finalGameOldBuilds/project_game_test_2_june5_dillon_2/project_game_test_2/index.html" target="_blank">June 5th - Dillon (2)</a>
-            <a href="emda203/finalGameOldBuilds/project_game_test_2_june5_dillon_3/project_game_test_2/index.html" target="_blank">June 5th - Dillon (3)</a>
-            <a href="emda203/finalGameOldBuilds/project_game_test_2_june6/project_game_test_2/index.html" target="_blank">June 6th</a>
-            <a href="emda203/finalGameOldBuilds/project_game_test_2_june6_dillon_1/project_game_test_2/index.html" target="_blank">June 6th - Dillon (1)</a>
-            <a href="emda203/finalGameOldBuilds/project_game_test_2_june6_dillon_2/project_game_test_2/index.html" target="_blank">June 6th - Dillon (2)</a>
-            <a href="emda203/finalGameOldBuilds/project_game_test_2_june8_miles/project_game_test_2/index.html" target="_blank">June 8th - Miles</a>
-            <a href="emda203/finalGameOldBuilds/project_game_test_2_june9_jeffrey/project_game_test_2/index.html" target="_blank">June 9th - Jeffrey</a>
-            <a href="emda203/finalGameOldBuilds/project_game_test_2_june9_malen/index.html" target="_blank">June 9th - Malen</a>
-            <a href="emda203/finalGameOldBuilds/project_game_test_2_june10_miles/project_game_test_2/index.html" target="_blank">June 10th - Miles</a>
+            <img src="emda203/previews/may31_1.gif" alt="may31_1">
+            <a href="emda203/finalGameOldBuilds/project_game_may31/index.html" target="_blank">May 31st (1) - Play</a>
+            <a href="emda203/finalGameOldBuilds/project_game_may31.zip" target="_blank">May 31st (1) - Download</a>
+            <br>
+
+            <img src="emda203/previews/may31_2.gif" alt="may31_2">
+            <a href="emda203/finalGameOldBuilds/project_game_test_may31/test.html" target="_blank">May 31st (2) - Play</a>
+            <a href="emda203/finalGameOldBuilds/project_game_test_may31.zip" target="_blank">May 31st (2) - Download</a>
+            <br>
+
+            <img src="emda203/previews/june3.gif" alt="june3">
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june3_dillon/project_game_test_2/index.html" target="_blank">June 3rd - Dillon - Play</a>
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june3_dillon.zip" target="_blank">June 3rd - Dillon - Download</a>
+            <br>
+
+            <img src="emda203/previews/june4.gif" alt="june4">
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june4_dillon/project_game_test_2/index.html" target="_blank">June 4th - Dillon - Play</a>
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june4_dillon.zip" target="_blank">June 4th - Dillon - Download</a>
+            <br>
+
+            <img src="emda203/previews/june5_1.gif" alt="june5_1">
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june5_dillon_1/project_game_test_2/index.html" target="_blank">June 5th - Dillon (1) - Play</a>
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june5_dillon_1.zip" target="_blank">June 5th - Dillon (1) - Download</a>
+            <br>
+
+            <img src="emda203/previews/june5_2.gif" alt="june5_2">
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june5_dillon_2/project_game_test_2/index.html" target="_blank">June 5th - Dillon (2) - Play</a>
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june5_dillon_2.zip" target="_blank">June 5th - Dillon (2) - Download</a>
+            <br>
+
+            <img src="emda203/previews/june5_3.gif" alt="june5_3">
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june5_dillon_3/project_game_test_2/index.html" target="_blank">June 5th - Dillon (3) - Play</a>
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june5_dillon_3.zip" target="_blank">June 5th - Dillon (3) - Download</a>
+            <br>
+
+            <img src="emda203/previews/june6_0.gif" alt="june6_0">
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june6/project_game_test_2/index.html" target="_blank">June 6th - Play</a>
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june6.zip" target="_blank">June 6th - Download</a>
+            <br>
+
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june6_dillon_1/project_game_test_2/index.html" target="_blank">June 6th - Dillon (1) - Play</a>
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june6_dillon_1.zip" target="_blank">June 6th - Dillon (1) - Download</a>
+            <br>
+
+            <img src="emda203/previews/june6_2.gif" alt="june6_2">
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june6_dillon_2/project_game_test_2/index.html" target="_blank">June 6th - Dillon (2) - Play</a>
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june6_dillon_2.zip" target="_blank">June 6th - Dillon (2) - Download</a>
+            <br>
+
+            <img src="emda203/previews/june8.gif" alt="june8">
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june8_miles/project_game_test_2/index.html" target="_blank">June 8th - Miles - Play</a>
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june8_miles.zip" target="_blank">June 8th - Miles - Download</a>
+            <br>
+
+            <img src="emda203/previews/june9_jeffrey.gif" alt="june9_jeffrey">
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june9_jeffrey/project_game_test_2/index.html" target="_blank">June 9th - Jeffrey - Play</a>
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june9_jeffrey.zip" target="_blank">June 9th - Jeffrey - Download</a>
+            <br>
+
+            <img src="emda203/previews/june9_malen.gif" alt="june9_malen">
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june9_malen/index.html" target="_blank">June 9th - Malen - Play</a>
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june9_malen.zip" target="_blank">June 9th - Malen - Download</a>
+            <br>
+
+            <img src="emda203/previews/june_10.gif" alt="june_10">
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june10_miles/project_game_test_2/index.html" target="_blank">June 10th - Miles - Play</a>
+            <a href="emda203/finalGameOldBuilds/project_game_test_2_june10_miles.zip" target="_blank">June 10th - Miles - Download</a>
 
             <a name="workAssets"></a>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+            <br><br><br><br><br>
 
             <h2>Work Assets</h2>
             <img src="emda203/workAssets/codeQuestion.png" alt="codeQuestion">
@@ -116,21 +178,63 @@
             <img src="emda203/workAssets/sizing_test.png" alt="sizing_test">
 
             <a name="notes"></a>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+            <br><br><br><br><br>
 
             <h2>Notes</h2>
-            <p>Notes are currently being scanned - will go here.</p>
+            <div class="noteImages">
+                <p>Overview</p>
+                <img src="emda203/notes/overview/overview.1.jpg" alt="overview.1">
+                <img src="emda203/notes/overview/overview.2.jpg" alt="overview.2">
+                <img src="emda203/notes/overview/overview.3.jpg" alt="overview.3">
+                <img src="emda203/notes/overview/overview.4.jpg" alt="overview.4">
+                <img src="emda203/notes/overview/overview.5.jpg" alt="overview.5">
+                <p>Ideas</p>
+                <img src="emda203/notes/ideas/ideas.1.jpeg" alt="start">
+                <img src="emda203/notes/ideas/ideas.2.jpeg" alt="start">
+                <img src="emda203/notes/ideas/ideas.3.jpeg" alt="start">
+                <img src="emda203/notes/ideas/ideas.4.jpeg" alt="start">
+                <p>Walls</p>
+                <img src="emda203/notes/walls/walls.01.jpg" alt="start">
+                <img src="emda203/notes/walls/walls.02.jpg" alt="start">
+                <img src="emda203/notes/walls/walls.03.jpg" alt="start">
+                <img src="emda203/notes/walls/walls.04.jpg" alt="start">
+                <img src="emda203/notes/walls/walls.05.jpg" alt="start">
+                <img src="emda203/notes/walls/walls.06.jpg" alt="start">
+                <img src="emda203/notes/walls/walls.07.jpg" alt="start">
+                <img src="emda203/notes/walls/walls.08.jpg" alt="start">
+                <img src="emda203/notes/walls/walls.09.jpg" alt="start">
+                <img src="emda203/notes/walls/walls.10.jpg" alt="start">
+                <img src="emda203/notes/walls/walls.11.jpg" alt="start">
+                <p>Elements</p>
+                <img src="emda203/notes/elements/elements.1.jpg" alt="start">
+                <img src="emda203/notes/elements/elements.2.jpg" alt="start">
+                <img src="emda203/notes/elements/elements.3.jpg" alt="start">
+                <img src="emda203/notes/elements/elements.4.jpg" alt="start">
+                <img src="emda203/notes/elements/elements.5.jpg" alt="start">
+                <img src="emda203/notes/elements/elements.6.jpg" alt="start">
+                <p>Bullets</p>
+                <img src="emda203/notes/bullets/bullets.1.jpg" alt="start">
+                <img src="emda203/notes/bullets/bullets.2.jpg" alt="start">
+                <img src="emda203/notes/bullets/bullets.3.jpg" alt="start">
+                <img src="emda203/notes/bullets/bullets.4.jpg" alt="start">
+                <img src="emda203/notes/bullets/bullets.5.jpg" alt="start">
+                <img src="emda203/notes/bullets/bullets.6.jpg" alt="start">
+                <p>States</p>
+                <img src="emda203/notes/states/states.1.jpg" alt="start">
+                <img src="emda203/notes/states/states.2.jpg" alt="start">
+                <img src="emda203/notes/states/states.3.jpg" alt="start">
+                <img src="emda203/notes/states/states.4.jpg" alt="start">
+                <img src="emda203/notes/states/states.5.jpg" alt="start">
+                <p>Final Steps</p>
+                <img src="emda203/notes/finalSteps/finalSteps.1.jpg" alt="start">
+                <img src="emda203/notes/finalSteps/finalSteps.2.jpg" alt="start">
+                <img src="emda203/notes/finalSteps/finalSteps.3.jpg" alt="start">
+                <img src="emda203/notes/finalSteps/finalSteps.4.jpg" alt="start">
+                <img src="emda203/notes/finalSteps/finalSteps.5.jpg" alt="start">
+            </div>
 
             <a name="recordings"></a>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+            <br><br><br><br><br>
 
             <h2>Recordings</h2>
             <a href="https://www.youtube.com/playlist?list=PLMfUQjVZlGAZ_h-N14v4yzwFm-QRlRxv1" target="_blank">Click here to view the entire YouTube playlist</a>
@@ -149,10 +253,17 @@
             <br>
 
             <h2>Projects</h2>
-            <a href="emda203/projects/project_1_1/project_1_1_final.html" target="_blank">Project 1</a>
-            <a href="emda203/projects/project_1_2/project_1_2.html" target="_blank">Project 2</a>
-            <a href="emda203/projects/project_1_3/project_1_3.html" target="_blank">Project 3</a>
-            <a href="emda203/projects/project_1_4/project_1_4.html" target="_blank">Project 4</a>
+            <a href="emda203/projects/project_1_1/project_1_1_final.html" target="_blank">Project 1 - Play</a>
+            <a href="emda203/projects/project_1_1.zip" target="_blank">Project 1 - Download</a>
+
+            <a href="emda203/projects/project_1_2/project_1_2.html" target="_blank">Project 2 - Play</a>
+            <a href="emda203/projects/project_1_2.zip" target="_blank">Project 2 - Download</a>
+
+            <a href="emda203/projects/project_1_3/project_1_3.html" target="_blank">Project 3 - Play</a>
+            <a href="emda203/projects/project_1_3.zip" target="_blank">Project 3 - Download</a>
+
+            <a href="emda203/projects/project_1_4/project_1_4.html" target="_blank">Project 4 - Play</a>
+            <a href="emda203/projects/project_1_4.zip" target="_blank">Project 4 - Download</a>
 
             <a name="codePens"></a>
             <br>
