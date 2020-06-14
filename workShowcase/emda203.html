@@ -4,112 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMDA 203 — Sean Walters</title>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,400;1,700&display=swap');
-        * {
-            color: white;
-            font-family: 'Roboto Condensed', sans-serif;
-            letter-spacing: 0.2em;
-            text-align: center;
-            line-height: 1.5em;
-            text-decoration: none;
-        }
-        ::selection {
-            background: rgba(200, 0, 0, 0.3);
-        }
-        ::-moz-selection {
-            background: rgba(200, 0, 0, 0.3);
-        }
-        body {
-            margin: 0;
-            background-color: #111;
-        }
-        .background {
-            top: 0;
-            left: 0;
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -10;
-            filter: blur(15px);
-            opacity: 0.5;
-        }
-        .nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1em;
-            background-color: #333;
-            z-index: 10;
-            text-align: center;
-        }
-        .main {
-            margin: 0 auto;
-            padding: 6em 0 6em 0;
-            width: 1000px;
-        }
-        h1, h2, p {
-            padding: 1em;
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-        h1 {
-            font-size: 2.5em;
-            text-transform: uppercase;
-            background-color: rgba(200, 0, 0, 0.2);
-        }
-        h2 {
-            font-size: 2em;
-            text-transform: uppercase;
-            background-color: rgba(50, 50, 50, 0.5);
-        }
-        p {
-            font-size: 1em;
-            background-color: rgba(200, 0, 0, 0.2);
-        }
-        a {
-            font-size: 1em;
-        }
-        .nav a {
-            transition: 0.5s;
-            padding: 1.25em 1em 1.25em 1em;
-            margin-left: -7px;
-        }
-        .nav a:hover {
-            color: rgba(255, 0, 0, 1);
-        }
-        .main a {
-            padding: 1em;
-            background-color: rgba(200, 0, 0, 0.2);
-            display: block;
-            transition: 0.3s;
-            text-align: center;
-        }
-        .main a:hover {
-            background-color: rgba(200, 0, 0, 0.4);
-        }
-        .quickLink {
-            opacity: 0;
-        }
-        img {
-            width: 100%;
-            margin-top: 0;
-            margin-bottom: -7px;
-            object-fit: cover;
-        }
-        .noteImages img {
-            filter: invert(100%);
-            transition: 1s;
-        }
-        .noteImages img:hover {
-            filter: invert(0%);
-        }
-        iframe {
-            margin-top: 0;
-            margin-bottom: -7px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/main.css">
 
 </head>
 <body>
@@ -123,6 +18,7 @@
 
     <div class="nav">
         <a href="#top">Home</a>
+        <a href="#takeaway">Takeaway</a>
         <a href="#finalGame">Final Game</a>
         <a href="#previousBuilds">Previous Builds</a>
         <a href="#workAssets">Work Assets</a>
@@ -137,6 +33,14 @@
         <img class="background" src="emda203/previews/finalGame.gif" alt="finalGame">
         
         <h1>EMDA 203<br>Digital Interactive Foundation</h1>
+
+        <a name="takeaway" class="quickLink"></a>
+
+        <h2>Takeaway</h2>
+        <p>It's as complicated as you make it out to be.</p>
+        <p>Keep it manageable, know your limits, and pace yourself.</p>
+        <p>Try to focus on one thing at a time.</p>
+        <p>Do your best to plan ahead with certain elements and how they may influence one another.</p>
 
         <a name="finalGame" class="quickLink"></a>
 
