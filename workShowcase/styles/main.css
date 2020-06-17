@@ -20,11 +20,11 @@ body {
     background-color: #111;
 }
 .background {
-    top: 0;
-    left: 0;
+    top: -2%;
+    left: -2%;
     position: fixed;
-    width: 100%;
-    height: 100%;
+    width: 104%;
+    height: 104%;
     z-index: -10;
     filter: blur(15px);
     opacity: 0.5;
@@ -92,14 +92,65 @@ img {
     margin-bottom: -7px;
     object-fit: cover;
 }
-.noteImages img {
+.scans img {
     filter: invert(100%);
     transition: 1s;
 }
-.noteImages img:hover {
+.scans img:hover {
     filter: invert(0%);
 }
 iframe {
     margin-top: 0;
     margin-bottom: -7px;
+    width: 1000px;
+    height: 563px;
+}
+.googleDoc {
+    width: 99.5%;
+}
+object {
+    width: 100%;
+    height: 650px;
+    margin-bottom: -7px;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+/* Track */
+::-webkit-scrollbar-track {
+background: #111;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #222;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(200, 0, 0, 0.4);
+}
+
+.backToTop {
+    display: none;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 99;
+    font-size: 1em;
+    border: none;
+    outline: none;
+    background-color: rgba(200, 0, 0, 0.2);
+    color: white;
+    padding: 15px;
+    border-radius: 5em;
+    transition: 0.3s;
+}
+
+.backToTop:hover {
+    background-color: rgba(200, 0, 0, 0.4);
 }
