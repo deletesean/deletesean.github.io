@@ -1,0 +1,204 @@
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ALL */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* HTML & BODY */
+
+html, body {
+    height: 100%;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* HEADER & FOOTER */
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 30px;
+    z-index: 9;
+    background: white;
+}
+
+header:hover {
+    cursor: default;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    z-index: 9;
+    background: white;
+}
+
+footer:hover {
+    cursor: default;
+}
+
+footer > h5:hover {
+    cursor: text;
+}
+
+nav {
+    float: right;
+    margin-right: 15px;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* MAIN */
+
+main {
+    background: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+div {
+    position: relative;
+    text-align: center;
+  }
+
+img {
+    height: 400px;
+    transition: 1s;
+}
+
+a:hover > img {
+	filter: brightness(75%);
+}
+
+a:hover > h4 {
+    opacity: 100%;
+}
+
+h2:first-of-type {
+    margin-top: 75px;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* TEXT */
+
+/* main - title */
+h1 {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 75px;
+}
+/* main - header */
+h2 {
+    font-size: 18px;
+    text-align: center;
+    font-style: italic;
+}
+/* main - subtitle */
+h3 {
+    font-size: 18px;
+    text-align: center;
+    font-style: italic;
+    color: #c0c0c0;
+}
+/* image - title */
+h4 {
+    font-size: 18px;
+    text-align: center;
+    font-style: italic;
+    color: white;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+    opacity: 0%;
+    transition: 1s;
+}
+/* nav */
+h5 {
+    font-size: 12px;
+    display: inline-block;
+    margin-top: 8px;
+    margin-left: 10px;
+}
+/* link */
+a {
+    color: black;
+    text-decoration: none;
+}
+/* link - hover */
+a:hover {
+    text-decoration: underline;
+}
+/* superscript */
+sup {
+    font-size: 10px;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ON FOOTER CLASH, REMOVE FOOTER NAV AND CENTER FOOTER COPYRIGHT */
+
+@media only screen and (max-width: 650px) {
+
+    footer > nav {
+        display: none;
+    }
+
+    footer > h5 {
+        margin: 0;
+        margin-top: 8px;
+        display: block;
+        text-align: center;
+    }
+
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ON HEADER CLASH, REMOVE HEADER NAV AND CENTER HEADER NAME */
+
+@media only screen and (max-width: 300px) {
+
+    header > h5 {
+        display: none;
+    }
+
+    header > nav {
+        float: none;
+        text-align: center;
+    }
+
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ONCE HEIGHT IS TOO SMALL, STOP FULL VERTICAL CENTERING MAIN, THEN FULL VERTICAL CENTER TITLE */
+
+@media only screen and (max-height: 880px) {
+
+    main {
+        display: block;
+    }
+
+    h1 {
+        margin: 0;
+        margin-top: 50vh;
+        margin-bottom: 50vh;
+    }
+
+    h2:first-of-type {
+        margin: 0;
+        margin-top: 50vh;
+    }
+
+    main > h2:last-child {
+        margin-bottom: 44vh;
+    }
+
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
