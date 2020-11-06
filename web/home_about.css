@@ -1,0 +1,119 @@
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ONCE HEIGHT IS TOO SMALL, SHRINK MAIN CONTENT TO FIT */
+
+@media only screen and (max-height: 925px) {
+
+    h1, h2, h4 {
+        font-size: 16px;
+    }
+
+    h1 {
+        margin-bottom: 50px;
+    }
+    
+    h2:first-of-type {
+        margin-top: 50px;
+    }
+
+    img {
+        height: 300px;
+    }
+
+}
+
+@media only screen and (max-height: 750px) {
+
+    h1, h2, h4 {
+        font-size: 14px;
+    }
+
+    h1 {
+        margin-bottom: 25px;
+    }
+    
+    h2:first-of-type {
+        margin-top: 25px;
+    }
+
+    img {
+        height: 200px;
+    }
+
+}
+
+@media only screen and (max-height: 525px) {
+
+    h1, div {
+        display: none;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    h2:first-of-type, h2:last-of-type {
+        margin: 0;
+    }
+
+}
+
+@media only screen and (max-height: 300px) {
+
+    h2 {
+        font-size: 14px;
+    }
+
+}
+
+@media only screen and (max-height: 250px) {
+
+    main {
+        display: block;
+    }
+
+    h2:first-of-type {
+        margin-top: 50px;
+    }
+
+    h2:last-of-type {
+        margin-bottom: 50px;
+    }
+
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ONCE WIDTH IS TOO SMALL, SHRINK MAIN CONTENT TO FIT */
+
+@media only screen and (max-width: 450px) {
+
+    h1, h2, h4 {
+        font-size: 14px;
+    }
+
+}
+
+@media only screen and (max-width: 350px) {
+
+    h1, h2, h4 {
+        font-size: 12px;
+    }
+
+}
+
+@media only screen and (max-width: 275px) {
+
+    h1, h2, h4 {
+        font-size: 8px;
+    }
+
+    h1, div {
+        display: none;
+    }
+
+    h2:first-of-type, h2:last-of-type {
+        margin: 0;
+    }
+
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
