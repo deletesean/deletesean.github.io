@@ -12,7 +12,7 @@ h4 {
     transition: 0.25s ease;
 }
 
-img {
+a > img {
     height: 22.22vw;
     display: block;
     transition: 0.25s ease;
@@ -41,5 +41,5 @@ figure {
     display: flex;
     flex-wrap: wrap;
     margin-left: 1px;
-    width: 130%;
+    width: 101%;
 }

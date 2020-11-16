@@ -1,0 +1,92 @@
+main {
+    display: block;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+img {
+    height: 65vmin;
+}
+
+span {
+    display: block;
+    padding-bottom: 17vh;
+}
+
+div {
+    margin-bottom: 25vh;
+}
+
+section > div {
+    margin: 0;
+}
+
+section {
+    margin-top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+nav:first-of-type {
+    margin-right: 8px;
+}
+
+nav:last-of-type {
+    margin-right: 10px;
+}
+
+#buttonTop {
+    display: block;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12px;
+    border: none;
+    outline: none;
+    background-color: white;
+    cursor: pointer;
+    align-items: unset;
+    text-align: unset;
+    box-sizing: unset;
+    margin-top: 8px;
+}
+
+#buttonTop:hover {
+    text-decoration: line-through;
+}
+
+h1 {
+    text-align: left;
+    margin: 0;
+    display: inline-block;
+}
+
+h2 {
+    text-align: right;
+    margin: 0;
+    display: inline-block;
+}
+
+h2:first-of-type {
+    margin: 0;
+}
+
+aside {
+    display: inline-block;
+    text-align: right;
+    margin-right: 50px;
+    vertical-align: top;
+}
+
+article {
+    display: inline-block;
+    text-align: left;
+}
+
+figure {
+    text-align: center;
+    margin-top: 7.5vh;
+    margin-bottom: 25vh;
+}
