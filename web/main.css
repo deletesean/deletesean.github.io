@@ -15,6 +15,26 @@ html, body {
 }
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* SCROLLBAR */
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+/* track */
+::-webkit-scrollbar-track {
+background: white;
+}
+/* handle */
+::-webkit-scrollbar-thumb {
+background: #c0c0c0;
+}
+/* handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: #a0a0a0;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* HEADER & FOOTER */
 
 header {
@@ -24,9 +44,6 @@ header {
     height: 30px;
     z-index: 9;
     background: white;
-}
-
-header:hover {
     cursor: default;
 }
 
@@ -37,9 +54,6 @@ footer {
     height: 30px;
     z-index: 9;
     background: white;
-}
-
-footer:hover {
     cursor: default;
 }
 
@@ -70,11 +84,10 @@ div {
 
 img {
     height: 400px;
-    transition: 1s;
 }
 
 a:hover > img {
-	filter: brightness(75%);
+	filter: brightness(50%);
 }
 
 a:hover > h4 {
@@ -83,6 +96,10 @@ a:hover > h4 {
 
 h2:first-of-type {
     margin-top: 75px;
+}
+
+section {
+    text-align: center;
 }
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -118,7 +135,6 @@ h4 {
 	left: 50%;
 	transform: translate(-50%, -50%);
     opacity: 0%;
-    transition: 1s;
 }
 /* nav */
 h5 {
@@ -144,7 +160,7 @@ sup {
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ON FOOTER CLASH, REMOVE FOOTER NAV AND CENTER FOOTER COPYRIGHT */
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 670px) {
 
     footer > nav {
         display: none;
@@ -176,7 +192,7 @@ sup {
 }
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* SHRINK NAV CONTENT */
+/* ONCE WIDTH IS TOO SMALL, SHRINK HEADER AND FOOTER CONTENT */
 
 @media only screen and (max-width: 250px) {
 
