@@ -17,21 +17,24 @@ html, body {
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* SCROLLBAR */
 
-/* width */
 ::-webkit-scrollbar {
-    width: 5px;
-  }
-/* track */
+    width: 1px;
+}
+
+::-webkit-scrollbar-button {
+    height: 30px;
+}
+
 ::-webkit-scrollbar-track {
-background: white;
+    background: white;
 }
-/* handle */
+
 ::-webkit-scrollbar-thumb {
-background: #c0c0c0;
+    background: white;
 }
-/* handle on hover */
+
 ::-webkit-scrollbar-thumb:hover {
-background: #a0a0a0;
+    background: black;
 }
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -43,7 +46,6 @@ header {
     width: 100%;
     height: 30px;
     z-index: 9;
-    background: white;
     cursor: default;
 }
 
@@ -53,7 +55,6 @@ footer {
     width: 100%;
     height: 30px;
     z-index: 9;
-    background: white;
     cursor: default;
 }
 
@@ -71,6 +72,7 @@ nav {
 
 main {
     background: white;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -84,10 +86,12 @@ div {
 
 img {
     height: 400px;
+    transition: 0.25s;
 }
 
 a:hover > img {
-	filter: brightness(50%);
+	filter: brightness(75%);
+	filter: grayscale(100%);
 }
 
 a:hover > h4 {
@@ -135,6 +139,7 @@ h4 {
 	left: 50%;
 	transform: translate(-50%, -50%);
     opacity: 0%;
+    transition: 0.25s;
 }
 /* nav */
 h5 {
