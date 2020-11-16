@@ -7,11 +7,11 @@ html, body, header, footer, main {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #333;
+    background: white;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #444;
+    background: red;
 }
 
 h1, h2, h3, h4, h5, h6, a {
