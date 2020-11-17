@@ -25,3 +25,7 @@ a:hover {
 article {
     background-color: black;
 }
+
+div.fullscreen {
+    background: black;
+}
