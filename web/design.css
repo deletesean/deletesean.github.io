@@ -15,14 +15,6 @@ div.fullscreen img {
     transition: 0s;
 }
 
-div.fullscreen .photo_small {
-    display: none;
-}
-
-div.fullscreen .photo_original {
-    display: unset;
-}
-
 div.fullscreen {
     z-index: 10;
     position: fixed;
