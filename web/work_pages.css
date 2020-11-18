@@ -15,7 +15,7 @@ div {
 
 a > img {
     cursor: pointer;
-    width: 24.7vw;
+    width: 1vw;
     height: auto;
     display: block;
     transition: 0.25s ease;
@@ -47,10 +47,10 @@ figure {
 
 div.fullscreen img {
     cursor: zoom-out;
-    transform: scale(2);
+    transform: scale(1.5);
     width: unset;
-    max-width: 45vw;
-    max-height: 45vh;
+    max-width: 60vw;
+    max-height: 60vh;
 }
 
 div.fullscreen {
@@ -66,10 +66,66 @@ div.fullscreen {
     cursor: zoom-out;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (min-width: 500px) {
 
     a > img {
-        width: 21vw;
+        width: 23.9vw;
+    }
+
+}
+
+@media only screen and (min-width: 1000px) {
+
+    a > img {
+        width: 24.4vw;
+    }
+
+}
+
+@media only screen and (min-width: 1500px) {
+
+    a > img {
+        width: 24.6vw;
+    }
+
+}
+
+@media only screen and (min-width: 2000px) {
+
+    a > img {
+        width: 24.7vw;
+    }
+
+}
+
+@media only screen and (min-width: 2500px) {
+
+    a > img {
+        width: 24.7vw;
+    }
+
+}
+
+@media only screen and (min-width: 3000px) {
+
+    a > img {
+        width: 24.8vw;
+    }
+
+}
+
+@media only screen and (min-width: 3500px) {
+
+    a > img {
+        width: 24.8vw;
+    }
+
+}
+
+@media only screen and (min-width: 4000px) {
+
+    a > img {
+        width: 24.8vw;
     }
 
 }
