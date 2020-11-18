@@ -13,11 +13,8 @@ div {
     margin-bottom: 1px;
 }
 
-div > a {
-    cursor: pointer;
-}
-
 a > img {
+    cursor: pointer;
     width: 24.7vw;
     height: auto;
     display: block;
@@ -40,34 +37,20 @@ figure {
     margin-left: 1px;
 }
 
-.portrait {
+/* .portrait {
     width: 19.75vw;
-}
+} */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* div.fullscreen .portrait {
+    transform: scale(1.5);
+} */
 
 div.fullscreen img {
-    transform: scale(2.5);
-    transition: 0s;
-}
-
-div.fullscreen .portrait {
-    transform: scale(1.5);
+    cursor: zoom-out;
+    transform: scale(2);
+    width: unset;
+    max-width: 45vw;
+    max-height: 45vh;
 }
 
 div.fullscreen {
@@ -80,5 +63,13 @@ div.fullscreen {
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
+    cursor: zoom-out;
+}
+
+@media only screen and (max-width: 1000px) {
+
+    a > img {
+        width: 21vw;
+    }
+
 }
