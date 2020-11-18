@@ -4,6 +4,7 @@ html {
 
 main {
     display: block;
+    margin-top: 30px;
     overflow-x: hidden;
 }
 
@@ -11,14 +12,21 @@ h4 {
     transition: 0.25s ease;
 }
 
-a > img {
-    height: 20vw;
-    display: block;
-    transition: 0.25s ease;
+div {
+    overflow: hidden;
+    user-select: none;
+    margin-right: 1px;
+    margin-bottom: 2.5vw;
 }
 
 div > a {
     cursor: pointer;
+}
+
+a > img {
+    height: 20vw;
+    display: block;
+    transition: 0.25s ease;
 }
 
 a:hover > img {
@@ -28,12 +36,6 @@ a:hover > img {
 
 a:hover > h4 {
     opacity: 0%;
-}
-
-div {
-    margin-right: 1px;
-    margin-bottom: 2.5vw;
-    overflow: hidden;
 }
 
 figure {
