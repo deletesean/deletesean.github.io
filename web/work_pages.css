@@ -15,7 +15,7 @@ div {
 
 a > img {
     cursor: pointer;
-    width: 1vw;
+    width: 48vw;
     height: auto;
     display: block;
     transition: 0.25s ease;
@@ -27,7 +27,11 @@ a:hover > img {
 }
 
 a:hover > h4 {
-    opacity: 0%;
+    display: none;
+}
+
+figure:first-of-type {
+    margin-top: 30px;
 }
 
 figure {
@@ -35,6 +39,7 @@ figure {
     flex-wrap: wrap;
     flex-direction: row;
     margin-left: 1px;
+    justify-content: center;
 }
 
 /* .portrait {
@@ -44,6 +49,10 @@ figure {
 /* div.fullscreen .portrait {
     transform: scale(1.5);
 } */
+
+div.fullscreen h4 {
+    display: none;
+}
 
 div.fullscreen img {
     cursor: zoom-out;
