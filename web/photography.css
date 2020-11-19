@@ -34,6 +34,10 @@ figure:first-of-type {
     margin-top: 30px;
 }
 
+figure:last-of-type {
+    margin-bottom: 30px;
+}
+
 figure {
     display: flex;
     flex-wrap: wrap;

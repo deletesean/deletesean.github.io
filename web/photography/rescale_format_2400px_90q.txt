@@ -1,4 +1,0 @@
-rescale format
-
-2400 x auto
-90 jpeg quality level
