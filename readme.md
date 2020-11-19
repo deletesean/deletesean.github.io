@@ -1,4 +1,4 @@
 # SoftwareDamage.github.io
 Sean Walters - Website
 
-test read me
+This is where it all starts.
