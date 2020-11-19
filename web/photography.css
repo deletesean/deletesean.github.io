@@ -11,10 +11,10 @@ div {
     user-select: none;
     margin-right: 1px;
     margin-bottom: 1px;
+    cursor: pointer;
 }
 
 a > img {
-    cursor: pointer;
     width: 48vw;
     height: auto;
     display: block;

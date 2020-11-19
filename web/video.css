@@ -1,0 +1,8 @@
+a:hover > img {
+    transform: scale(1.5);
+	filter: brightness(75%) grayscale(1);
+}
+
+a:hover > h4 {
+    display: unset;
+}
