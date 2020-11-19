@@ -1,10 +1,9 @@
+projects under 2.5mb
+
 chair
 colors
 emoji
-glitch
 glitch_me
-heart
-md
 median
 minimal_wallpaper
 pixels
