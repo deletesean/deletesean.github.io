@@ -96,7 +96,7 @@ div {
 
 img {
     display: block;
-    height: 38vmin;
+    height: 40vmin;
     transition: 0.25s;
 }
 
@@ -107,15 +107,6 @@ a:hover > img {
 
 a:hover > h4 {
     opacity: 100%;
-}
-
-section {
-    text-align: center;
-}
-
-section > h2 {
-    display: inline-block;
-    text-align: right;
 }
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */

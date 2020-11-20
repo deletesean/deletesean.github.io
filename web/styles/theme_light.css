@@ -5,7 +5,3 @@ html, body, header, footer, main, div.fullscreen {
 h1, h2, h3, h5, h6, a {
     color: black;
 }
-
-header, footer {
-    background: rgb(240, 240, 240);
-}
