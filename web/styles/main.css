@@ -32,32 +32,46 @@ html, body {
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* HEADER & FOOTER */
 
-header {
+header, footer {
     position: fixed;
-    top: 0;
     width: 100%;
-    height: 30px;
+    height: 4vmin;
     z-index: 9;
     cursor: default;
 }
 
+header {
+    top: 0;
+}
+
 footer {
-    position: fixed;
     bottom: 0;
-    width: 100%;
-    height: 30px;
-    z-index: 9;
-    cursor: default;
+}
+
+header > h5, footer > h5 {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
 }
 
 footer > h5:hover {
     cursor: text;
 }
 
+header > h5:first-of-type, footer > h5:first-of-type {
+    margin-left: 1.6vmin;
+}
+
+nav > h5:last-of-type, nav > h5:last-of-type {
+    margin-right: 1.6vmin;
+}
+
 nav {
     float: right;
-    margin-right: 15px;
     user-select: none;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
 }
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -141,10 +155,10 @@ h4 {
 }
 /* nav */
 h5 {
-    font-size: 12px;
+    font-size: 1.5vmin;
     display: inline-block;
-    margin-top: 8px;
-    margin-left: 10px;
+    margin-left: 0.8vmin;
+    margin-right: 0.8vmin;
 }
 /* link */
 a {
