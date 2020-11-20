@@ -77,13 +77,13 @@ div {
     justify-content: center;
     position: relative;
     text-align: center;
+    margin-bottom: 9vmin;
 }
 
 img {
     display: block;
-    height: 30vmin;
+    height: 40vmin;
     transition: 0.25s;
-    margin-bottom: 10vmin;
 }
 
 a:hover > img {
@@ -99,6 +99,11 @@ section {
     text-align: center;
 }
 
+section > h2 {
+    display: inline-block;
+    text-align: right;
+}
+
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* TEXT */
 
@@ -106,7 +111,7 @@ section {
 h1 {
     font-size: 2vmin;
     text-align: center;
-    margin-bottom: 10vmin;
+    margin-bottom: 9vmin;
 }
 /* main - header */
 h2 {
@@ -116,14 +121,14 @@ h2 {
 }
 /* main - subtitle */
 h3 {
-    font-size: 18px;
+    font-size: 2vmin;
     text-align: center;
     font-style: italic;
     color: #c0c0c0;
 }
 /* image - title */
 h4 {
-    font-size: 18px;
+    font-size: 2vmin;
     text-align: center;
     font-style: italic;
     color: white;
