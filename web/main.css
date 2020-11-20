@@ -13,11 +13,11 @@
     /* font-family: 'Roboto', sans-serif; */
 }
 
-::-moz-selection { /* Code for Firefox */
-    background: red;
-  }
-  
 ::selection {
+    background: red;
+}
+
+::-moz-selection {
     background: red;
 }
 
