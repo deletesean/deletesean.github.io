@@ -2,10 +2,6 @@ main {
     display: block;
 }
 
-h4 {
-    transition: 0.25s ease;
-}
-
 div {
     overflow: hidden;
     user-select: none;
@@ -24,6 +20,10 @@ a > img {
 a:hover > img {
     transform: scale(1.5);
 	filter: unset;
+}
+
+h4 {
+    transition: 0.25s ease;
 }
 
 a:hover > h4 {

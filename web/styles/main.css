@@ -76,6 +76,7 @@ main {
 }
 
 div {
+    display: inline;
     position: relative;
     text-align: center;
   }
