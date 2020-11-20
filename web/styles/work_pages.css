@@ -11,9 +11,10 @@ div {
 }
 
 a > img {
+    display: block;
     width: 48vw;
     height: auto;
-    display: block;
+    margin: 0;
     transition: 0.25s ease;
 }
 
@@ -24,7 +25,7 @@ a:hover > img {
 
 h4 {
     width: 100%;
-    font-size: 0.9vw;
+    font-size: 1.4vw;
     transition: 0.25s ease;
 }
 
