@@ -1,3 +1,7 @@
+h4 {
+    width: 100%;
+}
+
 a:hover > img {
 	filter: brightness(75%) grayscale(100%);
 }
@@ -21,7 +25,7 @@ div.fullscreen img, div.fullscreen h4 {
 div.fullscreen iframe {
     display: unset;
     width: 90vmin;
-    height: 50.7vmin;
+    height: 50.6vmin;
 }
 
 div.fullscreen article {
