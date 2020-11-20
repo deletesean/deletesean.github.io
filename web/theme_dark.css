@@ -2,18 +2,6 @@ html, body, header, footer, main {
     background: black;
 }
 
-::-webkit-scrollbar-track {
-    background: black;
-}
-
-::-webkit-scrollbar-thumb {
-    background: white;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: red;
-}
-
 h1, h2, h3, h4, h5, h6, a {
     color: white;
 }
