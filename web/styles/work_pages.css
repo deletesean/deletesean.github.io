@@ -23,6 +23,8 @@ a:hover > img {
 }
 
 h4 {
+    width: 100%;
+    font-size: 0.9vw;
     transition: 0.25s ease;
 }
 

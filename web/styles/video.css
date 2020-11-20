@@ -1,7 +1,3 @@
-h4 {
-    width: 100%;
-}
-
 a:hover > img {
 	filter: brightness(75%) grayscale(100%);
 }
