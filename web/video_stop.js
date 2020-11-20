@@ -1,4 +1,4 @@
-jQuery(".fullscreen").click(function () {
+jQuery(".stopVideo").click(function () {
 
     var stopAllYouTubeVideos = () => {
         var iframes = document.querySelectorAll('iframe');
