@@ -77,12 +77,12 @@ div {
     justify-content: center;
     position: relative;
     text-align: center;
-    margin-bottom: 9vmin;
+    margin-bottom: 10vmin;
 }
 
 img {
     display: block;
-    height: 40vmin;
+    height: 38vmin;
     transition: 0.25s;
 }
 
@@ -111,7 +111,7 @@ section > h2 {
 h1 {
     font-size: 2vmin;
     text-align: center;
-    margin-bottom: 9vmin;
+    margin-bottom: 10vmin;
 }
 /* main - header */
 h2 {
@@ -153,6 +153,7 @@ a {
 }
 /* link - hover */
 a:hover {
+    color: red;
     text-decoration: underline;
 }
 /* superscript */

@@ -1,15 +1,7 @@
-html, body, header, footer, main {
+html, body, header, footer, main, div.fullscreen {
     background: white;
 }
 
 h1, h2, h3, h5, h6, a {
     color: black;
-}
-
-h4 {
-    color: white;
-}
-
-div.fullscreen {
-    background: white;
 }
