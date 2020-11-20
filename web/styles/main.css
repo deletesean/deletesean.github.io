@@ -73,11 +73,14 @@ main {
 }
 
 div {
+    display: flex;
+    justify-content: center;
     position: relative;
     text-align: center;
-  }
+}
 
 img {
+    display: block;
     height: 400px;
     transition: 0.25s;
 }
