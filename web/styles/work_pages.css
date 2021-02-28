@@ -65,7 +65,7 @@ div.fullscreen h4 {
 }
 
 div.fullscreen img {
-    cursor: zoom-out;
+    /* cursor: zoom-out; */
     /* transform: scale(1.5); */
     width: unset;
     max-width: 80vw;
@@ -82,5 +82,5 @@ div.fullscreen {
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: zoom-out;
+    /* cursor: zoom-out; */
 }

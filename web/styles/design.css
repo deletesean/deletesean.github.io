@@ -1,6 +1,6 @@
 a > img {
     width: auto;
-    height: 24vw;
+    height: 25vw;
 }
 
 header, footer {
@@ -8,23 +8,30 @@ header, footer {
 }
 
 div {
-    margin-right: 5vmin;
-    margin-bottom: 5vmin;
+    margin: 2.5vmin;
+}
+
+a > img {
     transition: 0.25s ease;
 }
 
-div:hover {
-    transform: scale(1.05);
+a:hover > img {
+    transform: scale(1.03);
+}
+
+div.fullscreen {
+    margin: 0;
 }
 
 div.fullscreen img {
     height: unset;
     max-width: 80vw;
     max-height: 80vh;
+    transform: scale(1.03);
 }
 
 figure:first-of-type {
-    padding-top: 10vmin;
+    padding-top: 7.5vmin;
 }
 
 figure:last-of-type {
