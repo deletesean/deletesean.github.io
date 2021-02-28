@@ -33,11 +33,11 @@ a:hover > h4 {
 }
 
 figure:first-of-type {
-    padding-top: 30px;
+    padding-top: 5vmin;
 }
 
 figure:last-of-type {
-    padding-bottom: 10vmin;
+    padding-bottom: 5vmin;
 }
 
 figure:last-of-type > div {

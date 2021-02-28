@@ -1,15 +1,15 @@
 a > img {
     width: auto;
-    height: 16vw;
+    height: 24vw;
 }
 
 header, footer {
-    background: #cccccc;
+    background: #000;
 }
 
 div {
-    margin-right: 6vmin;
-    margin-bottom: 6vmin;
+    margin-right: 5vmin;
+    margin-bottom: 5vmin;
     transition: 0.25s ease;
 }
 
@@ -25,4 +25,8 @@ div.fullscreen img {
 
 figure:first-of-type {
     padding-top: 10vmin;
+}
+
+figure:last-of-type {
+    padding-bottom: 10vmin;
 }
