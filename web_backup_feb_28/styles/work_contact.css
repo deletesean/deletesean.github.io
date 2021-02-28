@@ -1,0 +1,69 @@
+main {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 50px;
+}
+
+h2:first-of-type {
+    margin-top: 50px;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ONCE HEIGHT IS TOO SMALL, SHRINK MAIN CONTENT TO FIT */
+
+@media only screen and (max-height: 750px) {
+
+    h1 {
+        display: none;
+    }
+
+    h2:first-of-type {
+        margin-top: 0;
+    }
+
+}
+
+@media only screen and (max-height: 475px) {
+
+    h2 {
+        font-size: 14px;
+    }
+
+    sup {
+        font-size: 6px;
+    }
+
+}
+
+@media only screen and (max-height: 400px) {
+
+    main {
+        display: block;
+    }
+
+    h2:first-of-type {
+        margin-top: 50px;
+    }
+
+    h2:last-of-type {
+        margin-bottom: 50px;
+    }
+
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ONCE WIDTH IS TOO SMALL, SHRINK MAIN CONTENT TO FIT */
+
+@media only screen and (max-width: 225px) {
+
+    h1, h2 {
+        font-size: 14px;
+    }
+
+    sup {
+        font-size: 6px;
+    }
+
+}

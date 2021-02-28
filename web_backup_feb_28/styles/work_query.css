@@ -1,0 +1,65 @@
+@media only screen and (max-width: 4000px) {
+
+    a > img {
+        width: 24.8vw;
+    }
+
+}
+
+@media only screen and (max-width: 3500px) {
+
+    a > img {
+        width: 24.8vw;
+    }
+
+}
+
+@media only screen and (max-width: 3000px) {
+
+    a > img {
+        width: 24.7vw;
+    }
+
+}
+
+@media only screen and (max-width: 2500px) {
+
+    a > img {
+        width: 24.7vw;
+    }
+
+}
+
+@media only screen and (max-width: 2000px) {
+
+    a > img {
+        width: 24.6vw;
+    }
+
+}
+
+@media only screen and (max-width: 1500px) {
+
+    a > img {
+        width: 24.4vw;
+    }
+
+}
+@media only screen and (max-width: 1000px) {
+
+    a > img {
+        width: 48vw;
+    }
+    
+    h4 {
+        font-size: 2.8vw;
+    }
+
+}
+@media only screen and (max-width: 500px) {
+
+    a > img {
+        width: 48vw;
+    }
+    
+}

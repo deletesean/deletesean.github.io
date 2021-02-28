@@ -14,11 +14,11 @@ a > img {
     display: block;
     width: 48vw;
     height: auto;
-    transition: 0.25s ease;
+    /* transition: 0.25s ease; */
 }
 
 a:hover > img {
-    transform: scale(1.5);
+    /* transform: scale(1.5); */
 	filter: unset;
 }
 
@@ -37,7 +37,11 @@ figure:first-of-type {
 }
 
 figure:last-of-type {
-    margin-bottom: 30px;
+    padding-bottom: 10vmin;
+}
+
+figure:last-of-type > div {
+    margin-bottom: 0;
 }
 
 figure {
@@ -62,10 +66,10 @@ div.fullscreen h4 {
 
 div.fullscreen img {
     cursor: zoom-out;
-    transform: scale(1.5);
+    /* transform: scale(1.5); */
     width: unset;
-    max-width: 60vw;
-    max-height: 60vh;
+    max-width: 80vw;
+    max-height: 80vh;
 }
 
 div.fullscreen {

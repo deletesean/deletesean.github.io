@@ -1,0 +1,7 @@
+html, body, header, footer, main, div.fullscreen {
+    background: #F2F2F2;
+}
+
+h1, h2, h3, h5, h6, a {
+    color: white;
+}

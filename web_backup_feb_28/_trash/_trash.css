@@ -1,0 +1,32 @@
+
+/* FULL SCREEN CENTERS EACH SECTION */
+
+@media only screen and (max-height: 600px) {
+    
+    main {
+        display: block;
+    }
+
+    #break {
+        display: block;
+    }
+
+    h1:first-of-type {
+        margin: 0;
+        margin-top: 50vh;
+    }
+
+    h1:nth-of-type(2) {
+        display: block;
+        margin-bottom: 50vh;
+    }
+
+    h2:first-of-type {
+        margin-top: 50vh;
+    }
+
+    h2:last-of-type {
+        margin-bottom: 50vh;
+    }
+
+}

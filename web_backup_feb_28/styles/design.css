@@ -1,0 +1,15 @@
+a > img {
+    width: auto;
+    height: 16vw;
+}
+
+a:hover > img {
+    transform: scale(1.25);
+}
+
+div.fullscreen img {
+    transform: scale(1.25);
+    height: unset;
+    max-width: 70vw;
+    max-height: 70vh;
+}

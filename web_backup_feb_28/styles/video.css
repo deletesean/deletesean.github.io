@@ -1,0 +1,35 @@
+a:hover > img {
+	filter: brightness(75%) grayscale(100%);
+}
+
+a:hover > h4 {
+    display: unset;
+}
+
+iframe {
+    display: none;
+}
+
+article {
+    display: none;
+}
+
+div.fullscreen img, div.fullscreen h4 {
+    display: none;
+}
+
+div.fullscreen iframe {
+    display: unset;
+    width: 90vmin;
+    height: 50.6vmin;
+}
+
+div.fullscreen article {
+    display: unset;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
