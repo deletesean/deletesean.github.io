@@ -2,9 +2,10 @@ html, body, main, div.fullscreen {
     /* background: black; */
     /* background: white; */
     /* background: #404040; */
+    background: #1A1A1A;
     /* background-image: linear-gradient(to right, #00C2FF , #A200FF); */
     /* background-image: linear-gradient(to right, #B3EAFF , #D4B3FF); */
-    background-image: linear-gradient(to right, #4D4D4D , #1A1A1A);
+    /* background-image: linear-gradient(to right, #4D4D4D , #1A1A1A); */
 }
 
 header, footer {
@@ -20,6 +21,20 @@ h1, h2, h3, h5, h6, a {
     color: white;
 }
 
-h1 > a, h2 > a {
-    color: black;
+h1 > a, h2 > a, h2 {
+    /* color: black; */
+    color: white;
 }
+
+/* 
+SHADES FROM WHITE TO BLACK
+90 - #E6E6E6
+80 - #CCCCCC
+70 - #B3B3B3
+60 - #999999
+50 - #808080
+40 - #666666
+30 - #4D4D4D
+20 - #333333
+10 - #1A1A1A
+*/
