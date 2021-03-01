@@ -1,0 +1,19 @@
+html, body, main, div.fullscreen {
+    /* background: black; */
+    /* background: white; */
+    /* background: #404040; */
+    /* background-image: linear-gradient(to right, #00C2FF , #A200FF); */
+    background-image: linear-gradient(to right, #B3EAFF , #D4B3FF);
+}
+
+header, footer {
+    /* background: black; */
+    /* background: white; */
+    /* background: #BFBFBF; */
+    background-image: linear-gradient(to right, #B3EAFF , #D4B3FF);
+}
+
+h1, h2, h3, h5, h6, a {
+    /* color: black; */
+    /* color: white; */
+}

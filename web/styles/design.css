@@ -3,24 +3,16 @@ a > img {
     height: 25vw;
 }
 
-header, footer {
-    background: #000;
-}
-
 div {
     margin: 2.5vmin;
 }
 
 a > img {
-    transition: 0.25s ease;
+    /* transition: 0.25s ease; */
 }
 
 a:hover > img {
-    transform: scale(1.03);
-}
-
-div.fullscreen {
-    margin: 0;
+    /* transform: scale(1.03); */
 }
 
 div.fullscreen img {

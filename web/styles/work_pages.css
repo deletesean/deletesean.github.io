@@ -5,20 +5,19 @@ main {
 div {
     overflow: hidden;
     user-select: none;
-    margin-right: 1px;
-    margin-bottom: 1px;
+    margin: 2vmin;
     cursor: pointer;
 }
 
 a > img {
     display: block;
-    width: 48vw;
+    width: 25vw;
     height: auto;
-    /* transition: 0.25s ease; */
+    transition: 0.25s ease;
 }
 
 a:hover > img {
-    /* transform: scale(1.5); */
+    transform: scale(1.03);
 	filter: unset;
 }
 
@@ -33,11 +32,11 @@ a:hover > h4 {
 }
 
 figure:first-of-type {
-    padding-top: 5vmin;
+    padding-top: 6.5vmin;
 }
 
 figure:last-of-type {
-    padding-bottom: 5vmin;
+    padding-bottom: 8.5vmin;
 }
 
 figure:last-of-type > div {
@@ -79,6 +78,7 @@ div.fullscreen {
     height: 100%;
     top: 0;
     left: 0;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;

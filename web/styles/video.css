@@ -1,6 +1,6 @@
 a:hover > img {
 	filter: brightness(75%) grayscale(100%);
-    transition: 0.25s ease;
+    /* transition: 0.25s ease; */
     transform: scale(1.5);
 }
 
