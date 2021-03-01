@@ -10,10 +10,11 @@ header, footer {
     /* background: black; */
     /* background: white; */
     /* background: #BFBFBF; */
-    background-image: linear-gradient(to right, #B3EAFF , #D4B3FF);
+    background: #dfdfdf;
+    /* background-image: linear-gradient(to right, #B3EAFF , #D4B3FF); */
 }
 
 h1, h2, h3, h5, h6, a {
-    /* color: black; */
+    color: black;
     /* color: white; */
 }

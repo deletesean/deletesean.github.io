@@ -6,7 +6,6 @@ div {
     overflow: hidden;
     user-select: none;
     margin: 2vmin;
-    cursor: pointer;
 }
 
 a > img {
@@ -14,6 +13,7 @@ a > img {
     width: 25vw;
     height: auto;
     transition: 0.25s ease;
+    cursor: pointer;
 }
 
 a:hover > img {
@@ -65,7 +65,7 @@ div.fullscreen h4 {
 
 div.fullscreen img {
     /* cursor: zoom-out; */
-    /* transform: scale(1.5); */
+    transform: scale(1.03);
     width: unset;
     max-width: 80vw;
     max-height: 80vh;

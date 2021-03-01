@@ -8,7 +8,7 @@
         this.defaults = {
             wrapperId: 'butter',
             wrapperDamper: 0.07,
-            cancelOnTouch: false
+            cancelOnTouch: true
         }
         
         this.validateOptions = function(ops) {
