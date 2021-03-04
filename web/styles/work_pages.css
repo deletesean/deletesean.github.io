@@ -25,6 +25,7 @@ h4 {
     width: 100%;
     font-size: 1.4vw;
     transition: 0.25s ease;
+    cursor: pointer;
 }
 
 a:hover > h4 {
@@ -83,4 +84,5 @@ div.fullscreen {
     justify-content: center;
     align-items: center;
     /* cursor: zoom-out; */
+    cursor: pointer;
 }
