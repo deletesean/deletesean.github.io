@@ -1,4 +1,0 @@
-RESCALE FORMAT
-
-2400px x auto
-90 jpeg quality level

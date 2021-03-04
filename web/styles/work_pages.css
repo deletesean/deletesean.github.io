@@ -5,19 +5,21 @@ main {
 div {
     overflow: hidden;
     user-select: none;
-    margin: 2vmin;
+    margin: 0.2vmin;
 }
 
 a > img {
     display: block;
-    width: 25vw;
+    width: 24.55vw;
     height: auto;
     transition: 0.25s ease;
     cursor: pointer;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 a:hover > img {
-    transform: scale(1.05);
+    transform: scale(1.1);
 	filter: unset;
 }
 
@@ -40,9 +42,9 @@ figure:last-of-type {
     padding-bottom: 8.5vmin;
 }
 
-figure:last-of-type > div {
+/* figure:last-of-type > div {
     margin-bottom: 0;
-}
+} */
 
 figure {
     display: flex;
@@ -50,6 +52,10 @@ figure {
     flex-direction: row;
     margin-left: 1px;
     justify-content: center;
+}
+
+figure.landscape > div > a > img {
+    width: 49.3vw;
 }
 
 /* .portrait {
@@ -66,7 +72,7 @@ div.fullscreen h4 {
 
 div.fullscreen img {
     /* cursor: zoom-out; */
-    transform: scale(1.05);
+    transform: scale(1.1);
     width: unset;
     max-width: 80vw;
     max-height: 80vh;

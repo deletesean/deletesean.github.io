@@ -7,19 +7,15 @@ div {
     margin: 2vmin;
 }
 
-a > img {
-    /* transition: 0.25s ease; */
-}
-
 a:hover > img {
-    /* transform: scale(1.03); */
+    transform: scale(1.1);
 }
 
 div.fullscreen img {
     height: unset;
     max-width: 80vw;
     max-height: 80vh;
-    /* transform: scale(1.03); */
+    transform: scale(1.1);
 }
 
 figure:first-of-type {
