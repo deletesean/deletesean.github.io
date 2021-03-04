@@ -70,6 +70,10 @@ div.fullscreen h4 {
     display: none;
 }
 
+figure.landscape > div.fullscreen > a > img {
+    width: unset;
+}
+
 div.fullscreen img {
     /* cursor: zoom-out; */
     transform: scale(1.1);
