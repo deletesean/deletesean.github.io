@@ -3,10 +3,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap');
 
-#butter {
-    margin: 0;
-}
-
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ALL */
 
@@ -113,6 +109,10 @@ a:hover > h4 {
     opacity: 100%;
 }
 
+br {
+    user-select: none;
+}
+
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* TEXT */
 
@@ -156,7 +156,7 @@ h5 {
     margin-right: 0.8vmin;
     font-weight: 500;
     letter-spacing: 0.1vmin;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 /* link */
 a {
@@ -164,7 +164,7 @@ a {
     text-decoration: none;
     font-weight: 500;
     letter-spacing: 0.1vmin;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 /* link - hover */
 a:hover {
