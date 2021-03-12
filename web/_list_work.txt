@@ -1,0 +1,35 @@
+//////////////////////////////
+
+ANIMATION
+total = 200
+best = 54
+
+AUDIO
+total = 30
+best = 0
+
+DESIGN
+total = 1,000
+best = 
+
+PHOTOGRAPHY
+total = 2,500
+best = 70 (not really)
+
+VIDEO
+total = 300
+best = 0
+
+WEB
+total = 30
+best = 12
+
+//////////////////////////////
+
+really really have to be careful with both the amount of work that is shown on each page as well as the size of it all - I really do have to go for a lower amount of work on each page (100 or less?) as well as a smaller total file size on each page (50mb or less?)
+
+I want to show more work for variety and range, as well as show it all in high quality, but that reality is practically impossible for me to achieve - unless I completely switched up my "framework" and re-coded the galleries so that they utilized a type of "smart thumbnail" system with smarter loading as well.
+
+For now, I will have to bring that number of work down and compress it stronger for easier loading and a smoother browsing experience.
+
+//////////////////////////////
