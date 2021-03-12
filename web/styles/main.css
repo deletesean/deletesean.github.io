@@ -207,7 +207,7 @@ sup {
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ON HEADER CLASH, REMOVE HEADER NAV AND CENTER HEADER NAME */
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 500px) {
 
     header > h5 {
         display: none;
@@ -225,18 +225,10 @@ sup {
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ONCE WIDTH IS TOO SMALL, SHRINK HEADER AND FOOTER CONTENT */
 
-@media only screen and (max-width: 250px) {
+@media only screen and (max-width: 450px) {
 
     h5 {
-        font-size: 8px;
-    }
-
-}
-
-@media only screen and (max-width: 200px) {
-
-    h5 {
-        font-size: 4px;
+        font-size: 12px;
     }
 
 }
