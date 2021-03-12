@@ -35,7 +35,8 @@ html, body {
 header, footer {
     position: fixed;
     width: 100%;
-    height: 4vmin;
+    /* height: 4vmin; */
+    height: 50px;
     z-index: 9;
     cursor: default;
 }
@@ -59,11 +60,13 @@ footer > h5:hover {
 }
 
 header > h5:first-of-type, footer > h5:first-of-type {
-    margin-left: 1.6vmin;
+    /* margin-left: 1.6vmin; */
+    margin-left: 18px;
 }
 
 nav > h5:last-of-type, nav > h5:last-of-type {
-    margin-right: 1.6vmin;
+    /* margin-right: 1.6vmin; */
+    margin-right: 18px;
 }
 
 nav {
@@ -118,26 +121,30 @@ br {
 
 /* main - title */
 h1 {
-    font-size: 2vmin;
+    /* font-size: 2vmin; */
+    font-size: 20px;
     text-align: center;
     margin-bottom: 10vmin;
 }
 /* main - header */
 h2 {
-    font-size: 2vmin;
+    /* font-size: 2vmin; */
+    font-size: 20px;
     text-align: center;
     font-style: italic;
 }
 /* main - subtitle */
 h3 {
-    font-size: 2vmin;
+    /* font-size: 2vmin; */
+    font-size: 20px;
     text-align: center;
     font-style: italic;
     color: #c0c0c0;
 }
 /* image - title */
 h4 {
-    font-size: 2vmin;
+    /* font-size: 2vmin; */
+    font-size: 20px;
     text-align: center;
     font-style: italic;
     color: white;
@@ -150,10 +157,13 @@ h4 {
 }
 /* nav */
 h5 {
-    font-size: 1.5vmin;
+    /* font-size: 1.5vmin; */
+    font-size: 16px;
     display: inline-block;
-    margin-left: 0.8vmin;
-    margin-right: 0.8vmin;
+    /* margin-left: 0.8vmin; */
+    /* margin-right: 0.8vmin; */
+    margin-left: 8px;
+    margin-right: 8px;
     font-weight: 500;
     letter-spacing: 0.1vmin;
     text-transform: capitalize;
@@ -179,7 +189,7 @@ sup {
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ON FOOTER CLASH, REMOVE FOOTER NAV AND CENTER FOOTER COPYRIGHT */
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 1080px) {
 
     footer > nav {
         display: none;
@@ -197,13 +207,15 @@ sup {
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ON HEADER CLASH, REMOVE HEADER NAV AND CENTER HEADER NAME */
 
-@media only screen and (max-width: 350px) {
+@media only screen and (max-width: 550px) {
 
     header > h5 {
         display: none;
     }
 
     header > nav {
+        display: block;
+        margin-top: 16px;
         float: none;
         text-align: center;
     }
