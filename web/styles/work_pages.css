@@ -5,7 +5,7 @@ main {
 div {
     overflow: hidden;
     user-select: none;
-    margin: 0.2vmin;
+    margin: 2px;
 }
 
 a > img {

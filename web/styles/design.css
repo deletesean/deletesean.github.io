@@ -1,21 +1,21 @@
 a > img {
     width: auto;
-    height: 15vw;
+    height: 20vw;
 }
 
 div {
-    margin: 2vmin;
+    margin: 1.5vmin;
 }
 
 a:hover > img {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 div.fullscreen img {
     height: unset;
     max-width: 80vw;
     max-height: 80vh;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 figure:first-of-type {
