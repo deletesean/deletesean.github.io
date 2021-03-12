@@ -45,6 +45,7 @@
     }
 
 }
+
 @media only screen and (max-width: 1000px) {
 
     a > img {
@@ -56,6 +57,7 @@
     }
 
 }
+
 @media only screen and (max-width: 500px) {
 
     a > img {
@@ -63,3 +65,27 @@
     }
     
 } */
+
+@media only screen and (max-width: 1250px) {
+
+    a > img {
+        width: 48vw;
+    }
+    
+    figure.landscape > div > a > img {
+        width: 96.3vw;
+    }
+
+}
+
+@media only screen and (max-width: 750px) {
+
+    a > img {
+        width: 95vw;
+    }
+    
+    figure.landscape > div > a > img {
+        width: 95vw;
+    }
+
+}

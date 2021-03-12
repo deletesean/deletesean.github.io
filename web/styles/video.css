@@ -22,8 +22,10 @@ div.fullscreen img, div.fullscreen h4 {
 
 div.fullscreen iframe {
     display: unset;
-    width: 90vmin;
-    height: 50.6vmin;
+    width: 90vw;
+    height: 51vw;
+    max-width: 150vmin;
+    max-height: 84vmin;
 }
 
 div.fullscreen article {
