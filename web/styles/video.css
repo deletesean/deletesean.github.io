@@ -1,12 +1,12 @@
 a:hover > img {
-	/* filter: brightness(75%); */
+	filter: brightness(75%);
     /* transition: 0.25s ease; */
     transform: scale(1.1);
 }
 
-/* a:hover > h4 {
+a:hover > h4 {
     display: unset;
-} */
+}
 
 iframe {
     display: none;
