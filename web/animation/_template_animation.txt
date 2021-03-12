@@ -1,0 +1,53 @@
+FOR SHORTER CLIPS
+1080p
+match fps
+
+FOR LONGER CLIPS
+1080p
+match fps
+2 seconds
+
+
+
+
+SIZE GOAL
+under 1mb?
+
+
+SHORT CLIPS
+lower res
+lower fps
+
+LONG CLIPS
+really lower res
+lower fps
+
+
+//////////////////////////////
+
+LONG CLIPS
+2 seconds (1 second loop)
+360p
+20fps
+
+SHORT CLIPS
+1080p
+20fps
+
+
+
+
+
+
+
+ALL
+720p
+20fps
+
+LONG
+360p
+20fps
+2 seconds
+
+
+

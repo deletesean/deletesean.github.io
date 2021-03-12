@@ -1,0 +1,42 @@
+----------------------------------------------------------------------------------------------------
+mouse 1 or 2 (hold & drag) - drag canvas
+mouse 2 - change background color of canvas
+mouse 3 - change hover color
+----------------------------------------------------------------------------------------------------
+arrow left - rotate left
+arrow right - rotate right
+arrow up - increase rotation amount
+arrow down - decrease rotation amount
+----------------------------------------------------------------------------------------------------
+ctrl - reset rotation amount
+shift - reset rotation
+----------------------------------------------------------------------------------------------------
+enter - cycle cursor
+----------------------------------------------------------------------------------------------------
+backslash (\) - show/hide all variable text
+----------------------------------------------------------------------------------------------------
+space - show/hide window
+backspace - cycle window color
+bracket left ([) - decrease window size
+bracket right (]) - increase window size
+----------------------------------------------------------------------------------------------------
+equals (=) - partially fill grid (black)
+dash (-) - partially fill grid (white)
+zero (0) - partially fill grid (same random color)
+nine (9) - partially fill grid (different random color)
+eight (8) - partially fill grid (individually random colors)
+----------------------------------------------------------------------------------------------------
+forward slash (/) - fill grid (black)
+period (.) - fill grid (white)
+comma (,) - fill grid (same random color)
+m - fill grid (different random color)
+----------------------------------------------------------------------------------------------------
+quotation (') - change hover color to black
+semicolon (;) - change hover color to white
+l - change hover color to current random hover color (not working)
+----------------------------------------------------------------------------------------------------
+z - unlocks canvas (on hold)
+x - locks/unlocks canvas (on press)
+----------------------------------------------------------------------------------------------------
+h - help menu (not added yet)
+----------------------------------------------------------------------------------------------------

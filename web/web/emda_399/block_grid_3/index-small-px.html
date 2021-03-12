@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style-small-px.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <p id="size"></p>
+    <p id="ramount"></p>
+    <p id="counter"></p>
+    <p id="size"></p>
+    <div id="squares">
+        <div id="squaretop"></div>
+        <div id="squareleft"></div>
+        <div id="squareright"></div>
+        <div id="squarebottom"></div>
+    </div>
+    <div oncontextmenu="return false" id="hover">
+        <div id="demo1">
+            <div id="demo" class="demo">
+                <div id="demo2"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var text = "";
+        var i;
+        for (i = 0; i < 10000; i++) {
+            text += "&nbsp";
+        }
+        document.getElementById("demo2").innerHTML = text;
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var letters = $("#demo2").text();
+            var nHTML = '';
+            for (var letter of letters) {
+                nHTML += "<span class='x'>" + letter + "</span>";
+            }
+            $("#demo2").html(nHTML);
+        })
+    </script>
+
+    <script>
+
+        var hueblock1 = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+
+        document.addEventListener('keydown', function (event) {
+            if (event.keyCode == 187) {
+                $(function () {
+                    var j;
+                    for (j = 0; j < 10000; j++) {
+                        var randomItem7 = Math.floor(Math.random() * 10000);
+                        document.getElementsByClassName('x')[randomItem7].style.backgroundColor = 'black';
+                    }
+                });
+            }
+            else if (event.keyCode == 189) {
+                $(function () {
+                    var k;
+                    for (k = 0; k < 10000; k++) {
+                        var randomItem7 = Math.floor(Math.random() * 10000);
+                        document.getElementsByClassName('x')[randomItem7].style.backgroundColor = 'white';
+                    }
+                });
+            }
+            else if (event.keyCode == 48) {
+                $(function () {
+                    var l;
+                    for (l = 0; l < 10000; l++) {
+                        var randomItem7 = Math.floor(Math.random() * 10000);
+                        document.getElementsByClassName('x')[randomItem7].style.backgroundColor = hueblock1;
+                    }
+                });
+            }
+            else if (event.keyCode == 57) {
+                var hueblock2 = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+                $(function () {
+                    var l;
+                    for (l = 0; l < 10000; l++) {
+                        var randomItem7 = Math.floor(Math.random() * 10000);
+                        document.getElementsByClassName('x')[randomItem7].style.backgroundColor = hueblock2;
+                    }
+                });
+            }
+            else if (event.keyCode == 56) {
+                $(function () {
+                    var l;
+                    for (l = 0; l < 10000; l++) {
+                        var hueblock3 = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+                        var randomItem7 = Math.floor(Math.random() * 10000);
+                        document.getElementsByClassName('x')[randomItem7].style.backgroundColor = hueblock3;
+                    }
+                });
+            }
+        });
+
+    </script>
+
+<script>
+
+    var hueblock1 = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+
+    document.addEventListener('keydown', function (event) {
+        if (event.keyCode == 191) {
+                    $('.x').css('background-color', 'black');
+        }
+        else if (event.keyCode == 190) {
+                    $('.x').css('background-color', 'white');
+        }
+        else if (event.keyCode == 188) {
+                    $('.x').css('background-color', hueblock1);
+        }
+        else if (event.keyCode == 77) {
+            var hueblock2 = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+                    $('.x').css('background-color', hueblock2);
+        }
+    });
+
+</script>
+
+    <script>
+        $(function () {
+            $('.x').hover(function () {
+                $(this).css("background-color", "black");
+            }, function () {
+                $(this).css("background-color", hue);
+            });
+            $('.x').on('mousewheel', function (event) {
+                var hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+                $(this).css('background-color', hue);
+                $(function () {
+                    $('.x').hover(function () {
+                        $(this).css('background-color', hue);
+                    },
+                        function () {
+                            $(this).css('background-color', hue);
+                        });
+                });
+            },
+            );
+        });
+    </script>
+
+    <script>
+        var myArray2 = [
+            "none",
+            "crosshair",
+            "default",
+        ];
+
+        var myIndex = 1;
+        var demo2 = document.getElementById("demo2");
+
+        var randomItem3 = myArray2[0];
+        document.getElementById("demo2").style.cursor = randomItem3;
+
+        function nextElement() {
+            var randomItem2 = myArray2[myIndex++ % myArray2.length];
+        };
+
+        document.addEventListener('keydown', function (event) {
+            if (event.keyCode == 13) {
+                var randomItem2 = myArray2[myIndex++ % myArray2.length];
+                document.getElementById("demo2").style.cursor = randomItem2;
+            }
+        });
+
+    </script>
+
+    <script>
+
+        var rightclick = 1;
+
+        document.getElementById("demo2").onmousedown = function (event) {
+            if (event.which == 3 && rightclick == 0) {
+                document.body.style.backgroundColor = "white";
+                rightclick = 1;
+                return false;
+            }
+            else if (event.which == 3 && rightclick == 1) {
+                document.body.style.backgroundColor = "black";
+                rightclick = 2;
+                return false;
+            }
+            else if (event.which == 3 && rightclick == 2) {
+                var huebg = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+                document.body.style.backgroundColor = huebg;
+                rightclick = 0;
+                return false;
+            }
+        }
+    </script>
+
+    <script>
+
+        var counter = 0;
+        var ramount = 0;
+
+        document.getElementById("ramount").innerHTML = ramount;
+        document.getElementById("counter").innerHTML = counter;
+
+        document.addEventListener('keydown', function (event) {
+            if (event.keyCode == 38) {
+                ramount += 1;
+                document.getElementById("ramount").innerHTML = ramount;
+            }
+            else if (event.keyCode == 40) {
+                ramount -= 1;
+                document.getElementById("ramount").innerHTML = ramount;
+            }
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.keyCode == 37) {
+                counter -= ramount;
+                $('.demo').css('transform', 'rotate(' + counter + 'deg)');
+                document.getElementById("counter").innerHTML = counter;
+            }
+            else if (event.keyCode == 39) {
+                counter += ramount;
+                $('.demo').css('transform', 'rotate(' + counter + 'deg)');
+                document.getElementById("counter").innerHTML = counter;
+            }
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.keyCode == 16) {
+                counter = 0;
+                $('.demo').css('transform', 'rotate(' + counter + 'deg)');
+                document.getElementById("counter").innerHTML = counter;
+            }
+            else if (event.keyCode == 17) {
+                ramount = 0;
+                document.getElementById("ramount").innerHTML = ramount;
+            }
+        });
+
+    </script>
+
+    <script>
+
+        var squares = document.getElementById("squares");
+        var space = 0;
+
+        document.addEventListener('keydown', function (event) {
+            if (event.keyCode == 32 && space == 0) {
+                squares.style.display = "none";
+                space = 1;
+            }
+            else if (event.keyCode == 32 && space == 1) {
+                squares.style.display = "block";
+                space = 0;
+            }
+        });
+
+    </script>
+
+    <script>
+
+        var squaretop = document.getElementById("squaretop");
+        var squarebottom = document.getElementById("squarebottom");
+        var squareleft = document.getElementById("squareleft");
+        var squareright = document.getElementById("squareright");
+        var alt = 1;
+
+        document.addEventListener('keydown', function (event) {
+            if (event.keyCode == 8 && alt == 0) {
+                squaretop.style.backgroundColor = "white";
+                squarebottom.style.backgroundColor = "white";
+                squareleft.style.backgroundColor = "white";
+                squareright.style.backgroundColor = "white";
+                alt = 1;
+            }
+            else if (event.keyCode == 8 && alt == 1) {
+                squaretop.style.backgroundColor = "black";
+                squarebottom.style.backgroundColor = "black";
+                squareleft.style.backgroundColor = "black";
+                squareright.style.backgroundColor = "black";
+                alt = 2;
+            }
+            else if (event.keyCode == 8 && alt == 2) {
+                var hue2 = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+                squaretop.style.backgroundColor = hue2;
+                squarebottom.style.backgroundColor = hue2;
+                squareleft.style.backgroundColor = hue2;
+                squareright.style.backgroundColor = hue2;
+                alt = 3;
+            }
+            else if (event.keyCode == 8 && alt == 3) {
+                var hue2 = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+                var hue3 = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+                var hue4 = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+                var hue5 = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+                squaretop.style.backgroundColor = hue2;
+                squarebottom.style.backgroundColor = hue3;
+                squareleft.style.backgroundColor = hue4;
+                squareright.style.backgroundColor = hue5;
+                alt = 0;
+            }
+        });
+
+    </script>
+
+    <script>
+        var squaretop = document.getElementById("squaretop");
+        var squarebottom = document.getElementById("squarebottom");
+        var squareleft = document.getElementById("squareleft");
+        var squareright = document.getElementById("squareright");
+        var size = 30;
+
+        document.getElementById("size").innerHTML = size;
+
+        document.addEventListener('keydown', function (event) {
+            if (event.keyCode == 221) {
+                size -= 1;
+                document.getElementById("size").innerHTML = size;
+                squaretop.style.height = size + '%';
+                squarebottom.style.height = size + '%';
+                squareleft.style.width = size + '%';
+                squareright.style.width = size + '%';
+            }
+            else if (event.keyCode == 219) {
+                size += 1;
+                document.getElementById("size").innerHTML = size;
+                squaretop.style.height = size + '%';
+                squarebottom.style.height = size + '%';
+                squareleft.style.width = size + '%';
+                squareright.style.width = size + '%';
+            }
+        });
+    </script>
+
+    <script>
+
+        var counterdisplay = document.getElementById("counter");
+        var ramountdisplay = document.getElementById("ramount");
+        var sizedisplay = document.getElementById("size");
+        var slash = 0;
+
+        document.addEventListener('keydown', function (event) {
+            if (event.keyCode == 220 && slash == 0) {
+                counterdisplay.style.display = "block";
+                ramountdisplay.style.display = "block";
+                sizedisplay.style.display = "block";
+                slash = 1;
+            }
+            else if (event.keyCode == 220 && slash == 1) {
+                counterdisplay.style.display = "none";
+                ramountdisplay.style.display = "none";
+                sizedisplay.style.display = "none";
+                slash = 0;
+            }
+        });
+
+    </script>
+
+    <script>
+        //Make the DIV element draggagle:
+        dragElement(document.getElementById("demo1"));
+
+        function dragElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id + "header")) {
+                /* if present, the header is where you move the DIV from:*/
+                document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+            } else {
+                /* otherwise, move the DIV from anywhere inside the DIV:*/
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // set the element's new position:
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                /* stop moving when mouse button is released:*/
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style-random.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div oncontextmenu="return false" id="hover">
+        <div id="demo1">
+            <div id="demo">
+                <div id="demo2"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var text = "";
+        var i;
+        for (i = 0; i < 1000; i++) {
+            text += "&nbsp";
+        }
+        document.getElementById("demo2").innerHTML = text;
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var letters = $("#demo2").text();
+            var nHTML = '';
+            for (var letter of letters) {
+                nHTML += "<span class='x'>" + letter + "</span>";
+            }
+            $("#demo2").html(nHTML);
+        })
+    </script>
+
+    <script>
+        $(function () {
+
+            var j;
+            for (j = 0; j < 1000; j++) {
+                var randomItem7 = Math.floor(Math.random() * 1000);
+                document.getElementsByClassName('x')[randomItem7].style.backgroundColor = 'black';
+            }
+
+        });
+
+    </script>
+
+    <script>
+        $(function () {
+            $('.x').hover(function () {
+                $(this).css("background-color", "red");
+            }, function () {
+                $(this).css("background-color", hue);
+            });
+            $('.x').on('mousewheel', function (event) {
+                var hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+                $(this).css('background-color', hue);
+                $(function () {
+                    $('.x').hover(function () {
+                        $(this).css('background-color', hue);
+                    },
+                        function () {
+                            $(this).css('background-color', hue);
+                        });
+                });
+            },
+            );
+        });
+    </script>
+
+    <script>
+        var myArray3 = [
+            "white",
+            "black"
+        ];
+
+        var myIndex2 = 1;
+        var test = document.getElementById("demo2");
+
+        var randomItem5 = myArray3[0];
+        document.getElementById("demo2").style.cursor = randomItem5;
+
+        function nextElement2() {
+            var randomItem4 = myArray3[myIndex2++ % myArray3.length];
+        };
+
+        document.getElementById("demo2").onmousedown = function (event) {
+            if (event.which == 3) {
+                var randomItem4 = myArray3[myIndex2++ % myArray3.length];
+                document.body.style.backgroundColor = randomItem4;
+                return false;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

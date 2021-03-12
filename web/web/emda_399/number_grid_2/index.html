@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div oncontextmenu="return false" id="hover">
+        <div id="demo1">
+            <div id="demo">
+                <div id="demo2"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var text = "";
+        var i;
+        for (i = 0; i < 9000; i++) {
+            text += Math.floor(Math.random() * 10);
+        }
+        document.getElementById("demo2").innerHTML = text;
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var letters = $("#demo2").text();
+            var nHTML = '';
+            for (var letter of letters) {
+                nHTML += "<span class='x'>" + letter + "</span>";
+            }
+            $("#demo2").html(nHTML);
+        })
+    </script>
+
+    <script>
+        $(function () {
+            $('.x').hover(function () {
+                $(this).css("color", "red");
+            }, function () {
+                $(this).css("color", "#F0F0F0");
+            });
+            $('.x').on('mousewheel', function (event) {
+                var hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+                $(this).css('color', hue);
+                $(function () {
+                    $('.x').hover(function () {
+                        $(this).css('color', hue);
+                    },
+                        function () {
+                            $(this).css('color', '#F0F0F0');
+                        });
+                });
+            },
+            );
+        });
+    </script>
+
+    <script>
+        var myArray2 = [
+            "none",
+            "crosshair",
+            "default",
+        ];
+
+        var myIndex = 1;
+        var demo2 = document.getElementById('demo2');
+
+        var randomItem3 = myArray2[0];
+        document.getElementById("demo2").style.cursor = randomItem3;
+
+        function nextElement() {
+            var randomItem2 = myArray2[myIndex++ % myArray2.length];
+        };
+
+        document.getElementById("demo2").addEventListener("click", myFunction);
+
+        function myFunction() {
+            var randomItem2 = myArray2[myIndex++ % myArray2.length];
+            this.style.cursor = randomItem2;
+        }
+    </script>
+
+    <script>
+        var myArray3 = [
+            "white",
+            "#F0F0F0",
+            "#D9D9D9",
+            "#555",
+            "black",
+            "red",
+            "orange",
+            "yellow",
+            "green",
+            "blue",
+            "indigo",
+            "purple",
+            "violet",
+            "pink"
+        ];
+
+        var myIndex2 = 1;
+        var test = document.getElementById("demo2");
+
+        var randomItem5 = myArray3[0];
+        document.getElementById("demo2").style.cursor = randomItem5;
+
+        function nextElement2() {
+            var randomItem4 = myArray3[myIndex2++ % myArray3.length];
+        };
+
+        document.getElementById("demo2").onmousedown = function (event) {
+            if (event.which == 3) {
+                var randomItem4 = myArray3[myIndex2++ % myArray3.length];
+                document.body.style.backgroundColor = randomItem4;
+                return false;
+            }
+        }
+    </script>
+
+    <script>
+        //Make the DIV element draggagle:
+        dragElement(document.getElementById("demo1"));
+
+        function dragElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id + "header")) {
+                /* if present, the header is where you move the DIV from:*/
+                document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+            } else {
+                /* otherwise, move the DIV from anywhere inside the DIV:*/
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // set the element's new position:
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                /* stop moving when mouse button is released:*/
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

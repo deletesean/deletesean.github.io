@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Sean Walters - Project_1_1_03</title>
+	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+	<script>
+		// Global Variables
+		var myStage;
+		function init() {
+			myStage = new createjs.Stage("myCanvas");
+			// 1. set up a createjs.Ticker() to run at 60 frames per second.
+			// createjs.Ticker._setFPS(60);
+			createjs.Ticker._setFPS(60);
+			// 2. Have the Ticker call a gameLoop function that we haven't written yet!
+			// createjs.Ticker.addEventListener('tick', gameLoop);
+			createjs.Ticker.addEventListener('tick', gameLoop);
+		}
+		// 3. Making sure you're outside of the init() function...
+		// write a gameLoop() function that sends a message to the console.
+		function gameLoop() {
+			console.log("The 'gameLoop' function ran.");
+		}
+	</script>
+</head>
+
+<body onload="init()">
+	<canvas id="myCanvas" width="1024" height="768"></canvas>
+</body>
+
+</html>
