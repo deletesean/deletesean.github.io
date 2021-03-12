@@ -189,15 +189,19 @@ sup {
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ON FOOTER CLASH, REMOVE FOOTER NAV AND CENTER FOOTER COPYRIGHT */
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1100px) {
 
     footer > nav {
         display: none;
     }
 
+    footer > h5:first-of-type {
+        margin: 0;
+    }
+
     footer > h5 {
         margin: 0;
-        margin-top: 8px;
+        margin-top: 16px;
         display: block;
         text-align: center;
     }
@@ -214,10 +218,35 @@ sup {
     }
 
     header > nav {
-        display: block;
+        margin: 0;
         margin-top: 16px;
+        display: block;
         float: none;
         text-align: center;
+    }
+
+    h1, h2, h3, h4 {
+        font-size: 14px;
+    }
+
+    .work_links {
+        line-height: 12px;
+    }
+
+    sup {
+        font-size: 8px;
+    }
+
+    header, footer {
+        height: 20px;
+    }
+
+    header > nav {
+        margin-top: -1px;
+    }
+
+    footer > h5:first-of-type {
+        margin-top: 3px;
     }
 
 }
@@ -228,7 +257,7 @@ sup {
 @media only screen and (max-width: 450px) {
 
     h5 {
-        font-size: 12px;
+        font-size: 10px;
     }
 
 }
